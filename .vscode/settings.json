@@ -1,0 +1,42 @@
+{
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "source.fixAll.eslint": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.csproj.user": true,
+    "**/bin/": true,
+    "**/obj/": true,
+    "**/Properties/Resources.resx": true,
+    "yarn.lock": true,
+    "**/yarn-error.log": true,
+    "packages\\webpack/lib": true
+  },
+  // The package manager used to run scripts.
+  "npm.packageManager": "yarn",
+
+  // The package manager you use to install node modules.
+  "prettier.packageManager": "yarn",
+
+  // The package manager you use to install node modules.
+  "tslint.packageManager": "yarn",
+
+  // The package manager you use to install node modules.
+  "eslint.packageManager": "yarn",
+  "editor.formatOnSaveMode": "modifications",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "typescript.format.semicolons": "insert",
+  "eslint.format.enable": true,
+  "explorerExclude.backup": null
+}

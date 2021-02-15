@@ -1,0 +1,22 @@
+.DS_Store
+/dist/
+node_modules
+thumbs.db
+.idea/
+yarn-error.log
+.vs/slnx.sqlite
+*.log.json
+
+debug.log
+
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+# #zero installs:
+# !.yarn/cache
+
+##not zero installs
+.pnp.*
