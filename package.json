@@ -9,6 +9,9 @@
     "packages": [
       "packages/*",
       "packages/@fndj/*"
+    ],
+    "nohoist": [
+      "**/@types/*/**"
     ]
   },
   "scripts": {

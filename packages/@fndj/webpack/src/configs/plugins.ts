@@ -7,7 +7,7 @@ import WebpackBar from 'webpackbar';
 import { staticSourceDir } from './settings';
 
 export const devPlugins = [
-        new WebpackBar(),
+        new WebpackBar({}),
         new ForkTsCheckerWebpackPlugin({
           // silent: true
         })];

@@ -2,7 +2,7 @@
   "name": "@fndj/phase-vocoder",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack-dev-server"
@@ -16,7 +16,7 @@
     "@types/webpackbar": "^4.0.0",
     "fork-ts-checker-webpack-plugin": "^6.1.0",
     "ts-loader": "^8.0.15",
-    "webpack": "workspace:packages/webpack",
+    "typescript": "^4.1.5",
     "webpack-dev-server": "^3.11.2",
     "webpackbar": "^5.0.0-3"
   }

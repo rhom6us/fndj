@@ -17,7 +17,7 @@
     "**/bin/": true,
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
-    "yarn.lock": true,
+    "yarn.lock": false,
     "**/yarn-error.log": true,
     "packages\\webpack/lib": true
   },
@@ -33,7 +33,6 @@
   // The package manager you use to install node modules.
   "eslint.packageManager": "yarn",
   "editor.formatOnSaveMode": "modifications",
-  "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "typescript.format.semicolons": "insert",

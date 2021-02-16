@@ -2,7 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetRule } from 'webpack';
 import {
   babelLoader, cssHotLoader, cssHotModuleLoader, cssLoader, cssModuleLoader, fontLoader,
-  imageLoader, postcssLoader, sassLoader, tsLoader
+  imageLoader, postcssLoader, sassLoader, tsLoader, workletLoader
 } from './loaders';
 import { isDev } from './settings';
 
@@ -11,14 +11,7 @@ const node_modules = /node_modules/i;
 
 export const workletRule: RuleSetRule = {
   test: /\.worklet\.ts$/,
-  exclude: [node_modules],
-  use: [{
-    loader: 'worklet-loader',
-    options: {
-      //configFile: 'tsconfig.1.json',
-      transpileOnly: true,
-    },
-  }],
+  use: [workletLoader],
 };
 export const reactTypescriptRule: RuleSetRule = {
   test: /\.tsx?$/i,
@@ -27,7 +20,6 @@ export const reactTypescriptRule: RuleSetRule = {
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,
-  exclude: node_modules,
   use: [tsLoader],
 };
 export const scriptRule: RuleSetRule = {

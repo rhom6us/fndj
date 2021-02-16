@@ -9,9 +9,7 @@ declare global {
     abstract process(inputs: Float32Array[][], outputs: Float32Array[][], parameters: Record<string, Float32Array>): boolean;
   }
 
-  // interface AudioWorkletNodeOptions<TProcessorOptions> extends AudioWorkletNodeOptions {
-  //   processorOptions: TProcessorOptions;
-  // }
+
   type AudioWorkletProcessorCtor = (new (options?: AudioWorkletNodeOptions) => AudioWorkletProcessor) & {
     parameterDescriptors?: AudioParamDescriptor[];
   };

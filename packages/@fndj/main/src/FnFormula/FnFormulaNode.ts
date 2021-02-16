@@ -1,46 +1,60 @@
+import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';
+import url from './FnFormulaProcessor.worklet.ts'
+const initializedContextsWithThisWorklet = new Map<BaseAudioContext, Promise<void>>();
+
+export interface ProcessorOptions{
+  formula: string;
+}
+export interface ParameterData{
+  [ARG1]?: any;
+  [ARG2]?: any;
+  [ARG3]?: any;
+}
 /**
  * formula instructions:
  * The processor will call the formula for each sample in each
  * channel. Available arguments are:
  *  x - the current sample value
- *  arg1
- *  arg2
- *  arg3
+ *  [ARG1]
+ *  [ARG2]
+ *  [ARG3]
  *
  * example1: "12 * Math.log2(x)"
- * example2: "x * arg1"
+ * example2: "x * [ARG1]"
  *
  */
 export class FnFormulaNode extends AudioWorkletNode {
-  private static _processInitialized = false;
-  static async intialize(context: BaseAudioContext) {
-    if (!FnFormulaNode._processInitialized) {
-      await context.audioWorklet.addModule("./FnFormulaProcessor.js");
-      FnFormulaNode._processInitialized = true;
+  get [ARG1]() {
+    return this.parameters.get(ARG1)!;
+  }
+  // get [ARG2]() {
+  //   return this.parameters.get(ARG2)!;
+  // }
+  // get [ARG3]() {
+  //   return this.parameters.get(ARG3)!;
+  // }
+  static async create(context: BaseAudioContext): Promise<typeof FnFormulaNode> {
+    console.log({ url });
+    if (!initializedContextsWithThisWorklet.has(context)) {
+      initializedContextsWithThisWorklet.set(context, context.audioWorklet.addModule(url));
     }
-    return;
-  }
-  get arg1() {
-    return this.parameters.get("arg1")!;
-  }
-  get arg2() {
-    return this.parameters.get("arg2")!;
-  }
-  get arg3() {
-    return this.parameters.get("arg3")!;
+    await initializedContextsWithThisWorklet.get(context);
+    return FnFormulaNode;
   }
   constructor(
-    context: BaseAudioContext,
-    {
+    context: BaseAudioContext,  {
       formula,
-      arg1,
-      arg2,
-      arg3
-    }: { formula: string; arg1?: number; arg2?: number; arg3?: number }
+      [ARG1]:arg1,
+      // [ARG2]:arg2,
+      // [ARG3]:arg3
+    }: ProcessorOptions & ParameterData,
   ) {
-    super(context, "fn-formula", {
+    if (!initializedContextsWithThisWorklet.has(context)) {
+      throw new Error('Invalid constructor');
+    }
+    super(context, PROCESSOR_NAME, {
       processorOptions: { formula },
-      parameterData: { arg1: arg1 || 0, arg2: arg2 || 0, arg3: arg3 || 0 }
+      parameterData: { [ARG1]:arg1/*, [ARG2]:arg2, [ARG3]:arg3*/ }
     });
   }
 }
