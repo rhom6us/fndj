@@ -148,3 +148,7 @@ export const workletLoader:RuleSetLoader = {
     name: 'js/[hash].worklet.js'
   }
 }
+
+export const nodeLoader: RuleSetLoader = {
+  loader: 'node-loader'
+}

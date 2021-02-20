@@ -2,7 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetRule } from 'webpack';
 import {
   babelLoader, cssHotLoader, cssHotModuleLoader, cssLoader, cssModuleLoader, fontLoader,
-  imageLoader, postcssLoader, sassLoader, tsLoader, workletLoader
+  imageLoader, nodeLoader, postcssLoader, sassLoader, tsLoader, workletLoader
 } from './loaders';
 import { isDev } from './settings';
 
@@ -29,7 +29,7 @@ export const scriptRule: RuleSetRule = {
 };
 export const nodeRule: RuleSetRule = {
   test: /\.node$/i,
-  use: 'node-loader',
+  use: nodeLoader,
 };
 
 export const workerRule: RuleSetRule = {

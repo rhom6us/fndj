@@ -22,7 +22,7 @@ export const createIndexHtml = new HtmlWebpackPlugin({
     // template: `!!html-loader?minimize=false&url=false!${path.resolve(rendererSourceDir, 'template.html')}`,
     filename: `${'index'}.html`,
     // "chunks": [entry],
-    inject: 'head',
+  inject: 'body',
     // "compile": true,
     chunks: 'all',
     // excludeChunks: [],

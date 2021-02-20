@@ -10,8 +10,8 @@ declare global {
   }
 
 
-  type AudioWorkletProcessorCtor = (new (options?: AudioWorkletNodeOptions) => AudioWorkletProcessor) & {
+  type AudioWorkletProcessorCtor = typeof AudioWorkletProcessor & {
     parameterDescriptors?: AudioParamDescriptor[];
   };
-  function registerProcessor(name: string, processorCtor: AudioWorkletProcessorCtor): undefined;
+  function registerProcessor<T extends AudioWorkletProcessorCtor>(name: string, processorCtor: T): undefined;
 }

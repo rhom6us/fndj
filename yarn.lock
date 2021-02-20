@@ -77,8 +77,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fndj/main@workspace:packages/@fndj/main"
   dependencies:
-    "@fndj/phase-vocoder": "workspace:packages/@fndj/phase-vocoder"
-    "@fndj/webpack": "workspace:packages/@fndj/webpack"
+    "@fndj/phase-vocoder": "*"
+    "@fndj/util": "*"
+    "@fndj/webpack": "*"
     "@hot-loader/react-dom": ^17.0.1
     "@types/react": ^17.0.1
     "@types/react-dom": ^17.0.0
@@ -92,26 +93,30 @@ __metadata:
     react-router-static: ^1.0.0
     redux: ^4.0.5
     superpowered: "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio"
+    ts-loader: ^8.0.14
+    typescript: ^4.1.5
   languageName: unknown
   linkType: soft
 
-"@fndj/phase-vocoder@workspace:packages/@fndj/phase-vocoder":
+"@fndj/phase-vocoder@*, @fndj/phase-vocoder@workspace:packages/@fndj/phase-vocoder":
   version: 0.0.0-use.local
   resolution: "@fndj/phase-vocoder@workspace:packages/@fndj/phase-vocoder"
   dependencies:
     "@types/webpack": ^4.41.26
-    "@types/webpack-dev-server": ^3.11.1
-    "@types/webpackbar": ^4.0.0
     fft.js: ^4.0.4
-    fork-ts-checker-webpack-plugin: ^6.1.0
-    ts-loader: ^8.0.15
     typescript: ^4.1.5
-    webpack-dev-server: ^3.11.2
-    webpackbar: ^5.0.0-3
   languageName: unknown
   linkType: soft
 
-"@fndj/webpack@workspace:packages/@fndj/webpack":
+"@fndj/util@*, @fndj/util@workspace:packages/@fndj/util":
+  version: 0.0.0-use.local
+  resolution: "@fndj/util@workspace:packages/@fndj/util"
+  dependencies:
+    typescript: ^4.1.5
+  languageName: unknown
+  linkType: soft
+
+"@fndj/webpack@*, @fndj/webpack@workspace:packages/@fndj/webpack":
   version: 0.0.0-use.local
   resolution: "@fndj/webpack@workspace:packages/@fndj/webpack"
   dependencies:
@@ -119,7 +124,7 @@ __metadata:
     "@types/html-webpack-plugin": ^3.2.4
     "@types/loader-utils": ^2.0.1
     "@types/mini-css-extract-plugin": ^1.2.2
-    "@types/node": ^14.14.24
+    "@types/node": ^14.14.31
     "@types/webpack": ^4.41.2
     "@types/webpack-dev-server": ^3.11.1
     "@types/webpack-merge": ^4.1.5
@@ -139,6 +144,7 @@ __metadata:
     mini-css-extract-plugin: ^1.3.5
     node-loader: ^1.0.2
     node-sass: ^5.0.0
+    postcss: ^8.2.6
     postcss-import: ^14.0.0
     postcss-loader: ^4.0.0
     postcss-preset-env: ^6.7.0
@@ -161,6 +167,9 @@ __metadata:
     webpackbar: 4.0.0
     worklet-loader: ^1.0.0
     yarn: ^1.22.10
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
   bin:
     fnbuild: ./lib/fnbuild.js
     fnserve: ./lib/fnserve.js
@@ -409,10 +418,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.14.24":
-  version: 14.14.24
-  resolution: "@types/node@npm:14.14.24"
-  checksum: b01653edcbca44e08129cb9676c2a77c88d9dee0eba9949edc6a29694585a11b87b2c54cd174f806db9cb2cf4d73783e5e05be34c9b41cd736861cbfb71c9b46
+"@types/node@npm:^14.14.31":
+  version: 14.14.31
+  resolution: "@types/node@npm:14.14.31"
+  checksum: 635dc8a0898a923621e02ca179e17baa39fdfa44f0096fcc1b7046c9b32317e74a99956a7b45ca0e8069874f51f4e7873a418239a318a4b6e7936f6510ac5992
   languageName: node
   linkType: hard
 
@@ -1027,7 +1036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-escapes@npm:^4.2.1, ansi-escapes@npm:^4.3.0, ansi-escapes@npm:^4.3.1":
+"ansi-escapes@npm:^4.2.1, ansi-escapes@npm:^4.3.0":
   version: 4.3.1
   resolution: "ansi-escapes@npm:4.3.1"
   dependencies:
@@ -2238,7 +2247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"consola@npm:^2.10.0, consola@npm:^2.15.0":
+"consola@npm:^2.10.0":
   version: 2.15.2
   resolution: "consola@npm:2.15.2"
   checksum: 6ea5e83d5a788acc8b7d3be1368e35a2bec8232969fc4df2cf71a8eed664c421c13624b8028dbb523b2f55e8a11c5cf06f7aab802d7aceee38126ce11f2e696c
@@ -3880,7 +3889,7 @@ __metadata:
     lint-staged: ^10.5.3
     prettier: ^2.2.1
     prettier-plugin-packagejson: ^2.2.9
-    typescript: ^4.1.3
+    typescript: ^4.1.5
     yarn: ^1.22.10
   languageName: unknown
   linkType: soft
@@ -6161,6 +6170,15 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^3.1.20":
+  version: 3.1.20
+  resolution: "nanoid@npm:3.1.20"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 4788d36edcfec7bb32ddf33ed8f1f46df2867f70e9b1993bb131f7677e04ead2b621e5d614d2736308be18db1d54208d8ab207b4586bd5b052f71fb9d4c0ebea
+  languageName: node
+  linkType: hard
+
 "nanomatch@npm:^1.2.9":
   version: 1.2.13
   resolution: "nanomatch@npm:1.2.13"
@@ -7514,6 +7532,17 @@ fsevents@~2.3.1:
     source-map: ^0.6.1
     supports-color: ^6.1.0
   checksum: 8a979ea9799dd48399337708a395ddb8cf0e328515201ed35c99f5ba5eaa7688eae65764c570bf49b5be0b106226e2f222abc210de068b3d3da9a9a3bbb70567
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.6":
+  version: 8.2.6
+  resolution: "postcss@npm:8.2.6"
+  dependencies:
+    colorette: ^1.2.1
+    nanoid: ^3.1.20
+    source-map: ^0.6.1
+  checksum: 31dcc6632589e5b0d06ae3854122073a38952f3a25280511fa4bd8c2bc254c05d1d1db0913848ed3171c84d41b233ec3fe5d7349de4700f624a16fa93553ccac
   languageName: node
   linkType: hard
 
@@ -9517,22 +9546,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:^8.0.15":
-  version: 8.0.15
-  resolution: "ts-loader@npm:8.0.15"
-  dependencies:
-    chalk: ^4.1.0
-    enhanced-resolve: ^4.0.0
-    loader-utils: ^2.0.0
-    micromatch: ^4.0.0
-    semver: ^7.3.4
-  peerDependencies:
-    typescript: "*"
-    webpack: "*"
-  checksum: bf47ef147ae56af9d4e1c3ed2eb43815c850ed04524a4b2043b5f679fd92859016323521a76c62bea42391242da9dd1da8dd0e5ec8f7158e6206b9d97ff90b43
-  languageName: node
-  linkType: hard
-
 "ts-node@npm:^9.1.1":
   version: 9.1.1
   resolution: "ts-node@npm:9.1.1"
@@ -10203,24 +10216,6 @@ typescript@^4.1.5:
   peerDependencies:
     webpack: ^3.0.0 || ^4.0.0
   checksum: 2a5944c7a1e48d5d0fc5d9c555ef5c3c2e5349193e4bc4d607a178cb8d9dab3826bf87be165228f871e929af6798cb88e44c378645703567c0742c0e9f7b5b27
-  languageName: node
-  linkType: hard
-
-"webpackbar@npm:^5.0.0-3":
-  version: 5.0.0-3
-  resolution: "webpackbar@npm:5.0.0-3"
-  dependencies:
-    ansi-escapes: ^4.3.1
-    chalk: ^4.1.0
-    consola: ^2.15.0
-    figures: ^3.2.0
-    pretty-time: ^1.1.0
-    std-env: ^2.2.1
-    text-table: ^0.2.0
-    wrap-ansi: ^7.0.0
-  peerDependencies:
-    webpack: 3 || 4 || 5
-  checksum: 0c69f0998551a7218c43f65ba1f11e6c3262141011047a77434af013cf543c12916050a419c7528970dd2181d3d5339d28d1bb77d4d77d6a8c89a658286c3335
   languageName: node
   linkType: hard
 

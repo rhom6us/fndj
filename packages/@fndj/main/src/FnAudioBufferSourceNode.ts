@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PhaseVocoderNode } from '@fndj/phase-vocoder';
 import { FnFormulaNode } from './FnFormula';
 import { FnPitchShiftNode } from './FnPitchShift';
 import { FnTempoControllerNode } from './FnTempoController';
+import { TimeStretchingNode } from './sp';
 
 
 export interface Options extends AudioBufferSourceOptions, GainOptions  {
@@ -17,18 +19,36 @@ export class FnAudioBufferSourceNode implements AudioBufferSourceNode, GainNode 
   // private readonly _pitchShiftNode: FnPitchShiftNode;
   private readonly _gainNode: GainNode;
   private readonly _vocoderNode: PhaseVocoderNode;
+  private readonly _stretchNode: TimeStretchingNode;
 
   private get _audioNodes(): AudioNode[] {
     return [this._bufferSourceNode, this._formulaNode, this._constantNode,this._gainNode, this._vocoderNode];
   }
 
-//#region AudioBufferSource decorator
-  get buffer() {
-    return this._bufferSourceNode.buffer;
+
+  start(when?: number, offset?: number, duration?: number): void {
+
+    // this._constantNode.start(when);
+    // this._bufferSourceNode.start(when, offset, duration);
+    // //this._stretchNode.
   }
-  set buffer(value: AudioBufferSourceNode['buffer']) {
+  //#region TimeStretchingNode decorator
+  set rate(value: number) {
+    this._stretchNode.rate = value;
+  }
+  set pitchShift(value: number) {
+    this._stretchNode.pitchShift = value;
+  }
+  //#endregion
+
+  // get buffer() {
+  //   return this._bufferSourceNode.buffer;
+  // }
+  set buffer(value: AudioBuffer) {
+    this._stretchNode.buffer = value;
     this._bufferSourceNode.buffer = value;
   }
+//#region AudioBufferSource decorator
   get detune() {
     return this._bufferSourceNode.detune;
   }
@@ -52,10 +72,6 @@ export class FnAudioBufferSourceNode implements AudioBufferSourceNode, GainNode 
   }
   get playbackRate() {
     return this._bufferSourceNode.playbackRate;
-  }
-  start(when?: number, offset?: number, duration?: number): void {
-    this._constantNode.start(when);
-    this._bufferSourceNode.start(when, offset, duration);
   }
   addEventListener<K extends keyof AudioScheduledSourceNodeEventMap>(type: K, listener: (this: AudioBufferSourceNode, ev: AudioScheduledSourceNodeEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
   addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
@@ -141,11 +157,11 @@ export class FnAudioBufferSourceNode implements AudioBufferSourceNode, GainNode 
 
 
   static async create(context: BaseAudioContext, options: & Options) {
-    const nodes = await Promise.all([PhaseVocoderNode.create(context), FnFormulaNode.create(context)]);
+    const nodes = await Promise.all([TimeStretchingNode.create(context), PhaseVocoderNode.create(context), FnFormulaNode.create(context)]);
     return new FnAudioBufferSourceNode(context, nodes, options);
     // this._tempoControllerNode.connectTranspose(this._pitchShiftNode.semitones);
   }
-  private constructor(context: BaseAudioContext, [PitchShiftNode, FormulaNode]:[typeof PhaseVocoderNode, typeof FnFormulaNode], options:AudioBufferSourceOptions & GainOptions & Options) {
+  private constructor(context: BaseAudioContext, [StretchNode,PitchShiftNode, FormulaNode]:[typeof TimeStretchingNode,typeof PhaseVocoderNode, typeof FnFormulaNode], options:AudioBufferSourceOptions & GainOptions & Options) {
     //super(context);
 
 
@@ -170,18 +186,22 @@ export class FnAudioBufferSourceNode implements AudioBufferSourceNode, GainNode 
     // this._pitchShiftNode = new FnPitchShiftNode(context);
     this._gainNode = new GainNode(context, options);
     this._vocoderNode = new PitchShiftNode(context);
-    this._vocoderNode.pitchFactor.value = 2 ** (0/12);
+    this._vocoderNode.pitchFactor.value = 2 ** (0 / 12);
+    this._stretchNode = new StretchNode(context);
+
     // this._constantNode.connect(this._bufferSourceNode.playbackRate);
     this._constantNode
       .connect(this._formulaNode)
       .connect(this._vocoderNode.pitchFactor);
 
+  // (context as AudioContext).suspend();
+    this._stretchNode.connect(this._gainNode);
     // this._tempoControllerNode.connectPlaybackRate(
     //   this._bufferSourceNode.playbackRate
     // );
-    this._bufferSourceNode
-      .connect(this._vocoderNode)
-      .connect(this._gainNode);
+    // this._bufferSourceNode
+    //   .connect(this._vocoderNode)
+    //   .connect(this._gainNode);
 
   }
 
@@ -223,12 +243,17 @@ export async function go(context = new AudioContext()) {
 
 
   const source = await FnAudioBufferSourceNode.create(context, {
-    buffer: audioBuffer,
+    //buffer: audioBuffer,
     baseTempo: 128,
     tempo: 128
   });
+  source.buffer = audioBuffer;
   source.connect(context.destination);
-  source.start();
-  source.tempo.setValueAtTime(140/128, context.currentTime + 10);
-  source.playbackRate.setValueAtTime(128/140, context.currentTime + 10);
+  // source.start();
+  // context.resume();
+  setTimeout(() => {
+    source.rate = 1.25;
+  }, 8000);
+  // source.tempo.setValueAtTime(140/128, context.currentTime + 10);
+  // source.playbackRate.setValueAtTime(128/140, context.currentTime + 10);
 }
