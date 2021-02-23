@@ -8,18 +8,19 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "source.fixAll.eslint": true,
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
     "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
     "**/*.csproj.user": true,
     "**/bin/": true,
+    "**/CVS": true,
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
-    "yarn.lock": false,
     "**/yarn-error.log": true,
-    "packages\\webpack/lib": true
+    "packages\\@fndj\\webpack/lib": true,
+    "packages\\@fndj\\webpack\\__tests__": true,
+    "yarn.lock": false
   },
   // The package manager used to run scripts.
   "npm.packageManager": "yarn",
