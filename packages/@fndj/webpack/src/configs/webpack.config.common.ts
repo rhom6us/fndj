@@ -2,12 +2,12 @@
 import path from 'path';
 import webpack from 'webpack';
 import { defineNodeEnvConst, devPlugins } from './plugins';
-import { isDev, outDir, sourceDir } from './settings';
+import { isDev, outDir, projectDir } from './settings';
 
 export default {
   devtool: isDev ? 'cheap-module-eval-source-map' : undefined, // 'eval-source-map',
-  context: sourceDir,
-  entry: path.join(sourceDir, 'index.ts'),
+  context: projectDir,
+  entry: path.join(projectDir, 'index.ts'),
   output: {
     path: outDir,
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
