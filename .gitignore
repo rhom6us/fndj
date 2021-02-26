@@ -20,3 +20,6 @@ debug.log
 
 ##not zero installs
 .pnp.*
+
+.fake
+.ionide

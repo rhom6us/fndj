@@ -1,1 +1,1 @@
-export * from "./FnPitchShiftNode";
+export * from "./FnPitchShift.audio-node";

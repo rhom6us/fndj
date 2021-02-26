@@ -1,30 +1,64 @@
-import SuperpoweredModule, {SuperpoweredBuffer, TimeStretching, SoundQuality } from 'superpowered';
+import SuperpoweredModule, { SuperpoweredBuffer, TimeStretching } from 'superpowered';
 import { PROCESSOR_NAME } from './constants';
+import { final, readonly } from '@fndj/util/src/decorators';
 
+// let superpowered: SuperpoweredModule | undefined;
+function change(key: string, value: any) {
+    return function (target: any) {
+        target.descriptor[key] = value;
+        return target;
+    }
+}
 
-let superpowered: SuperpoweredModule | undefined;
+function final(value = true) {
+    return function (
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+    ) {
+        descriptor.writable = value;
+    };
+}
+class fu {
+    @change('writable', false)
+    bar() {
+        return 'hi';
+    }
+}
 
 
 registerProcessor(PROCESSOR_NAME, class extends SuperpoweredModule.AudioWorkletProcessor {
-    Superpowered!: SuperpoweredModule;
+    static get parameterDescriptors(): AudioParamDescriptor[] {
+        return [
+            //   {
+            //     name: TEMPO,
+            //     defaultValue: 128,
+            //     minValue: 1,
+            //     maxValue: 1000,
+            //     automationRate: "a-rate"
+            //   }
+        ];
+    }
     posFrames = -1;
     pcm!: SuperpoweredBuffer;
+
     timeStretching!: TimeStretching;
     left: any;
     right: any;
     lengthFrames!: number;
     // runs after the constructor
+
     onReady() {
-        superpowered = this.Superpowered;
 
         // allocating some WASM memory for passing audio to the time stretcher
-        this.pcm = superpowered!.createFloatArray(2048 * 2);
+        this.pcm = this.Superpowered.createFloatArray(2048 * 2);
         // the star of the show
-        this.timeStretching = superpowered!.new('TimeStretching', superpowered!.samplerate, 0.5);
+        this.timeStretching = this.Superpowered.new('TimeStretching', this.Superpowered.samplerate, 0.5);
         this.timeStretching.rate = 1.1;
     }
 
-    onMessageFromMainScope(message:any){
+    onMessageFromMainScope(message: any) {
+
         // did we receive the audio from the main thread?
         if (message.left && message.right) {
             // left and right channels are NOT stored in WASM memory
@@ -39,9 +73,8 @@ registerProcessor(PROCESSOR_NAME, class extends SuperpoweredModule.AudioWorkletP
         // changing the pitch shift?
         if (typeof message.pitchShift !== 'undefined') this.timeStretching!.pitchShiftCents = message.pitchShift * 100;
     }
-
     protected processAudio(inputBuffer: SuperpoweredBuffer, outputBuffer: SuperpoweredBuffer, buffersize: number, parameters: Record<string, Float32Array>) {
-       // debugger;
+        // debugger;
         // did we receive the left and right channels already?
         if (this.posFrames == -1) { // if not, output silence
             for (let n = 0; n < buffersize * 2; n++) outputBuffer.array[n] = 0;

@@ -1,1 +1,1 @@
-export * from "./FnTempoControllerNode";
+export * from "./FnTempoController.audio-node";

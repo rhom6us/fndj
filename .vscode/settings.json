@@ -1,26 +1,27 @@
 {
   "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
+    "**/.yarn": false,
+    "**/.pnp.*": false
   },
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "source.fixAll.eslint": true,
   "files.exclude": {
-    "**/.DS_Store": true,
     "**/.git": true,
-    "**/.hg": true,
     "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
     "**/*.csproj.user": true,
     "**/bin/": true,
-    "**/CVS": true,
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
+    "yarn.lock": false,
     "**/yarn-error.log": true,
-    "packages\\@fndj\\webpack/lib": true,
-    "packages\\@fndj\\webpack\\__tests__": true,
-    "yarn.lock": false
+    "packages/@fndj/webpack/lib": true,
+    "packages/@fndj/webpack/__tests__": true,
+    "dist": true,
+    "packages/**/node_modules/[!@]*": false,
+    "**/node_modules":true
   },
   // The package manager used to run scripts.
   "npm.packageManager": "yarn",

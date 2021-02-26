@@ -13,6 +13,7 @@
     "@fndj/util": "*",
     "@hot-loader/react-dom": "^17.0.1",
     "normalize.css": "^8.0.1",
+    "phaze-vocoder": "github:olvb/phaze",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
@@ -28,6 +29,6 @@
     "@types/react-redux": "^7.1.16",
     "@types/redux": "^3.6.0",
     "ts-loader": "^8.0.14",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.2"
   }
 }
