@@ -23,3 +23,9 @@ debug.log
 
 .fake
 .ionide
+**/.vs
+**/.suo
+packages/YouTubeProxy/YouTubeProxy/bin
+packages/YouTubeProxy/YouTubeProxy/obj
+.gitignore
+*.csproj.user
