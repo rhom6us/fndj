@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "tsc --noemit"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "peerDependencies": {
     "typescript": "^4.2.2"
   }
 }

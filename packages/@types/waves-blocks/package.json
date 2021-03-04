@@ -1,0 +1,19 @@
+{
+    "name": "@types/waves-blocks",
+    "version": "4.41.26",
+    "description": "TypeScript definitions for waves-blocks",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Thomas Butler",
+            "url": "https://github.com/rhom6us",
+            "githubUsername": "rhom6us"
+        }
+    ],
+    "main": "index.d.ts",
+    "devDependencies": {
+        "@types/waves-masters": "*",
+        "@types/waves-ui": "*",
+        "@types/waves-audio": "*"
+    }
+}

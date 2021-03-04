@@ -8,10 +8,12 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/@fndj/*"
+      "packages/@fndj/*",
+      "packages/@types/*"
     ],
     "nohoist": [
-      "**/@types", "**/@types/**"
+      "**/@types", "**/@types/**",
+      "**/waves-*", "**/waves-*/**"
     ]
   },
   "scripts": {

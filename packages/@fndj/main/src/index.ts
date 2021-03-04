@@ -5,7 +5,8 @@ declare global {
         fnctx?: AudioContext;
     }
 }
-export async function go(context = new AudioContext()) {
+import { audioContext as context } from './audio-context';
+export async function go() {
     window.fnctx = context;
 
     const response = await fetch("https://fuckingdj.blob.core.windows.net/test/Swedish%20House%20Mafia%20-%20Save%20The%20World%20(Zedd%20Remix).mp3");

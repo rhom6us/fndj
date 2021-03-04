@@ -9,5 +9,11 @@
     "inlineSourceMap": true,
     "inlineSources": false,
     "resolveJsonModule":true
-  }
+  },
+  "include": [
+    "./**/*.*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

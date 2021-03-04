@@ -3,5 +3,33 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@fndj/youtube-proxy": "*",
+    "@hot-loader/react-dom": "^17.0.1",
+    "classnames": "^2.2.6",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hot-loader": "^4.13.0",
+    "react-redux": "^7.2.2",
+    "react-router-static": "^1.0.0",
+    "redux": "^4.0.5",
+    "redux-command-pattern": "*",
+    "waves-audio": "wavesjs/audio",
+    "waves-loaders": "^0.1.5",
+    "waves-ui": "wavesjs/ui"
+  },
+  "devDependencies": {
+    "@fndj/webpack": "*",
+    "@types/classnames": "^2.2.11",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-redux": "^7.1.16",
+    "@types/redux": "^3.6.0",
+    "@types/waves-audio": "*",
+    "@types/waves-blocks": "*",
+    "@types/waves-loaders": "*",
+    "@types/waves-ui": "*"
+  }
 }

@@ -1,0 +1,15 @@
+{
+    "name": "@types/waves-masters",
+    "version": "4.41.26",
+    "description": "TypeScript definitions for waves-masters",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Thomas Butler",
+            "url": "https://github.com/rhom6us",
+            "githubUsername": "rhom6us"
+        }
+    ],
+    "main": "index.d.ts",
+    "types": "index.d.ts"
+}

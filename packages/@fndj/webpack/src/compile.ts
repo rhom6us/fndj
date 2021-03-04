@@ -104,6 +104,7 @@ export function serve(app: App): Server {
     noInfo: true,
     open: false,
     overlay: true,
+    historyApiFallback: true,
     // clientLogLevel: "warning",
     stats: {
       colors: true,
@@ -122,9 +123,9 @@ export function serve(app: App): Server {
   };
   addDevServerEntrypoints(config, devServerConfig);
 
-  const server = new WebpackDevServer(getCompiler(config), devServerConfig);
+  const server = new WebpackDevServer(webpack(config), devServerConfig);
   return server.listen(devServerConfig.port, devServerConfig.host, () => {
     // eslint-disable-next-line no-console
-    console.log(`Starting server on http://${devServerConfig.host}:${devServerConfig.port}`);
+    console.log(`dev server ready on http://${devServerConfig.host}:${devServerConfig.port}/`);
   });
 }

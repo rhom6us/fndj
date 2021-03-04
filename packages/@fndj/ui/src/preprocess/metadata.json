@@ -1,0 +1,14 @@
+[
+    {
+      "buffer": "https://raw.githubusercontent.com/wavesjs/waves-blocks/master/examples/simple-audio-player/assets/audio/cherokee.wav",
+      "title": "Cherokee"
+    },
+    {
+      "buffer": "https://raw.githubusercontent.com/wavesjs/waves-blocks/master/examples/simple-audio-player/assets/audio/hendrix.wav",
+      "title": "Hendrix"
+    },
+    {
+      "buffer": "https://raw.githubusercontent.com/wavesjs/waves-blocks/master/examples/simple-audio-player/assets/audio/human-voice.wav",
+      "title": "Speech"
+    }
+  ]

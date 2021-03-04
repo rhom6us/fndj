@@ -15,13 +15,16 @@
     "**/bin/": true,
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
-    "yarn.lock": false,
+    "yarn.lock": true,
     "**/yarn-error.log": true,
     "packages/@fndj/webpack/lib": true,
     "packages/@fndj/webpack/__tests__": true,
     "dist": true,
     "packages/**/node_modules/[!@]*": false,
-    "**/node_modules":true
+    "**/node_modules": true,
+    "**/*.d.ts.map": true,
+    "packages/@types": false,
+    "packages/YouTubeProxy": true
   },
   // The package manager used to run scripts.
   "npm.packageManager": "yarn",
@@ -39,5 +42,6 @@
   "editor.formatOnSave": true,
   "typescript.format.semicolons": "insert",
   "eslint.format.enable": true,
-  "explorerExclude.backup": null
+  "explorerExclude.backup": null,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
