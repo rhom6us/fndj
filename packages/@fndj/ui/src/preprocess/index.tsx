@@ -1,44 +1,46 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import * as blocks from 'waves-blocks';
 import {AudioBufferLoader} from 'waves-loaders';
+import { usePromise } from '../hooks/use-promise';
 import metadata from './metadata.json';
+import { RenderElement } from './render-element';
+
 
 export const PreProcess: React.FC = () => {
-    const [buffers, setBuffers] = useState<AudioBuffer[]>([]);
     const [trackIndex, setTrackIndex] = useState(0);
-    useEffect(() => {
-        new AudioBufferLoader().load(metadata.map(p => p.buffer)).then(setBuffers);
-    }, []);
+    const buffers = usePromise(()=>new AudioBufferLoader().load(metadata.map(p => p.buffer)),[],[]);
 
-    const containerContainer = useRef<HTMLDivElement>(null);
-    const container = useMemo(() => document.createElement('div'), []);
+
+    const container = useRef(document.createElement('div'));
+
     const block = useMemo(()=> new blocks.core.Block({
         player: blocks.player.SimplePlayer,
-        container,
+        container:container.current,
         sizing: 'manual',
         width: 1000,
         height: 100,
     }), [container]);
-    useLayoutEffect(() => {
-        while (containerContainer.current?.childElementCount) {
-            containerContainer.current?.firstElementChild?.remove();
-        }
-        containerContainer.current?.appendChild(container);
-        setTimeout(() => block.start(), 50);
-    }, [container, containerContainer]);
-    useEffect(() => {
-        block.setTrack(buffers[trackIndex], metadata[trackIndex]);
-    }, [buffers, block, trackIndex]);
-    const waveform = useMemo(()=>new blocks.module.Waveform({ channels: 'all' }),[]);
-    const cursor =  useMemo(()=>new blocks.module.Cursor(),[]);
-    const zoom =  useMemo(()=>new blocks.module.Zoom({ scrollBarContainer: '#scroll-bar' }),[]);
+    const [waveform, cursor, zoom] = useMemo(() => [
+        new blocks.module.Waveform({ channels: 'all' }),
+        new blocks.module.Cursor(),
+        new blocks.module.Zoom({ scrollBarContainer: '#scroll-bar' })
+], []);
     useEffect(() => block.add(waveform, 0), [block, waveform]);
     useEffect(() => block.add(cursor, 1), [block, cursor]);
     useEffect(() => block.add(zoom, 2), [block, zoom]);
 
+    useLayoutEffect(() => {
+        setTimeout(() => block.start(), 50);
+    }, [block]);
+    useEffect(() => {
+        block.setTrack(buffers[trackIndex], metadata[trackIndex]);
+    }, [buffers, block, trackIndex]);
+
 
     return (
-        <div ref={containerContainer}>
-        </div>
+        <article>
+            <h1>yo</h1>
+            <RenderElement element={container.current} />
+        </article>
     )
 }

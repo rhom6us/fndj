@@ -1,6 +1,6 @@
 import path from 'path';
 import { Configuration } from 'webpack';
-import { cleanBuildDir, createIndexHtml, extractCssFiles } from './plugins';
+import { cleanBuildDir, createIndexHtml, extractCssFiles, hotModuleReplacement } from './plugins';
 import {
     fontRule, globalStylesheetRule, htmlRule, imageRule, nodeRule, reactTypescriptRule,
     stylesheetRule, typescriptRule, workletRule
@@ -11,7 +11,12 @@ import config from './webpack.config.common';
 export const configuration: Configuration = {
     ...config,
     target: 'web',
-    entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
+    // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
+    entry: [
+        'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
+        'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+        entryPoint // Your appʼs entry point
+    ],
     resolve: {
         ...config.resolve,
         extensions: [
@@ -24,9 +29,9 @@ export const configuration: Configuration = {
         ...config.module,
         rules: [
             workletRule,
-            typescriptRule,
             reactTypescriptRule,
-            nodeRule,
+            typescriptRule,
+            // nodeRule,
             globalStylesheetRule,
             stylesheetRule,
             imageRule,
@@ -38,7 +43,8 @@ export const configuration: Configuration = {
         ...config.plugins,
         createIndexHtml,
         extractCssFiles,
-        cleanBuildDir
+        cleanBuildDir,
+        hotModuleReplacement
     ],
 };
 

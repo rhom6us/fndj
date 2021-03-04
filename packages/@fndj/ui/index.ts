@@ -1,2 +1,1 @@
-// import 'react-hot-loader/patch';
-import './src';
+import './src/index';

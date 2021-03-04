@@ -8,7 +8,7 @@ export const isDev = process.env.NODE_ENV !== 'production';
 export const projectDir = path.resolve('.');
 const packageJson = fs.readFileSync(path.join('.', 'package.json'));
 const pkg = JSON.parse(packageJson as any);
-export const entryPoint = pkg.main;
+export const entryPoint: string = pkg.main;
 
 
 // This will be running from "./packages/@fndj/main/" or the like.

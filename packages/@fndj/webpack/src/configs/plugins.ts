@@ -2,7 +2,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { DefinePlugin, EnvironmentPlugin } from 'webpack';
+import webpack, { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin } from 'webpack';
 import WebpackBar from 'webpackbar';
 import { staticSourceDir } from './settings';
 
@@ -36,3 +36,5 @@ export const extractCssFiles = new MiniCssExtractPlugin({
     chunkFilename: '[id].styles.css',
     // moduleFilename: (name) => '[id].styles.css'
   });
+
+export const hotModuleReplacement = new HotModuleReplacementPlugin();
