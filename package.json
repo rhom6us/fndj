@@ -21,11 +21,13 @@
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "reinstall": "yarn install --force",
-    "renderer:build": "yarn workspace @fndj/main compile",
-    "renderer:serve": "yarn workspace @fndj/main serve",
+    "main:build": "yarn workspace @fndj/main compile",
+    "main:serve": "yarn workspace @fndj/main serve",
+    "ui:build": "yarn workspace @fndj/ui compile",
+    "ui:serve": "yarn workspace @fndj/ui serve",
     "webpack:build": "yarn workspace @fndj/webpack build",
     "webpack:watch": "yarn workspace @fndj/webpack watch",
-    "w00t": "run-s webpack:build renderer:build"
+    "w00t": "run-s webpack:build ui:build"
   },
   "husky": {
     "hooks": {
@@ -39,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@fndj/webpack":"*",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "eslint": "^7.19.0",
