@@ -24,7 +24,9 @@
     "**/node_modules": true,
     "**/*.d.ts.map": true,
     "packages/@types": true,
-    "packages/YouTubeProxy": true
+    "packages/YouTubeProxy": true,
+    "packages/@fndj/webpack": true,
+    ".*": true
   },
   // The package manager used to run scripts.
   "npm.packageManager": "yarn",
