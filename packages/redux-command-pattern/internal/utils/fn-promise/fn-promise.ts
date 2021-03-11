@@ -32,7 +32,7 @@ export type State =
   constructor(executor: Executor<T>){
   	this.#promise = new Promise((resolve, reject) => {
 	  	const args = [
-	  		(value?:T | PromiseLike<T>) => this.#state !== 'cancelled' && resolve(value),
+        (value?: T | PromiseLike<T>) => this.#state !== 'cancelled' && resolve(value!),
 	  		(error?:any) => this.#state !== 'cancelled' && reject(error),
 	  		(reason?:any) => this.#state !== 'cancelled' && this.#cancel.resolve(reason),
   		] as const;

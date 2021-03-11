@@ -2,7 +2,7 @@
  * @module cancellation-token-source
  */
 
-import { CancellationTokenSource } from './cancellation-token-source';
+import type { CancellationTokenSource } from './cancellation-token-source';
 import { OperationCancelledError } from './operation-cancelled-error';
 
 /**

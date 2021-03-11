@@ -11,7 +11,7 @@ type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>>
   TReducerFnOrMap extends DeepDictionary<ReducerFnAny> ? EventCreatorMap<TReducerFnOrMap> :
   never;
 
-  // tslint:disable-next-line: no-empty
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 function defaultFn() {}
 export function getEventCreator<TReducers extends DeepDictionaryItem<ReducerFnAny>>(type?: string): EventCreatorOrMap<TReducers> {
   return new Proxy(defaultFn, {
