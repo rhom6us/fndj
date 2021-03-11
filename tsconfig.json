@@ -72,10 +72,10 @@
     // "paths": {
     //   "fu/*":["bar/*", "fallback/*"]
     // }
-    "importsNotUsedAsValues": "error",
+    "importsNotUsedAsValues": "remove",
     "listFiles": false,
     "listEmittedFiles": false,
-    "explainFiles": true
+    "explainFiles": true,
   },
   // "files": false,
   "include": [
