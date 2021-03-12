@@ -16,7 +16,7 @@ export const workletRule: RuleSetRule = {
 export const reactTypescriptRule: RuleSetRule = {
   test: /\.tsx?$/i,
   exclude: node_modules,
-  use: ['react-hot-loader/webpack'],
+  use: ['react-hot-loader/webpack', tsLoader],
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,

@@ -3,7 +3,9 @@ let nextHandle = 1;
 type Task<U extends ((...args: any[]) => void)> = { callback: U, args: Parameters<U>; };
 const tasksByHandle: Record<number, Task<any>> = {};
 
-export function setImmediate<U extends (...args: any[]) => void>(callback: U, ...p: Parameters<U>): number {
+export function setImmediate(callback: (...p: any[]) => void, ...p: Parameters<typeof callback>): number {
+    type U = typeof callback;
+
     // Callback can either be a function or a string
     if (typeof callback !== "function") {
         callback = new Function("" + callback) as any;
@@ -85,7 +87,7 @@ window.addEventListener("message", onGlobalMessage, false);
 
 
 function registerImmediate(handle: number) {
-    global.postMessage(messagePrefix + handle, "*");
+    window.postMessage(messagePrefix + handle, "*");
 };
     // }
 

@@ -1,5 +1,5 @@
 import { Server } from 'http';
-import webpack, { Compiler, Configuration, Stats, Watching } from 'webpack';
+import webpack, { Compiler, Configuration, ICompiler, Stats, Watching } from 'webpack';
 import WebpackDevServer, { addDevServerEntrypoints } from 'webpack-dev-server';
 import cliLogger from './cliLogger';
 import * as configs from './configs';
@@ -100,7 +100,7 @@ export function serve(app: App): Server {
     contentBase: [staticSourceDir],
     host: 'localhost',
     port: 9080,
-    hot: true,
+    // hot: true,
     noInfo: true,
     open: false,
     overlay: true,
@@ -111,10 +111,10 @@ export function serve(app: App): Server {
       assets: false,
       entrypoints: false,
       warnings: false,
-      warningsFilter(warning) {
-        const pattern = /export .* was not found in/i;
-        return warning.split(/\r?\n/g).every(line => !pattern.test(line));
-      },
+      // warningsFilter(warning) {
+      //   const pattern = /export .* was not found in/i;
+      //   return warning.split(/\r?\n/g).every(line => !pattern.test(line));
+      // },
       modules: false,
       timings: false,
       version: false,
@@ -122,9 +122,18 @@ export function serve(app: App): Server {
     },
   };
   addDevServerEntrypoints(config, devServerConfig);
-
-  const server = new WebpackDevServer(webpack(config), devServerConfig);
-  return server.listen(devServerConfig.port, devServerConfig.host, () => {
+  function handler(err: Error, stats: Stats) {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
+    if (stats) {
+      // eslint-disable-next-line no-console
+      console.info(stats);
+    }
+  }
+  const server = new WebpackDevServer(webpack(config) as any, devServerConfig);
+  return server.listen(devServerConfig.port!, devServerConfig.host!, () => {
     // eslint-disable-next-line no-console
     console.log(`dev server ready on http://${devServerConfig.host}:${devServerConfig.port}/`);
   });

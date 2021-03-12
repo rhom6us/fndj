@@ -1,5 +1,5 @@
-import postcssImport = require('postcss-import');
-import postcssPresetEnv = require('postcss-preset-env');
+import postcssImport from 'postcss-import';
+import postcssPresetEnv from 'postcss-preset-env';
 import { RuleSetLoader } from 'webpack';
 import { isDev } from './settings';
 
@@ -38,9 +38,10 @@ export const sassLoader:RuleSetLoader = {
 export const postcssLoader:RuleSetLoader = {
   loader: 'postcss-loader',
   options: {
-    ident: 'postcss',
     sourceMap: isDev,
-    plugins: () => [postcssImport(), postcssPresetEnv()],
+    postcssOptions: {
+      plugins: [postcssImport(), postcssPresetEnv()] 
+    },
   },
 };
 export const fileLoader:RuleSetLoader = {

@@ -8,10 +8,11 @@
     "outDir": "./lib",
     "inlineSourceMap": true,
     "inlineSources": false,
-    "resolveJsonModule":true
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true
   },
   "include": [
-    "./**/*.*"
+    "./**/*"
   ],
   "exclude": [
     "node_modules"

@@ -34,7 +34,6 @@ export class FnFormulaNode extends AudioWorkletNode {
   //   return this.parameters.get(ARG3)!;
   // }
   static async create(context: BaseAudioContext): Promise<typeof FnFormulaNode> {
-    console.log({ url });
     if (!initializedContextsWithThisWorklet.has(context)) {
       initializedContextsWithThisWorklet.set(context, context.audioWorklet.addModule(url));
     }

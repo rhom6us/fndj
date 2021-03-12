@@ -1,30 +1,7 @@
 import SuperpoweredModule, { SuperpoweredBuffer, TimeStretching } from 'superpowered';
 import { PROCESSOR_NAME } from './constants';
-import { final, readonly } from '@fndj/util/src/decorators';
 
 // let superpowered: SuperpoweredModule | undefined;
-function change(key: string, value: any) {
-    return function (target: any) {
-        target.descriptor[key] = value;
-        return target;
-    }
-}
-
-function final(value = true) {
-    return function (
-        target: any,
-        propertyKey: string,
-        descriptor: PropertyDescriptor
-    ) {
-        descriptor.writable = value;
-    };
-}
-class fu {
-    @change('writable', false)
-    bar() {
-        return 'hi';
-    }
-}
 
 
 registerProcessor(PROCESSOR_NAME, class extends SuperpoweredModule.AudioWorkletProcessor {

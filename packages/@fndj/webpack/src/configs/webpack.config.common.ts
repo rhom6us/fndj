@@ -5,7 +5,7 @@ import { defineNodeEnvConst, devPlugins } from './plugins';
 import { isDev, outDir, projectDir } from './settings';
 
 export default {
-  devtool: isDev ? 'cheap-module-eval-source-map' : undefined, // 'eval-source-map',
+  devtool: isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
   context: projectDir,
   entry: path.join(projectDir, 'index.ts'),
   output: {
@@ -28,34 +28,34 @@ export default {
     },
     extensions: ['.js', '.ts', '.json', '.node'],
   },
-  node: {
-    __dirname: true,
-    __filename: true,
-  },
-  optimization: {
-    nodeEnv: process.env.NODE_ENV,
-    namedModules: true,
-    noEmitOnErrors: true,
-    // moduleIds: 'hashed',
-    // runtimeChunk: 'single',
-    // splitChunks: {
-    //   cacheGroups: {
-    //     vendor: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       name: 'vendor',
-    //       chunks: 'all',
-    //     },
-    //   },
-    // },
-  },
+  // node: {
+  //   __dirname: true,
+  //   __filename: true,
+  // },
+  // optimization: {
+  //   nodeEnv: process.env.NODE_ENV,
+  //   namedModules: true,
+  //   noEmitOnErrors: true,
+  //   // moduleIds: 'hashed',
+  //   // runtimeChunk: 'single',
+  //   // splitChunks: {
+  //   //   cacheGroups: {
+  //   //     vendor: {
+  //   //       test: /[\\/]node_modules[\\/]/,
+  //   //       name: 'vendor',
+  //   //       chunks: 'all',
+  //   //     },
+  //   //   },
+  //   // },
+  // },
   plugins: [
     ...devPlugins,
     // new CleanWebpackPlugin() as any,
     // defineStaticDirConst,
-    defineNodeEnvConst,
+    // defineNodeEnvConst,
   ],
   module: {
     rules: [
     ],
   },
-} as webpack.Configuration;
+};// as webpack.Configuration;

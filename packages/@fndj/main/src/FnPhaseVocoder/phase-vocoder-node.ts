@@ -1,9 +1,9 @@
 import { PITCH_FACTOR, PROCESSOR_NAME } from './constants';
-import processorUrl from './phase-vocoder-processor.worklet.ts';
+// import processorUrl from './phase-vocoder-processor.worklet.ts';
 import './util/map';
 import { getOrAdd } from './util';
 
-
+const processorUrl = '';
 //const url = new URL('./phase-vocoder-processor.w.ts', import.meta.url);
 
 const initializedContextsWithThisWorklet = new Map<BaseAudioContext, Promise<void>>();

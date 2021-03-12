@@ -41,6 +41,7 @@
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
     "skipLibCheck": false,
     // "skipDefaultLibCheck": true,
+
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     // "baseUrl": ".",                       /* Base directory to resolve non-absolute module names. */
@@ -79,7 +80,6 @@
   },
   // "files": false,
   "include": [
-    "**/*"
   ] /*<[] if files is specified, otherwise [" ** /*"] >Specifies an array of filenames or patterns to include in the program. These filenames are resolved relative to the directory containing the tsconfig.json file.*/,
   // "exclude": [
   //   "node_modules",

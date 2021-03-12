@@ -5,7 +5,7 @@ export interface CancellablePromise<T> extends Promise<T> {
 export function setImmediateAsync(): CancellablePromise<any> {
     let token: number | undefined;
     const promise = new Promise((resolve) => {
-        token = setImmediate(resolve, undefined);
+        token = setImmediate(resolve);
     });
     const cancel = function () {
         if (token)
