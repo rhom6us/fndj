@@ -11,8 +11,8 @@ import { setImmediateAsync } from './utils/async-timers';
 type CommandGenerator<TState, TEvent extends StandardEventAny | void> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, [TState | undefined]>;
 type AsyncCommandGenerator<TState, TEvent extends StandardEventAny | void> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, Promise<TState>>;
 
-type CommandIterable<TState, TEvent extends StandardEventAny | void> = Iterable<CommandResult<TState, TEvent>>;
-type AsyncCommandIterable<TState, TEvent extends StandardEventAny | void> = AsyncIterable<CommandResult<TState, TEvent>>;
+// type CommandIterable<TState, TEvent extends StandardEventAny | void> = Iterable<CommandResult<TState, TEvent>>;
+// type AsyncCommandIterable<TState, TEvent extends StandardEventAny | void> = AsyncIterable<CommandResult<TState, TEvent>>;
 
 // type Thunk = Func<Dispatch>;
 // type CommandResult<TState, TEvent extends StandardEventAny | void> =
@@ -151,7 +151,7 @@ function handlePromiseLike<TStore extends AnyStore>(value: PromiseLike<Result<TS
     cancel.then(p => p());
   }
 }
-type AnyCommandResult = CommandResult<any, any>
+// type AnyCommandResult = CommandResult<any, any>
 function handleGenerator<TState, TEvents extends StandardEventAny>(value: CommandGenerator<TState, TEvents>,store: Store<TState, TEvents>): Canceller{
   const iter = value[Symbol.iterator]();
   // const asf: AsyncGenerator<AnyCommandResult, AnyCommandResult | void, Promise<TState>> = {

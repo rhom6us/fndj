@@ -1,9 +1,9 @@
 
 import { Dictionary, isFunction, toPairs } from 'lodash';
 import { Reducer as ReduxReducer } from 'redux';
-import { EventType, StandardEvent, StandardEventAny } from './standard-event';
-import { Func, restify, Restify, tuple, UnRestify } from './utils';
-import { DeepDictionary, DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
+import { StandardEvent } from './standard-event';
+import { Func, restify, Restify, tuple } from './utils';
+import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
   state: TState,
@@ -53,6 +53,7 @@ export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reduce
       throw new TypeError('redux-command-pattern does not support undefined state. Please preload with an initial state');
     }
     if (!(type in finalMap)) {
+      // eslint-disable-next-line no-console
       console.warn(`reducer not found for action: ${type}`);
       return state;
     }

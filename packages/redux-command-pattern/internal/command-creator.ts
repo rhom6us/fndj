@@ -18,7 +18,7 @@ type CommandInvoker = (command: StandardCommand<any>) => void;
 function defaultFn() { }
 function _getCommandCreator<T extends DeepDictionaryItem<CommandFnAny>>(invoker: CommandInvoker, type?: string): CommandCreatorOrMap<T> {
   return new Proxy(defaultFn, {
-    get(target, prop, receiver) {
+    get(target, prop) {
       const ns = [type, prop].filter(Boolean).join('.');
       return _getCommandCreator<T>(invoker, ns);
     },

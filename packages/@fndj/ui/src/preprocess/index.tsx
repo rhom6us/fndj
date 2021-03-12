@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {AudioBufferLoader} from 'waves-loaders';
@@ -7,9 +8,9 @@ import { RenderElement } from './render-element';
 
 
 export const PreProcess: React.FC = () => {
-    const [trackIndex] = useState(0);
+    // const [trackIndex] = useState(0);
     const buffers = usePromise(()=>new AudioBufferLoader().load(metadata.map(p => p.buffer)),[],[]);
-
+    console.log(buffers.length);
 
     const container = useRef(document.createElement('div'));
 

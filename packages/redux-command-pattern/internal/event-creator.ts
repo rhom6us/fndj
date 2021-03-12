@@ -15,7 +15,7 @@ type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>>
 function defaultFn() {}
 export function getEventCreator<TReducers extends DeepDictionaryItem<ReducerFnAny>>(type?: string): EventCreatorOrMap<TReducers> {
   return new Proxy(defaultFn, {
-    get(target, prop, receiver) {
+    get(target, prop) {
       const ns = [type, prop].filter(Boolean).join('.');
       return getEventCreator<TReducers>(ns);
     },

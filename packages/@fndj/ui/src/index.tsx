@@ -1,7 +1,6 @@
 import 'react-hot-loader/patch';
 import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 // import configureStore from './store';
 import Root from './Root';
 import { setImmediateAsync } from '@fndj/util';

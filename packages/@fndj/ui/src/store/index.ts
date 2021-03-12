@@ -1,5 +1,5 @@
 
-import { applyMiddleware, createStore } from 'redux';
+import { createStore } from 'redux';
 import { createCommandHandler, createReducer, getCommandCreator, getEventCreator } from 'redux-command-pattern';
 import * as preprocess from './preprocess';
 import { defaultState } from './state';

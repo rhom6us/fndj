@@ -23,7 +23,7 @@
     "packages/**/node_modules/[!@]*": false,
     "**/node_modules": true,
     "**/*.d.ts.map": true,
-    "packages/@types": false,
+    "packages/@types": true,
     "packages/YouTubeProxy": true,
     "packages/@fndj/webpack": true,
     ".*": true
