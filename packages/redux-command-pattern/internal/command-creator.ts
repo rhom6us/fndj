@@ -14,7 +14,7 @@ type CommandCreatorOrMap<TCommandFnOrMap extends DeepDictionaryItem<CommandFnAny
   ? CommandCreatorMap<TCommandFnOrMap>
   : never;
 type CommandInvoker = (command: StandardCommand<any>) => void;
-  // tslint:disable-next-line: no-empty
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 function defaultFn() { }
 function _getCommandCreator<T extends DeepDictionaryItem<CommandFnAny>>(invoker: CommandInvoker, type?: string): CommandCreatorOrMap<T> {
   return new Proxy(defaultFn, {

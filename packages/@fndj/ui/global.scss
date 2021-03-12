@@ -1,0 +1,23 @@
+@import 'normalize.css';
+
+
+html {
+  overflow: hidden;
+}
+
+waves-ui, waves-ui-scrollbar, number-chooser {
+    display:block;
+}
+
+number-chooser
+{
+  button: {
+    width: 1em;
+  }
+ input {
+  width: 3em;
+  // &:not(:focus,:hover){
+  //   width:3em;
+  // }
+}
+}

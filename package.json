@@ -9,7 +9,7 @@
     "packages": [
       "packages/*",
       "packages/@fndj/*",
-      "packages/@types/*"
+      "packages/waves/*"
     ],
     "nohoist": [
       "**/@types", "**/@types/**",

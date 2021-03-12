@@ -17,7 +17,7 @@ export type InferState<TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<any,
 
 
 export type InferPayload<TMap extends DeepRecordItem<string, ReducerFnAny>> =
-  TMap extends Func<[any, infer TPayload], any> ? TPayload :
+  TMap extends Func<[any, ...infer TPayload], any> ? TPayload :
   TMap extends DeepRecord<string, ReducerFnAny> ? {
     [K in keyof TMap]: InferPayload<TMap[K]>
   }[keyof TMap] :

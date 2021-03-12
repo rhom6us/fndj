@@ -17,10 +17,9 @@ await setImmediateAsync();
 // );
 const renderRoot =( Component:any) => {
   render(
-    <AppContainer>
+
       <Component />
-    </AppContainer>,
-    div
+    , div
   );
 }
 

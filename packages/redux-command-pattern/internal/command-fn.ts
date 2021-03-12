@@ -32,24 +32,27 @@ export type CommandFn<TState, TPayload, TEvents extends StandardEventAny | void>
 
 export type CommandFnAny = CommandFn<any, any, any>;
 
-// export type CommandFnMap<TState = any> = DeepDictionary<CommandFn<TState, any>>
-
-// export type CommandFnOrMap<TState = any> = CommandFn<TState, any> | CommandFnMap<TState>;
 
 type CommandFnMap = DeepDictionaryItem<CommandFnAny>;
-type Infer<T extends CommandFnMap> = T extends DeepDictionaryItem<CommandFn<infer TState, infer TPayload, infer TEvents>>
-  ? [TState, TPayload, TEvents]
+type InferState<T extends CommandFnMap> = T extends DeepDictionaryItem<CommandFn<infer TState, any, any>>
+  ? TState
   : never;
-export type InferState<T extends CommandFnMap> = Infer<T>[0];
-export type InferPayload<T extends CommandFnMap> = Infer<T>[1];
-export type InferEvents<T extends CommandFnMap> = Infer<T>[2];
+type InferEvents<T extends CommandFnMap> = T extends DeepDictionaryItem<CommandFn<any, any, infer TEvents>>
+  ? TEvents
+  : never;
 
-// export type InferPayload<TCommandFn extends CommandFnAny> = TCommandFn extends CommandFn<any, infer TPayload> ? TPayload : never;
+export type InferPayload<T extends CommandFnMap> =
+  T extends Func<[any, ...infer TPayload], any> ? TPayload :
+  // T extends CommandFn<any, infer TPayload, any> ? TPayload :
+  T extends DeepDictionary<CommandFnAny> ? {
+    [K in keyof T]: InferPayload<T[K]>
+  }[keyof T] :
+  never;
+
 
 
 
 type Canceller = Func;
-type FromResult<T> = T extends CommandResult<infer TState, infer TEvents> ? [TState, TEvents] : never;
 interface Store<TState, TEvents extends StandardEvent = StandardEventAny> {
   dispatch: Dispatch<TEvents>,
   getState: GetState<TState>
