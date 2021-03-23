@@ -10,5 +10,5 @@ declare class Segment extends AbstractAnnotation {
         duration: number;
     };
 }
-import AbstractAnnotation from "./AbstractAnnotation";
+import AbstractAnnotation from "../../src/module/AbstractAnnotation";
 //# sourceMappingURL=Segment.d.ts.map

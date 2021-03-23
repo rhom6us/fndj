@@ -7,5 +7,5 @@ declare class Bpf extends AbstractModule {
     _lines: any;
     setTrack(buffer: any, metadata: any): void;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 //# sourceMappingURL=Bpf.d.ts.map

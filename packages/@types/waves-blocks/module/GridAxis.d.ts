@@ -9,5 +9,5 @@ declare class GridAxis extends AbstractModule {
     _layer: any;
     setTrack(buffer: any, metadata: any): void;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 //# sourceMappingURL=GridAxis.d.ts.map

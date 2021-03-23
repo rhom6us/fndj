@@ -16,5 +16,5 @@ declare class SimpleWaveform extends AbstractModule {
     _waveform: any;
     setTrack(buffer: any, metadata: any): void;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 //# sourceMappingURL=SimpleWaveform.d.ts.map

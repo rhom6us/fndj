@@ -4,5 +4,5 @@ declare class SimplePlayer extends AbstractPlayer {
     engine: any;
     playControl: any;
 }
-import AbstractPlayer from "../core/AbstractPlayer";
+import AbstractPlayer from "../../src/core/AbstractPlayer";
 //# sourceMappingURL=SimplePlayer.d.ts.map

@@ -9,7 +9,7 @@ declare class Cursor extends AbstractModule {
     _updateCursorPosition(position: any): void;
     onEvent(e: any): boolean;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 /**
  * Seek state, only apply if no state previous decorator took precedence
  */

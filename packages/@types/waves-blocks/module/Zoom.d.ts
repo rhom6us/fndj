@@ -31,9 +31,9 @@ declare class Zoom extends AbstractModule {
      */
     onEvent(e: any, hitLayers: any): boolean;
 }
-import AbstractModule from "../core/AbstractModule";
-import GridAxis from "./GridAxis";
-import TimeAxis from "./TimeAxis";
+import AbstractModule from "../../src/core/AbstractModule";
+import GridAxis from "../../src/module/GridAxis";
+import TimeAxis from "../../src/module/TimeAxis";
 /** @private */
 declare class ScrollState {
     constructor(block: any, timeline: any, scrollBar: any);

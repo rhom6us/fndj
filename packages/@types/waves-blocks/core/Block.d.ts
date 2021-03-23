@@ -267,6 +267,6 @@ declare class UI {
     set width(arg: any);
     get width(): any;
 }
-import type AbstractPlayer from './AbstractPlayer';
-import History from "../utils/History";
+import type AbstractPlayer from '../../src/core/AbstractPlayer';
+import History from "../../src/utils/History";
 //# sourceMappingURL=Block.d.ts.map

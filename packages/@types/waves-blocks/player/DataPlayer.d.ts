@@ -10,5 +10,5 @@ declare class DataPlayer extends AbstractPlayer {
     addListener(listener: any): void;
     removeListener(listener: any): void;
 }
-import AbstractPlayer from "../core/AbstractPlayer";
+import AbstractPlayer from "../../src/core/AbstractPlayer";
 //# sourceMappingURL=DataPlayer.d.ts.map

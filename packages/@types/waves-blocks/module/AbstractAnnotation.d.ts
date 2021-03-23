@@ -36,7 +36,7 @@ declare class AbstractAnnotation extends AbstractModule {
     onEvent(e: any, hitLayers: any): boolean;
 }
 import type Layer from '../../waves-ui/core/layer';
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 /**
  * State to edit the position
  */

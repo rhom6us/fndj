@@ -13,5 +13,5 @@ declare class Waveform extends AbstractModule {
     setTrack(buffer: any, metadatas: any): void;
     _clear(): void;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 //# sourceMappingURL=Waveform.d.ts.map

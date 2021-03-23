@@ -29,5 +29,5 @@ declare class Marker extends AbstractAnnotation {
         label: string;
     };
 }
-import AbstractAnnotation from "./AbstractAnnotation";
+import AbstractAnnotation from "../../src/module/AbstractAnnotation";
 //# sourceMappingURL=Marker.d.ts.map

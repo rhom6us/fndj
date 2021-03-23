@@ -11,5 +11,5 @@ declare class BeatGrid extends AbstractModule {
      */
     shift(dt: number): void;
 }
-import AbstractModule from "../core/AbstractModule";
+import AbstractModule from "../../src/core/AbstractModule";
 //# sourceMappingURL=BeatGrid.d.ts.map
