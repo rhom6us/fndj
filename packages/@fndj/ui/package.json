@@ -34,6 +34,7 @@
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
-    "@types/waves-ui": "*"
+    "@types/waves-ui": "*",
+    "@types/phaze-vocoder": "*"
   }
 }

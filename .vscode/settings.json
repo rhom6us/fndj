@@ -23,10 +23,10 @@
     "packages/**/node_modules/[!@]*": false,
     "**/node_modules": true,
     "**/*.d.ts.map": true,
-    "packages/@types": true,
+    "packages/@types": false,
     "packages/YouTubeProxy": true,
     "packages/@fndj/webpack": true,
-    ".*": true
+    ".*": false
   },
   // The package manager used to run scripts.
   "npm.packageManager": "yarn",

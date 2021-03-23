@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { AudioBufferLoader } from 'waves-loaders';
 import { usePromise } from './use-promise';
 
@@ -5,7 +6,7 @@ const loader = new AudioBufferLoader();
 
 export function useAudioBuffer(url: string, defaultValue = undefined): AudioBuffer | typeof defaultValue {
 
-    return usePromise(() => loader.load(url), defaultValue, [url]);
+    return usePromise(useCallback(() => loader.load(url), [url]), defaultValue, [url]);
 
 
     // const [result, setResult] = useState<AudioBuffer | typeof defaultValue>(defaultValue);
