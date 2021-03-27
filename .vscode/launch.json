@@ -1,36 +1,51 @@
 {
     "version": "0.2.0",
     "configurations": [
+        // {
+        //     "name": "Launch Edge",
+        //     "request": "launch",
+        //     "type": "pwa-msedge",
+        //     "url": "http://localhost:8080",
+        //     "webRoot": "${workspaceFolder}/packages/"
+        // },
         {
-            // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
-            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (web)",
-            "type": "coreclr",
+            "name": "Launch - Electron: Renderer",
+            "preLaunchTask": "serve-renderer",
+            "type": "pwa-msedge",
+            "runtimeExecutable": "beta",
             "request": "launch",
-            "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy",
-            "stopAtEntry": false,
-            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\\\bNow listening on:\\\\s+(https?://\\\\S+)"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+            "url": "http://localhost:9080",
+            "port": 9222,
+            "webRoot": "${workspaceRoot}",
+            // "timeout": 150000,
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                // "fndj/ui/./*": "${workspaceRoot}/packages/@fndj",
+                // "fndj/ui/../*": "${workspaceRoot}/*",
+                // "webpack:///./~/*": "${webRoot}/node_modules/*", // a default
+                // "webpack:///./*": "${webRoot}/packages/@fndj/ui/*", // unsure how/why webpack generates ./links.js
+                // "webpack:///../*": "${webRoot}/packages/@fndj/*", // unsure how/why webpack generates ../links.js
+                // "webpack:///*": "*",
+                // "webpack://@fndj/ui/../node_modules/": "${webRoot}/node_modules",
+                // "webpack://@fndj/*": "${webRoot}/packages/@fndj/*",
+                // "webpack://@fndj/ui/*": "${webRoot}/packages/@fndj/ui/*",
+                "webpack://*": "${webRoot}/packages/*",
+                // "webpack://@fndj/ui/../*": "${webRoot}/packages/*",
+                // "webpack://@fndj/ui/./*": "${webRoot}/packages/@fndj/ui/*",
             }
         },
         {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
+            "name": "Attach - Electron: Renderer",
+            "preLaunchTask": "serve-renderer",
+            "type": "pwa-msedge",
             "request": "attach",
-            "processId": "${command:pickProcess}"
+            "port": 9222,
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            // "sourceMapPathOverrides": {
+            //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
+            //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
+            // }
         }
     ]
 }
