@@ -1,0 +1,6 @@
+# --install.check-files true #Verifies that already installed files in node_modules did not get removed.
+# --install.flat: #Install all the dependencies, but only allow one version for each package. On the first run this will prompt you to choose a single version for each package that is depended on at multiple version ranges. These will be added to your package.json under a resolutions field.
+# --install.focus: #Shallowly installs a package’s sibling workspace dependencies underneath its node_modules folder. This allows you to run that workspace without building the other workspaces it depends on.
+#          #Must be run inside an individual workspace in a workspaces project. Can not be run in a non-workspaces project or at the root of a workspaces project.
+
+# --install.link-duplicates: #Create hardlinks to the repeated modules in node_modules.

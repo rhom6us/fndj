@@ -26,10 +26,9 @@
     "packages/@types": false,
     "packages/YouTubeProxy": true,
     "packages/@fndj/webpack": true,
-    ".*": false
+    ".*": true,
+    "**/desktop.ini": true
   },
-  // The package manager used to run scripts.
-  "npm.packageManager": "yarn",
 
   // The package manager you use to install node modules.
   "prettier.packageManager": "yarn",

@@ -9,11 +9,10 @@
     "packages": [
       "packages/*",
       "packages/@fndj/*",
-      "packages/waves/*"
+      "packages/@types/*"
     ],
     "nohoist": [
-      "**/@types", "**/@types/**",
-      "**/waves-*", "**/waves-*/**"
+      "**/@types/**/*"
     ]
   },
   "scripts": {
