@@ -5,7 +5,7 @@ import { defineNodeEnvConst, devPlugins } from './plugins';
 import { isDev, outDir, projectDir } from './settings';
 
 export default {
-  devtool: isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
+  devtool: "source-map",// isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
   context: projectDir,
   entry: path.join(projectDir, 'index.ts'),
   output: {

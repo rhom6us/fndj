@@ -10,11 +10,5 @@
     "inlineSources": false,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true
-  },
-  "include": [
-    "./**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }
