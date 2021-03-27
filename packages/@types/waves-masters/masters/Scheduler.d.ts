@@ -64,7 +64,7 @@ export default Scheduler;
  * scheduler.add(myEngine, startTime);
  */
 declare class Scheduler extends SchedulingQueue {
-    constructor(getTimeFunction: any, { period, lookahead, currentTimeToAudioTimeFunction, }?: {
+    constructor(getTimeFunction: () => Time, { period, lookahead, currentTimeToAudioTimeFunction, }?: {
         period?: number;
         lookahead?: number;
         currentTimeToAudioTimeFunction?: (t: any) => any;
@@ -140,7 +140,8 @@ declare class Scheduler extends SchedulingQueue {
      * @instance
      */
     /** @private */
-    private __tick;
+    // #tick;
 }
+import { Time } from '../core/intrensics';
 import SchedulingQueue from "../core/SchedulingQueue.js";
 //# sourceMappingURL=Scheduler.d.ts.map

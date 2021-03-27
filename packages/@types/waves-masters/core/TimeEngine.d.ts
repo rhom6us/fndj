@@ -1,3 +1,8 @@
+import type { Position, Time } from './intrensics';
+import { ISpeedControlled } from "./ISpeedControlled";
+import { ITransported } from "./ITransported";
+import { IScheduled } from "./IScheduled";
+
 /**
  * Base class for time engines
  *
@@ -100,7 +105,7 @@
  * }
  *
  */
-declare class TimeEngine {
+declare class TimeEngine implements Pick<IScheduled & ITransported, 'resetTime' | 'resetPosition'> {
     /**
      * Scheduled interface
      *   - advanceTime(time), called to generate next event at given time, returns next time
@@ -108,7 +113,7 @@ declare class TimeEngine {
      * @static
      * @memberof TimeEngine
      */
-    static implementsScheduled(engine: any): boolean;
+    static implementsScheduled(engine: any): engine is IScheduled;
     /**
      * Transported interface
      *   - syncPosition(time, position, speed), called to reposition TimeEngine, returns next position
@@ -117,7 +122,7 @@ declare class TimeEngine {
      * @static
      * @memberof TimeEngine
      */
-    static implementsTransported(engine: any): boolean;
+    static implementsTransported(engine: any): engine is ITransported;
     /**
      * Speed-controlled interface
      *   - syncSpeed(time, position, speed, ), called to
@@ -125,7 +130,7 @@ declare class TimeEngine {
      * @static
      * @memberof TimeEngine
      */
-    static implementsSpeedControlled(engine: any): boolean;
+    static implementsSpeedControlled(engine: any): engine is ISpeedControlled;
     /**
      * The engine's master.
      *
@@ -141,7 +146,7 @@ declare class TimeEngine {
      * @memberof TimeEngine
      * @readonly
      */
-    get currentTime(): number;
+    get currentTime(): Time;
     /**
      * The time engine's current (master) audio time.
      *
@@ -149,7 +154,7 @@ declare class TimeEngine {
      * @memberof TimeEngine
      * @readonly
      */
-    get audioTime(): number;
+    get audioTime(): Time;
     /**
      * The time engine's current (master) position.
      *
@@ -157,9 +162,10 @@ declare class TimeEngine {
      * @memberof TimeEngine
      * @readonly
      */
-    get currentPosition(): number;
+    get currentPosition(): Position;
     resetTime(time?: any): void;
     resetPosition(position?: any): void;
 }
-//# sourceMappingURL=TimeEngine.d.ts.map
 export default TimeEngine;
+
+//# sourceMappingURL=TimeEngine.d.ts.map
