@@ -27,6 +27,7 @@
   "devDependencies": {
     "@fndj/webpack": "*",
     "@types/classnames": "^2.2.11",
+    "@types/phaze-vocoder": "*",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.16",
@@ -35,6 +36,6 @@
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
     "@types/waves-ui": "*",
-    "@types/phaze-vocoder": "*"
+    "typescript": "^4.2.2"
   }
 }
