@@ -1,4 +1,12 @@
 [
+  {
+    "url":"https://fuckingdj.blob.core.windows.net/test/Swedish%20House%20Mafia%20-%20Save%20The%20World%20(Zedd%20Remix).mp3",
+    "title":"zedd"
+  },
+  {
+    "url":"https://fuckingdj.blob.core.windows.net/test/Jewelz%20%26%20Scott%20Sparks%20feat.%20Quilla%20%E2%80%93%20Unless%20We%20Forget%20(Original%20Mix).mp3",
+    "title":"unless we forget"
+  },
     {
       "url": "https://raw.githubusercontent.com/wavesjs/waves-blocks/master/examples/simple-audio-player/assets/audio/cherokee.wav",
       "title": "Cherokee"

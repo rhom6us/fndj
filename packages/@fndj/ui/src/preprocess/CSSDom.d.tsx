@@ -13,6 +13,7 @@ declare class CSSNumericValue extends CSSStyleValue {
     to(value: string): CSSUnitValue;
     toSum(value: any): CSSUnitValue;
     type(value: any): CSSUnitValue;
+    static parse(value: string): CSSNumericValue;
 }
 declare class CSSMathValue<TOperator extends Operator> extends CSSNumericValue {
     get operator(): TOperator;
@@ -33,6 +34,7 @@ declare class CSSNumericArray implements ArrayLike<CSSUnitValue> {
 declare class CSSUnitValue extends CSSNumericValue {
     get value(): number;
     get unit(): string;
+    static parse(value: string): CSSUnitValue;
 }
 declare namespace CSS {
     function number(value: number | CSSUnitValue): CSSUnitValue;

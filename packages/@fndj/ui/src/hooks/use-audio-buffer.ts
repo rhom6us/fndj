@@ -1,7 +1,21 @@
 import { useCallback } from 'react';
-import { AudioBufferLoader } from 'waves-loaders';
+import audioContext from '../audio-context';
+// import { AudioBufferLoader } from 'waves-loaders';
 import { usePromise } from './use-promise';
 
+class AudioBufferLoader {
+    async load(urls: string[]): Promise<AudioBuffer[]>;
+    async load(url: string): Promise<AudioBuffer>;
+    async load(url: string | string[]) {
+        if (url instanceof Array) {
+            return Promise.all(url.map(p => this.load(p)));
+        }
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        return audioBuffer;
+    }
+}
 const loader = new AudioBufferLoader();
 
 export function useAudioBuffer(url: string, defaultValue = undefined): AudioBuffer | typeof defaultValue {
