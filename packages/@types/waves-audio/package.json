@@ -3,6 +3,7 @@
     "version": "4.41.26",
     "description": "TypeScript definitions for waves-audio",
     "license": "MIT",
+    "private":true,
     "contributors": [
         {
             "name": "Thomas Butler",
@@ -10,7 +11,7 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "main": "index.d.ts",
+    "types": "index.d.ts",
     "devDependencies": {
         "@types/waves-masters": "*"
     }
