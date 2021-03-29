@@ -1,7 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext"
+    "target": "ESNext",
+    "lib": [
+      "WebWorker",
+      "ESNext.Symbol"
+    ]
   },
   "include": ["internal"],
   "exclude": ["node_modules", "**/__tests__/*"]

@@ -1,6 +1,6 @@
 
 import { Dictionary, isFunction, toPairs } from 'lodash';
-import { Reducer as ReduxReducer } from 'redux';
+import { Reducer as ReduxReducer } from './external/redux';
 import { StandardEvent } from './standard-event';
 import { Func, restify, Restify, tuple } from './utils';
 import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
