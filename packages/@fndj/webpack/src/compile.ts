@@ -1,5 +1,5 @@
 import { Server } from 'http';
-import webpack, { Compiler, Configuration, ICompiler, Stats, Watching } from 'webpack';
+import webpack, { Compiler, Configuration, Stats, Watching } from 'webpack';
 import WebpackDevServer, { addDevServerEntrypoints } from 'webpack-dev-server';
 import cliLogger from './cliLogger';
 import * as configs from './configs';

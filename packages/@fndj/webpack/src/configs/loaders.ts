@@ -1,9 +1,8 @@
 import postcssImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
-import { RuleSetLoader } from 'webpack';
+import type { RuleSetUseItem } from 'webpack';
 import { isDev } from './settings';
-
-export const cssModuleLoader:RuleSetLoader = {
+export const cssModuleLoader: RuleSetUseItem = {
   loader: 'css-loader',
   options: {
     importLoaders: 2,
@@ -12,16 +11,16 @@ export const cssModuleLoader:RuleSetLoader = {
     sourceMap: isDev,
   },
 };
-export const cssHotLoader:RuleSetLoader = {
+export const cssHotLoader: RuleSetUseItem = {
   loader: 'css-hot-loader',
 };
-export const cssHotModuleLoader:RuleSetLoader = {
+export const cssHotModuleLoader: RuleSetUseItem = {
   loader: 'css-hot-loader',
   options: {
     cssModule: true,
   },
 };
-export const cssLoader:RuleSetLoader = {
+export const cssLoader: RuleSetUseItem = {
   loader: 'css-loader',
   options: {
     importLoaders: 2,
@@ -29,28 +28,28 @@ export const cssLoader:RuleSetLoader = {
     sourceMap: isDev,
   },
 };
-export const sassLoader:RuleSetLoader = {
+export const sassLoader: RuleSetUseItem = {
   loader: 'sass-loader',
   options: {
     sourceMap: isDev,
   },
 };
-export const postcssLoader:RuleSetLoader = {
+export const postcssLoader: RuleSetUseItem = {
   loader: 'postcss-loader',
   options: {
     sourceMap: isDev,
     postcssOptions: {
-      plugins: [postcssImport(), postcssPresetEnv()] 
+      plugins: [postcssImport(), postcssPresetEnv()]
     },
   },
 };
-export const fileLoader:RuleSetLoader = {
+export const fileLoader: RuleSetUseItem = {
   loader: 'file-loader?name=[name]__[hash:base64:5].[ext]',
 };
-export const threadLoader:RuleSetLoader = {
+export const threadLoader: RuleSetUseItem = {
   loader: 'thread-loader',
 };
-export const electronMainBabelLoader:RuleSetLoader = {
+export const electronMainBabelLoader: RuleSetUseItem = {
   loader: 'babel-loader',
   options: {
     presets: [
@@ -67,7 +66,7 @@ export const electronMainBabelLoader:RuleSetLoader = {
     ],
   },
 };
-export const fontLoader:RuleSetLoader = {
+export const fontLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
     name: 'fonts/[name]--[folder].[ext]',
@@ -75,14 +74,14 @@ export const fontLoader:RuleSetLoader = {
     // mimetype: 'application/font-woff'
   },
 };
-export const imageLoader:RuleSetLoader = {
+export const imageLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
     limit: 10240,
     name: 'imgs/[name]--[folder].[ext]',
   },
 };
- export const tsLoader:RuleSetLoader = {
+export const tsLoader: RuleSetUseItem = {
   loader: 'ts-loader',
   options: {
     transpileOnly: isDev,
@@ -92,7 +91,7 @@ export const imageLoader:RuleSetLoader = {
   },
 };
 
-export const workerLoader:RuleSetLoader = {
+export const workerLoader: RuleSetUseItem = {
   loader: 'worker-loader',
   options: {
     publicPath: "/scripts/workers/",
@@ -102,7 +101,7 @@ export const workerLoader:RuleSetLoader = {
   }
 }
 
-export const jsLoader:RuleSetLoader = {
+export const jsLoader: RuleSetUseItem = {
   loader: 'babel-loader',
   options: {
     presets: [
@@ -120,7 +119,7 @@ export const jsLoader:RuleSetLoader = {
   },
 };
 
-export const babelLoader:RuleSetLoader = {
+export const babelLoader: RuleSetUseItem = {
   loader: 'babel-loader',
   options: {
     cacheDirectory: true,
@@ -143,13 +142,13 @@ export const babelLoader:RuleSetLoader = {
 };
 
 
-export const workletLoader:RuleSetLoader = {
+export const workletLoader: RuleSetUseItem = {
   loader: 'worklet-loader',
   options: {
     name: 'js/[hash].worklet.js'
   }
 }
 
-export const nodeLoader: RuleSetLoader = {
+export const nodeLoader: RuleSetUseItem = {
   loader: 'node-loader'
 }

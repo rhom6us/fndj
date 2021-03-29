@@ -29,3 +29,4 @@ packages/YouTubeProxy/YouTubeProxy/bin
 packages/YouTubeProxy/YouTubeProxy/obj
 .gitignore
 *.csproj.user
+packages/**/*.rar
