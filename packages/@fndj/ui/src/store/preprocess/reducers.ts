@@ -1,6 +1,6 @@
 import { ReducerFn } from 'redux-command-pattern';
 import { FnState } from '../state';
-
+import { Reducer } from 'redux';
 type FnReducer<T extends any> = ReducerFn<FnState, T>;
 export const trackSet: FnReducer<[buffer: AudioBuffer, sampleRate: number]> = (state, buffer, sampleRate) => ({
     ...state,

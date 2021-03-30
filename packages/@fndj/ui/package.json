@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
     "compile": "fnbuild webApp development",
     "serve": "fnserve webApp development",
     "watch": "fnwatch webApp development"
@@ -12,6 +13,7 @@
   "dependencies": {
     "@hot-loader/react-dom": "^17.0.1",
     "classnames": "^2.2.6",
+    "@fndj/util": "workspace:*",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -25,7 +27,7 @@
     "waves-ui": "wavesjs/ui"
   },
   "devDependencies": {
-    "@fndj/webpack": "*",
+    "@fndj/webpack": "workspace:*",
     "@types/classnames": "^2.2.11",
     "@types/phaze-vocoder": "*",
     "@types/react": "^17.0.2",

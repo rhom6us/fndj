@@ -1,0 +1,17 @@
+{
+    "name": "@types/fft.js",
+    "version": "4.41.26",
+    "description": "TypeScript definitions for fft.js",
+    "license": "MIT",
+    "private":true,
+    "contributors": [
+        {
+            "name": "Thomas Butler",
+            "url": "https://github.com/rhom6us",
+            "githubUsername": "rhom6us"
+        }
+    ],
+    "types": "index.d.ts",
+    "main": "index.d.ts"
+
+}

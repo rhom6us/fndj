@@ -24,7 +24,7 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
     }, [source.length, width]);
     const path = useMemo(() => {
         console.log('updating path...');
-
+        const huh = range(0, width);
         const path = '' + range(0, width)
             .map(px => {
                 const startSample = Math.floor(px * samplesPerPixel);

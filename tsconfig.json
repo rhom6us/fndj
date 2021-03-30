@@ -76,7 +76,7 @@
     "importsNotUsedAsValues": "remove",
     "listFiles": false,
     "listEmittedFiles": false,
-    "explainFiles": true,
+    "explainFiles": false,
   },
   // "files": false,
   //"include": [

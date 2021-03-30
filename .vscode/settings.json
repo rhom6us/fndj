@@ -20,14 +20,15 @@
     "packages/@fndj/webpack/lib": true,
     "packages/@fndj/webpack/__tests__": true,
     "dist": true,
-    "packages/**/node_modules/[!@]*": false,
+    "packages/**/node_modules/[!@]*": true,
     "**/node_modules": true,
     "**/*.d.ts.map": true,
     "packages/@types": false,
     "packages/YouTubeProxy": true,
     "packages/@fndj/webpack": true,
     ".*": true,
-    "**/desktop.ini": true
+    "**/desktop.ini": true,
+    "**/*.rar": true
   },
 
   // The package manager you use to install node modules.
@@ -37,12 +38,13 @@
   "tslint.packageManager": "yarn",
 
   // The package manager you use to install node modules.
-  "eslint.packageManager": "yarn",
+  "eslint.packageManager": "pnpm",
   "editor.formatOnSaveMode": "modifications",
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "typescript.format.semicolons": "insert",
   "eslint.format.enable": true,
   "explorerExclude.backup": null,
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "npm.packageManager": "pnpm"
 }
