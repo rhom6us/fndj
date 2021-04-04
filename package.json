@@ -5,17 +5,8 @@
   "license": "MIT",
   "author": "Thomas Butler",
   "main": "index.js",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "packages/@fndj/ui",
-      "packages/@fndj/util",
-      "packages/@fndj/webpack",
-      "packages/@types/*/*"
-    ],
-    "nohoist": []
-  },
   "scripts": {
+    "start": "pnpm -C packages/@fndj/ui start",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -34,8 +25,8 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-no-loops": "^0.3.0",
@@ -45,8 +36,9 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^5.18.8",
+    "pnpm": "^5.18.9",
     "prettier": "^2.2.1",
-    "prettier-plugin-packagejson": "^2.2.9"
+    "prettier-plugin-packagejson": "^2.2.9",
+    "typescript": "^4.2.3"
   }
 }

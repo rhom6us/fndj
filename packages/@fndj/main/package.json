@@ -9,13 +9,13 @@
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
-    "fft.js": "^4.0.4",
-    "phaze-vocoder": "github:olvb/phaze",
-    "superpowered": "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio",
+    "@fndj/util": "workspace:*",
+    "@fndj/webpack": "workspace:*",
     "@hot-loader/react-dom": "^17.0.1",
     "classnames": "^2.2.6",
-    "@fndj/util": "workspace:*",
+    "fft.js": "^4.0.4",
     "normalize.css": "^8.0.1",
+    "phaze-vocoder": "github:olvb/phaze",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
@@ -23,25 +23,22 @@
     "react-router-static": "^1.0.0",
     "redux": "^4.0.5",
     "redux-command-pattern": "*",
+    "superpowered": "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio",
     "waves-audio": "wavesjs/audio",
     "waves-loaders": "^0.1.5",
     "waves-ui": "wavesjs/ui"
   },
   "devDependencies": {
-    "@types/superpowered": "workspace:*",
+    "@types/classnames": "^2.2.11",
     "@types/fft.js": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
-    "ts-loader": "^8.0.14",
-    "@fndj/webpack": "workspace:*",
-    "@types/classnames": "^2.2.11",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.16",
-    "@types/redux": "^3.6.0",
+    "@types/superpowered": "workspace:*",
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
-    "@types/waves-ui": "*",
-    "typescript": "^4.2.2"
+    "@types/waves-ui": "*"
   }
 }

@@ -27,8 +27,8 @@
     "**/*.rar": true,
     "packages/YouTubeProxy": true,
     "packages/@types": true,
-    "packages/@fndj/webpack": true,
-    "**/node_modules": true
+    "packages/@fndj/webpack": false,
+    "**/node_modules": false
   },
 
   // The package manager you use to install node modules.

@@ -6,15 +6,15 @@
   "private": true,
   "scripts": {
     "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "compile": "fnbuild webApp development",
-    "serve": "fnserve webApp development",
+    "build": "fnbuild webApp development",
+    "start": "fnserve webApp development",
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
     "@fndj/util": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@hot-loader/react-dom": "^17.0.1",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -33,12 +33,9 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.16",
-    "@types/redux": "^3.6.0",
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
-    "@types/waves-ui": "*",
-    "ts-loader": "^8.1.0",
-    "typescript": "^4.2.2"
+    "@types/waves-ui": "*"
   }
 }
