@@ -11,9 +11,10 @@
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
+    "@fndj/util": "workspace:*",
+    "@fndj/webpack": "workspace:*",
     "@hot-loader/react-dom": "^17.0.1",
     "classnames": "^2.2.6",
-    "@fndj/util": "workspace:*",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -27,7 +28,6 @@
     "waves-ui": "wavesjs/ui"
   },
   "devDependencies": {
-    "@fndj/webpack": "workspace:*",
     "@types/classnames": "^2.2.11",
     "@types/phaze-vocoder": "*",
     "@types/react": "^17.0.2",
@@ -38,6 +38,7 @@
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
     "@types/waves-ui": "*",
+    "ts-loader": "^8.1.0",
     "typescript": "^4.2.2"
   }
 }

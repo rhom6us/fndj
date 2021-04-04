@@ -1,7 +1,6 @@
 importers:
   .:
     devDependencies:
-      '@fndj/webpack': link:packages/@fndj/webpack
       '@typescript-eslint/eslint-plugin': 4.19.0_74ed7481b9e9d74dbbdc605348ac41e8
       '@typescript-eslint/parser': 4.19.0_eslint@7.23.0
       eslint: 7.23.0
@@ -16,9 +15,7 @@ importers:
       pnpm: 5.18.8
       prettier: 2.2.1
       prettier-plugin-packagejson: 2.2.10_prettier@2.2.1
-      yarn: 1.22.10
     specifiers:
-      '@fndj/webpack': workspace:*
       '@typescript-eslint/eslint-plugin': ^4.14.2
       '@typescript-eslint/parser': ^4.14.2
       eslint: ^7.19.0
@@ -33,7 +30,6 @@ importers:
       pnpm: ^5.18.8
       prettier: ^2.2.1
       prettier-plugin-packagejson: ^2.2.9
-      yarn: ^1.22.10
   packages/@fndj/main:
     dependencies:
       '@fndj/util': link:../util
@@ -105,6 +101,7 @@ importers:
   packages/@fndj/ui:
     dependencies:
       '@fndj/util': link:../util
+      '@fndj/webpack': link:../webpack
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
       classnames: 2.2.6
       normalize.css: 8.0.1
@@ -119,7 +116,6 @@ importers:
       waves-loaders: 0.1.5
       waves-ui: github.com/wavesjs/ui/e4bc8887ce66933e0de08f5eeaf260ce0d403e35
     devDependencies:
-      '@fndj/webpack': link:../webpack
       '@types/classnames': 2.2.11
       '@types/phaze-vocoder': link:../../@types/phaze-vocoder
       '@types/react': 17.0.3
@@ -130,6 +126,7 @@ importers:
       '@types/waves-blocks': link:../../@types/waves-blocks
       '@types/waves-loaders': link:../../@types/waves-loaders
       '@types/waves-ui': link:../../@types/waves-ui
+      ts-loader: 8.1.0_typescript@4.2.3
       typescript: 4.2.3
     specifiers:
       '@fndj/util': workspace:*
@@ -154,6 +151,7 @@ importers:
       react-router-static: ^1.0.0
       redux: ^4.0.5
       redux-command-pattern: '*'
+      ts-loader: ^8.1.0
       typescript: ^4.2.2
       waves-audio: wavesjs/audio
       waves-loaders: ^0.1.5
@@ -187,7 +185,7 @@ importers:
       sass: 1.32.8
       sass-loader: 10.1.1_32c98204350f0a82cd2576c42b993315
       style-loader: 2.0.0_webpack@5.28.0
-      ts-loader: 8.0.18_typescript@4.2.3+webpack@5.28.0
+      ts-loader: 8.1.0_typescript@4.2.3+webpack@5.28.0
       ts-node: 9.1.1_typescript@4.2.3
       tsconfig-paths: 3.9.0
       url-loader: 4.1.1_file-loader@4.3.0+webpack@5.28.0
@@ -252,7 +250,7 @@ importers:
       sass: ^1.32.6
       sass-loader: ^10.1.1
       style-loader: ^2.0.0
-      ts-loader: ^8.0.14
+      ts-loader: ^8.1.0
       ts-node: ^9.1.1
       tsconfig-paths: ^3.9.0
       typescript: ^4.2.2
@@ -7398,7 +7396,23 @@ packages:
       webpack: '*'
     resolution:
       integrity: sha512-hRZzkydPX30XkLaQwJTDcWDoxZHK6IrEMDQpNd7tgcakFruFkeUp/aY+9hBb7BUGb+ZWKI0jiOGMo0MckwzdDQ==
-  /ts-loader/8.0.18_typescript@4.2.3+webpack@5.28.0:
+  /ts-loader/8.1.0_typescript@4.2.3:
+    dependencies:
+      chalk: 4.1.0
+      enhanced-resolve: 4.5.0
+      loader-utils: 2.0.0
+      micromatch: 4.0.2
+      semver: 7.3.5
+      typescript: 4.2.3
+    dev: true
+    engines:
+      node: '>=10.0.0'
+    peerDependencies:
+      typescript: '*'
+      webpack: '*'
+    resolution:
+      integrity: sha512-YiQipGGAFj2zBfqLhp28yUvPP9jUGqHxRzrGYuc82Z2wM27YIHbElXiaZDc93c3x0mz4zvBmS6q/DgExpdj37A==
+  /ts-loader/8.1.0_typescript@4.2.3+webpack@5.28.0:
     dependencies:
       chalk: 4.1.0
       enhanced-resolve: 4.5.0
@@ -7414,7 +7428,7 @@ packages:
       typescript: '*'
       webpack: '*'
     resolution:
-      integrity: sha512-hRZzkydPX30XkLaQwJTDcWDoxZHK6IrEMDQpNd7tgcakFruFkeUp/aY+9hBb7BUGb+ZWKI0jiOGMo0MckwzdDQ==
+      integrity: sha512-YiQipGGAFj2zBfqLhp28yUvPP9jUGqHxRzrGYuc82Z2wM27YIHbElXiaZDc93c3x0mz4zvBmS6q/DgExpdj37A==
   /ts-node/9.1.1_typescript@4.2.3:
     dependencies:
       arg: 4.1.3

@@ -10,11 +10,10 @@
       "packages/*",
       "packages/@fndj/ui",
       "packages/@fndj/util",
+      "packages/@fndj/webpack",
       "packages/@types/*/*"
     ],
-    "nohoist": [
-      "**/@types/**/*"
-    ]
+    "nohoist": []
   },
   "scripts": {
     "check-env": "node -e 'console.log(process.env)' | grep npm",
@@ -35,7 +34,6 @@
     ]
   },
   "devDependencies": {
-    "@fndj/webpack": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "eslint": "^7.19.0",
@@ -49,7 +47,6 @@
     "npm-run-all": "^4.1.5",
     "pnpm": "^5.18.8",
     "prettier": "^2.2.1",
-    "prettier-plugin-packagejson": "^2.2.9",
-    "yarn": "^1.22.10"
+    "prettier-plugin-packagejson": "^2.2.9"
   }
 }
