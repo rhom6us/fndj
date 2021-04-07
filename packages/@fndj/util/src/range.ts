@@ -1,3 +1,9 @@
-export function range(start: number, length: number) {
-    return new Array(Math.round(length)).fill(0).map((_, i) => i + Math.round(start));
+export function* iterate(start: number, length = Infinity): Iterable<number> {
+    let i = 0;
+    while (i < length) {
+        yield i++ + start;
+    }
+}
+export function range(start: number, length: number): number[] {
+    return Array.from(iterate(start, length));
 }

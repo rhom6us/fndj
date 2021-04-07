@@ -1,24 +1,35 @@
+import { CancellablePromise } from './FnPromise';
+import { Func } from './func';
+import { unrestify, Unrestify } from './restify';
 import { setImmediate, clearImmediate } from './set-immediate';
-export interface CancellablePromise<T> extends Promise<T> {
-    cancel(): void;
-}
-export function setImmediateAsync(): CancellablePromise<any> {
-    let token: number | undefined;
-    const promise = new Promise((resolve) => {
-        token = setImmediate(resolve);
-    });
-    const cancel = function () {
-        if (token)
-            clearImmediate(token);
+
+
+
+export function setImmediateAsync<T extends any[]>(...args: T): CancellablePromise<Unrestify<T>> {
+    let token: number;
+    let preject: Func<string>;
+    const promise: CancellablePromise<Unrestify<T>> = new Promise<Unrestify<T>>((resolve, reject) => {
+        token = setImmediate((...args) => resolve(unrestify(args)), ...args);
+        preject = reject;
+    }) as any;
+    promise.cancel = () => {
+        clearImmediate(token);
+        preject('cancelled');
     };
-    return { ...promise, cancel };
+    return promise;
 }
 
-export function setTimeoutAsync<T = void>(ms: number) {
+export function setTimeoutAsync<T extends any[]>(ms: number, ...args: T) {
     let token: number;
-    const promise: CancellablePromise<T> = new Promise<T>((resolve) => {
-        token = setTimeout(resolve, ms);
+    let preject: Func<string>;
+
+    const promise: CancellablePromise<Unrestify<T>> = new Promise<Unrestify<T>>((resolve, reject) => {
+        token = setTimeout((...args: T) => resolve(unrestify(args)), ms, ...args);
+        preject = reject;
     }) as any;
-    promise.cancel = () => clearTimeout(token);
+    promise.cancel = () => {
+        clearTimeout(token);
+        preject('cancelled');
+    };
     return promise;
 }

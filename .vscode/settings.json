@@ -27,8 +27,9 @@
     "**/*.rar": true,
     "packages/YouTubeProxy": true,
     "packages/@types": true,
-    "packages/@fndj/webpack": false,
-    "**/node_modules": false
+    "packages/@fndj/webpack": true,
+    "**/node_modules": true,
+    "pnpm-lock.yaml": true
   },
 
   // The package manager you use to install node modules.

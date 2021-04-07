@@ -1,10 +1,10 @@
 
 let nextHandle = 1;
-type Task<U extends ((...args: any[]) => void)> = { callback: U, args: Parameters<U>; };
+type Task<U extends any[]> = { callback: (...args: U) => void; args: U; };
 const tasksByHandle: Record<number, Task<any>> = {};
 
-export function setImmediate(callback: (...p: any[]) => void, ...p: Parameters<typeof callback>): number {
-    type U = typeof callback;
+export function setImmediate<T extends any[]>(callback: (...p: T) => void, ...p: T): number {
+
 
     // Callback can either be a function or a string
     if (typeof callback !== "function") {
@@ -12,7 +12,7 @@ export function setImmediate(callback: (...p: any[]) => void, ...p: Parameters<t
     }
 
     // Store and register the task
-    const task: Task<U> = { callback: callback, args: p };
+    const task: Task<T> = { callback: callback, args: p };
     tasksByHandle[nextHandle] = task;
     registerImmediate(nextHandle);
     return nextHandle++;

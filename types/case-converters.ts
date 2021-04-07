@@ -7,7 +7,7 @@ type SpaceChar = ' ';
 type NonSpaceChar = Exclude<AnyChar, SpaceChar>;
 
 // ASCII: 33-47
-type SymbolChar1 = '!' | '"' | '#' | '$' | '%' | '&' | '\'' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/';
+type SymbolChar1 = '!' | '"' | '#' | '$' | '%' | '&' | "'" | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/';
 
 // ASCII: 48-57
 // regex: \d
@@ -28,7 +28,33 @@ type SymbolChar3 = '[' | '\\' | ']' | '^' | '_' | '`';
 
 // ASCII: 97 - 122
 // regex: [a-z]
-type LowerCaseChar = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z';
+type LowerCaseChar =
+    | 'a'
+    | 'b'
+    | 'c'
+    | 'd'
+    | 'e'
+    | 'f'
+    | 'g'
+    | 'h'
+    | 'i'
+    | 'j'
+    | 'k'
+    | 'l'
+    | 'm'
+    | 'n'
+    | 'o'
+    | 'p'
+    | 'q'
+    | 'r'
+    | 's'
+    | 't'
+    | 'u'
+    | 'v'
+    | 'w'
+    | 'x'
+    | 'y'
+    | 'z';
 
 // ASCII: 123 - 126
 type SymbolChar4 = '{' | '|' | '}' | '~';
@@ -45,9 +71,7 @@ type WordChar = LetterChar | DigitChar | '_';
 // regez: \W
 type NonWordChar = Exclude<AnyChar, WordChar>;
 
-
-type Replace<T, P extends string, R extends string> =
-    T extends `${infer X}${P}${infer Y}` ? `${X}${R}${Replace<Y, P, R>}` : T;
+type Replace<T, P extends string, R extends string> = T extends `${infer X}${P}${infer Y}` ? `${X}${R}${Replace<Y, P, R>}` : T;
 
 // type Upper<T extends string> =
 //     T extends `${infer X}a${infer Y}` ? `${Upper<X>}A${Upper<Y>}` :
@@ -111,14 +135,9 @@ type Replace<T, P extends string, R extends string> =
 // type Uncap<T extends string> =
 //     T extends `${Upper<infer X>}${infer Y}` ? `${Lower<X>}${Y}` : T;
 
-
 type Stringable = string | number | bigint | boolean | null | undefined;
 
-type J<T extends unknown[]> =
-    T extends [] ? '' :
-    T extends [any] ? `${T[0]}` :
-    T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` :
-    never;
+type J<T extends unknown[]> = T extends [] ? '' : T extends [any] ? `${T[0]}` : T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` : never;
 
 type D2<T> = J<[T, T]>;
 type D3<T> = J<[T, D2<T>]>;
@@ -130,14 +149,8 @@ type D8<T> = J<[T, D7<T>]>;
 type D9<T> = J<[T, D8<T>]>;
 type Many<T> = D2<T> | D3<T> | D4<T> | D5<T> | D6<T> | D7<T> | D8<T> | D9<T>;
 type OneOrMany<T> = T | Many<T>;
-type SingleLetter<T> =
-    Tail<T> extends '' ? T : never;
-type Gobble<T, U> =
-    T extends J<[infer X, infer Y, infer Z]>
-    ? Y extends U
-    ? X
-    : J<[X, Gobble<J<[Y, Z]>, U>]>
-    : T;
+type SingleLetter<T> = Tail<T> extends '' ? T : never;
+type Gobble<T, U> = T extends J<[infer X, infer Y, infer Z]> ? (Y extends U ? X : J<[X, Gobble<J<[Y, Z]>, U>]>) : T;
 // type Gobble<T, U> =
 //     T extends `${infer X}${infer Y}${infer Z}`
 //     ? Y extends U
@@ -145,48 +158,32 @@ type Gobble<T, U> =
 //       : `${X}${Gobble<`${T}${Z}`, U>}`
 //     : T;
 
-
-
-
-type HeadTail<T> =
-    T extends `${infer THead}${infer TTail}` ? [THead, TTail] : never;
+type HeadTail<T> = T extends `${infer THead}${infer TTail}` ? [THead, TTail] : never;
 
 type Head<T> = HeadTail<T> extends [infer X, any] ? X : '';
 type Tail<T> = HeadTail<T> extends [any, infer X] ? X : '';
 
-
-type Train<T> =
-    ToCharArray<T> extends [...infer TFront, infer TCaboose] ? [FromCharArray<TFront>, TCaboose] : never;
+type Train<T> = T extends string ? Train<ToCharArray<T>> : T extends [...infer TFront, infer TCaboose] ? [FromCharArray<TFront>, TCaboose] : never;
 
 type Front<T> = Train<T> extends [infer X, any] ? X : '';
 type Caboose<T> = Train<T> extends [any, infer X] ? X : '';
 
+type ToCharArray<T> = T extends '' ? [] : T extends J<[infer X, infer Y]> ? [X, ...ToCharArray<Y>] : never;
+type FromCharArray<T extends unknown[]> = T extends []
+    ? ''
+    : T extends [string]
+    ? T[0]
+    : T extends [string, ...infer Y]
+    ? J<[T[0], FromCharArray<Y>]>
+    : never;
 
-type ToCharArray<T> =
-    T extends '' ? [] :
-    T extends J<[infer X, infer Y]> ? [X, ...ToCharArray<Y>] :
-    never;
-type FromCharArray<T extends unknown[]> =
-    T extends [] ? '' :
-    T extends [string] ? T[0] :
-    T extends [string, ...infer Y] ? J<[T[0], FromCharArray<Y>]> :
-    never;
+type Reverse<T> = T extends '' ? '' : T extends J<[infer X, infer Y]> ? J<[Reverse<Y>, X]> : never;
 
-type Reverse<T> =
-    T extends '' ? '' :
-    T extends J<[infer X, infer Y]> ? J<[Reverse<Y>, X]> :
-    never;
-
-
-
-type InsertBefore<TInput, TSearch, TInsert> =
-    TInput extends J<[infer X, infer Y, infer Z]> ? (
-        Y extends TSearch ? (
-            J<[X, TInsert, Y, InsertBefore<Z, TSearch, TInsert>]>
-        ) : J<[X, InsertBefore<J<[Y, Z]>, TSearch, TInsert>]>
-    ) : TInput;
-
-
+type InsertBefore<TInput, TSearch, TInsert> = TInput extends J<[infer X, infer Y, infer Z]>
+    ? Y extends TSearch
+    ? J<[X, TInsert, Y, InsertBefore<Z, TSearch, TInsert>]>
+    : J<[X, InsertBefore<J<[Y, Z]>, TSearch, TInsert>]>
+    : TInput;
 
 // type SnakeCase<T extends string> =
 //     T extends Lower<T> ? T :
@@ -202,3 +199,5 @@ type SnakeCase<T extends string> = Uppercase<InsertBefore<T, UpperCaseChar, '_'>
 type DashCase<T extends string> = Lowercase<InsertBefore<T, UpperCaseChar, '-'>>;
 type pdpd = SnakeCase<'ProperID4Form'>;
 type spdpd = DashCase<'Pro5per1ID4Form'>;
+
+export { };
