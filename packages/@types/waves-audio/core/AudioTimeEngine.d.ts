@@ -1,3 +1,4 @@
+import { TimeEngine } from 'waves-masters';
 
 /**
  * This is the base class for all audio related time engine components. It is
@@ -18,7 +19,7 @@
  *   }
  * }
  */
-export default class AudioTimeEngine {
+export default class AudioTimeEngine extends TimeEngine {
     constructor(audioContext?: AudioContext);
     /**
      * Audio context used by the TimeEngine, default to the global audioContext
