@@ -11,6 +11,7 @@
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
+    "@fndj/core": "workspace:*",
     "@fndj/util": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@hot-loader/react-dom": "^17.0.1",
@@ -22,20 +23,12 @@
     "react-redux": "^7.2.2",
     "react-router-static": "^1.0.0",
     "redux": "^4.0.5",
-    "redux-command-pattern": "*",
-    "waves-audio": "wavesjs/audio",
-    "waves-loaders": "^0.1.5",
-    "waves-ui": "wavesjs/ui"
+    "redux-command-pattern": "*"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
-    "@types/phaze-vocoder": "*",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "@types/react-redux": "^7.1.16",
-    "@types/waves-audio": "*",
-    "@types/waves-blocks": "*",
-    "@types/waves-loaders": "*",
-    "@types/waves-ui": "*"
+    "@types/react-redux": "^7.1.16"
   }
 }

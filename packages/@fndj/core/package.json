@@ -1,0 +1,26 @@
+{
+  "name": "@fndj/core",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "compile": "fnbuild webApp development",
+    "serve": "fnserve webApp development",
+    "watch": "fnwatch webApp development"
+  },
+  "dependencies": {
+    "@fndj/util": "workspace:*",
+    "superpowered": "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio",
+    "waves-audio": "wavesjs/audio",
+    "waves-loaders": "^0.1.5",
+    "waves-ui": "wavesjs/ui"
+  },
+  "devDependencies": {
+    "@types/phaze-vocoder": "workspace:*",
+    "@types/superpowered": "workspace:*",
+    "@types/waves-audio": "*",
+    "@types/waves-blocks": "*",
+    "@types/waves-loaders": "*",
+    "@types/waves-ui": "*"
+  }
+}
