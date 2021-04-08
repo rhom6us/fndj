@@ -2,7 +2,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetRule } from 'webpack';
 import * as loaders from './loaders';
 import { isDev } from './settings';
-import * as foo from 'react-hot-loader/webpack';
 
 
 const node_modules = /node_modules/i;
@@ -12,10 +11,17 @@ export const workletRule: RuleSetRule = {
   test: /\.worklet\.ts$/,
   use: [loaders.workletLoader],
 };
+export const workerRule: RuleSetRule = {
+  test: /\.worker\.ts$/i,
+  use: [loaders.workerLoader],
+};
 export const reactTypescriptRule: RuleSetRule = {
   test: /\.tsx?$/i,
   exclude: node_modules,
-  use: ['react-hot-loader/webpack', loaders.tsLoader],
+  use: [
+    isDev && loaders.reactRefreshLoader,
+    loaders.tsLoader
+  ].filter(Boolean),
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,
@@ -31,14 +37,6 @@ export const nodeRule: RuleSetRule = {
   use: loaders.nodeLoader,
 };
 
-export const workerRule: RuleSetRule = {
-  test: /\.worker\.ts$/i,
-  use: ['worker-loader', loaders.tsLoader],
-  loader: "worker-loader",
-  options: {
-
-  },
-};
 
 
 //#endregion

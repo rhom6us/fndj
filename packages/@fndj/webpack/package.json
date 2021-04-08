@@ -14,6 +14,10 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-syntax-top-level-await": "^7.12.13",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "cli-logger": "^0.5.40",
@@ -33,6 +37,7 @@
     "postcss-import": "^14.0.1",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
+    "react-refresh": "^0.10.0",
     "sass": "^1.32.6",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
@@ -62,8 +67,5 @@
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
     "eslint": "^7.19.0"
-  },
-  "peerDependencies": {
-    "react-hot-loader": "^4.13.0"
   }
 }

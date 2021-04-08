@@ -1,7 +1,7 @@
 {
   "name": "@fndj/ui",
   "version": "1.0.0",
-  "main": "index.ts",
+  "browser": "src/index.tsx",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -14,12 +14,10 @@
     "@fndj/core": "workspace:*",
     "@fndj/util": "workspace:*",
     "@fndj/webpack": "workspace:*",
-    "@hot-loader/react-dom": "^17.0.1",
     "classnames": "^2.3.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.2",
     "react-router-static": "^1.0.0",
     "redux": "^4.0.5",

@@ -1,5 +1,5 @@
 
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import type { Store } from 'redux';
@@ -12,10 +12,10 @@ interface Props {
   //store: Store<CounterState, CounterAction>;
 }
 
-const Root = () => {
+export const Root = () => {
     return (
       // <Provider store={store}>
-        <div>4543
+        <div>45432
           <PreProcess />
           {/* <DevTools /> */}
         </div>
@@ -23,4 +23,4 @@ const Root = () => {
     );
 }
 
-export default hot(module)(Root);
+// export default hot(module)(Root);

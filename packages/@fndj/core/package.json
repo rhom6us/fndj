@@ -11,16 +11,14 @@
   "dependencies": {
     "@fndj/util": "workspace:*",
     "superpowered": "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio",
-    "waves-audio": "wavesjs/audio",
-    "waves-loaders": "^0.1.5",
-    "waves-ui": "wavesjs/ui"
+    "waves-audio": "^0.5.2",
+    "waves-loaders": "^0.1.5"
   },
   "devDependencies": {
     "@types/phaze-vocoder": "workspace:*",
     "@types/superpowered": "workspace:*",
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
-    "@types/waves-loaders": "*",
-    "@types/waves-ui": "*"
+    "@types/waves-loaders": "*"
   }
 }

@@ -22,13 +22,13 @@
     "dist": true,
     "packages/**/node_modules/[!@]*": true,
     "**/*.d.ts.map": true,
-    ".*": true,
+    ".*": false,
     "**/desktop.ini": true,
     "**/*.rar": true,
     "packages/YouTubeProxy": true,
-    "packages/@types": false,
+    "packages/@types": true,
     "packages/@fndj/webpack": true,
-    "**/node_modules": false,
+    "**/node_modules": true,
     "pnpm-lock.yaml": true
   },
 
@@ -47,5 +47,7 @@
   "eslint.format.enable": true,
   "explorerExclude.backup": null,
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "npm.packageManager": "pnpm"
+  "npm.packageManager": "pnpm",
+  "files.autoSaveDelay": 3000,
+  "files.autoSave": "afterDelay"
 }

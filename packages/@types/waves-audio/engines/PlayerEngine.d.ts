@@ -47,15 +47,15 @@ declare class PlayerEngine extends AudioTimeEngine {
      * @default 0.005
      */
     fadeTime: number;
-    __time: number;
-    __position: number;
-    __speed: number;
-    __bufferSource: AudioBufferSourceNode;
-    __envNode: GainNode;
-    __gainNode: GainNode;
-    __cyclic: boolean;
-    __start(time: any, position: any, speed: any): void;
-    __halt(time: any): void;
+    private __time: number;
+    private __position: number;
+    private __speed: number;
+    private __bufferSource: AudioBufferSourceNode;
+    private __envNode: GainNode;
+    private __gainNode: GainNode;
+    private __cyclic: boolean;
+    private __start(time: any, position: any, speed: any): void;
+    private __halt(time: any): void;
     private syncSpeed(time: any, position: any, speed: any, seek?: boolean): void;
     /**
      * Set whether the audio buffer is considered as cyclic

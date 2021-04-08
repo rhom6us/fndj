@@ -1,8 +1,8 @@
-import 'react-hot-loader/patch';
+// import 'react-hot-loader/patch';
 import React from 'react';
 import { render } from 'react-dom';
 // import configureStore from './store';
-import Root from './Root';
+import { Root } from './Root';
 import { setImmediateAsync } from '@fndj/util';
 
 // //const store = configureStore();
@@ -14,18 +14,18 @@ await setImmediateAsync();
 //   </AppContainer>,
 //   div//document.getElementById('root')
 // );
-const renderRoot =( Component:any) => {
+// const renderRoot =( Component:any) => {
   render(
 
-      <Component />
+    <Root />
     , div
   );
-}
+// }
 
-renderRoot(Root);
-if (module.hot) {
-  module.hot.accept('./Root', () => { renderRoot(Root) });
-}
+// renderRoot(Root);
+// if (module.hot) {
+//   module.hot.accept('./Root', () => { renderRoot(Root) });
+// }
 // if (module.hot) {
 //   module.hot.accept('./Root', () => {
 //     // eslint-disable-next-line @typescript-eslint/no-var-requires

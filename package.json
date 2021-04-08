@@ -7,6 +7,8 @@
   "main": "index.js",
   "scripts": {
     "start": "pnpm -C packages/@fndj/ui start",
+    "build": "pnpm -C packages/@fndj/ui build",
+    "wp": "pnpm -C packages/@fndj/webpack build",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",

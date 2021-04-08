@@ -7,7 +7,7 @@ import { entryPoint, isDev, outDir, projectDir } from './settings';
 export default {
   devtool: "source-map",// isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
   context: projectDir,
-  entry: entryPoint,
+  entry: path.join(projectDir, entryPoint),
   output: {
     path: outDir,
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
@@ -24,7 +24,7 @@ export default {
       // '~renderer': path.resolve(rendererSourceDir),
       // '~common': path.resolve(commonSourceDir),
       // common: path.resolve(commonSourceDir),
-      'react-dom': '@hot-loader/react-dom',
+      // 'react-dom': '@hot-loader/react-dom',
     },
     extensions: ['.js', '.ts', '.json', '.node'],
   },
@@ -49,12 +49,12 @@ export default {
   //   // },
   // },
   plugins: [
-    plugins.webpackBar,
+    isDev && plugins.webpackBar,
     plugins.tsChecker,
     // plugins.cleanBuildDir,
     // plugins.defineStaticDirConst,
     // plugins.defineNodeEnvConst,
-  ],
+  ].filter(Boolean),
   module: {
     rules: [
     ],

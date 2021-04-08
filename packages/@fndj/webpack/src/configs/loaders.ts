@@ -81,15 +81,12 @@ export const imageLoader: RuleSetUseItem = {
     name: 'imgs/[name]--[folder].[ext]',
   },
 };
-export const tsLoader: RuleSetUseItem = {
-  loader: 'ts-loader',
+export const workletLoader: RuleSetUseItem = {
+  loader: 'worklet-loader',
   options: {
-    transpileOnly: isDev,
-    // projectReferences: true,
-    // appendTsSuffixTo: [{}],
-    // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
-  },
-};
+    name: 'js/[hash].worklet.js'
+  }
+}
 
 export const workerLoader: RuleSetUseItem = {
   loader: 'worker-loader',
@@ -100,24 +97,38 @@ export const workerLoader: RuleSetUseItem = {
     esModule: true,
   }
 }
-
-export const jsLoader: RuleSetUseItem = {
+export const reactRefreshLoader: RuleSetUseItem = {
   loader: 'babel-loader',
+  options: { plugins: ['react-refresh/babel', '@babel/plugin-syntax-top-level-await'] },
+};
+export const tsLoader: RuleSetUseItem = {
+  loader: 'ts-loader',
   options: {
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          debug: isDev,
-          modules: false,
-          targets: {
-            electron: '6.0.12',
-          },
-        },
-      ],
-    ],
+    transpileOnly: isDev,
+    // projectReferences: true,
+    // appendTsSuffixTo: [{}],
+    // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
   },
 };
+
+
+// export const jsLoader: RuleSetUseItem = {
+//   loader: 'babel-loader',
+//   options: {
+//     presets: [
+//       [
+//         '@babel/preset-env',
+//         {
+//           debug: isDev,
+//           modules: false,
+//           targets: {
+//             electron: '6.0.12',
+//           },
+//         },
+//       ],
+//     ],
+//   },
+// };
 
 // export const babelLoader: RuleSetUseItem = {
 //   loader: 'babel-loader',
@@ -141,13 +152,6 @@ export const jsLoader: RuleSetUseItem = {
 //   },
 // };
 
-
-export const workletLoader: RuleSetUseItem = {
-  loader: 'worklet-loader',
-  options: {
-    name: 'js/[hash].worklet.js'
-  }
-}
 
 export const nodeLoader: RuleSetUseItem = {
   loader: 'node-loader'

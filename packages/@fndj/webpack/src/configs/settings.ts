@@ -9,7 +9,7 @@ export const projectDir = path.resolve('.');
 // const packageJson = fs.readFileSync(path.join('.', 'package.json'));
 // const pkg = JSON.parse(packageJson as any);
 // export const entryPoint: string = pkg.main;
-export const entryPoint: string = process.env.npm_package_main; //  pkg.main;
+export const entryPoint: string = process.env.npm_package_main || process.env.npm_package_browser; //  pkg.main;
 
 // This will be running from "./packages/@fndj/main/" or the like.
 // Get back up to the root dir

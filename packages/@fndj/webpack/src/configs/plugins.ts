@@ -6,9 +6,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack, { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin } from 'webpack';
 import WebpackBar from 'webpackbar';
 import { staticSourceDir } from './settings';
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 
 export const webpackBar = new WebpackBar({});
+export const reachRefresh = new ReactRefreshPlugin();
 export const tsChecker = new ForkTsCheckerWebpackPlugin({
   // silent: true
 });

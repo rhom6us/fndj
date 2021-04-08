@@ -41,8 +41,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.configuration = void 0;
 var plugins = __importStar(require("./plugins"));
 var rules = __importStar(require("./rules"));
+var settings_1 = require("./settings");
 var webpack_config_common_1 = __importDefault(require("./webpack.config.common"));
-exports.configuration = __assign(__assign({}, webpack_config_common_1.default), { target: 'web', mode: 'development', 
+exports.configuration = __assign(__assign({}, webpack_config_common_1.default), { target: 'web', mode: settings_1.isDev ? 'development' : 'production', 
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
     // entry: [
     //    // 'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
@@ -53,20 +54,26 @@ exports.configuration = __assign(__assign({}, webpack_config_common_1.default), 
             '.tsx', '.css', '.scss'
         ]) }), module: __assign(__assign({}, webpack_config_common_1.default.module), { rules: [
             rules.workletRule,
+            rules.workerRule,
             rules.reactTypescriptRule,
-            rules.typescriptRule,
+            // rules.typescriptRule,
             // nodeRule,
             rules.globalStylesheetRule,
             rules.stylesheetRule,
             rules.imageRule,
             rules.fontRule,
             rules.htmlRule,
-        ] }), plugins: __spreadArray(__spreadArray([], webpack_config_common_1.default.plugins), [
+        ] }), plugins: [
+        settings_1.isDev && plugins.webpackBar,
+        settings_1.isDev && plugins.hotModuleReplacement,
+        settings_1.isDev && plugins.reachRefresh,
+        plugins.tsChecker,
         plugins.createIndexHtml,
         plugins.extractCssFiles,
         plugins.cleanBuildDir,
-    ]), experiments: {
+        // hotModuleReplacement
+    ].filter(Boolean), experiments: {
         topLevelAwait: true
     } });
 exports.default = exports.configuration;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsaURBQXFDO0FBQ3JDLDZDQUFpQztBQUVqQyxrRkFBNkM7QUFXaEMsUUFBQSxhQUFhLHlCQUNuQiwrQkFBTSxLQUNULE1BQU0sRUFBRSxLQUFLLEVBQ2IsSUFBSSxFQUFFLGFBQWE7SUFDbkIsNkRBQTZEO0lBQzdELFdBQVc7SUFDWCwyRkFBMkY7SUFDM0Ysa0ZBQWtGO0lBQ2xGLDJDQUEyQztJQUMzQyxLQUFLO0lBQ0wsT0FBTyx3QkFDQSwrQkFBTSxDQUFDLE9BQU8sS0FDakIsVUFBVSxrQ0FDSCwrQkFBTSxDQUFDLE9BQVEsQ0FBQyxVQUFVO1lBQzdCLE1BQU0sRUFBRSxNQUFNLEVBQUUsT0FBTztlQUkvQixNQUFNLHdCQUNDLCtCQUFNLENBQUMsTUFBTSxLQUNoQixLQUFLLEVBQUU7WUFDSCxLQUFLLENBQUMsV0FBVztZQUNqQixLQUFLLENBQUMsbUJBQW1CO1lBQ3pCLEtBQUssQ0FBQyxjQUFjO1lBQ3BCLFlBQVk7WUFDWixLQUFLLENBQUMsb0JBQW9CO1lBQzFCLEtBQUssQ0FBQyxjQUFjO1lBQ3BCLEtBQUssQ0FBQyxTQUFTO1lBQ2YsS0FBSyxDQUFDLFFBQVE7WUFDZCxLQUFLLENBQUMsUUFBUTtTQUNqQixLQUVMLE9BQU8sa0NBQ0EsK0JBQU0sQ0FBQyxPQUFPO1FBQ2pCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxhQUFhO1FBR3pCLFdBQVcsRUFBRTtRQUNULGFBQWEsRUFBRSxJQUFJO0tBQ3RCLElBR0g7QUFHRixrQkFBZSxxQkFBYSxDQUFDIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsaURBQXFDO0FBQ3JDLDZDQUFpQztBQUNqQyx1Q0FBMkQ7QUFDM0Qsa0ZBQTZDO0FBYWhDLFFBQUEsYUFBYSx5QkFDbkIsK0JBQU0sS0FDVCxNQUFNLEVBQUUsS0FBSyxFQUNiLElBQUksRUFBRSxnQkFBSyxDQUFDLENBQUMsQ0FBQyxhQUFhLENBQUMsQ0FBQyxDQUFDLFlBQVk7SUFDMUMsNkRBQTZEO0lBQzdELFdBQVc7SUFDWCwyRkFBMkY7SUFDM0Ysa0ZBQWtGO0lBQ2xGLDJDQUEyQztJQUMzQyxLQUFLO0lBQ0wsT0FBTyx3QkFDQSwrQkFBTSxDQUFDLE9BQU8sS0FDakIsVUFBVSxrQ0FDSCwrQkFBTSxDQUFDLE9BQVEsQ0FBQyxVQUFVO1lBQzdCLE1BQU0sRUFBRSxNQUFNLEVBQUUsT0FBTztlQUkvQixNQUFNLHdCQUNDLCtCQUFNLENBQUMsTUFBTSxLQUNoQixLQUFLLEVBQUU7WUFDSCxLQUFLLENBQUMsV0FBVztZQUNqQixLQUFLLENBQUMsVUFBVTtZQUNoQixLQUFLLENBQUMsbUJBQW1CO1lBQ3pCLHdCQUF3QjtZQUN4QixZQUFZO1lBQ1osS0FBSyxDQUFDLG9CQUFvQjtZQUMxQixLQUFLLENBQUMsY0FBYztZQUNwQixLQUFLLENBQUMsU0FBUztZQUNmLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLFFBQVE7U0FDakIsS0FFTCxPQUFPLEVBQUU7UUFDTCxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxVQUFVO1FBQzNCLGdCQUFLLElBQUksT0FBTyxDQUFDLG9CQUFvQjtRQUNyQyxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxZQUFZO1FBQzdCLE9BQU8sQ0FBQyxTQUFTO1FBQ2pCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxhQUFhO1FBQ3JCLHVCQUF1QjtLQUMxQixDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFDakIsV0FBVyxFQUFFO1FBQ1QsYUFBYSxFQUFFLElBQUk7S0FDdEIsSUFHSDtBQUdGLGtCQUFlLHFCQUFhLENBQUMifQ==
