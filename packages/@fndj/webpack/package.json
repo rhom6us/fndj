@@ -33,7 +33,6 @@
     "postcss-import": "^14.0.1",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
-    "react-hot-loader": "^4.13.0",
     "sass": "^1.32.6",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
@@ -62,6 +61,10 @@
     "@types/webpackbar": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
-    "eslint": "^7.19.0"
+    "eslint": "^7.19.0",
+    "react-hot-loader": "^4.13.0"
+  },
+  "peerDependencies": {
+    "react-hot-loader": "^4.13.0"
   }
 }

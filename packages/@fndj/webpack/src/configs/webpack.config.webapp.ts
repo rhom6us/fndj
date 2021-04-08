@@ -1,10 +1,7 @@
 import path from 'path';
 import { Configuration } from 'webpack';
-import { cleanBuildDir, createIndexHtml, extractCssFiles, hotModuleReplacement } from './plugins';
-import {
-    fontRule, globalStylesheetRule, htmlRule, imageRule, nodeRule, reactTypescriptRule,
-    stylesheetRule, typescriptRule, workletRule
-} from './rules';
+import * as plugins from './plugins';
+import * as rules from './rules';
 import { entryPoint, projectDir } from './settings';
 import config from './webpack.config.common';
 interface Config extends Configuration {
@@ -38,22 +35,22 @@ export const configuration: any = {
     module: {
         ...config.module,
         rules: [
-            workletRule,
-            reactTypescriptRule,
-            typescriptRule,
+            rules.workletRule,
+            rules.reactTypescriptRule,
+            rules.typescriptRule,
             // nodeRule,
-            globalStylesheetRule,
-            stylesheetRule,
-            imageRule,
-            fontRule,
-            htmlRule,
+            rules.globalStylesheetRule,
+            rules.stylesheetRule,
+            rules.imageRule,
+            rules.fontRule,
+            rules.htmlRule,
         ],
     },
     plugins: [
         ...config.plugins,
-        createIndexHtml,
-        extractCssFiles,
-        cleanBuildDir,
+        plugins.createIndexHtml,
+        plugins.extractCssFiles,
+        plugins.cleanBuildDir,
         // hotModuleReplacement
     ],
     experiments: {

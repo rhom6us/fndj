@@ -1,40 +1,39 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetRule } from 'webpack';
-import {
-  babelLoader, cssHotLoader, cssHotModuleLoader, cssLoader, cssModuleLoader, fontLoader,
-  imageLoader, nodeLoader, postcssLoader, sassLoader, tsLoader, workletLoader
-} from './loaders';
+import * as loaders from './loaders';
 import { isDev } from './settings';
+import * as foo from 'react-hot-loader/webpack';
+
 
 const node_modules = /node_modules/i;
 //#region code
 
 export const workletRule: RuleSetRule = {
   test: /\.worklet\.ts$/,
-  use: [workletLoader],
+  use: [loaders.workletLoader],
 };
 export const reactTypescriptRule: RuleSetRule = {
   test: /\.tsx?$/i,
   exclude: node_modules,
-  use: ['react-hot-loader/webpack', tsLoader],
+  use: ['react-hot-loader/webpack', loaders.tsLoader],
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,
-  use: [tsLoader],
+  use: [loaders.tsLoader],
 };
-export const scriptRule: RuleSetRule = {
-  test: /\.(j|t)sx?$/i,
-  exclude: [node_modules],
-  use: [babelLoader],
-};
+// export const scriptRule: RuleSetRule = {
+//   test: /\.(j|t)sx?$/i,
+//   exclude: [node_modules],
+//   use: [babelLoader],
+// };
 export const nodeRule: RuleSetRule = {
   test: /\.node$/i,
-  use: nodeLoader,
+  use: loaders.nodeLoader,
 };
 
 export const workerRule: RuleSetRule = {
   test: /\.worker\.ts$/i,
-  use: ['worker-loader', tsLoader],
+  use: ['worker-loader', loaders.tsLoader],
   loader: "worker-loader",
   options: {
 
@@ -47,12 +46,12 @@ export const workerRule: RuleSetRule = {
 //#region styles
 export const globalStylesheetRule: RuleSetRule = {
   test: /\b(global|vars)\.s?css$/i,
-  use: [...(isDev ? [cssHotLoader] : []), MiniCssExtractPlugin.loader, cssLoader, postcssLoader, sassLoader],
+  use: [...(isDev ? [loaders.cssHotLoader] : []), MiniCssExtractPlugin.loader, loaders.cssLoader, loaders.postcssLoader, loaders.sassLoader],
 };
 export const stylesheetRule: RuleSetRule = {
   test: /\.s?css$/i,
   exclude: /\b(global|vars)\.s?css$/i,
-  use: [...(isDev ? [cssHotModuleLoader] : []), MiniCssExtractPlugin.loader, cssModuleLoader, postcssLoader, sassLoader],
+  use: [...(isDev ? [loaders.cssHotModuleLoader] : []), MiniCssExtractPlugin.loader, loaders.cssModuleLoader, loaders.postcssLoader, loaders.sassLoader],
 };
 //#endregion
 
@@ -63,12 +62,12 @@ export const stylesheetRule: RuleSetRule = {
 // };
 export const imageRule: RuleSetRule = {
   test: /\.(png|jpg|gif)$/i,
-  use: [imageLoader],
+  use: [loaders.imageLoader],
 };
 
 export const fontRule: RuleSetRule = {
   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
-  use: [fontLoader],
+  use: [loaders.fontLoader],
 };
 
 export const htmlRule: RuleSetRule = {

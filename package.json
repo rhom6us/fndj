@@ -36,7 +36,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^5.18.9",
+    "pnpm": "^6.0.1",
     "prettier": "^2.2.1",
     "prettier-plugin-packagejson": "^2.2.9",
     "typescript": "^4.2.3"

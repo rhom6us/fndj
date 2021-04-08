@@ -26,9 +26,9 @@
     "**/desktop.ini": true,
     "**/*.rar": true,
     "packages/YouTubeProxy": true,
-    "packages/@types": true,
+    "packages/@types": false,
     "packages/@fndj/webpack": true,
-    "**/node_modules": true,
+    "**/node_modules": false,
     "pnpm-lock.yaml": true
   },
 

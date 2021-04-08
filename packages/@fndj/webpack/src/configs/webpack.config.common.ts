@@ -1,13 +1,13 @@
 
 import path from 'path';
 import webpack from 'webpack';
-import { defineNodeEnvConst, devPlugins } from './plugins';
-import { isDev, outDir, projectDir } from './settings';
+import * as plugins from './plugins';
+import { entryPoint, isDev, outDir, projectDir } from './settings';
 
 export default {
   devtool: "source-map",// isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
   context: projectDir,
-  entry: path.join(projectDir, 'index.ts'),
+  entry: entryPoint,
   output: {
     path: outDir,
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
@@ -49,10 +49,11 @@ export default {
   //   // },
   // },
   plugins: [
-    ...devPlugins,
-    // new CleanWebpackPlugin() as any,
-    // defineStaticDirConst,
-    // defineNodeEnvConst,
+    plugins.webpackBar,
+    plugins.tsChecker,
+    // plugins.cleanBuildDir,
+    // plugins.defineStaticDirConst,
+    // plugins.defineNodeEnvConst,
   ],
   module: {
     rules: [

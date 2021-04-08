@@ -1,11 +1,8 @@
 
-import miniCssExtractPlugin from 'mini-css-extract-plugin';
+
 import webpack from 'webpack';
-import { createIndexHtml } from './plugins';
-import {
-    fontRule, globalStylesheetRule, htmlRule, imageRule, nodeRule, reactTypescriptRule,
-    stylesheetRule, workletRule
-} from './rules';
+import * as plugins from './plugins';
+import * as rules from './rules';
 import config from './webpack.config.common';
 
 export default {
@@ -17,11 +14,21 @@ export default {
   },
   module: {
     ...config.module,
-    rules: [...config.module.rules, reactTypescriptRule, nodeRule, globalStylesheetRule, stylesheetRule, imageRule, fontRule, htmlRule, workletRule],
+    rules: [
+      ...config.module.rules,
+      rules.reactTypescriptRule,
+      rules.nodeRule,
+      rules.globalStylesheetRule,
+      rules.stylesheetRule,
+      rules.imageRule,
+      rules.fontRule,
+      rules.htmlRule,
+      rules.workletRule
+    ],
   },
   plugins: [
     ...config.plugins,
-    createIndexHtml,
-    miniCssExtractPlugin
+    plugins.createIndexHtml,
+    plugins.miniCssExtractPlugin
   ],
 } as webpack.Configuration;
