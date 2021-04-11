@@ -1,3 +1,4 @@
+import AxisLayer from '../axis/axis-layer';
 import Layer from './layer';
 import TimelineTimeContext from './timeline-time-context';
 
@@ -117,13 +118,13 @@ export default class Track {
      *
      * @param {Layer} layer - the layer to add to the track.
      */
-    add(layer: Layer): void;
+    add(layer: Layer | AxisLayer): void;
     /**
      * Removes a layer from the track. The layer can be reused elsewhere.
      *
      * @param {Layer} layer - the layer to remove from the track.
      */
-    remove(layer: Layer): void;
+    remove(layer: Layer | AxisLayer): void;
     /**
      * Tests if a given element belongs to the track.
      *

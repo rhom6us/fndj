@@ -1,3 +1,44 @@
+import events from 'events';
+import ns from './namespace';
+import scales from '../utils/scales';
+import Segment, { SegmentAccessor, SegmentOptions } from '../shapes/segment';
+import TimeContextBehavior from '../behaviors/time-context-behavior';
+
+import BaseBehavior from '../behaviors/base-behavior';
+import BaseShape, { Accessor } from '../shapes/base-shape';
+import LayerTimeContext from './layer-time-context';
+import Marker, { MarkerAccessor, MarkerOptions } from '../shapes/marker';
+import AnnotatedMarker, { AnnotatedMarkerAccessor, AnnotatedMarkerOptions } from '../shapes/annotated-marker';
+import AnnotatedSegment, { AnnotatedSegmentAccessor, AnnotatedSegmentOptions } from '../shapes/annotated-segment';
+import Cursor, { CursorAccessor, CursorOptions } from '../shapes/cursor';
+import Dot, { DotAccessor, DotOptions } from '../shapes/dot';
+import Line, { LineAccessor, LineOptions } from '../shapes/line';
+import Ticks, { TicksAccessor, TicksOptions } from '../shapes/ticks';
+import Waveform, { WaveformAccessor, WaveformOptions } from '../shapes/waveform';
+import TraceDots, { TraceDotsAccessor, TraceDotsOptions } from '../shapes/trace-dots';
+import TracePath, { TracePathAccessor, TracePathOptions } from '../shapes/trace-path';
+
+export type DataType = 'entity' | 'collection';
+export type Datum<T> =
+    T extends Array<infer R> ? R :
+    T extends Float32Array ? number :
+    T;
+
+export type Domain = [min: number, max: number];
+export interface LayerOptions {
+    height: number;
+    top: number;
+    opacity: number;
+    yDomain: Domain;
+    className: string;
+    selectedClassName: string;
+    contextHandlerWidth: number;
+    hittable: number;
+    channel: number;
+    color: string;
+    renderingStrategy: 'svg' | 'canvas';
+}
+
 /**
  * The layer class is the main visualization class. It is mainly defines by its
  * related `LayerTimeContext` which determines its position in the overall
@@ -23,22 +64,22 @@
  * </g>
  * ```
  */
-export default class Layer {
+export default class Layer<TData = any, TOptions = LayerOptions> {
     /**
      * Allows to override default the `TimeContextBehavior` used to edit the layer.
      *
      * @param {Object} ctor
      */
-    static configureTimeContextBehavior(ctor: any): void;
+    static configureTimeContextBehavior(ctor: typeof TimeContextBehavior): void;
     /**
-     * @param {String} dataType - Defines how the layer should look at the data.
+     * @param {DataType} dataType - Defines how the layer should look at the data.
      *    Can be 'entity' or 'collection'.
      * @param {(Array|Object)} data - The data associated to the layer.
      * @param {Object} options - Configures the layer.
      * @param {Number} [options.height=100] - Defines the height of the layer.
      * @param {Number} [options.top=0] - Defines the top position of the layer.
      * @param {Number} [options.opacity=1] - Defines the opacity of the layer.
-     * @param {Number} [options.yDomain=[0,1]] - Defines boundaries of the data
+     * @param {Domain} [options.yDomain=[0,1]] - Defines boundaries of the data
      *    values in y axis (for exemple to display an audio buffer, this attribute
      *    should be set to [-1, 1].
      * @param {String} [options.className=null] - An optionnal class to add to each
@@ -51,26 +92,17 @@ export default class Layer {
      *    with. Basically, the layer is not returned by `BaseState.getHitLayers` when
      *    set to false (a common use case is a layer that contains a cursor)
      */
-    constructor(dataType: string, data: (any[] | any), options?: {
-        height?: number;
-        top?: number;
-        opacity?: number;
-        yDomain?: number;
-        className?: string;
-        selectedClassName?: string;
-        contextHandlerWidth?: number;
-        hittable?: number;
-    });
+    constructor(dataType: DataType, data: TData, options?: Partial<TOptions>);
     /**
      * Parameters of the layers, `defaults` overrided with options.
-     * @type {Object}
+     * @type {LayerOptions}
      */
-    params: any;
+    params: Partial<TOptions>;
     /**
      * Defines how the layer should look at the data (`'entity'` or `'collection'`).
-     * @type {String}
+     * @type {DataType}
      */
-    dataType: string;
+    dataType: DataType;
     /** @type {LayerTimeContext} */
     timeContext: LayerTimeContext;
     /** @type {Element} */
@@ -108,13 +140,13 @@ export default class Layer {
      *
      * @type {Object|Object[]}
      */
-    set data(arg: any[]);
+    set data(arg: TData);
     /**
      * Returns the data associated to the layer.
      *
      * @type {Object[]}
      */
-    get data(): any[];
+    get data(): TData;
     // _valueToPixel: any;
     /**
      * Destroy the layer, clear all references.
@@ -171,15 +203,15 @@ export default class Layer {
     /**
      * Set the domain boundaries of the data for the y axis.
      *
-     * @type {Array}
+     * @type {Domain}
      */
-    set yDomain(arg: number[]);
+    set yDomain(arg: Domain);
     /**
      * Returns the domain boundaries of the data for the y axis.
      *
-     * @type {Array}
+     * @type {Domain}
      */
-    get yDomain(): number[];
+    get yDomain(): Domain;
     /**
      * Sets the opacity of the whole layer.
      *
@@ -210,19 +242,19 @@ export default class Layer {
      * @type {Array<Element>}
      */
     get items(): Element[];
-    _data: any[];
+    private _data: TData;
     /**
      * Renders the DOM in memory on layer creation to be able to use it before
      * the layer is actually inserted in the DOM.
      */
-    _renderContainer(): void;
+    private _renderContainer(): void;
     /**
      * Sets the context of the layer, thus defining its `start`, `duration`,
      * `offset` and `stretchRatio`.
      *
      * @param {TimeContext} timeContext - The timeContext in which the layer is displayed.
      */
-    setTimeContext(timeContext: any): void;
+    setTimeContext(timeContext: LayerTimeContext): void;
     // _renderingContext: {};
     /**
      * Register a shape and its configuration to use in order to render the data.
@@ -231,7 +263,18 @@ export default class Layer {
      * @param {Object} [accessors={}] - Defines how the shape should adapt to a particular data struture.
      * @param {Object} [options={}] - Global configuration for the shapes, is specific to each `Shape`.
      */
-    configureShape(ctor: any, accessors?: any, options?: any): void;
+    configureShape(ctor: typeof AnnotatedMarker, accessors?: Partial<AnnotatedMarkerAccessor<Datum<TData>>>, options?: Partial<AnnotatedMarkerOptions>): void;
+    configureShape(ctor: typeof AnnotatedSegment, accessors?: Partial<AnnotatedSegmentAccessor<Datum<TData>>>, options?: Partial<AnnotatedSegmentOptions>): void;
+    configureShape(ctor: typeof Cursor, accessors?: Partial<CursorAccessor<Datum<TData>>>, options?: Partial<CursorOptions>): void;
+    configureShape(ctor: typeof Dot, accessors?: Partial<DotAccessor<Datum<TData>>>, options?: Partial<DotOptions>): void;
+    configureShape(ctor: typeof Line, accessors?: Partial<LineAccessor<Datum<TData>>>, options?: Partial<LineOptions>): void;
+    configureShape(ctor: typeof Marker, accessors?: Partial<MarkerAccessor<Datum<TData>>>, options?: Partial<MarkerOptions>): void;
+    configureShape(ctor: typeof Segment, accessors?: Partial<SegmentAccessor<Datum<TData>>>, options?: Partial<SegmentOptions>): void;
+    configureShape(ctor: typeof Ticks, accessors?: Partial<TicksAccessor<Datum<TData>>>, options?: Partial<TicksOptions>): void;
+    configureShape(ctor: typeof TraceDots, accessors?: Partial<TraceDotsAccessor<Datum<TData>>>, options?: Partial<TraceDotsOptions>): void;
+    configureShape(ctor: typeof TracePath, accessors?: Partial<TracePathAccessor<Datum<TData>>>, options?: Partial<TracePathOptions>): void;
+    configureShape(ctor: typeof Waveform, accessors?: Partial<WaveformAccessor<Datum<TData>>>, options?: Partial<WaveformOptions>): void;
+    configureShape<T extends typeof BaseShape>(ctor: T, accessors?: Accessor<Datum<TData>>, options?: any): void;
     /**
      * Optionnaly register a shape to be used accros the entire collection.
      *
@@ -239,18 +282,29 @@ export default class Layer {
      * @param {Object} [accessors={}] - Defines how the shape should adapt to a particular data struture.
      * @param {Object} [options={}] - Global configuration for the shapes, is specific to each `Shape`.
      */
-    configureCommonShape(ctor: any, accessors?: any, options?: any): void;
+    configureCommonShape(ctor: typeof AnnotatedMarker, accessors?: Partial<AnnotatedMarkerAccessor<Datum<TData>>>, options?: Partial<AnnotatedMarkerOptions>): void;
+    configureCommonShape(ctor: typeof AnnotatedSegment, accessors?: Partial<AnnotatedSegmentAccessor<Datum<TData>>>, options?: Partial<AnnotatedSegmentOptions>): void;
+    configureCommonShape(ctor: typeof Cursor, accessors?: Partial<CursorAccessor<Datum<TData>>>, options?: Partial<CursorOptions>): void;
+    configureCommonShape(ctor: typeof Dot, accessors?: Partial<DotAccessor<Datum<TData>>>, options?: Partial<DotOptions>): void;
+    configureCommonShape(ctor: typeof Line, accessors?: Partial<LineAccessor<Datum<TData>>>, options?: Partial<LineOptions>): void;
+    configureCommonShape(ctor: typeof Marker, accessors?: Partial<MarkerAccessor<Datum<TData>>>, options?: Partial<MarkerOptions>): void;
+    configureCommonShape(ctor: typeof Segment, accessors?: Partial<SegmentAccessor<Datum<TData>>>, options?: Partial<SegmentOptions>): void;
+    configureCommonShape(ctor: typeof Ticks, accessors?: Partial<TicksAccessor<Datum<TData>>>, options?: Partial<TicksOptions>): void;
+    configureCommonShape(ctor: typeof TraceDots, accessors?: Partial<TraceDotsAccessor<Datum<TData>>>, options?: Partial<TraceDotsOptions>): void;
+    configureCommonShape(ctor: typeof TracePath, accessors?: Partial<TracePathAccessor<Datum<TData>>>, options?: Partial<TracePathOptions>): void;
+    configureCommonShape(ctor: typeof Waveform, accessors?: Partial<WaveformAccessor<Datum<TData>>>, options?: Partial<WaveformOptions>): void;
+    configureCommonShape<T extends typeof BaseShape>(ctor: typeof T, accessors?: Accessor<TData>, options?: any): void;
     /**
      * Register the behavior to use when interacting with a shape.
      *
      * @param {BaseBehavior} behavior
      */
-    setBehavior(behavior: any): void;
+    setBehavior<T extends BaseBehavior>(behavior: T): void;
     /**
      * Updates the values stored int the `_renderingContext` passed  to shapes
      * for rendering and updating.
      */
-    _updateRenderingContext(): void;
+    private _updateRenderingContext(): void;
     /**
      * Returns the items marked as selected.
      *
@@ -320,7 +374,7 @@ export default class Layer {
      * @param {Element} $item
      * @return {Object|Array|null}
      */
-    getDatumFromItem($item: Element): any | any[] | null;
+    getDatumFromItem($item: Element): TData | null;
     /**
      * Returns the datum associated to a specific item from any DOM element
      * composing the shape. Basically a shortcut for `getItemFromDOMElement` and
@@ -329,7 +383,7 @@ export default class Layer {
      * @param {Element} $el
      * @return {Object|Array|null}
      */
-    getDatumFromDOMElement($el: Element): any | any[] | null;
+    getDatumFromDOMElement($el: Element): TData | null;
     /**
      * Tests if the given DOM element is an item of the layer.
      *
@@ -344,7 +398,7 @@ export default class Layer {
      * @param {Element} $el - The DOM element to be tested.
      * @return {bool}
      */
-    hasElement($el: Element): any;
+    hasElement($el: Element): boolean;
     /**
      * Retrieve all the items in a given area as defined in the registered `Shape~inArea` method.
      *
@@ -360,14 +414,14 @@ export default class Layer {
         left: number;
         width: number;
         height: number;
-    }): any[];
+    }): Element[];
     /**
      * Moves an item to the end of the layer to display it front of its
      * siblings (svg z-index...).
      *
      * @param {Element} $item - The item to be moved.
      */
-    _toFront($item: Element): void;
+    private _toFront($item: Element): void;
     /**
      * Create the DOM structure of the shapes according to the given data. Inspired
      * from the `enter` and `exit` d3.js paradigm, this method should be called
@@ -391,6 +445,5 @@ export default class Layer {
      */
     updateShapes(): void;
 }
-import Segment from "../shapes/segment";
-import LayerTimeContext from './layer-time-context';
+
 //# sourceMappingURL=layer.d.ts.map

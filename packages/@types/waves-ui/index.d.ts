@@ -1,78 +1,80 @@
-declare module 'waves-ui' {
-    export namespace core {
-        export { LayerTimeContext };
-        export { Layer };
-        export { namespace };
-        export { TimelineTimeContext };
-        export { Timeline };
-        export { TrackCollection };
-        export { Track };
-    }
-    export namespace shapes {
-        export { AnnotatedMarker };
-        export { AnnotatedSegment };
-        export { BaseShape };
-        export { Cursor };
-        export { Dot };
-        export { Line };
-        export { Marker };
-        export { Segment };
-        export { Ticks };
-        export { TracePath };
-        export { TraceDots };
-        export { Waveform };
-    }
-    export namespace behaviors {
-        export { BaseBehavior };
-        export { BreakpointBehavior };
-        export { MarkerBehavior };
-        export { SegmentBehavior };
-        export { TimeContextBehavior };
-        export { TraceBehavior };
-    }
-    export namespace interactions {
-        export { EventSource };
-        export { Keyboard };
-        export { Surface };
-        export { WaveEvent };
-    }
-    export namespace states {
-        export { BaseState };
-        export { BreakpointState };
-        export { BrushZoomState };
-        export { CenteredZoomState };
-        export { ContextEditionState };
-        export { EditionState };
-        export { SelectionState };
-        export { SimpleEditionState };
-    }
-    export namespace helpers {
-        export { AnnotatedMarkerLayer };
-        export { AnnotatedSegmentLayer };
-        export { BreakpointLayer };
-        export { CursorLayer };
-        export { GridAxisLayer };
-        export { MarkerLayer };
-        export { SegmentLayer };
-        export { TickLayer };
-        export { TimeAxisLayer };
-        export { TraceLayer };
-        export { WaveformLayer };
-    }
-    export namespace axis {
-        export { AxisLayer };
-        export { timeAxisGenerator };
-        export { gridAxisGenerator };
-    }
-    export namespace utils {
-        export { format };
-        export { OrthogonalData };
-        export { scales };
-    }
+// declare module 'waves-ui' {
+
+export namespace core {
+    export { LayerTimeContext };
+    export { Layer, LayerOptions, Domain, Datum, DataType, Accessor };
+    export { namespace };
+    export { TimelineTimeContext };
+    export { Timeline };
+    export { TrackCollection };
+    export { Track };
 }
+export namespace shapes {
+    export { AnnotatedMarker };
+    export { AnnotatedSegment };
+    export { BaseShape };
+    export { Cursor };
+    export { Dot };
+    export { Line };
+    export { Marker };
+    export { Segment };
+    export { Ticks };
+    export { TracePath };
+    export { TraceDots };
+    export { Waveform };
+}
+export namespace behaviors {
+    export { BaseBehavior };
+    export { BreakpointBehavior };
+    export { MarkerBehavior };
+    export { SegmentBehavior };
+    export { TimeContextBehavior };
+    export { TraceBehavior };
+}
+export namespace interactions {
+    export { EventSource };
+    export { Keyboard };
+    export { Surface };
+    export { WaveEvent };
+}
+export namespace states {
+    export { BaseState };
+    export { BreakpointState };
+    export { BrushZoomState };
+    export { CenteredZoomState };
+    export { ContextEditionState };
+    export { EditionState };
+    export { SelectionState };
+    export { SimpleEditionState };
+}
+export namespace helpers {
+    export { AnnotatedMarkerLayer };
+    export { AnnotatedSegmentLayer };
+    export { BreakpointLayer };
+    export { CursorLayer };
+    export { GridAxisLayer };
+    export { MarkerLayer };
+    export { SegmentLayer };
+    export { TickLayer };
+    export { TimeAxisLayer };
+    export { TraceLayer };
+    export { WaveformLayer };
+}
+export namespace axis {
+    export { AxisLayer };
+    export { timeAxisGenerator };
+    export { gridAxisGenerator };
+}
+export namespace utils {
+    export { format };
+    export { OrthogonalData };
+    export { scales, Scale };
+}
+// }
 
 import LayerTimeContext from "./core/layer-time-context";
-import Layer from "./core/layer";
+// import Layer from "./core/layer";
+import { default as Layer, LayerOptions, Domain, Datum, DataType, Accessor } from './core/layer';
 import namespace from "./core/namespace";
 import TimelineTimeContext from "./core/timeline-time-context";
 import Timeline from "./core/timeline";
@@ -124,5 +126,5 @@ import timeAxisGenerator from "./axis/time-axis-generator";
 import gridAxisGenerator from "./axis/grid-axis-generator";
 import format from "./utils/format";
 import OrthogonalData from "./utils/orthogonal-data";
-import scales from "./utils/scales";
+import { default as scales, Scale } from "./utils/scales";
 //# sourceMappingURL=waves-ui.d.ts.map

@@ -3,13 +3,13 @@
  *
  * [example usage](./examples/layer-marker.html)
  */
-export default class AnnotatedMarkerLayer extends Layer {
+export default class AnnotatedMarkerLayer<T extends any[]> extends Layer<T> {
     /**
      * @param {Array} data - The data to render.
      * @param {Object} options - An object to configure the layer.
      * @todo - Add accessors and options for the shape.
      */
-    constructor(data: any[], options?: any);
+    constructor(data: T, options?: any);
 }
 import Layer from "../core/layer";
 //# sourceMappingURL=annotated-marker-layer.d.ts.map

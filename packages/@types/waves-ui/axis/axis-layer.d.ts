@@ -9,7 +9,16 @@
  *
  * [example usage of the layer-axis](./examples/layer-axis.html)
  */
-export default class AxisLayer extends Layer {
+declare interface AxisLayer extends Omit<_AxisLayer, 'setTimeContext'> {
+
+    setTimeContext(timeContext: TimelineTimeContext): void;
+}
+declare var AxisLayer: {
+    prototype: AxisLayer;
+    new(generator: Function, options: any): AxisLayer;
+};
+export default AxisLayer;
+declare class _AxisLayer extends Layer {
     /**
      * @param {Function} generator - A function to create data according to
      *    the `Timeline~timeContext`.
@@ -34,6 +43,8 @@ export default class AxisLayer extends Layer {
      * instance generates and maintains it's own data.
      */
     _generateData(): void;
+
 }
 import Layer from "../core/layer";
+import TimelineTimeContext from '../core/timeline-time-context';
 //# sourceMappingURL=axis-layer.d.ts.map

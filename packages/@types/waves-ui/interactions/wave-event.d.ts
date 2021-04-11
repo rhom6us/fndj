@@ -12,7 +12,13 @@ export default class WaveEvent {
     source: string;
     type: string;
     originalEvent: Event;
-    target: EventTarget;
-    currentTarget: EventTarget;
+    target: Element;
+    currentTarget: Element;
+
+
+    dx: number;
+    dy: number;
+    x: number;
+    y: number;
 }
 //# sourceMappingURL=wave-event.d.ts.map

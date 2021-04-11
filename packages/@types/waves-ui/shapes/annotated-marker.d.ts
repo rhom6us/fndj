@@ -1,3 +1,12 @@
+import { DatumAccessor } from './base-shape';
+import Marker, { MarkerAccessor, MarkerOptions } from "./marker";
+
+export interface AnnotatedMarkerAccessor<T> extends MarkerAccessor<T> {
+    text: DatumAccessor<T, string>;
+}
+
+export interface AnnotatedMarkerOptions extends MarkerOptions { }
+
 /**
  * A shape to display a marker with annotation.
  *
@@ -6,5 +15,3 @@
 export default class AnnotatedMarker extends Marker {
     $label: Element;
 }
-import Marker from "./marker";
-//# sourceMappingURL=annotated-marker.d.ts.map

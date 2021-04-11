@@ -5,9 +5,9 @@
  */
 export default class TimeContextBehavior {
     edit(layer: any, dx: any, dy: any, target: any): void;
-    _editLeft(timeContext: any, dx: any): void;
-    _editRight(timeContext: any, dx: any): void;
-    _move(timeContext: any, dx: any): void;
+    private _editLeft(timeContext: any, dx: any): void;
+    private _editRight(timeContext: any, dx: any): void;
+    private _move(timeContext: any, dx: any): void;
     stretch(layer: any, dx: any, dy: any, target: any): void;
 }
 //# sourceMappingURL=time-context-behavior.d.ts.map

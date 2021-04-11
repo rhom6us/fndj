@@ -33,12 +33,14 @@
     "no-console": "warn",
     "no-var": "warn",
     //"no-undef": "off",
+    "no-empty-function": "off",
     "prettier/prettier": [
       "warn",
       {
         "endOfLine": "auto"
       }
     ],
+    "prefer-const": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

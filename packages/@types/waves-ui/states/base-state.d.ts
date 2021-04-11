@@ -1,3 +1,8 @@
+import Layer from '../core/layer';
+import Timeline from '../core/timeline';
+import TrackCollection from '../core/track-collection';
+import WaveEvent from '../interactions/wave-event';
+
 /**
  * `State` instances are used to define the application logic by precising
  * specific user interaction cases, and how they impact the overal temporal
@@ -15,24 +20,24 @@ export default class BaseState {
      *
      * @type {TrackCollection}
      */
-    constructor(timeline: any);
+    constructor(timeline: Timeline);
     /**
      * A reference to the timeline on which the state should be installed.
      * @type {Timeline}
      */
-    timeline: any;
+    timeline: Timeline;
     /**
      * Returns timeline tracks collection.
      *
      * @type {TrackCollection<Track>}
      */
-    get tracks(): any;
+    get tracks(): TrackCollection;
     /**
      * Returns all registered layers.
      *
      * @type {Array<Layer>}
      */
-    get layers(): any[];
+    get layers(): Layer[];
     /**
      * Called when the timeline is entering the state.
      */
@@ -50,6 +55,6 @@ export default class BaseState {
      * @param {Array} hitLayers - the layers hit by the mouse event (if surface
      * event).
      */
-    handleEvent(e: any, hitLayers: any[]): void;
+    handleEvent(e: WaveEvent, hitLayers: Layer[]): void;
 }
 //# sourceMappingURL=base-state.d.ts.map

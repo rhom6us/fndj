@@ -1,3 +1,4 @@
+import { Scale } from '../utils/scales';
 import TimelineTimeContext from './timeline-time-context';
 
 /**
@@ -32,6 +33,7 @@ import TimelineTimeContext from './timeline-time-context';
  *
  * [example usage](./examples/time-contexts.html)
  */
+
 export default class LayerTimeContext {
     /**
      * @param {TimelineTimeContext} parent - The `TimelineTimeContext` instance of the timeline.
@@ -42,12 +44,12 @@ export default class LayerTimeContext {
      *
      * @type {TimelineTimeContext}
      */
-    parent: any;
-    _timeToPixel: any;
-    _start: number;
-    _duration: any;
-    _offset: number;
-    _stretchRatio: number;
+    parent: TimelineTimeContext;
+    private _timeToPixel: Scale;
+    private _start: number;
+    private _duration: any;
+    private _offset: number;
+    private _stretchRatio: number;
     /**
      * Creates a clone of the current time context.
      *
@@ -109,7 +111,7 @@ export default class LayerTimeContext {
      *
      * @type {Function}
      */
-    get timeToPixel(): (time: number) => number;
+    get timeToPixel(): Scale;
     /**
      * Helper function to convert pixel to time.
      *

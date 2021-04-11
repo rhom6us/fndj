@@ -1,7 +1,13 @@
-export abstract class Loader {
+export interface LoaderProgressEvent {
+
+  value: number; loaded: number; total: number;
+}
+export type ProgressCallback = (event: LoaderProgressEvent) => void;
+
+export abstract class Loader<T = any> {
   constructor(responseType: /*'text' | */'arraybuffer' /*| 'blob' | 'document' | 'json'*/);
   private readonly responseType: 'text' | 'arraybuffer' | 'blob' | 'document' | 'json';
-  private progressCb?: unknown;
+  private progressCb?: ProgressCallback | undefined;
   /**
     * Method for a promise based file loading.
     * Internally switch between loadOne and loadAll.
@@ -9,10 +15,10 @@ export abstract class Loader {
     * @param {(string|string[])} fileURLs - The URL(s) of the files to load. Accepts a URL pointing to the file location or an array of URLs.
     * @returns {Promise}
     */
-  load(fileURLs: string): Promise<any>;
-  load(fileUrls: string[]): Promise<any[]>;
+  load(fileURLs: string): Promise<T>;
+  load(fileUrls: string[]): Promise<T[]>;
 
-  get progressCallback(): (event: { value: number; loaded: number; total: number; }) => void;
+  get progressCallback(): ProgressCallback | undefined
   /**
     * Set the callback function to get the progress of file loading process.
     * This is only for the file loading progress as decodeAudioData doesn't
@@ -25,11 +31,11 @@ export abstract class Loader {
     * Alternative API to set the progress callback.
     * @type {function} callback - The callback that handles the response.
     */
-  onProgress(callback: Loader['progressCallback']): void;
+  onProgress(callback: ProgressCallback | undefined): void;
 
 }
 
-export class AudioBufferLoader extends Loader {
+export class AudioBufferLoader extends Loader<AudioBuffer> {
   constructor();
 
   /**

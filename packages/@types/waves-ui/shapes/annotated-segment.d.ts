@@ -1,3 +1,13 @@
+
+import { DatumAccessor } from './base-shape';
+import Segment, { SegmentAccessor, SegmentOptions } from "./segment";
+
+
+export interface AnnotatedSegmentAccessor<T> extends SegmentAccessor<T> {
+    text: DatumAccessor<T, string>;
+}
+export interface AnnotatedSegmentOptions extends SegmentOptions { }
+
 /**
  * A shape to display a segment with annotation.
  *
@@ -6,5 +16,3 @@
 export default class AnnotatedSegment extends Segment {
     $label: Element;
 }
-import Segment from "./segment";
-//# sourceMappingURL=annotated-segment.d.ts.map

@@ -1,51 +1,65 @@
 {
     "version": "0.2.0",
     "configurations": [
-        // {
-        //     "name": "Launch Edge",
-        //     "request": "launch",
-        //     "type": "pwa-msedge",
-        //     "url": "http://localhost:8080",
-        //     "webRoot": "${workspaceFolder}/packages/"
-        // },
         {
-            "name": "Launch - Electron: Renderer",
+            // start msedge --remote-debugging-port=9222
+            "type": "vscode-edge-devtools.debug",
+            "request": "attach",
+            "name": "Attach to Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "vscode-edge-devtools.debug",
             "preLaunchTask": "serve-renderer",
-            "type": "pwa-msedge",
-            "runtimeExecutable": "beta",
+            "request": "launch",
+            "name": "Launch Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack://*": "${webRoot}/packages/*"
+            },
+            "pathMapping": {
+                "/": "${workspaceFolder}"
+            }
+        },
+
+        {
+            "name": "Launch - @fndj/ui",
+            "preLaunchTask": "serve-renderer",
+            "type": "edge",
+            // "type": "vscode-edge-devtools.debug",
+            "version": "beta",
+            // "runtimeExecutable": "beta",
             "request": "launch",
             "url": "http://localhost:9080",
-            "port": 9222,
-            "webRoot": "${workspaceRoot}",
+            "webRoot": "${workspaceFolder}",
+            "smartStep": true,
+            // "port": 9222,
+            // "webRoot": "${workspaceRoot}",
             // "timeout": 150000,
             "sourceMaps": true,
             "sourceMapPathOverrides": {
-                // "fndj/ui/./*": "${workspaceRoot}/packages/@fndj",
-                // "fndj/ui/../*": "${workspaceRoot}/*",
-                // "webpack:///./~/*": "${webRoot}/node_modules/*", // a default
-                // "webpack:///./*": "${webRoot}/packages/@fndj/ui/*", // unsure how/why webpack generates ./links.js
-                // "webpack:///../*": "${webRoot}/packages/@fndj/*", // unsure how/why webpack generates ../links.js
-                // "webpack:///*": "*",
-                // "webpack://@fndj/ui/../node_modules/": "${webRoot}/node_modules",
-                // "webpack://@fndj/*": "${webRoot}/packages/@fndj/*",
-                // "webpack://@fndj/ui/*": "${webRoot}/packages/@fndj/ui/*",
                 "webpack://*": "${webRoot}/packages/*",
-                // "webpack://@fndj/ui/../*": "${webRoot}/packages/*",
-                // "webpack://@fndj/ui/./*": "${webRoot}/packages/@fndj/ui/*",
             }
         },
-        {
-            "name": "Attach - Electron: Renderer",
-            "preLaunchTask": "serve-renderer",
-            "type": "pwa-msedge",
-            "request": "attach",
-            "port": 9222,
-            "webRoot": "${workspaceRoot}",
-            "sourceMaps": true,
-            // "sourceMapPathOverrides": {
-            //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
-            //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
-            // }
-        }
+        // {
+        //     "name": "Attach - @fndj/ui",
+        //     "preLaunchTask": "serve-renderer",
+        //     // "type": "pwa-msedge",
+        //     "type": "edge",
+        //     // "version": "beta",
+        //     "request": "attach",
+        //     "port": 9222,
+        //     "webRoot": "${workspaceRoot}",
+        //     "url": "http://localhost:9080",
+        //     "sourceMaps": true,
+        //     "sourceMapPathOverrides": {
+        //         "webpack://*": "${webRoot}/packages/*",
+        //     //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
+        //     //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
+        //     }
+        // }
     ]
 }

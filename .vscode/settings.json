@@ -26,7 +26,7 @@
     "**/desktop.ini": true,
     "**/*.rar": true,
     "packages/YouTubeProxy": true,
-    "packages/@types": true,
+    "packages/@types": false,
     "packages/@fndj/webpack": true,
     "**/node_modules": true,
     "pnpm-lock.yaml": true
@@ -49,5 +49,9 @@
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "npm.packageManager": "pnpm",
   "files.autoSaveDelay": 3000,
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "vscode-edge-devtools.browserFlavor": "Beta",
+  "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
+  "vscode-edge-devtools.headless": true
+
 }

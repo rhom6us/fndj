@@ -177,7 +177,7 @@ export default class Timeline extends EventEmitter {
      *
      * @type {Array}
      */
-    get layers(): any[];
+    get layers(): Layer[];
     /**
      * Adds a new track to the timeline.
      *
@@ -224,7 +224,7 @@ export default class Timeline extends EventEmitter {
      *    instance of `AxisLayer` (these layers shares the `TimlineTimeContext` instance
      *    of the timeline).
      */
-    addLayer(layer: Layer, trackOrTrackId: (Track | string), groupId?: string, isAxis?: boolean): void;
+    addLayer(layer: Layer | AxisLayer, trackOrTrackId: (Track | string), groupId?: string, isAxis?: boolean): void;
     /**
      * Removes a layer from its track. The layer is detatched from the DOM but
      * can still be reused later.
@@ -264,4 +264,5 @@ import TimelineTimeContext from "./timeline-time-context";
 import Track from "./track";
 import EventEmitter from 'node:events';
 import Layer from './layer';
+import AxisLayer from '../axis/axis-layer';
 //# sourceMappingURL=timeline.d.ts.map

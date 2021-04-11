@@ -16,8 +16,13 @@
  * user interactions, while shapes are always a view of the current state of the
  * data.
  */
-export default class BaseBehavior {
-    _selectedItems: Set<any>;
+
+import BaseShape from '../shapes/base-shape';
+type Datum<T> = T extends Array<infer R> ? R : T;
+
+
+export default class BaseBehavior<TData = any[]> {
+    _selectedItems: Set<Element>;
     _selectedClass: any;
     _layer: any;
     initialize(layer: any): void;
@@ -45,7 +50,7 @@ export default class BaseBehavior {
      *
      * @type {Array}
      */
-    get selectedItems(): any[];
+    get selectedItems(): Element[];
     /**
      * @param {Element} $item - The item to select.
      * @param {Object} datum - Not used in this implementation. Could be
@@ -78,6 +83,6 @@ export default class BaseBehavior {
      * @param {Number} dy - The value of the interaction in the y axis (in pixels).
      * @param {Element} $target - The target DOM element of the interaction.
      */
-    edit(renderingContext: any, shape: any, datum: any | any[], dx: number, dy: number, $target: Element): void;
+    edit(renderingContext: RenderingContext, shape: BaseShape, datum: TData, dx: number, dy: number, $target: Element): void;
 }
 //# sourceMappingURL=base-behavior.d.ts.map

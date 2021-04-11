@@ -14,6 +14,9 @@
  *
  * [example usage](./examples/time-contexts.html)
  */
+
+import { Scale } from '../utils/scales';
+
 export default class TimelineTimeContext {
     /**
      * @param {Number} pixelsPerSecond - The number of pixels that should be
@@ -31,7 +34,7 @@ export default class TimelineTimeContext {
     // _maintainVisibleDuration: boolean;
     // _originalPixelsPerSecond: number;
     /**
-     * Updates all the caracteristics of this object according to the new
+     * Updates all the characteristics of this object according to the new
      * given value of pixels per seconds. Propagates the changes to the
      * `LayerTimeContext` children.
      *
@@ -113,7 +116,7 @@ export default class TimelineTimeContext {
      *
      * @type {Function}
      */
-    get timeToPixel(): (time: number) => number;
+    get timeToPixel(): Scale;
      _updateTimeToPixelRange(): void;
 }
 //# sourceMappingURL=timeline-time-context.d.ts.map

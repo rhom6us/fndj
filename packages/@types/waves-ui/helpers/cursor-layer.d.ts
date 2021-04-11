@@ -3,7 +3,7 @@
  *
  * [example usage](./examples/layer-cursor.html)
  */
-export default class CursorLayer extends Layer {
+export default class CursorLayer extends Layer<{ currentPosition: number; }> {
     /**
      * @param {Object} options - An object to configure the layer.
      */

@@ -1,7 +1,7 @@
 {
   "name": "@fndj/ui",
   "version": "1.0.0",
-  "browser": "src/index.tsx",
+  "browser": "index.ts",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -21,12 +21,16 @@
     "react-redux": "^7.2.2",
     "react-router-static": "^1.0.0",
     "redux": "^4.0.5",
-    "redux-command-pattern": "*"
+    "redux-command-pattern": "*",
+    "waves-loaders": "^0.1.5",
+    "waves-ui": "github:wavesjs/waves-ui"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "@types/react-redux": "^7.1.16"
+    "@types/react-redux": "^7.1.16",
+    "@types/waves-loaders": "workspace:^4.41.26",
+    "@types/waves-ui": "workspace:*"
   }
 }

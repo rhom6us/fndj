@@ -131,6 +131,8 @@ importers:
       '@types/react': ^17.0.2
       '@types/react-dom': ^17.0.1
       '@types/react-redux': ^7.1.16
+      '@types/waves-loaders': workspace:^4.41.26
+      '@types/waves-ui': workspace:*
       classnames: ^2.3.1
       normalize.css: ^8.0.1
       react: ^17.0.1
@@ -139,6 +141,8 @@ importers:
       react-router-static: ^1.0.0
       redux: ^4.0.5
       redux-command-pattern: '*'
+      waves-loaders: ^0.1.5
+      waves-ui: github:wavesjs/waves-ui
     dependencies:
       '@fndj/core': link:../core
       '@fndj/util': link:../util
@@ -151,11 +155,15 @@ importers:
       react-router-static: 1.0.0_react@17.0.2
       redux: 4.0.5
       redux-command-pattern: link:../../redux-command-pattern
+      waves-loaders: 0.1.5
+      waves-ui: github.com/wavesjs/waves-ui/e4bc8887ce66933e0de08f5eeaf260ce0d403e35
     devDependencies:
       '@types/classnames': 2.2.11
       '@types/react': 17.0.3
       '@types/react-dom': 17.0.3
       '@types/react-redux': 7.1.16
+      '@types/waves-loaders': link:../../@types/waves-loaders
+      '@types/waves-ui': link:../../@types/waves-ui
 
   packages/@fndj/util:
     specifiers: {}
@@ -7656,6 +7664,14 @@ packages:
 
   github.com/wavesjs/ui/e4bc8887ce66933e0de08f5eeaf260ce0d403e35:
     resolution: {tarball: https://codeload.github.com/wavesjs/ui/tar.gz/e4bc8887ce66933e0de08f5eeaf260ce0d403e35}
+    name: waves-ui
+    version: 0.3.0
+    dependencies:
+      babel-runtime: 5.8.38
+    dev: false
+
+  github.com/wavesjs/waves-ui/e4bc8887ce66933e0de08f5eeaf260ce0d403e35:
+    resolution: {tarball: https://codeload.github.com/wavesjs/waves-ui/tar.gz/e4bc8887ce66933e0de08f5eeaf260ce0d403e35}
     name: waves-ui
     version: 0.3.0
     dependencies:

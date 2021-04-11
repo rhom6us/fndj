@@ -3,7 +3,7 @@
  * It provides shorcuts to trigger `render` / `update` methods on tracks or
  * layers. Extend built-in Array
  */
-export default class TrackCollection extends Array<any> {
+export default class TrackCollection extends Array<Track> {
     constructor(timeline: Timeline);
     private _timeline: Timeline;
     private _getLayersOrGroups(layerOrGroup?: any): any;
@@ -29,7 +29,7 @@ export default class TrackCollection extends Array<any> {
      * @param {Layer|String} layerOrGroup - Filter the layers to update by
      *    passing the `Layer` instance to update or a `groupId`
      */
-    update(layerOrGroup: Layer | string): void;
+    update(layerOrGroup?: Layer | string): void;
     /**
      * Updates all `Track` containers, layers are not updated with this method.
      * When done, the timeline triggers a `update:containers` event.
@@ -45,4 +45,5 @@ export default class TrackCollection extends Array<any> {
 }
 import Layer from "./layer";
 import Timeline from './timeline';
+import Track from './track';
 //# sourceMappingURL=track-collection.d.ts.map

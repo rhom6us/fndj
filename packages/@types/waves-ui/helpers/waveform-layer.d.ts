@@ -3,7 +3,7 @@
  *
  * [example usage](./examples/layer-waveform.html)
  */
-export default class WaveformLayer extends Layer {
+export default class WaveformLayer extends Layer<Float32Array> {
     /**
      * @param {AudioBuffer} buffer - The audio buffer to display.
      * @param {Object} options - An object to configure the layer.

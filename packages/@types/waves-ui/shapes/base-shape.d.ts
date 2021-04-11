@@ -1,3 +1,8 @@
+
+export type DatumAccessor<TData, TResult> = (d: TData, v?: TResult) => TResult;
+export interface Accessor<TData> {
+    [key: string]: DatumAccessor<TData, any>;
+}
 /**
  * Is an abstract class or interface to be overriden in order to define new
  * shapes. Shapes define the way a given datum should be rendered, they are
@@ -30,7 +35,7 @@
  * - Waveform
  * - TracePath
  */
-export default class BaseShape {
+export default abstract class BaseShape {
     /**
      * @param {Object} options - override default configuration
      */
@@ -122,4 +127,3 @@ export default class BaseShape {
      */
     inArea(renderingContext: any, datum: any | any[], x1: number, y1: number, x2: number, y2: number): boolean;
 }
-//# sourceMappingURL=base-shape.d.ts.map
