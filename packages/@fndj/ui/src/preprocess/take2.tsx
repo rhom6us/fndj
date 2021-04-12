@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Prep } from '@fndj/core';
 import { useAudioBuffer } from '../hooks';
 import { Waveform } from '../waves';
+import { useLayoutEffect } from 'react';
+import { logger, enableLogging } from '@fndj/util';
 
 interface Props { }
 
@@ -10,6 +12,7 @@ export const PreProcess = () => {
     const prep = useMemo(() => new Prep(), []);
     const [tempo, setTempo] = useState(prep.tempo);
     const [trackStart, setTrackStart] = useState(0 * (60 / tempo) * 4);
+
     useEffect(() => {
         prep.tempo = ((tempo));
     }, [prep, tempo]);

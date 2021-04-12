@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import type { Store } from 'redux';
+
 import {PreProcess} from './preprocess';
 // import DevTools from './DevTools';
 // import { CounterState } from '../reducers';
@@ -15,10 +16,10 @@ interface Props {
 export const Root = () => {
     return (
       // <Provider store={store}>
-        <div>45432
+
           <PreProcess />
-          {/* <DevTools /> */}
-        </div>
+
+
       // </Provider>
     );
 }

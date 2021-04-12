@@ -1,4 +1,4 @@
-import { WritablePart } from '@fndj/util';
+import { logger, WritablePart } from '@fndj/util';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 import wavesUI from 'waves-ui';
@@ -8,6 +8,7 @@ import PrepWaveformLayer from './prep-waveform-layer';
 import { TrackStartMarkerLayer } from './track-start-marker-layer';
 import { ZoomAndEditState } from './zoom-and-edit-state';
 import './waveform.scss';
+
 interface Props {
     buffer: AudioBuffer;
     trackStart: number;
@@ -23,7 +24,7 @@ function initWaves($track: Element, { buffer, trackStart, trackStartChanged, bpm
     const duration = buffer.duration * 2;
 
     const pixelsPerSecond = 100;//width! / duration;
-    console.log('innitting with', { height, width });
+    logger.count('initWaves');
     const timeline = new wavesUI.core.Timeline(pixelsPerSecond, width);
     const layerTimeContext = d(new wavesUI.core.LayerTimeContext(timeline.timeContext), {
         duration: buffer.duration,
@@ -80,11 +81,16 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
     const rootRef = useRef<HTMLElement>(null);
     const timelineRef = useRef<{ timeline: wavesUI.core.Timeline, markerLayer: TrackStartMarkerLayer; }>();
 
+
+    // logger.log({ logger });
+    logger.log('enabled');
+    // logger.log({ logger });
     // const [{ height, width }, boundingRef] = useClientRect({ width: 1000, height: 200 });
     let [size, setSize] = useState(DOMRectReadOnly.fromRect({ width: NaN, height: NaN }));
     const cb = useCallback((node: HTMLElement) => {
         const sz = node.getBoundingClientRect();
         const bodyHeight = document.querySelector('body')!.getBoundingClientRect().height;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setSize(size = DOMRectReadOnly.fromRect({ ...JSON.parse(JSON.stringify(sz)), height: bodyHeight - sz.y }));
 
     }, []);
@@ -112,11 +118,11 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
         const $root = rootRef.current,
             $track = trackRef.current;
         if (!$root || !$track) {
-            console.error(`wtf mate??? i thought this couldn't happen!?`);
+            logger.error(`wtf mate??? i thought this couldn't happen!?`);
             return;
         }
 
-        // console.log('initting waves');
+        // logger.log('initting waves');
         // Array.prototype.forEach.call($root, p => p.remove());
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
@@ -131,7 +137,7 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
     }, [bpm, buffer/*, trackStart, trackStartChanged*/, size]);  // eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!timelineRef.current) {
-            console.error(`wtf mate??? i thought this couldn't happen to timeline!?`);
+            logger.error(`wtf mate??? i thought this couldn't happen to timeline!?`);
             return;
         }
         timelineRef.current!.markerLayer.position = trackStart;

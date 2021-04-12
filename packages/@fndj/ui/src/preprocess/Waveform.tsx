@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { range } from '@fndj/util';
+import { logger, range } from '@fndj/util';
 import React, { memo, SVGAttributes, useMemo } from 'react';
 
 interface Props extends SVGAttributes<SVGElement> {
@@ -14,16 +14,16 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
     const source = useMemo(() => {
         const startSample = Math.round(offset * sampleRate);
         const result = buffer.subarray(startSample, startSample + Math.round(duration * sampleRate));
-        // console.log('duration', { offset, secs: duration, samples: result.length });
+        // logger.log('duration', { offset, secs: duration, samples: result.length });
         return result;
     }, [buffer, duration, offset, sampleRate]);
     const samplesPerPixel = useMemo(() => {
         const samplesPerPixel = (source.length / width);
-        // console.log('width', { px: width, samplesPerPixel });
+        // logger.log('width', { px: width, samplesPerPixel });
         return samplesPerPixel;
     }, [source.length, width]);
     const path = useMemo(() => {
-        console.log('updating path...');
+        logger.log('updating path...');
         const huh = range(0, width);
         const path = '' + range(0, width)
             .map(px => {
@@ -32,7 +32,7 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
                 const maxX = minX + samplesPerPixel;
                 // get one pixel worth of samples
                 const extract = source.subarray(minX, maxX);
-                // console.log({ ex: extract.length, buf: buffer.length });
+                // logger.log({ ex: extract.length, buf: buffer.length });
                 if (!extract.length) {
                     return { px, min: 0, max: 0 };
                 }
@@ -44,7 +44,7 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
                 // }
 
                 const result = { px, min, max };
-                // console.log(result);
+                // logger.log(result);
                 return result;
             })
             .filter(p => p.min || p.max)
@@ -52,7 +52,7 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
             .concat(`L${width},0L0,0`)
             .join()
             .replace(/^L/, 'M');
-        console.log('done');
+        logger.log('done');
         return path;
     }, [width, samplesPerPixel, source]);
 

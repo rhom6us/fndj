@@ -1,3 +1,8 @@
+
+import { Time } from '../core/intrensics';
+import SchedulingQueue from "../core/SchedulingQueue.js";
+
+
 export default Scheduler;
 /**
  * The `Scheduler` class implements a master for `TimeEngine` instances
@@ -142,6 +147,3 @@ declare class Scheduler extends SchedulingQueue {
     /** @private */
     // #tick;
 }
-import { Time } from '../core/intrensics';
-import SchedulingQueue from "../core/SchedulingQueue.js";
-//# sourceMappingURL=Scheduler.d.ts.map

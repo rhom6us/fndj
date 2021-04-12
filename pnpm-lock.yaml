@@ -138,6 +138,7 @@ importers:
       react: ^17.0.1
       react-dom: ^17.0.1
       react-redux: ^7.2.2
+      react-resize-detector: ^6.6.4
       react-router-static: ^1.0.0
       redux: ^4.0.5
       redux-command-pattern: '*'
@@ -152,6 +153,7 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-redux: 7.2.3_8436876974e3dcafae98d64b636de192
+      react-resize-detector: 6.6.4_react-dom@17.0.2+react@17.0.2
       react-router-static: 1.0.0_react@17.0.2
       redux: 4.0.5
       redux-command-pattern: link:../../redux-command-pattern
@@ -808,6 +810,10 @@ packages:
   /@types/relateurl/0.2.28:
     resolution: {integrity: sha1-a9p9uGU/piZD9e5p6facEaOS46Y=}
     dev: true
+
+  /@types/resize-observer-browser/0.1.5:
+    resolution: {integrity: sha512-8k/67Z95Goa6Lznuykxkfhq9YU3l1Qe6LNZmwde1u7802a3x8v44oq0j91DICclxatTr0rNnhXx7+VTIetSrSQ==}
+    dev: false
 
   /@types/scheduler/0.16.1:
     resolution: {integrity: sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==}
@@ -4308,6 +4314,10 @@ packages:
     resolution: {integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=}
     dev: false
 
+  /lodash.debounce/4.0.8:
+    resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
+    dev: false
+
   /lodash.template/4.5.0:
     resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
     dependencies:
@@ -4319,6 +4329,10 @@ packages:
     resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
     dependencies:
       lodash._reinterpolate: 3.0.0
+    dev: false
+
+  /lodash.throttle/4.1.1:
+    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=}
     dev: false
 
   /lodash/4.17.21:
@@ -5871,6 +5885,20 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /react-resize-detector/6.6.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-sAAh8TmOp59MFs2HR7D1VGbAq+zL+2klQhFbkXOH5Gy/EBEyHGiWXWMStoB+axSYr/Xw54owg6QRGSFj3z0dew==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0
+      react-dom: ^16.0.0 || ^17.0.0
+    dependencies:
+      '@types/resize-observer-browser': 0.1.5
+      lodash.debounce: 4.0.8
+      lodash.throttle: 4.1.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      resize-observer-polyfill: 1.5.1
+    dev: false
+
   /react-router-static/1.0.0_react@17.0.2:
     resolution: {integrity: sha512-6VPHFny/2AlYRFeDQOxlmk296MKyFEgOp7ExQxAuD/EzTAnHL4hzVKpOAfswWeE6txuuvcNo4BVi3av9s0YIPA==}
     peerDependencies:
@@ -6084,6 +6112,10 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=}
+
+  /resize-observer-polyfill/1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
+    dev: false
 
   /resolve-cwd/2.0.0:
     resolution: {integrity: sha1-AKn3OHVW4nA46uIyyqNypqWbZlo=}

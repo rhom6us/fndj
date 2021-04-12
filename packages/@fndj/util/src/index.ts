@@ -6,6 +6,7 @@ export * from './defer';
 export * from './identity';
 export * as iterables from '../../../fniterate/src/iterables';
 export * from './func';
+export * from './logger';
 export * from './root-mean-square';
 
 export type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };

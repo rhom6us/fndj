@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
+import { logger } from '@fndj/util';
 import SuperpoweredModule  from 'superpowered';
 import { /*ARG1, ARG2, ARG3,*/ PROCESSOR_NAME } from './constants';
 import url from './TimeStretchingProcessor.worklet.ts'
@@ -79,7 +80,7 @@ export class TimeStretchingNode extends AudioWorkletNode {
 
     this.port.onmessage = (event => {
       // eslint-disable-next-line no-console
-      console.log('Message received from the audio node: ', event);
+      logger.log('Message received from the audio node: ', event);
       if (event.data == "___superpowered___onready___")
         (callback || (() => { }))(this);
       else

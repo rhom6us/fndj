@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { range } from '@fndj/util';
+import { logger, range } from '@fndj/util';
 import React, { ChangeEventHandler, HTMLAttributes, useCallback } from 'react';
 interface Props {
     value: number;
@@ -18,12 +18,12 @@ export const NumberChooser: React.FC<Props & Omit<HTMLAttributes<HTMLElement>, k
         const newVal2 = Math.min(newVal, max);
         const newVal3 = Math.max(newVal2, min);
         onChange(newVal3);
-        console.log('update', { newVal, newVal2, newVal3, max, min });
+        logger.log('update', { newVal, newVal2, newVal3, max, min });
     }, [min, max]);
     const incr = useCallback((step: number) => {
         // const inc = getIncrement(power)
         return () => {
-            console.log('incr', { value, step, inc: value + step });
+            logger.log('incr', { value, step, inc: value + step });
 
             update(value + step);
         };

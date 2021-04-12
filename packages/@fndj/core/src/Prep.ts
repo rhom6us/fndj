@@ -1,5 +1,6 @@
 import * as waves from 'waves-audio';
 import { PlayControl } from '../../../@types/waves-audio/node_modules/@types/waves-masters';
+import { logger } from '@fndj/util';
 // const transport = new Transport();
 // const controller = new PlayControl(transport);
 // const metrenome = new Metronome({ period: 1 / 128 });
@@ -70,7 +71,7 @@ export class Prep {
     }
 
     play() {
-        console.log('calling start');
+        logger.log('calling start');
         return this.controller.start();
     }
     pause() {

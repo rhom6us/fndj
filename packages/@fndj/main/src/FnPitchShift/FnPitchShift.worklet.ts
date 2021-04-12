@@ -1,4 +1,4 @@
-
+import { logger } from '@fndj/util';
 // //declare global {
 // declare class AudioWorkletProcessor {
 //   static readonly parameterDescriptors: AudioParamDescriptor[];
@@ -43,7 +43,7 @@ registerProcessor(PROCESSOR_NAME, class extends AudioWorkletProcessor {
   constructor(options?: AudioWorkletNodeOptions) {
     super(options);
     this.port.onmessage = (event) => {
-      console.log(event.data);
+      logger.log(event.data);
     };
   }
   process(inputs: Float32Array[][], outputs: Float32Array[][], parameters: Record<string, Float32Array>) {

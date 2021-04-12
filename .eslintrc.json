@@ -30,7 +30,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-console": "warn",
+    "no-console": "error",
     "no-var": "warn",
     //"no-undef": "off",
     "no-empty-function": "off",
@@ -47,6 +47,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

@@ -17,7 +17,7 @@ export const PreProcess: React.FC = () => {
     // const prep = useMemo(() => new Prep('https://fuckingdj.blob.core.windows.net/test/Jewelz%20%26%20Scott%20Sparks%20feat.%20Quilla%20%E2%80%93%20Unless%20We%20Forget%20(Original%20Mix).mp3'), []);
     // const [tempo, setTempo] = useState(prep.tempo);
     // useEffect(() => {
-    //     console.log({ height, width });
+    //     logger.log({ height, width });
     // }, [height, width]);
     // useEffect(() => {
     //     prep.tempo = ((tempo));
@@ -30,7 +30,7 @@ export const PreProcess: React.FC = () => {
 
     // const data = useMemo(() => buffer?.getChannelData(0) || new Float32Array(0), [buffer]);
     // const effectiveSampleRate = useMemo(() => (buffer?.sampleRate ?? 0) / (buffer?.numberOfChannels ?? 1), [buffer]);
-    // console.log({ effectiveSampleRate });
+    // logger.log({ effectiveSampleRate });
     // const trackDuration = useMemo(() => buffer?.duration ?? 0, [buffer]);// data.length / effectiveSampleRate, [data.length, effectiveSampleRate]);
     // const [duration, setDuration] = useState(100);
     // const [offset, setOffset] = useState(0);
@@ -40,7 +40,7 @@ export const PreProcess: React.FC = () => {
     // }, [prep, phase]);
     // const offsetStep = useMemo(() => trackDuration * duration / 10000, [duration, width]);
     // // useEffect(() => setDuration(trackDuration), [trackDuration]);
-    // console.log({ trackDuration, duration });
+    // logger.log({ trackDuration, duration });
 
     // const blockStyle = {
     //     display: 'block'

@@ -19,6 +19,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
+    "react-resize-detector": "^6.6.4",
     "react-router-static": "^1.0.0",
     "redux": "^4.0.5",
     "redux-command-pattern": "*",
