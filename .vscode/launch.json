@@ -1,6 +1,42 @@
 {
     "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Compound",
+            "configurations": [
+                ".NET Core Launch (local web)",
+                "Launch - @fndj/ui"
+            ],
+            "stopAll": true
+        }
+    ],
     "configurations": [
+        {
+            "name": ".NET Core Launch (local web)",
+            "type": "coreclr",
+            "request": "launch",
+            // "preLaunchTask": "build",
+            "program": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/",
+            "stopAtEntry": false,
+            "launchBrowser": {
+                "enabled": false
+            },
+            // "serverReadyAction": {
+            //     "action": "openExternally",
+            //     "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+            //     "uriFormat": "%s/tracks",
+            // },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "console": "integratedTerminal"
+        },
+
         {
             // start msedge --remote-debugging-port=9222
             "type": "vscode-edge-devtools.debug",
