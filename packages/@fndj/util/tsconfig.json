@@ -4,6 +4,11 @@
     "lib": [
       "ESNext",
       "DOM"
-    ]
+    ],
+    "paths": {
+      "predicates": [
+        "./src/predicates"
+      ]
+    }
   }
 }

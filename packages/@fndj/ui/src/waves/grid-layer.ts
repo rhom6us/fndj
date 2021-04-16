@@ -18,12 +18,19 @@ export default class GridAxisLayer extends wavesUI.axis.AxisLayer {
     get trackStart() {
         return this.options.trackStart;
     }
+
     set trackStart(value) {
         this.options.trackStart = value;
-        this.generator = gridAxisGenerator(this.options.bpm, this.options.signature, value, this.options.offset);
-        this.update();
+        this.reset();
     }
 
+    get bpm() {
+        return this.options.bpm;
+    }
+    set bpm(bpm) {
+        this.options.bpm = bpm;
+        this.reset();
+    }
     constructor(_options: Partial<Options>) {
         const options = {
             color: 'steelblue',
@@ -39,5 +46,10 @@ export default class GridAxisLayer extends wavesUI.axis.AxisLayer {
         this.configureShape(wavesUI.shapes.Ticks, {}, {
             color: options.color
         });
+    }
+
+    private reset() {
+        this.generator = gridAxisGenerator(this.options.bpm, this.options.signature, this.options.trackStart, this.options.offset);
+        this.update();
     }
 }

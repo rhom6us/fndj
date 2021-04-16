@@ -1,14 +1,18 @@
 import * as React from 'react';
 export { };
-
 declare global {
-    export interface NodeModule {
-        hot: {
-            accept(module: string, callback: () => void): void;
-        };
+    interface Response {
+        json<T>(): Promise<T>;
     }
-    export const module: NodeModule;
 }
+// declare global {
+//     export interface NodeModule {
+//         hot: {
+//             accept(module: string, callback: () => void): void;
+//         };
+//     }
+//     export const module: NodeModule;
+// }
 
 declare global {
     interface HTMLWavesElement extends HTMLElement { }

@@ -6,9 +6,15 @@ export * from './defer';
 export * from './identity';
 export * as iterables from '../../../fniterate/src/iterables';
 export * from './func';
+export * as obj from './obj';
 export * from './logger';
 export * from './root-mean-square';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace predicates {
+    // eslint-disable-next-line no-shadow-restricted-names
+
+}
 export type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 export type Except<ObjectType, KeysType extends keyof ObjectType> = Pick<ObjectType, Exclude<keyof ObjectType, KeysType>>;

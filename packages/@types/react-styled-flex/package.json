@@ -1,0 +1,24 @@
+{
+    "name": "@types/react-styled-flex",
+    "version": "1.0.19",
+    "description": "TypeScript definitions for react-styled-flex",
+    "license": "MIT",
+    "private": true,
+    "contributors": [
+        {
+            "name": "Thomas Butler",
+            "url": "https://github.com/rhom6us",
+            "githubUsername": "rhom6us"
+        }
+    ],
+    "main": "index.d.ts",
+    "types": "index.d.ts",
+    "devDependencies": {
+        "@types/react": "^17.0.3",
+        "csstype": "^3.0.7",
+        "react": "^17.0.2"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2"
+    }
+}

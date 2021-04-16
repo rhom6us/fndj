@@ -1,8 +1,8 @@
+import { FlexBox, FlexItem } from "react-styled-flex";
 import { logger, WritablePart } from '@fndj/util';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 import wavesUI from 'waves-ui';
-import { useClientRect } from '../hooks';
 import GridAxisLayer from './grid-layer';
 import PrepWaveformLayer from './prep-waveform-layer';
 import { TrackStartMarkerLayer } from './track-start-marker-layer';
@@ -57,11 +57,7 @@ function initWaves($track: Element, { buffer, trackStart, trackStartChanged, bpm
     gridAxis.setTimeContext(timeline.timeContext);
     track.add(gridAxis);
 
-    const startChaged = (trackStart: number) => {
-        gridAxis.trackStart = trackStart;
-        trackStartChanged(trackStart);
-    };
-    const markerLayer = new TrackStartMarkerLayer(trackStart, startChaged, { height });
+    const markerLayer = new TrackStartMarkerLayer(trackStart, trackStartChanged, { height });
     markerLayer.setTimeContext(layerTimeContext);
     track.add(markerLayer);
 
@@ -74,24 +70,19 @@ function initWaves($track: Element, { buffer, trackStart, trackStartChanged, bpm
 
     timeline.tracks.render();
     timeline.tracks.update();
-    return { timeline, markerLayer };
+    return { timeline, markerLayer, gridAxis };
 }
 export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChanged, bpm }: Props) => {
     const trackRef = useRef<HTMLDivElement>(document.createElement('div'));
     const rootRef = useRef<HTMLElement>(null);
-    const timelineRef = useRef<{ timeline: wavesUI.core.Timeline, markerLayer: TrackStartMarkerLayer; }>();
+    const timelineRef = useRef<ReturnType<typeof initWaves>>();
 
-
-    // logger.log({ logger });
-    logger.log('enabled');
-    // logger.log({ logger });
-    // const [{ height, width }, boundingRef] = useClientRect({ width: 1000, height: 200 });
-    let [size, setSize] = useState(DOMRectReadOnly.fromRect({ width: NaN, height: NaN }));
+    let [size, setSize] = useState(DOMRectReadOnly.fromRect({ width: NaN, height: 400 }));
     const cb = useCallback((node: HTMLElement) => {
         const sz = node.getBoundingClientRect();
         const bodyHeight = document.querySelector('body')!.getBoundingClientRect().height;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        setSize(size = DOMRectReadOnly.fromRect({ ...JSON.parse(JSON.stringify(sz)), height: bodyHeight - sz.y }));
+        setSize(size = DOMRectReadOnly.fromRect({ ...JSON.parse(JSON.stringify(sz)), height: 400 }));
 
     }, []);
 
@@ -121,53 +112,23 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
             logger.error(`wtf mate??? i thought this couldn't happen!?`);
             return;
         }
-
-        // logger.log('initting waves');
-        // Array.prototype.forEach.call($root, p => p.remove());
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
         const timeline = initWaves($track, { buffer, trackStart, trackStartChanged, bpm, size });
         timelineRef.current = timeline;
-        return () => {
-            timeline.timeline.tracks.forEach(track => {
-                track.destroy();
-            });
+        return () => timeline.timeline.tracks.forEach(track => track.destroy());
 
-        };
-    }, [bpm, buffer/*, trackStart, trackStartChanged*/, size]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [buffer/*, trackStart, trackStartChanged*/]);  // eslint-disable-line react-hooks/exhaustive-deps
     useEffect(() => {
-        if (!timelineRef.current) {
-            logger.error(`wtf mate??? i thought this couldn't happen to timeline!?`);
-            return;
-        }
-        timelineRef.current!.markerLayer.position = trackStart;
+        const waves = timelineRef.current!;
+        waves.markerLayer.position = trackStart;
+        waves.gridAxis.trackStart = trackStart;
     }, [trackStart]);
+    useEffect(() => {
+        const waves = timelineRef.current!;
+        waves.gridAxis.bpm = bpm;
+    }, [bpm]);
 
 
-    // useEffect(() => {
-    //     const timeline = timelineRef.current;
-    //     if (!timeline) {
-    //         console.error('wtf');
-    //         return;
-    //     }
-    //     const waveformLayers = timeline.layers.filter(p => p.timeContext instanceof LayerTimeContext);
-    //     if (waveformLayers.length !== 1) {
-    //         throw 'wwwwwwtf??';
-    //     }
-    //     const waveformLayer = waveformLayers[0];
-
-
-
-    //     waveformLayer.timeContext.start = waveformLayer.timeContext.offset = 0;
-    //     if (props.trackStart < 0) {
-    //         waveformLayer.timeContext.start = -props.trackStart;
-    //     } else {
-    //         waveformLayer.timeContext.offset = -props.trackStart;
-    //     }
-
-    //     waveformLayer.updateContainer();
-
-    // }, [props.trackStart]);
     const period = 60 / bpm;
     const style = {
         backgroundColor: 'black',

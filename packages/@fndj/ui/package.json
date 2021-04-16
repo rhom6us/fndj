@@ -16,22 +16,30 @@
     "@fndj/webpack": "workspace:*",
     "classnames": "^2.3.1",
     "normalize.css": "^8.0.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-query": "^3.13.6",
     "react-redux": "^7.2.2",
     "react-resize-detector": "^6.6.4",
     "react-router-static": "^1.0.0",
+    "react-styled-flex": "^1.0.19",
     "redux": "^4.0.5",
     "redux-command-pattern": "*",
+    "styled-components": "^5.2.3",
     "waves-loaders": "^0.1.5",
     "waves-ui": "github:wavesjs/waves-ui"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
+    "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.16",
+    "@types/react-styled-flex": "workspace:^1.0.19",
+    "@types/styled-components": "^5.1.9",
     "@types/waves-loaders": "workspace:^4.41.26",
-    "@types/waves-ui": "workspace:*"
+    "@types/waves-ui": "workspace:*",
+    "typescript-styled-plugin": "^0.15.0"
   }
 }
