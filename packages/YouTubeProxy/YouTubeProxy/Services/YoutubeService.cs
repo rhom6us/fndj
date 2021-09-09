@@ -16,14 +16,14 @@ namespace YouTubeProxy.Services {
             _youtube = youtube;
         }
 
-        public Task<Video> GetInfo(string id) {
+        public ValueTask<Video> GetInfo(string id) {
             return _youtube.Videos.GetAsync(id);
         }
 
         public async Task<Stream> GetAudio(string id) {
             var manifest = await _youtube.Videos.Streams.GetManifestAsync(id);
 
-            var streamInfo = manifest.GetAudioOnly().WithHighestBitrate();
+            var streamInfo = manifest.GetAudioOnlyStreams().GetWithHighestBitrate();// .GetAudioOnly().WithHighestBitrate();
 
             if (streamInfo == null)
                 throw new ArgumentException("Stream not found", nameof(id));

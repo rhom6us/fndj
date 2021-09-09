@@ -26,7 +26,7 @@ namespace YouTubeProxy
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
             try {
-                services.GetRequiredService<TrackContext>().Initialize();
+                services.GetRequiredService<YoutubeMediaContext>().Initialize();
             }
             catch (Exception ex) {
                 var logger = services.GetRequiredService<ILogger<Program>>();

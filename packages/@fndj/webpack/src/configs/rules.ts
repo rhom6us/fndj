@@ -15,6 +15,16 @@ export const workerRule: RuleSetRule = {
   test: /\.worker\.ts$/i,
   use: [loaders.workerLoader],
 };
+export const wasmRule: RuleSetRule = {
+  test: /\.wasm$/i,
+  // type: 'asset/inline', // makes a data uri
+  type: 'asset/resource', // emits a file
+};
+export const waveRule: RuleSetRule = {
+  test: /\.wav$/i,
+  // type: 'asset/inline', // makes a data uri
+  type: 'asset/resource', // emits a file
+};
 export const reactTypescriptRule: RuleSetRule = {
   test: /\.tsx?$/i,
   exclude: node_modules,
@@ -25,6 +35,10 @@ export const reactTypescriptRule: RuleSetRule = {
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,
+  use: [loaders.tsLoader],
+};
+export const jsRule: RuleSetRule = {
+  test: /\.js$/i,
   use: [loaders.tsLoader],
 };
 // export const scriptRule: RuleSetRule = {

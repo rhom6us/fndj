@@ -19,7 +19,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="YoutubeExplode" Version="5.1.9" />
+		<PackageReference Include="YoutubeExplode" Version="6.0.5" />
 	</ItemGroup>
 	<!--
   <ItemGroup>

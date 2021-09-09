@@ -42,3 +42,7 @@ export function asFormData(fn: (value: FormData) => any) {
 export function eventTargetFormData<T extends HTMLFormElement>(fn: (value: FormData) => any, preventDefault = true) {
     return eventTarget<T>(asFormData(fn), preventDefault);
 }
+
+export function invert(fn: (value: number) => any) {
+    return (value: number) => fn(-value);
+}

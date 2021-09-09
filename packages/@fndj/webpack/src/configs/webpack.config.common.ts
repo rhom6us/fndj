@@ -3,7 +3,6 @@ import path from 'path';
 import webpack from 'webpack';
 import * as plugins from './plugins';
 import { entryPoint, isDev, outDir, projectDir } from './settings';
-
 export default {
   devtool: "source-map",// isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
   context: projectDir,
@@ -18,6 +17,21 @@ export default {
     warningsFilter: /export .* was not found in/,
   },
   resolve: {
+    fallback: {
+      // crypto: false /*require.resolve('crypto-browserify')*/,
+      // path: false /*require.resolve('path-browserify')*/,
+      // os: false /*require.resolve('os-browserify/browser')*/,
+      // http: false /*require.resolve('stream-http')*/,
+      // stream: false /*require.resolve('stream-browserify')*/,
+      // zlib: false /*require.resolve('zlib-browserify')*/,
+      // util: false /*require.resolve('util/')*/,
+
+      dns: false /*require.resolve('chrome-dns')*/,
+      net: false /*require.resolve('net-browserify')*/,
+      tls: false /*require.resolve('util/')*/,
+      fs: false /*require.resolve('util/')*/,
+
+    },
     alias: {
       // '@': path.resolve(rendererSourceDir),
       // '~main': path.resolve(mainSourceDir),
@@ -49,6 +63,7 @@ export default {
   //   // },
   // },
   plugins: [
+    plugins.nodePolyfill,
     isDev && plugins.webpackBar,
     plugins.tsChecker,
     // plugins.cleanBuildDir,

@@ -41,7 +41,7 @@ export default abstract class BaseShape {
      */
     constructor(options?: any);
     /** @type {Element} - Svg element to be returned by the `render` method. */
-    $el: Element;
+    $el: SVGElement;
     /** @type {String} - Svg namespace. */
     ns: string;
     /** @type {Object} - Object containing the global parameters of the shape */
@@ -60,7 +60,7 @@ export default abstract class BaseShape {
     getClassName(): string;
     /**
      * @todo not implemented
-     * allow to install defs in the track svg element. Should be called when
+     * allow to install defs in the track svg element. Should be called w hen
      * adding the `Layer` to the `Track`.
      */
     /**

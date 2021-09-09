@@ -28,7 +28,8 @@
     "redux-command-pattern": "*",
     "styled-components": "^5.2.3",
     "waves-loaders": "^0.1.5",
-    "waves-ui": "github:wavesjs/waves-ui"
+    "waves-ui": "github:wavesjs/waves-ui",
+    "wavesurfer.js": "^5.2.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -40,6 +41,7 @@
     "@types/styled-components": "^5.1.9",
     "@types/waves-loaders": "workspace:^4.41.26",
     "@types/waves-ui": "workspace:*",
+    "@types/wavesurfer.js": "^5.2.0",
     "typescript-styled-plugin": "^0.15.0"
   }
 }

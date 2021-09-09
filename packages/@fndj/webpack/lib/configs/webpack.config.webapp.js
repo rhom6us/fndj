@@ -29,10 +29,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -50,12 +54,14 @@ exports.configuration = __assign(__assign({}, webpack_config_common_1.default), 
     //    // 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     //     entryPoint // Your appʼs entry point
     // ],
-    resolve: __assign(__assign({}, webpack_config_common_1.default.resolve), { extensions: __spreadArray(__spreadArray([], webpack_config_common_1.default.resolve.extensions), [
+    resolve: __assign(__assign({}, webpack_config_common_1.default.resolve), { extensions: __spreadArray(__spreadArray([], webpack_config_common_1.default.resolve.extensions, true), [
             '.tsx', '.css', '.scss'
-        ]) }), module: __assign(__assign({}, webpack_config_common_1.default.module), { rules: [
+        ], false), fallback: __assign({}, webpack_config_common_1.default.resolve.fallback) }), module: __assign(__assign({}, webpack_config_common_1.default.module), { rules: [
             rules.workletRule,
             rules.workerRule,
+            rules.wasmRule,
             rules.reactTypescriptRule,
+            rules.jsRule,
             // rules.typescriptRule,
             // nodeRule,
             rules.globalStylesheetRule,
@@ -63,17 +69,14 @@ exports.configuration = __assign(__assign({}, webpack_config_common_1.default), 
             rules.imageRule,
             rules.fontRule,
             rules.htmlRule,
-        ] }), plugins: [
-        settings_1.isDev && plugins.webpackBar,
+        ] }), plugins: __spreadArray(__spreadArray([], webpack_config_common_1.default.plugins, true), [
         settings_1.isDev && plugins.hotModuleReplacement,
         settings_1.isDev && plugins.reachRefresh,
-        plugins.tsChecker,
         plugins.createIndexHtml,
         plugins.extractCssFiles,
         plugins.cleanBuildDir,
-        // hotModuleReplacement
-    ].filter(Boolean), experiments: {
-        topLevelAwait: true
+    ], false).filter(Boolean), experiments: {
+        topLevelAwait: true,
     } });
 exports.default = exports.configuration;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsaURBQXFDO0FBQ3JDLDZDQUFpQztBQUNqQyx1Q0FBMkQ7QUFDM0Qsa0ZBQTZDO0FBYWhDLFFBQUEsYUFBYSx5QkFDbkIsK0JBQU0sS0FDVCxNQUFNLEVBQUUsS0FBSyxFQUNiLElBQUksRUFBRSxnQkFBSyxDQUFDLENBQUMsQ0FBQyxhQUFhLENBQUMsQ0FBQyxDQUFDLFlBQVk7SUFDMUMsNkRBQTZEO0lBQzdELFdBQVc7SUFDWCwyRkFBMkY7SUFDM0Ysa0ZBQWtGO0lBQ2xGLDJDQUEyQztJQUMzQyxLQUFLO0lBQ0wsT0FBTyx3QkFDQSwrQkFBTSxDQUFDLE9BQU8sS0FDakIsVUFBVSxrQ0FDSCwrQkFBTSxDQUFDLE9BQVEsQ0FBQyxVQUFVO1lBQzdCLE1BQU0sRUFBRSxNQUFNLEVBQUUsT0FBTztlQUkvQixNQUFNLHdCQUNDLCtCQUFNLENBQUMsTUFBTSxLQUNoQixLQUFLLEVBQUU7WUFDSCxLQUFLLENBQUMsV0FBVztZQUNqQixLQUFLLENBQUMsVUFBVTtZQUNoQixLQUFLLENBQUMsbUJBQW1CO1lBQ3pCLHdCQUF3QjtZQUN4QixZQUFZO1lBQ1osS0FBSyxDQUFDLG9CQUFvQjtZQUMxQixLQUFLLENBQUMsY0FBYztZQUNwQixLQUFLLENBQUMsU0FBUztZQUNmLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLFFBQVE7U0FDakIsS0FFTCxPQUFPLEVBQUU7UUFDTCxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxVQUFVO1FBQzNCLGdCQUFLLElBQUksT0FBTyxDQUFDLG9CQUFvQjtRQUNyQyxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxZQUFZO1FBQzdCLE9BQU8sQ0FBQyxTQUFTO1FBQ2pCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxhQUFhO1FBQ3JCLHVCQUF1QjtLQUMxQixDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFDakIsV0FBVyxFQUFFO1FBQ1QsYUFBYSxFQUFFLElBQUk7S0FDdEIsSUFHSDtBQUdGLGtCQUFlLHFCQUFhLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUVBLGlEQUFxQztBQUNyQyw2Q0FBaUM7QUFDakMsdUNBQTJEO0FBQzNELGtGQUE2QztBQWFoQyxRQUFBLGFBQWEseUJBQ25CLCtCQUFNLEtBQ1QsTUFBTSxFQUFFLEtBQUssRUFDYixJQUFJLEVBQUUsZ0JBQUssQ0FBQyxDQUFDLENBQUMsYUFBYSxDQUFDLENBQUMsQ0FBQyxZQUFZO0lBQzFDLDZEQUE2RDtJQUM3RCxXQUFXO0lBQ1gsMkZBQTJGO0lBQzNGLGtGQUFrRjtJQUNsRiwyQ0FBMkM7SUFDM0MsS0FBSztJQUNMLE9BQU8sd0JBQ0EsK0JBQU0sQ0FBQyxPQUFPLEtBQ2pCLFVBQVUsa0NBQ0gsK0JBQU0sQ0FBQyxPQUFRLENBQUMsVUFBVTtZQUM3QixNQUFNLEVBQUUsTUFBTSxFQUFFLE9BQU87bUJBRTNCLFFBQVEsZUFDRCwrQkFBTSxDQUFDLE9BQU8sQ0FBQyxRQUFRLE1BSWxDLE1BQU0sd0JBQ0MsK0JBQU0sQ0FBQyxNQUFNLEtBQ2hCLEtBQUssRUFBRTtZQUNILEtBQUssQ0FBQyxXQUFXO1lBQ2pCLEtBQUssQ0FBQyxVQUFVO1lBQ2hCLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLG1CQUFtQjtZQUN6QixLQUFLLENBQUMsTUFBTTtZQUNaLHdCQUF3QjtZQUN4QixZQUFZO1lBQ1osS0FBSyxDQUFDLG9CQUFvQjtZQUMxQixLQUFLLENBQUMsY0FBYztZQUNwQixLQUFLLENBQUMsU0FBUztZQUNmLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLFFBQVE7U0FDakIsS0FFTCxPQUFPLEVBQUUsZ0NBQ0YsK0JBQU0sQ0FBQyxPQUFPO1FBRWpCLGdCQUFLLElBQUksT0FBTyxDQUFDLG9CQUFvQjtRQUNyQyxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxZQUFZO1FBQzdCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxhQUFhO2NBRXZCLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFDakIsV0FBVyxFQUFFO1FBQ1QsYUFBYSxFQUFFLElBQUk7S0FFdEIsSUFHSDtBQUdGLGtCQUFlLHFCQUFhLENBQUMifQ==

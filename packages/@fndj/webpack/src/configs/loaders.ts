@@ -74,6 +74,13 @@ export const fontLoader: RuleSetUseItem = {
     // mimetype: 'application/font-woff'
   },
 };
+// export const wasmLoader: RuleSetUseItem = {
+//   loader: 'url-loader',
+//   options: {
+//     limit: 10240,
+//     name: 'imgs/[name]--[folder].[ext]',
+//   },
+// };
 export const imageLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
@@ -99,7 +106,7 @@ export const workerLoader: RuleSetUseItem = {
 }
 export const reactRefreshLoader: RuleSetUseItem = {
   loader: 'babel-loader',
-  options: { plugins: ['react-refresh/babel', '@babel/plugin-syntax-top-level-await'] },
+  options: { plugins: ['react-refresh/babel', '@babel/plugin-syntax-top-level-await', '@babel/plugin-proposal-class-properties'] },
 };
 export const tsLoader: RuleSetUseItem = {
   loader: 'ts-loader',

@@ -1,17 +1,20 @@
+/* eslint-disable no-console */
 import { Server } from 'http';
 import webpack, { Compiler, Configuration, Stats, Watching } from 'webpack';
 import WebpackDevServer, { addDevServerEntrypoints } from 'webpack-dev-server';
 import cliLogger from './cliLogger';
 import * as configs from './configs';
 import { App, staticSourceDir } from './configs/settings';
-
+declare interface CallbackWebpack<T> {
+  (err?: Error, stats?: T): void;
+}
 // function validate(value: string[]): value is [Command, App, Environment] {
 //   const [command, app, mode] = value;
 //   return ['fnbuild', 'fnwatch', 'fnserve'].includes(command) && ['main', 'renderer'].includes(app) && ['production', 'development'].includes(mode);
 // }
 
-function getCompiler(config: Configuration) {
-  const compiler = webpack(config);
+function getCompiler(config: Configuration, callback: CallbackWebpack<Stats>) {
+  const compiler = webpack(config, callback);
   if (config.watch) {
     compiler.hooks.watchRun.tap('WebpackInfo', compilation => {
       cliLogger.info(`Compilation ${compilation?.name || ''} watching…`);
@@ -26,7 +29,7 @@ function getCompiler(config: Configuration) {
   });
   return compiler;
 }
-function getCallback(config: Configuration) {
+function getCallback(config: Configuration): CallbackWebpack<Stats> {
   return (err: Error, stats: Stats) => {
     if (err) {
       process.stderr.write('\n\n');
@@ -34,11 +37,11 @@ function getCallback(config: Configuration) {
       if (!config.watch) {
         process.exit(1);
       }
-      // console.error(err.stack || err);
-      // if (err.details) {
-      //   console.error(err.details);
-      // }
-      // return;
+      console.error(err.stack || err);
+      if (err['details']) {
+        console.error(err['details']);
+      }
+      return;
     }
 
     const info = stats.toJson();
@@ -48,17 +51,17 @@ function getCallback(config: Configuration) {
       process.stderr.write(info.errors + '\n');
     }
 
-    // // if (stats.hasWarnings()) {
-    // //   console.warn(info.warnings);
-    // // }
+    if (stats.hasWarnings()) {
+      console.warn(info.warnings);
+    }
 
-    // console.log(
-    //   stats.toString({
-    //     assets: false,
-    //     chunks: false, // Makes the build much quieter
-    //     colors: true, // Shows colors in the console
-    //   }),
-    // );
+    console.log(
+      stats.toString({
+        assets: false,
+        chunks: false, // Makes the build much quieter
+        colors: true, // Shows colors in the console
+      }),
+    );
   };
 }
 // export default function fndosomething(command: 'fnbuild', app: App, env: Environment): Compiler;
@@ -81,16 +84,18 @@ function getCallback(config: Configuration) {
 // }
 export function compile(app: App): Compiler {
   const config = { ...configs[app], watch: true };
-  const compiler = getCompiler(config);
   const callback = getCallback(config);
+
+  const compiler = getCompiler(config, callback);
 
   compiler.run(callback);
   return compiler;
 }
 export function watch(app: App): Watching {
   const config = { ...configs[app], watch: true };
-  const compiler = getCompiler(config);
   const callback = getCallback(config);
+  const compiler = getCompiler(config, callback);
+
   return compiler.watch({}, callback);
 }
 

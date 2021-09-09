@@ -137,7 +137,12 @@ type Replace<T, P extends string, R extends string> = T extends `${infer X}${P}$
 
 type Stringable = string | number | bigint | boolean | null | undefined;
 
-type J<T extends unknown[]> = T extends [] ? '' : T extends [any] ? `${T[0]}` : T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` : never;
+// eslint-disable-next-line prettier/prettier
+type J<T extends unknown[]> =
+    T extends [] ? '' :
+    T extends [any] ? `${T[0]}` :
+    T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` :
+    never;
 
 type D2<T> = J<[T, T]>;
 type D3<T> = J<[T, D2<T>]>;

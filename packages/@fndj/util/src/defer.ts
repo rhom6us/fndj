@@ -1,4 +1,3 @@
-import { Func } from '.';
 
 export interface Defer<T> {
     readonly [Symbol.toStringTag]: 'defer';
@@ -7,7 +6,7 @@ export interface Defer<T> {
     readonly reject: (reason?: string) => void;
 
 }
-export const defer = function <T = void>() {
+export function defer<T = void>() {
 
     const result: any = {
         [Symbol.toStringTag]: 'defer'

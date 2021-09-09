@@ -3,10 +3,8 @@ import { logger, WritablePart } from '@fndj/util';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useRef } from 'react';
 import wavesUI from 'waves-ui';
-import GridAxisLayer from './grid-layer';
-import PrepWaveformLayer from './prep-waveform-layer';
-import { TrackStartMarkerLayer } from './track-start-marker-layer';
-import { ZoomAndEditState } from './zoom-and-edit-state';
+import { GridAxisLayer, PrepWaveformLayer, TrackStartMarkerLayer, ZoomAndEditState } from './services';
+
 import './waveform.scss';
 
 interface Props {
@@ -23,7 +21,7 @@ function initWaves($track: Element, { buffer, trackStart, trackStartChanged, bpm
 
     const duration = buffer.duration * 2;
 
-    const pixelsPerSecond = 100;//width! / duration;
+    const pixelsPerSecond = 500;//width! / duration;
     logger.count('initWaves');
     const timeline = new wavesUI.core.Timeline(pixelsPerSecond, width);
     const layerTimeContext = d(new wavesUI.core.LayerTimeContext(timeline.timeContext), {
@@ -129,14 +127,13 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
     }, [bpm]);
 
 
-    const period = 60 / bpm;
     const style = {
         backgroundColor: 'black',
         // height: CSS.vh(100).toString()
     };
     return (
         <article>
-            <h3>trackStart: {(trackStart / period).toFixed(2)}</h3>
+            <h3>trackStart: {(trackStart).toFixed(2)}</h3>
             <section ref={rootRef} style={style}>
                 <h4>heres some waves...</h4>
             </section>

@@ -119,5 +119,7 @@ export default class LayerTimeContext {
      * @return {Number}
      */
     pixelToTime(px: number): number;
+
+    readonly height: number;
 }
 //# sourceMappingURL=layer-time-context.d.ts.map

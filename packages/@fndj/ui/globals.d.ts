@@ -4,6 +4,9 @@ declare global {
     interface Response {
         json<T>(): Promise<T>;
     }
+    interface Element {
+        setAttributeNS(namespace: string | null, qualifiedName: string, value: string | number): void;
+    }
 }
 // declare global {
 //     export interface NodeModule {

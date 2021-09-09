@@ -32,6 +32,9 @@ export const configuration: any = {
             ...config.resolve!.extensions,
             '.tsx', '.css', '.scss'
         ],
+        fallback: {
+            ...config.resolve.fallback,
+        }
 
     },
     module: {
@@ -39,7 +42,9 @@ export const configuration: any = {
         rules: [
             rules.workletRule,
             rules.workerRule,
+            rules.wasmRule,
             rules.reactTypescriptRule,
+            rules.jsRule,
             // rules.typescriptRule,
             // nodeRule,
             rules.globalStylesheetRule,
@@ -50,17 +55,18 @@ export const configuration: any = {
         ],
     },
     plugins: [
-        isDev && plugins.webpackBar,
+        ...config.plugins,
+
         isDev && plugins.hotModuleReplacement,
         isDev && plugins.reachRefresh,
-        plugins.tsChecker,
         plugins.createIndexHtml,
         plugins.extractCssFiles,
         plugins.cleanBuildDir,
         // hotModuleReplacement
     ].filter(Boolean),
     experiments: {
-        topLevelAwait: true
+        topLevelAwait: true,
+
     }
 
 

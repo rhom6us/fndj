@@ -12,15 +12,15 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "tracks/u_yIGGhubZs",
+      "launchUrl": "tracks/n79xrZFz_fk",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "YouTubeProxy": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "tracks/u_yIGGhubZs",
+      "launchBrowser": false,
+      "launchUrl": "tracks/n79xrZFz_fk",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

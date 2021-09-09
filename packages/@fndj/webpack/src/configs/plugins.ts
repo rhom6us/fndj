@@ -8,7 +8,9 @@ import WebpackBar from 'webpackbar';
 import { staticSourceDir } from './settings';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
+import NodePolyfillPlugin from "node-polyfill-webpack-plugin";
 
+export const nodePolyfill = new NodePolyfillPlugin();
 export const webpackBar = new WebpackBar({});
 export const reachRefresh = new ReactRefreshPlugin();
 export const tsChecker = new ForkTsCheckerWebpackPlugin({

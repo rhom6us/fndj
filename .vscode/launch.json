@@ -34,7 +34,18 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             },
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "presentation": {
+                "hidden": false,
+                "group": ".net",
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true,
+                "order": 1
+            }
         },
 
         {
@@ -78,6 +89,17 @@
             "sourceMaps": true,
             "sourceMapPathOverrides": {
                 "webpack://*": "${webRoot}/packages/*",
+            },
+            "presentation": {
+                "hidden": false,
+                "group": "serve",
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true,
+                "order": 1
             }
         },
         // {

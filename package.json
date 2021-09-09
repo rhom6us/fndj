@@ -7,8 +7,11 @@
   "main": "index.js",
   "scripts": {
     "start": "pnpm -C packages/@fndj/ui start",
+    "wp-main": "run-s --print-name wp start-main",
+    "start-main": "pnpm -C packages/@fndj/main serve",
     "build": "pnpm -C packages/@fndj/ui build",
     "wp": "pnpm -C packages/@fndj/webpack build",
+    "wp-watch": "pnpm -C packages/@fndj/webpack watch",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -41,6 +44,6 @@
     "pnpm": "^6.0.1",
     "prettier": "^2.2.1",
     "prettier-plugin-packagejson": "^2.2.9",
-    "typescript": "^4.2.3"
+    "typescript": "^4.4.2"
   }
 }

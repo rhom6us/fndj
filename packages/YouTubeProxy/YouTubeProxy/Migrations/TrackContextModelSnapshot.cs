@@ -8,7 +8,7 @@ using YouTubeProxy.Data;
 
 namespace YouTubeProxy.Migrations
 {
-    [DbContext(typeof(TrackContext))]
+    [DbContext(typeof(YoutubeMediaContext))]
     partial class TrackContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -25,10 +25,6 @@ namespace YouTubeProxy.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChannelId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -53,35 +49,6 @@ namespace YouTubeProxy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("YoutubeMedia");
-                });
-
-            modelBuilder.Entity("YouTubeProxy.Data.YoutubeMedia", b =>
-                {
-                    b.OwnsOne("YouTubeProxy.Data.Track", "Track", b1 =>
-                        {
-                            b1.Property<string>("Id")
-                                .HasColumnType("nvarchar(450)");
-
-                            b1.Property<float>("Bpm")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("real")
-                                .HasDefaultValue(128f);
-
-                            b1.Property<double>("FirstBeat")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("float")
-                                .HasDefaultValue(0.0);
-
-                            b1.HasKey("Id");
-
-                            b1.ToTable("YoutubeMedia");
-
-                            b1.WithOwner()
-                                .HasForeignKey("Id");
-                        });
-
-                    b.Navigation("Track")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

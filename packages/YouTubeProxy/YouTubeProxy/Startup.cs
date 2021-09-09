@@ -45,7 +45,7 @@ namespace YouTubeProxy {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContext<TrackContext>(options =>
+            services.AddDbContext<YoutubeMediaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -66,8 +66,7 @@ namespace YouTubeProxy {
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             //services.AddApiVersioning();
             services.AddOData();//.EnableApiVersioning();
-            services.Configure<RouteOptions>(options =>
-            {
+            services.Configure<RouteOptions>(options => {
                 options.ConstraintMap.Add("streamType", typeof(StreamTypeConstraint));
             });
             services.AddSingleton<YoutubeClient>(); 
@@ -77,6 +76,9 @@ namespace YouTubeProxy {
                 options.MaximumBodySize = 10 * 1024 * 1024;
                 options.SizeLimit = options.MaximumBodySize * 100;
                 options.UseCaseSensitivePaths = false;
+            });
+            services.AddCors(p => {
+                p.AddPolicy(name: "something", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
         }
 
@@ -103,6 +105,8 @@ namespace YouTubeProxy {
             //    });
             
             app.UseAuthorization();
+
+            app.UseCors("something");
 
             app.UseEndpoints(endpoints =>
             {

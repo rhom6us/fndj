@@ -1,1 +1,3 @@
-export type Func<TArgs = [], TResult = void> = (...args: TArgs extends any[] ? TArgs : [TArgs]) => TResult;
+import { Restify } from './restify';
+
+export type Func<TArgs = [], TResult = void> = (...args: Restify<TArgs>) => TResult;

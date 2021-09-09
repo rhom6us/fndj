@@ -30,7 +30,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-console": "error",
+    "no-console": "warn",
     "no-var": "warn",
     //"no-undef": "off",
     "no-empty-function": "off",

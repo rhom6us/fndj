@@ -30,28 +30,30 @@
 //         sourceNode.start();
 
 
-//         async function go() {
+//         // async function go() {
 
-//             const result: Uint8Array[] = [];
-//             for (let i = 0; i < buffer.length / windowSize; i++){
-//                 await context.suspend(windowSize * i);
-//                 const array = new Uint8Array(analyzerNode.frequencyBinCount);
-//                 analyzerNode.getByteFrequencyData(array);
-//                 result.push(array);
-//                 await context.resume();
-//             }
-
-
-//             if ((buffer.length / windowSize) % 1 > 0) {
-//                 await context.suspend(buffer.length-1)
-//                 const array = new Uint8Array(analyzerNode.frequencyBinCount);
-//                 analyzerNode.getByteFrequencyData(array);
-//                 result.push(array);
-//                 await context.resume();
-//             }
-
+//         const result: Uint8Array[] = [];
+//         for (let i = 0; i < buffer.length / windowSize; i++) {
+//             await context.suspend(windowSize * i);
+//             const array = new Uint8Array(analyzerNode.frequencyBinCount);
+//             analyzerNode.getByteFrequencyData(array);
+//             result.push(array);
+//             await context.resume();
 //         }
-//         go();
+
+
+//         if ((buffer.length / windowSize) % 1 > 0) {
+//             await context.suspend(buffer.length - 1);
+//             const array = new Uint8Array(analyzerNode.frequencyBinCount);
+//             analyzerNode.getByteFrequencyData(array);
+//             result.push(array);
+//             await context.resume();
+//         }
+
+//         return result;
+
+//         // }
+//         // go();
 //     });
 
 // }

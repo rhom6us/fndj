@@ -10,13 +10,17 @@
   },
   "dependencies": {
     "@fndj/util": "workspace:*",
-    "superpowered": "github:superpoweredSDK/web-audio-javascript-webassembly-SDK-interactive-audio",
+    "@fndj/superpowered": "workspace:*",
+    "realm-web": "^1.3.0",
     "waves-audio": "^0.5.2",
+    "fft.js": "^4.0.4",
+    "mongodb": "^4.1.1",
+
     "waves-loaders": "^0.1.5"
   },
   "devDependencies": {
+    "@types/fft.js": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
-    "@types/superpowered": "workspace:*",
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*"

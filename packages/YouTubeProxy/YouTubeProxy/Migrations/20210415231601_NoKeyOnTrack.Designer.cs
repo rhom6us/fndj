@@ -9,7 +9,7 @@ using YouTubeProxy.Data;
 
 namespace YouTubeProxy.Migrations
 {
-    [DbContext(typeof(TrackContext))]
+    [DbContext(typeof(YoutubeMediaContext))]
     [Migration("20210415231601_NoKeyOnTrack")]
     partial class NoKeyOnTrack
     {

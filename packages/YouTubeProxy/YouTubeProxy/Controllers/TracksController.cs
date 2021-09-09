@@ -18,7 +18,7 @@ namespace YouTubeProxy.Controllers {
     [ApiController]
     [Route("tracks")]
     public class TracksController : ControllerBase {
-        public TracksController(ILogger<TracksController> logger, TrackContext db, YoutubeService youtube /*, IMemoryCache cache*/) {
+        public TracksController(ILogger<TracksController> logger, YoutubeMediaContext db, YoutubeService youtube /*, IMemoryCache cache*/) {
             _logger = logger;
             _db = db;
             _youtube = youtube;
@@ -35,41 +35,45 @@ namespace YouTubeProxy.Controllers {
         [HttpGet("{id}")]
         [EnableQuery(MaxTop = 20)]
         public async Task<SingleResult<YoutubeMedia>> Get(string id, bool includeDetail = false) {
-            var query = _db.YoutubeMedia.Where(p => p.Id == id);
-            if (includeDetail) {
-                query = query.Include(p => p.Track);
-            }
-            var dbResult = await query.SingleOrDefaultAsync();
+            var webResult = await _youtube.GetInfo(id);
 
-            if (dbResult == null) {
-                var webResult = await _youtube.GetInfo(id);
-                var entry = await _db.YoutubeMedia.AddAsync(webResult);
-                dbResult = entry.Entity;
-                await _db.SaveChangesAsync();
-            }
+            return new SingleResult<YoutubeMedia>(Enumerable.Empty<YoutubeMedia>().DefaultIfEmpty(webResult).AsQueryable());
+
+            ////var query = _db.YoutubeMedia.Where(p => p.Id == id);
+            //if (includeDetail) {
+            //    //query = query.Include(p => p.Track);
+            //}
+            //var dbResult = await _db.YoutubeMedia.FindAsync(id);// query.SingleOrDefaultAsync();
+
+            //if (dbResult == null) {
+            //    var webResult = await _youtube.GetInfo(id);
+            //    var entry = await _db.YoutubeMedia.AddAsync(webResult);
+            //    dbResult = entry.Entity;
+            //    await _db.SaveChangesAsync();
+            //}
             
-            return new SingleResult<YoutubeMedia>(Enumerable.Empty<YoutubeMedia>().DefaultIfEmpty(dbResult).AsQueryable());
+            //return new SingleResult<YoutubeMedia>(Enumerable.Empty<YoutubeMedia>().DefaultIfEmpty(dbResult).AsQueryable());
             
 
         }
-        [HttpGet("{id}/detail")]
-        public Task<Track> GetDetail(string id) {
-            return _db.YoutubeMedia.Where(p => p.Id == id).Select(p => p.Track).AsNoTracking().SingleOrDefaultAsync();
-        }
-        [HttpPost("{id}/detail")]
-        public async Task<IActionResult> Update(string id, [FromBody] Track track) {
+        //[HttpGet("{id}/detail")]
+        //public Task<YoutubeMedia> GetDetail(string id) {
+        //    return _db.YoutubeMedia.Where(p => p.Id == id)/*.Select(p => p.Track)*/.AsNoTracking().SingleOrDefaultAsync();
+        //}
+        //[HttpPost("{id}/detail")]
+        //public async Task<IActionResult> Update(string id, [FromBody] Track track) {
 
-            var existing = await _db.YoutubeMedia.FindAsync(id);
-            if (existing == null) {
-                return this.NotFound(id);
-            }
+        //    var existing = await _db.YoutubeMedia.FindAsync(id);
+        //    if (existing == null) {
+        //        return this.NotFound(id);
+        //    }
 
-            existing.Track.Bpm = track.Bpm;
-            existing.Track.FirstBeat = track.FirstBeat;
+        //    //existing.Track.Bpm = track.Bpm;
+        //    //existing.Track.FirstBeat = track.FirstBeat;
 
-            await _db.SaveChangesAsync();
-            return this.Ok(existing.Track);
-        }
+        //    await _db.SaveChangesAsync();
+        //    return this.Ok(existing.Track);
+        //}
 
         //private readonly IMemoryCache _cache;
         [HttpGet("{id}/{type:streamType}")]
@@ -101,6 +105,6 @@ namespace YouTubeProxy.Controllers {
         //private readonly IMemoryCache _cache;
         private readonly ILogger<TracksController> _logger;
         private readonly YoutubeService _youtube;
-        private readonly TrackContext _db;
+        private readonly YoutubeMediaContext _db;
     }
 }
