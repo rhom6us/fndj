@@ -24,7 +24,7 @@ export interface ParameterData {
  * example2: "x * [ARG1]"
  *
  */
-class FnFormulaNode extends AudioWorkletNode {
+export class FnFormulaNode extends AudioWorkletNode {
   get [ARG1]() {
     return this.parameters.get(ARG1)!;
   }
