@@ -1,7 +1,8 @@
 
-export function notDefined<T>(p: T) {
-    return p === undefined;
+export function isNotDefined<T>(p: T | null | undefined): p is undefined | null {
+    return p === undefined || p === null;
 }
-export function defined<T>(p: T) {
-    return p !== undefined;
+
+export function isDefined<T>(p: T | null | undefined): p is T {
+    return p !== undefined && p !== null;
 }

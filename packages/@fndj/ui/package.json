@@ -11,6 +11,7 @@
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
+    "@fluentui/react": "^8.34.7",
     "@fndj/core": "workspace:*",
     "@fndj/util": "workspace:*",
     "@fndj/webpack": "workspace:*",

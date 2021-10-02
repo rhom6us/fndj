@@ -33,7 +33,7 @@ export const Root = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <PreProcess />
-      {/* <ReactQueryDevtools {...devToolOptions} /> */}
+      <ReactQueryDevtools {...devToolOptions} />
     </QueryClientProvider>
     // <Provider store={store}>
 

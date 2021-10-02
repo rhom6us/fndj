@@ -1,6 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
+    "resolveJsonModule": true,
     "plugins": [
       {
         "name": "typescript-styled-plugin",

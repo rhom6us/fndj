@@ -3,12 +3,11 @@ import { Prep } from '@fndj/core';
 import { useAsync, useAudioBuffer, usePromise } from '../hooks';
 import { Waveform } from '../waves';
 import { FlexBox, FlexItem } from "react-styled-flex";
-import PropTypes from 'prop-types';
 import { Slider } from '../general';
 import styled from 'styled-components';
 import { invert } from '../react-helpers';
-import { analyze, createSpectrogram } from './services';
-import { clearImmediate, setImmediate } from '@fndj/util';
+import { createSpectrogram } from './services';
+import { analyze } from '@fndj/core/src/services/superpowered';
 interface Props { }
 
 // const FlexBoxFlexItem: FC<Partial<FlexBoxProps & FlexItemProps>> = ({ children, ...props }) => {

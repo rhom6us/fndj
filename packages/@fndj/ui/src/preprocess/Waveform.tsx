@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { logger, range } from '@fndj/util';
+import { logger } from '@fndj/util';
+import { range } from '@fndj/util/src/array';
 import React, { memo, SVGAttributes, useMemo } from 'react';
 
 interface Props extends SVGAttributes<SVGElement> {
@@ -24,8 +25,7 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
     }, [source.length, width]);
     const path = useMemo(() => {
         logger.log('updating path...');
-        const huh = range(0, width);
-        const path = '' + range(0, width)
+        const path = '' + range(width)
             .map(px => {
                 const startSample = Math.floor(px * samplesPerPixel);
                 const minX = startSample;// + 10 * sampleRate;
@@ -36,8 +36,8 @@ export const WaveForm: React.FC<Props> = ({ buffer, duration, offset, sampleRate
                 if (!extract.length) {
                     return { px, min: 0, max: 0 };
                 }
-                const min = extract.reduce((a, b) => Math.min(a, b), Infinity);
-                const max = extract.reduce((a, b) => Math.max(a, b), -Infinity);
+                const min = extract.reduce((a, b) => Math.min(a, b));
+                const max = extract.reduce((a, b) => Math.max(a, b));
 
                 // if (!min) {
                 //     min = max;

@@ -1,0 +1,45 @@
+{
+  "name": "@fndj/browser",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "compile": "fnbuild webApp development",
+    "serve": "fnserve webApp development",
+    "watch": "fnwatch webApp development"
+  },
+  "dependencies": {
+    "@fndj/browser-ui": "workspace:*",
+    "@fndj/core": "workspace:*",
+    "@fndj/util": "workspace:*",
+    "@fndj/webpack": "workspace:*",
+    "@hot-loader/react-dom": "^17.0.1",
+    "classnames": "^2.2.6",
+    "mongodb": "^4.1.1",
+    "normalize.css": "^8.0.1",
+    "phaze-vocoder": "github:olvb/phaze",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hot-loader": "^4.13.0",
+    "react-query": "^3.24.4",
+    "react-redux": "^7.2.2",
+    "react-router-static": "^1.0.0",
+    "realm-web": "^1.3.0",
+    "redux": "^4.0.5",
+    "redux-command-pattern": "*",
+    "waves-audio": "wavesjs/audio",
+    "waves-loaders": "^0.1.5",
+    "waves-ui": "wavesjs/ui"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-redux": "^7.1.16",
+    "@types/waves-audio": "*",
+    "@types/waves-blocks": "*",
+    "@types/waves-loaders": "*",
+    "@types/waves-ui": "*",
+    "typescript-styled-plugin": "^0.15.0"
+  }
+}

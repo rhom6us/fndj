@@ -1,4 +1,5 @@
-
+import { youtube_v3 } from 'googleapis';
+import { ObjectId } from 'mongodb';
 
 interface SuperpoweredAnalysis {
     averageDb: number,
@@ -9,40 +10,38 @@ interface SuperpoweredAnalysis {
     keyIndex: number,
 }
 export interface MongoEdit extends SuperpoweredAnalysis {
-    version: number;
     src: 'superpowered',
     processed: Date,
 }
-interface YoutubeMediaThumbnail {
-    url: string;
-    resolution: {
-        width: number;
-        height: number;
-    };
+// interface YoutubeMediaThumbnail {
+//     url: string;
+//     resolution: {
+//         width: number;
+//         height: number;
+//     };
+
+// }
+// export interface YoutubeMedia {
+//     id: string;
+//     title: string;
+//     author: string;
+//     uploadDate: Date;
+//     description: string;
+//     duration: number;
+//     // thumbnails?: YoutubeMediaThumbnail[];
+//     // keywords: string[];
+//     // engagement: {
+//     //     viewCount: number;
+//     //     likeCount: number;
+//     //     dislikeCount: number;
+//     //     averageRating: number;
+//     // };
+
+// }
+export interface MongoTrack extends youtube_v3.Schema$Video {
+    _id: ObjectId;
 
 }
-export interface YoutubeMedia {
-    id: string;
-    title: string;
-    author: string;
-    uploadDate: Date;
-    description: string;
-    duration: number;
-    // thumbnails?: YoutubeMediaThumbnail[];
-    // keywords: string[];
-    // engagement: {
-    //     viewCount: number;
-    //     likeCount: number;
-    //     dislikeCount: number;
-    //     averageRating: number;
-    // };
-
-}
-export interface MongoTrack extends YoutubeMedia {
-    _id: {
-        src: 'youtube';
-        key: string;
-    };
+export interface EditsField {
     edits: MongoEdit[];
-
 }

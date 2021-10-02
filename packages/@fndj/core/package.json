@@ -1,28 +1,30 @@
 {
   "name": "@fndj/core",
   "version": "1.0.0",
-  "main": "index.ts",
   "license": "MIT",
+  "main": "src/index.ts",
   "scripts": {
     "compile": "fnbuild webApp development",
     "serve": "fnserve webApp development",
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
-    "@fndj/util": "workspace:*",
     "@fndj/superpowered": "workspace:*",
+    "@fndj/util": "workspace:*",
+    "fft.js": "^4.0.4",
+    "google-auth-library": "^7.10.0",
+    "googleapis": "^88.2.0",
+    "mongodb": "^4.1.1",
     "realm-web": "^1.3.0",
     "waves-audio": "^0.5.2",
-    "fft.js": "^4.0.4",
-    "mongodb": "^4.1.1",
-
     "waves-loaders": "^0.1.5"
   },
   "devDependencies": {
     "@types/fft.js": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
-    "@types/waves-audio": "*",
+    "@types/waves-audio": "workspace:*",
     "@types/waves-blocks": "*",
-    "@types/waves-loaders": "*"
+    "@types/waves-loaders": "*",
+    "@types/webaudio": "workspace:*"
   }
 }

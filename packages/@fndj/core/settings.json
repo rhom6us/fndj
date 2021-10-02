@@ -1,0 +1,21 @@
+{
+    "youtube-proxy": {
+        "host": "https://localhost:5001"
+    },
+    "youtube-data": {
+        "oauth": {
+            "fndj-browser": {
+                "client_id": "725047741145-anp1d89o2hf63g72h8hpjo3tte9so6f5.apps.googleusercontent.com",
+                "client_secret": "3ekklzPHXn4xO5ssZxgvYlZ-",
+                "redirect_url": ""
+            }
+        },
+        "api-keys": {
+            "api-key-1": "AIzaSyADVtg-tQOhh6CrV4XstyAGGAvOwHoOPKk",
+            "api-key-2": "AIzaSyDafL1nlGOHkZmPbaPpMFoFFqDUzVXUuI0"
+        },
+        "scopes": [
+            "https://www.googleapis.com/auth/youtube.readonly"
+        ]
+    }
+}

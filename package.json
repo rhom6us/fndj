@@ -4,11 +4,12 @@
   "private": true,
   "license": "MIT",
   "author": "Thomas Butler",
-  "main": "index.js",
   "scripts": {
     "start": "pnpm -C packages/@fndj/ui start",
     "wp-main": "run-s --print-name wp start-main",
     "start-main": "pnpm -C packages/@fndj/main serve",
+    "build-browser": "pnpm -C packages/@fndj/browser compile",
+    "start-browser": "pnpm -C packages/@fndj/browser serve",
     "build": "pnpm -C packages/@fndj/ui build",
     "wp": "pnpm -C packages/@fndj/webpack build",
     "wp-watch": "pnpm -C packages/@fndj/webpack watch",
@@ -16,6 +17,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "preinstall": "npx only-allow pnpm",
     "reinstall": "pnpm install --force"
   },
   "husky": {
@@ -28,6 +30,9 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "pnpm": {
+    "neverBuiltDependencies": []
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.20.0",

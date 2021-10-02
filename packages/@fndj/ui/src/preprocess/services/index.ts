@@ -1,3 +1,4 @@
-export * from './analyze';
-export * from '../../../../main/src/sp/glue';
-export * from './createSpectrogram';
+
+
+export * from './loudEv';
+export * from '@fndj/core/src/web-audio/createSpectrogram';
