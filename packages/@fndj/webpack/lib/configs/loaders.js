@@ -3,19 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nodeLoader = exports.tsLoader = exports.reactRefreshLoader = exports.workerLoader = exports.workletLoader = exports.imageLoader = exports.fontLoader = exports.electronMainBabelLoader = exports.threadLoader = exports.fileLoader = exports.postcssLoader = exports.sassLoader = exports.cssLoader = exports.cssHotModuleLoader = exports.cssHotLoader = exports.cssModuleLoader = void 0;
+exports.nodeLoader = exports.tsLoader = exports.reactRefreshLoader = exports.workerLoader = exports.workletLoader = exports.imageLoader = exports.threadLoader = exports.sassLoader = exports.postcssLoader = exports.fontLoader = exports.fileLoader = exports.cssModuleLoader = exports.cssLoader = exports.cssHotModuleLoader = exports.cssHotLoader = exports.cssExtractLoader = void 0;
+var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
 var postcss_import_1 = __importDefault(require("postcss-import"));
 var postcss_preset_env_1 = __importDefault(require("postcss-preset-env"));
 var settings_1 = require("./settings");
-exports.cssModuleLoader = {
-    loader: 'css-loader',
-    options: {
-        importLoaders: 2,
-        modules: true,
-        import: true,
-        sourceMap: settings_1.isDev,
-    },
-};
+/**
+ * Seperates css into a seperate bundle in order to prevent brief flash of unstyled content.
+ */
+exports.cssExtractLoader = mini_css_extract_plugin_1.default.loader;
 exports.cssHotLoader = {
     loader: 'css-hot-loader',
 };
@@ -33,10 +29,29 @@ exports.cssLoader = {
         sourceMap: settings_1.isDev,
     },
 };
-exports.sassLoader = {
-    loader: 'sass-loader',
+exports.cssModuleLoader = {
+    loader: 'css-loader',
     options: {
+        importLoaders: 2,
+        modules: true,
+        import: true,
         sourceMap: settings_1.isDev,
+    },
+};
+/** @deprecated  */
+exports.fileLoader = {
+    loader: 'file-loader',
+    options: {
+        name: '[name]__[hash:base64:5].[ext]'
+    }
+};
+/** @deprecated  */
+exports.fontLoader = {
+    loader: 'url-loader',
+    options: {
+        name: 'fonts/[name]--[folder].[ext]',
+        limit: 10240,
+        // mimetype: 'application/font-woff'
     },
 };
 exports.postcssLoader = {
@@ -48,36 +63,14 @@ exports.postcssLoader = {
         },
     },
 };
-exports.fileLoader = {
-    loader: 'file-loader?name=[name]__[hash:base64:5].[ext]',
+exports.sassLoader = {
+    loader: 'sass-loader',
+    options: {
+        sourceMap: settings_1.isDev,
+    },
 };
 exports.threadLoader = {
     loader: 'thread-loader',
-};
-exports.electronMainBabelLoader = {
-    loader: 'babel-loader',
-    options: {
-        presets: [
-            [
-                '@babel/preset-env',
-                {
-                    debug: settings_1.isDev,
-                    modules: false,
-                    targets: {
-                        electron: '6.0.12',
-                    },
-                },
-            ],
-        ],
-    },
-};
-exports.fontLoader = {
-    loader: 'url-loader',
-    options: {
-        name: 'fonts/[name]--[folder].[ext]',
-        limit: 10240,
-        // mimetype: 'application/font-woff'
-    },
 };
 // export const wasmLoader: RuleSetUseItem = {
 //   loader: 'url-loader',
@@ -86,6 +79,7 @@ exports.fontLoader = {
 //     name: 'imgs/[name]--[folder].[ext]',
 //   },
 // };
+/** @deprecated  */
 exports.imageLoader = {
     loader: 'url-loader',
     options: {
@@ -96,7 +90,7 @@ exports.imageLoader = {
 exports.workletLoader = {
     loader: 'worklet-loader',
     options: {
-        name: 'js/[hash].worklet.js'
+        inline: false
     }
 };
 exports.workerLoader = {
@@ -115,51 +109,13 @@ exports.reactRefreshLoader = {
 exports.tsLoader = {
     loader: 'ts-loader',
     options: {
-        transpileOnly: settings_1.isDev,
+        transpileOnly: settings_1.isDev
         // projectReferences: true,
         // appendTsSuffixTo: [{}],
         // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
     },
 };
-// export const jsLoader: RuleSetUseItem = {
-//   loader: 'babel-loader',
-//   options: {
-//     presets: [
-//       [
-//         '@babel/preset-env',
-//         {
-//           debug: isDev,
-//           modules: false,
-//           targets: {
-//             electron: '6.0.12',
-//           },
-//         },
-//       ],
-//     ],
-//   },
-// };
-// export const babelLoader: RuleSetUseItem = {
-//   loader: 'babel-loader',
-//   options: {
-//     cacheDirectory: true,
-//     babelrc: false,
-//     presets: [
-//       [
-//         '@babel/preset-env',
-//         { targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
-//       ],
-//       '@babel/preset-typescript',
-//       '@babel/preset-react',
-//     ],
-//     plugins: [
-//       // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
-//       ['@babel/plugin-proposal-decorators', { legacy: true }],
-//       ['@babel/plugin-proposal-class-properties', { loose: true }],
-//       'react-hot-loader/babel',
-//     ],
-//   },
-// };
 exports.nodeLoader = {
     loader: 'node-loader'
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGVycy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb25maWdzL2xvYWRlcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsa0VBQTJDO0FBQzNDLDBFQUFrRDtBQUVsRCx1Q0FBbUM7QUFDdEIsUUFBQSxlQUFlLEdBQW1CO0lBQzdDLE1BQU0sRUFBRSxZQUFZO0lBQ3BCLE9BQU8sRUFBRTtRQUNQLGFBQWEsRUFBRSxDQUFDO1FBQ2hCLE9BQU8sRUFBRSxJQUFJO1FBQ2IsTUFBTSxFQUFFLElBQUk7UUFDWixTQUFTLEVBQUUsZ0JBQUs7S0FDakI7Q0FDRixDQUFDO0FBQ1csUUFBQSxZQUFZLEdBQW1CO0lBQzFDLE1BQU0sRUFBRSxnQkFBZ0I7Q0FDekIsQ0FBQztBQUNXLFFBQUEsa0JBQWtCLEdBQW1CO0lBQ2hELE1BQU0sRUFBRSxnQkFBZ0I7SUFDeEIsT0FBTyxFQUFFO1FBQ1AsU0FBUyxFQUFFLElBQUk7S0FDaEI7Q0FDRixDQUFDO0FBQ1csUUFBQSxTQUFTLEdBQW1CO0lBQ3ZDLE1BQU0sRUFBRSxZQUFZO0lBQ3BCLE9BQU8sRUFBRTtRQUNQLGFBQWEsRUFBRSxDQUFDO1FBQ2hCLE9BQU8sRUFBRSxLQUFLO1FBQ2QsU0FBUyxFQUFFLGdCQUFLO0tBQ2pCO0NBQ0YsQ0FBQztBQUNXLFFBQUEsVUFBVSxHQUFtQjtJQUN4QyxNQUFNLEVBQUUsYUFBYTtJQUNyQixPQUFPLEVBQUU7UUFDUCxTQUFTLEVBQUUsZ0JBQUs7S0FDakI7Q0FDRixDQUFDO0FBQ1csUUFBQSxhQUFhLEdBQW1CO0lBQzNDLE1BQU0sRUFBRSxnQkFBZ0I7SUFDeEIsT0FBTyxFQUFFO1FBQ1AsU0FBUyxFQUFFLGdCQUFLO1FBQ2hCLGNBQWMsRUFBRTtZQUNkLE9BQU8sRUFBRSxDQUFDLElBQUEsd0JBQWEsR0FBRSxFQUFFLElBQUEsNEJBQWdCLEdBQUUsQ0FBQztTQUMvQztLQUNGO0NBQ0YsQ0FBQztBQUNXLFFBQUEsVUFBVSxHQUFtQjtJQUN4QyxNQUFNLEVBQUUsZ0RBQWdEO0NBQ3pELENBQUM7QUFDVyxRQUFBLFlBQVksR0FBbUI7SUFDMUMsTUFBTSxFQUFFLGVBQWU7Q0FDeEIsQ0FBQztBQUNXLFFBQUEsdUJBQXVCLEdBQW1CO0lBQ3JELE1BQU0sRUFBRSxjQUFjO0lBQ3RCLE9BQU8sRUFBRTtRQUNQLE9BQU8sRUFBRTtZQUNQO2dCQUNFLG1CQUFtQjtnQkFDbkI7b0JBQ0UsS0FBSyxFQUFFLGdCQUFLO29CQUNaLE9BQU8sRUFBRSxLQUFLO29CQUNkLE9BQU8sRUFBRTt3QkFDUCxRQUFRLEVBQUUsUUFBUTtxQkFDbkI7aUJBQ0Y7YUFDRjtTQUNGO0tBQ0Y7Q0FDRixDQUFDO0FBQ1csUUFBQSxVQUFVLEdBQW1CO0lBQ3hDLE1BQU0sRUFBRSxZQUFZO0lBQ3BCLE9BQU8sRUFBRTtRQUNQLElBQUksRUFBRSw4QkFBOEI7UUFDcEMsS0FBSyxFQUFFLEtBQUs7UUFDWixvQ0FBb0M7S0FDckM7Q0FDRixDQUFDO0FBQ0YsOENBQThDO0FBQzlDLDBCQUEwQjtBQUMxQixlQUFlO0FBQ2Ysb0JBQW9CO0FBQ3BCLDJDQUEyQztBQUMzQyxPQUFPO0FBQ1AsS0FBSztBQUNRLFFBQUEsV0FBVyxHQUFtQjtJQUN6QyxNQUFNLEVBQUUsWUFBWTtJQUNwQixPQUFPLEVBQUU7UUFDUCxLQUFLLEVBQUUsS0FBSztRQUNaLElBQUksRUFBRSw2QkFBNkI7S0FDcEM7Q0FDRixDQUFDO0FBQ1csUUFBQSxhQUFhLEdBQW1CO0lBQzNDLE1BQU0sRUFBRSxnQkFBZ0I7SUFDeEIsT0FBTyxFQUFFO1FBQ1AsSUFBSSxFQUFFLHNCQUFzQjtLQUM3QjtDQUNGLENBQUE7QUFFWSxRQUFBLFlBQVksR0FBbUI7SUFDMUMsTUFBTSxFQUFFLGVBQWU7SUFDdkIsT0FBTyxFQUFFO1FBQ1AsVUFBVSxFQUFFLG1CQUFtQjtRQUMvQixRQUFRLEVBQUUsZ0NBQWdDO1FBQzFDLGFBQWEsRUFBRSw4QkFBOEI7UUFDN0MsUUFBUSxFQUFFLElBQUk7S0FDZjtDQUNGLENBQUE7QUFDWSxRQUFBLGtCQUFrQixHQUFtQjtJQUNoRCxNQUFNLEVBQUUsY0FBYztJQUN0QixPQUFPLEVBQUUsRUFBRSxPQUFPLEVBQUUsQ0FBQyxxQkFBcUIsRUFBRSxzQ0FBc0MsRUFBRSx5Q0FBeUMsQ0FBQyxFQUFFO0NBQ2pJLENBQUM7QUFDVyxRQUFBLFFBQVEsR0FBbUI7SUFDdEMsTUFBTSxFQUFFLFdBQVc7SUFDbkIsT0FBTyxFQUFFO1FBQ1AsYUFBYSxFQUFFLGdCQUFLO1FBQ3BCLDJCQUEyQjtRQUMzQiwwQkFBMEI7UUFDMUIsaURBQWlEO0tBQ2xEO0NBQ0YsQ0FBQztBQUdGLDRDQUE0QztBQUM1Qyw0QkFBNEI7QUFDNUIsZUFBZTtBQUNmLGlCQUFpQjtBQUNqQixVQUFVO0FBQ1YsK0JBQStCO0FBQy9CLFlBQVk7QUFDWiwwQkFBMEI7QUFDMUIsNEJBQTRCO0FBQzVCLHVCQUF1QjtBQUN2QixrQ0FBa0M7QUFDbEMsZUFBZTtBQUNmLGFBQWE7QUFDYixXQUFXO0FBQ1gsU0FBUztBQUNULE9BQU87QUFDUCxLQUFLO0FBRUwsK0NBQStDO0FBQy9DLDRCQUE0QjtBQUM1QixlQUFlO0FBQ2YsNEJBQTRCO0FBQzVCLHNCQUFzQjtBQUN0QixpQkFBaUI7QUFDakIsVUFBVTtBQUNWLCtCQUErQjtBQUMvQiw2RkFBNkY7QUFDN0YsV0FBVztBQUNYLG9DQUFvQztBQUNwQywrQkFBK0I7QUFDL0IsU0FBUztBQUNULGlCQUFpQjtBQUNqQiwyR0FBMkc7QUFDM0csaUVBQWlFO0FBQ2pFLHNFQUFzRTtBQUN0RSxrQ0FBa0M7QUFDbEMsU0FBUztBQUNULE9BQU87QUFDUCxLQUFLO0FBR1EsUUFBQSxVQUFVLEdBQW1CO0lBQ3hDLE1BQU0sRUFBRSxhQUFhO0NBQ3RCLENBQUEifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGVycy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb25maWdzL2xvYWRlcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQ0Esb0ZBQTJEO0FBRTNELGtFQUEyQztBQUMzQywwRUFBa0Q7QUFFbEQsdUNBQTBEO0FBSzFEOztHQUVHO0FBQ1UsUUFBQSxnQkFBZ0IsR0FBbUIsaUNBQW9CLENBQUMsTUFBTSxDQUFDO0FBQy9ELFFBQUEsWUFBWSxHQUFtQjtJQUMxQyxNQUFNLEVBQUUsZ0JBQWdCO0NBQ3pCLENBQUM7QUFDVyxRQUFBLGtCQUFrQixHQUFtQjtJQUNoRCxNQUFNLEVBQUUsZ0JBQWdCO0lBQ3hCLE9BQU8sRUFBRTtRQUNQLFNBQVMsRUFBRSxJQUFJO0tBQ2hCO0NBQ0YsQ0FBQztBQUNXLFFBQUEsU0FBUyxHQUFtQjtJQUN2QyxNQUFNLEVBQUUsWUFBWTtJQUNwQixPQUFPLEVBQUU7UUFDUCxhQUFhLEVBQUUsQ0FBQztRQUNoQixPQUFPLEVBQUUsS0FBSztRQUNkLFNBQVMsRUFBRSxnQkFBSztLQUNqQjtDQUNGLENBQUM7QUFDVyxRQUFBLGVBQWUsR0FBbUI7SUFDN0MsTUFBTSxFQUFFLFlBQVk7SUFDcEIsT0FBTyxFQUFFO1FBQ1AsYUFBYSxFQUFFLENBQUM7UUFDaEIsT0FBTyxFQUFFLElBQUk7UUFDYixNQUFNLEVBQUUsSUFBSTtRQUNaLFNBQVMsRUFBRSxnQkFBSztLQUNqQjtDQUNGLENBQUM7QUFFRixtQkFBbUI7QUFDTixRQUFBLFVBQVUsR0FBbUI7SUFDeEMsTUFBTSxFQUFFLGFBQWE7SUFDckIsT0FBTyxFQUFFO1FBQ1AsSUFBSSxFQUFFLCtCQUErQjtLQUN0QztDQUNGLENBQUM7QUFDRixtQkFBbUI7QUFDTixRQUFBLFVBQVUsR0FBbUI7SUFDeEMsTUFBTSxFQUFFLFlBQVk7SUFDcEIsT0FBTyxFQUFFO1FBQ1AsSUFBSSxFQUFFLDhCQUE4QjtRQUNwQyxLQUFLLEVBQUUsS0FBSztRQUNaLG9DQUFvQztLQUNyQztDQUNGLENBQUM7QUFDVyxRQUFBLGFBQWEsR0FBbUI7SUFDM0MsTUFBTSxFQUFFLGdCQUFnQjtJQUN4QixPQUFPLEVBQUU7UUFDUCxTQUFTLEVBQUUsZ0JBQUs7UUFDaEIsY0FBYyxFQUFFO1lBQ2QsT0FBTyxFQUFFLENBQUMsSUFBQSx3QkFBYSxHQUFFLEVBQUUsSUFBQSw0QkFBZ0IsR0FBRSxDQUFDO1NBQy9DO0tBQ0Y7Q0FDRixDQUFDO0FBQ1csUUFBQSxVQUFVLEdBQW1CO0lBQ3hDLE1BQU0sRUFBRSxhQUFhO0lBQ3JCLE9BQU8sRUFBRTtRQUNQLFNBQVMsRUFBRSxnQkFBSztLQUNqQjtDQUNGLENBQUM7QUFDVyxRQUFBLFlBQVksR0FBbUI7SUFDMUMsTUFBTSxFQUFFLGVBQWU7Q0FDeEIsQ0FBQztBQUNGLDhDQUE4QztBQUM5QywwQkFBMEI7QUFDMUIsZUFBZTtBQUNmLG9CQUFvQjtBQUNwQiwyQ0FBMkM7QUFDM0MsT0FBTztBQUNQLEtBQUs7QUFDTCxtQkFBbUI7QUFDTixRQUFBLFdBQVcsR0FBbUI7SUFDekMsTUFBTSxFQUFFLFlBQVk7SUFDcEIsT0FBTyxFQUFFO1FBQ1AsS0FBSyxFQUFFLEtBQUs7UUFDWixJQUFJLEVBQUUsNkJBQTZCO0tBQ3BDO0NBQ0YsQ0FBQztBQUNXLFFBQUEsYUFBYSxHQUFtQjtJQUMzQyxNQUFNLEVBQUUsZ0JBQWdCO0lBQ3hCLE9BQU8sRUFBRTtRQUNQLE1BQU0sRUFBRSxLQUFLO0tBQ2Q7Q0FDRixDQUFDO0FBRVcsUUFBQSxZQUFZLEdBQW1CO0lBQzFDLE1BQU0sRUFBRSxlQUFlO0lBQ3ZCLE9BQU8sRUFBRTtRQUNQLFVBQVUsRUFBRSxtQkFBbUI7UUFDL0IsUUFBUSxFQUFFLGdDQUFnQztRQUMxQyxhQUFhLEVBQUUsOEJBQThCO1FBQzdDLFFBQVEsRUFBRSxJQUFJO0tBQ2Y7Q0FDRixDQUFDO0FBQ1csUUFBQSxrQkFBa0IsR0FBbUI7SUFDaEQsTUFBTSxFQUFFLGNBQWM7SUFDdEIsT0FBTyxFQUFFLEVBQUUsT0FBTyxFQUFFLENBQUMscUJBQXFCLEVBQUUsc0NBQXNDLEVBQUUseUNBQXlDLENBQUMsRUFBRTtDQUNqSSxDQUFDO0FBQ1csUUFBQSxRQUFRLEdBQW1CO0lBQ3RDLE1BQU0sRUFBRSxXQUFXO0lBQ25CLE9BQU8sRUFBRTtRQUNQLGFBQWEsRUFBRSxnQkFBSztRQUVwQiwyQkFBMkI7UUFDM0IsMEJBQTBCO1FBQzFCLGlEQUFpRDtLQUNsRDtDQUNGLENBQUM7QUFHVyxRQUFBLFVBQVUsR0FBbUI7SUFDeEMsTUFBTSxFQUFFLGFBQWE7Q0FDdEIsQ0FBQyJ9

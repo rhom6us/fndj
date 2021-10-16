@@ -104,20 +104,7 @@ class SuperpoweredWebAudio {
                 }.bind(node);
             });
         } else {
-            import(url).then((processorModule) => {
-                let node = this.audioContext.createScriptProcessor(1024, 2, 2);
-                node.samplerate = this.audioContext.sampleRate;
-                node.inputBuffer = this.Superpowered.createFloatArray(1024 * 2);
-                node.outputBuffer = this.Superpowered.createFloatArray(1024 * 2);
-                node.processor = new processorModule.default(this.Superpowered, onMessageFromAudioScope, node.samplerate);
-                node.sendMessageToAudioScope = function (message, transfer = 0) { node.processor.onMessageFromMainScope(message); };
-                node.onaudioprocess = function (e) {
-                    node.processor.Superpowered.bufferToWASM(node.inputBuffer, e.inputBuffer);
-                    node.processor.processAudio(node.inputBuffer, node.outputBuffer, node.inputBuffer.array.length / 2);
-                    node.processor.Superpowered.bufferToJS(node.outputBuffer, e.outputBuffer);
-                };
-                callback(node);
-            });
+            throw 'not supported';
         }
     }
 }

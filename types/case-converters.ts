@@ -1,74 +1,101 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// ASCII: 32
-// regex: \s
+
+/**
+ * ASCII: 32
+ * regex: \s
+ */
 type SpaceChar = ' ';
 
-// regex: \S
+/**
+ * regex: \S
+ */
 type NonSpaceChar = Exclude<AnyChar, SpaceChar>;
 
-// ASCII: 33-47
+/**
+ * ASCII: 33-47
+ */
 type SymbolChar1 = '!' | '"' | '#' | '$' | '%' | '&' | "'" | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/';
 
-// ASCII: 48-57
-// regex: \d
+/**
+ * ASCII: 48-57
+ * regex: \d
+ */
 type DigitChar = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 
-// regex: \D
+/**
+ * regex: \D
+ */
 type NonDigitChar = Exclude<AnyChar, DigitChar>;
 
-// ASCII: 58 - 64
+/**
+ * ASCII: 58 - 64
+ */
 type SymbolChar2 = ':' | ';' | '<' | '=' | '>' | '?' | '@';
 
-// ASCII: 65 - 90
-// regex: [A-Z]
+/**
+ * ASCII: 65 - 90
+ * regex: [A-Z]
+ */
 type UpperCaseChar = Uppercase<LowerCaseChar>;
 
-// ASCII: 91 - 96
+/**
+ * ASCII: 91 - 96
+ */
 type SymbolChar3 = '[' | '\\' | ']' | '^' | '_' | '`';
 
-// ASCII: 97 - 122
-// regex: [a-z]
+/**
+ * ASCII: 97 - 122
+ * regex: [a-z]
+ */
 type LowerCaseChar =
-    | 'a'
-    | 'b'
-    | 'c'
-    | 'd'
-    | 'e'
-    | 'f'
-    | 'g'
-    | 'h'
-    | 'i'
-    | 'j'
-    | 'k'
-    | 'l'
-    | 'm'
-    | 'n'
-    | 'o'
-    | 'p'
-    | 'q'
-    | 'r'
-    | 's'
-    | 't'
-    | 'u'
-    | 'v'
-    | 'w'
-    | 'x'
-    | 'y'
-    | 'z';
+  | 'a'
+  | 'b'
+  | 'c'
+  | 'd'
+  | 'e'
+  | 'f'
+  | 'g'
+  | 'h'
+  | 'i'
+  | 'j'
+  | 'k'
+  | 'l'
+  | 'm'
+  | 'n'
+  | 'o'
+  | 'p'
+  | 'q'
+  | 'r'
+  | 's'
+  | 't'
+  | 'u'
+  | 'v'
+  | 'w'
+  | 'x'
+  | 'y'
+  | 'z';
 
-// ASCII: 123 - 126
+/**
+ * ASCII: 123 - 126
+ */
 type SymbolChar4 = '{' | '|' | '}' | '~';
 
 type SymbolChar = SymbolChar1 | SymbolChar2 | SymbolChar3 | SymbolChar4;
 type LetterChar = UpperCaseChar | LowerCaseChar;
 
-//almost the same as string but excludes things like \t, \n, etc that is highly unlikely one would want to be explicitely typed
+/**
+ * almost the same as string but excludes things like \t, \n, etc that is highly unlikely one would want to be explicitely typed
+ */
 type AnyChar = LetterChar | DigitChar | SymbolChar | SpaceChar;
 
-// regez: \w
+/**
+ * regez: \w
+ */
 type WordChar = LetterChar | DigitChar | '_';
 
-// regez: \W
+/**
+ * regez: \W
+ */
 type NonWordChar = Exclude<AnyChar, WordChar>;
 
 type Replace<T, P extends string, R extends string> = T extends `${infer X}${P}${infer Y}` ? `${X}${R}${Replace<Y, P, R>}` : T;
@@ -135,7 +162,7 @@ type Replace<T, P extends string, R extends string> = T extends `${infer X}${P}$
 // type Uncap<T extends string> =
 //     T extends `${Upper<infer X>}${infer Y}` ? `${Lower<X>}${Y}` : T;
 
-type Stringable = string | number | bigint | boolean | null | undefined;
+// type Stringable = string | number | bigint | boolean | null | undefined;
 
 // eslint-disable-next-line prettier/prettier
 type J<T extends unknown[]> =
@@ -144,18 +171,18 @@ type J<T extends unknown[]> =
     T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` :
     never;
 
-type D2<T> = J<[T, T]>;
-type D3<T> = J<[T, D2<T>]>;
-type D4<T> = J<[T, D3<T>]>;
-type D5<T> = J<[T, D4<T>]>;
-type D6<T> = J<[T, D5<T>]>;
-type D7<T> = J<[T, D6<T>]>;
-type D8<T> = J<[T, D7<T>]>;
-type D9<T> = J<[T, D8<T>]>;
-type Many<T> = D2<T> | D3<T> | D4<T> | D5<T> | D6<T> | D7<T> | D8<T> | D9<T>;
-type OneOrMany<T> = T | Many<T>;
-type SingleLetter<T> = Tail<T> extends '' ? T : never;
-type Gobble<T, U> = T extends J<[infer X, infer Y, infer Z]> ? (Y extends U ? X : J<[X, Gobble<J<[Y, Z]>, U>]>) : T;
+// type D2<T> = J<[T, T]>;
+// type D3<T> = J<[T, D2<T>]>;
+// type D4<T> = J<[T, D3<T>]>;
+// type D5<T> = J<[T, D4<T>]>;
+// type D6<T> = J<[T, D5<T>]>;
+// type D7<T> = J<[T, D6<T>]>;
+// type D8<T> = J<[T, D7<T>]>;
+// type D9<T> = J<[T, D8<T>]>;
+// type Many<T> = D2<T> | D3<T> | D4<T> | D5<T> | D6<T> | D7<T> | D8<T> | D9<T>;
+// type OneOrMany<T> = T | Many<T>;
+// type SingleLetter<T> = Tail<T> extends '' ? T : never;
+// type Gobble<T, U> = T extends J<[infer X, infer Y, infer Z]> ? (Y extends U ? X : J<[X, Gobble<J<[Y, Z]>, U>]>) : T;
 // type Gobble<T, U> =
 //     T extends `${infer X}${infer Y}${infer Z}`
 //     ? Y extends U
@@ -163,32 +190,32 @@ type Gobble<T, U> = T extends J<[infer X, infer Y, infer Z]> ? (Y extends U ? X 
 //       : `${X}${Gobble<`${T}${Z}`, U>}`
 //     : T;
 
-type HeadTail<T> = T extends `${infer THead}${infer TTail}` ? [THead, TTail] : never;
+// type HeadTail<T> = T extends `${infer THead}${infer TTail}` ? [THead, TTail] : never;
 
-type Head<T> = HeadTail<T> extends [infer X, any] ? X : '';
-type Tail<T> = HeadTail<T> extends [any, infer X] ? X : '';
+// type Head<T> = HeadTail<T> extends [infer X, any] ? X : '';
+// type Tail<T> = HeadTail<T> extends [any, infer X] ? X : '';
 
-type Train<T> = T extends string ? Train<ToCharArray<T>> : T extends [...infer TFront, infer TCaboose] ? [FromCharArray<TFront>, TCaboose] : never;
+// type Train<T> = T extends string ? Train<ToCharArray<T>> : T extends [...infer TFront, infer TCaboose] ? [FromCharArray<TFront>, TCaboose] : never;
 
-type Front<T> = Train<T> extends [infer X, any] ? X : '';
-type Caboose<T> = Train<T> extends [any, infer X] ? X : '';
+// type Front<T> = Train<T> extends [infer X, any] ? X : '';
+// type Caboose<T> = Train<T> extends [any, infer X] ? X : '';
 
 type ToCharArray<T> = T extends '' ? [] : T extends J<[infer X, infer Y]> ? [X, ...ToCharArray<Y>] : never;
 type FromCharArray<T extends unknown[]> = T extends []
-    ? ''
-    : T extends [string]
-    ? T[0]
-    : T extends [string, ...infer Y]
-    ? J<[T[0], FromCharArray<Y>]>
-    : never;
+  ? ''
+  : T extends [string]
+  ? T[0]
+  : T extends [string, ...infer Y]
+  ? J<[T[0], FromCharArray<Y>]>
+  : never;
 
 type Reverse<T> = T extends '' ? '' : T extends J<[infer X, infer Y]> ? J<[Reverse<Y>, X]> : never;
 
 type InsertBefore<TInput, TSearch, TInsert> = TInput extends J<[infer X, infer Y, infer Z]>
-    ? Y extends TSearch
+  ? Y extends TSearch
     ? J<[X, TInsert, Y, InsertBefore<Z, TSearch, TInsert>]>
     : J<[X, InsertBefore<J<[Y, Z]>, TSearch, TInsert>]>
-    : TInput;
+  : TInput;
 
 // type SnakeCase<T extends string> =
 //     T extends Lower<T> ? T :

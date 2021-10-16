@@ -1,11 +1,11 @@
-import { Constructor, ConstructorFor } from './constructor';
-import { Func } from './func';
+import { Func, Ctor } from '@rhombus/func';
 
-
-export class Singleton<T extends Constructor<T>> {
-    private static map = new WeakMap<Constructor, any>();
-
-    get instance(): InstanceType<T> {
+export class Singleton<T extends Ctor> {
+    private static map = new WeakMap<Ctor, any>();
+    get value(): InstanceType<T> {
+        throw '';
+    }
+    getInstance(): InstanceType<T> {
         return Singleton.map.get(this.type);
     }
     constructor(type: T, instance: InstanceType<T>);
@@ -19,6 +19,6 @@ export class Singleton<T extends Constructor<T>> {
 
     // eslint-disable-next-line @typescript-eslint/ban-types
     static for<TInstance extends { constructor: Function; }>(instance: TInstance) {
-        return new Singleton(instance.constructor as ConstructorFor<TInstance>, instance);
+        return new Singleton(instance.constructor as Ctor<any[], TInstance>, instance);
     }
 }

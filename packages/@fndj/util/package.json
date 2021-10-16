@@ -5,9 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "navigator.locks": "^0.8.1",
-    "setimmediate": "^1.0.5"
+    "@rhombus/func": "workspace:*"
   },
   "devDependencies": {
-    "@types/setimmediate": "^1.0.2"
   }
 }

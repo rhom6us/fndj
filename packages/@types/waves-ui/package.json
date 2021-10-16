@@ -3,7 +3,7 @@
     "version": "4.41.26",
     "description": "TypeScript definitions for waves-ui",
     "license": "MIT",
-    "private":true,
+    "private": true,
     "contributors": [
         {
             "name": "Thomas Butler",
@@ -11,5 +11,8 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "types": "index.d.ts"
+    "types": "index.d.ts",
+    "devDependencies": {
+        "typescript": "^4.4.3"
+    }
 }

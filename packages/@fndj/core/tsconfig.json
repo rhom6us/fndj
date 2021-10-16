@@ -2,20 +2,6 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "tags": [
-          "styled",
-          "css",
-          "sty"
-        ]
-      }
-    ],
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
-    "allowSyntheticDefaultImports": true
+    "tsBuildInfoFile": "./.tsbuildinfo"
   }
 }

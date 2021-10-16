@@ -1,3 +1,3 @@
 export * from './theme-provider';
 export * from './CommandBarBasicExample';
-export * from './Layout'
+export * from '../../browser/src/Layout'

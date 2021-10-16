@@ -1,4 +1,3 @@
-import { Func } from '.';
 import { defer } from './defer';
 
 

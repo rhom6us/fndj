@@ -18,6 +18,10 @@ interface Config extends Configuration {
 
 export const configuration: any = {
     ...config,
+    entry: [
+        ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
+        `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
+    ],
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -30,7 +34,7 @@ export const configuration: any = {
         ...config.resolve,
         extensions: [
             ...config.resolve!.extensions,
-            '.tsx', '.css', '.scss'
+            '.tsx', '.css', '.swcss', '.wasm', '.workletts'
         ],
         fallback: {
             ...config.resolve.fallback,
@@ -41,12 +45,9 @@ export const configuration: any = {
         ...config.module,
         rules: [
             rules.workletRule,
-            rules.workerRule,
+            // rules.workerRule,
             rules.wasmRule,
             rules.reactTypescriptRule,
-            rules.jsRule,
-            // rules.typescriptRule,
-            // nodeRule,
             rules.globalStylesheetRule,
             rules.stylesheetRule,
             rules.imageRule,

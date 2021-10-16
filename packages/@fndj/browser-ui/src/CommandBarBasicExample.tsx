@@ -1,8 +1,6 @@
+import { CommandBar, DefaultPalette, IButtonProps, ICommandBarItemProps, ICommandBarStyles } from '@fluentui/react';
 import * as React from 'react';
-import { CommandBar, ICommandBarItemProps } from '@fluentui/react/lib/CommandBar';
-import { IButtonProps } from '@fluentui/react/lib/Button';
-import { DefaultPalette } from '.pnpm/@fluentui+style-utilities@8.3.2_@types+react@17.0.3+react@17.0.2/node_modules/@fluentui/style-utilities';
-import { ICommandBarStyles } from '@fluentui/react';
+
 
 const overflowProps: IButtonProps = { ariaLabel: 'More commands' };
 

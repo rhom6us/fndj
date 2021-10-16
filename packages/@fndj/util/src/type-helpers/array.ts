@@ -1,4 +1,4 @@
-import { Cast } from './common';
+import { Cast } from './cast';
 
 /**
  * the first element

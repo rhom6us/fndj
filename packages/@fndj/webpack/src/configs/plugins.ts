@@ -15,6 +15,9 @@ export const webpackBar = new WebpackBar({});
 export const reachRefresh = new ReactRefreshPlugin();
 export const tsChecker = new ForkTsCheckerWebpackPlugin({
   // silent: true
+  typescript: {
+    memoryLimit: 2048 * 4 //2048 is default
+  }
 });
 
 export const cleanBuildDir = new CleanWebpackPlugin();
@@ -37,6 +40,10 @@ export const createIndexHtml = new HtmlWebpackPlugin({
     viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
   },
 });
+
+/**
+ * Seperates css into a seperate bundle in order to prevent brief flash of unstyled content.
+ */
 export const extractCssFiles = new MiniCssExtractPlugin({
   filename: '[id].styles.css',
   chunkFilename: '[id].styles.css',

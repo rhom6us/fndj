@@ -18,7 +18,7 @@ export default Transport;
  * playControl.start();
  */
 declare class Transport extends MasterTransport {
-    constructor(options?: undefined);
-    audioContext: any;
+    constructor(options?: { audioContext?: BaseAudioContext; });
+    audioContext: BaseAudioContext;
 }
 //# sourceMappingURL=Transport.d.ts.map

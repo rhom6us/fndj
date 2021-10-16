@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 // import configureStore from './store';
 import { Root } from './Root';
-import { setImmediateAsync } from '@fndj/util';
+import { setImmediateAsync } from '@rhombus/async-timers';
 
 // //const store = configureStore();
 const div = document.body.appendChild(document.createElement('div'));

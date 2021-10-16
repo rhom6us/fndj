@@ -12,13 +12,35 @@
     ],
     "configurations": [
         {
+            "type": "vscode-edge-devtools.debug",
+            "request": "launch",
+            "name": "xxLaunch Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Edge",
+            "port": 9222,
+            "request": "attach",
+            "type": "pwa-msedge",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "vscode-edge-devtools.debug",
+            "request": "attach",
+            "version": "dev",
+            "name": "11Attach to Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "name": ".NET Core Launch (local web)",
             "type": "coreclr",
             "request": "launch",
             // "preLaunchTask": "build",
-            "program": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
+            "program": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/packages/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/",
+            "cwd": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": false
@@ -50,11 +72,21 @@
 
         {
             // start msedge --remote-debugging-port=9222
-            "type": "vscode-edge-devtools.debug",
+            // "type": "vscode-edge-devtools.debug",
+            "type": "edge",
+            "version": "dev",
             "request": "attach",
-            "name": "Attach to Microsoft Edge and open the Edge DevTools",
+            "name": "qqAttach to Microsoft Edge and open the Edge DevTools",
             "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "port": 9222,
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack://*": "${webRoot}/packages/*"
+            },
+            "pathMapping": {
+                "/": "${workspaceFolder}"
+            }
         },
         {
             "type": "vscode-edge-devtools.debug",
@@ -77,7 +109,7 @@
             "preLaunchTask": "serve-renderer",
             "type": "edge",
             // "type": "vscode-edge-devtools.debug",
-            "version": "beta",
+            "version": "dev",
             // "runtimeExecutable": "beta",
             "request": "launch",
             "url": "http://localhost:9080",

@@ -9,36 +9,42 @@ const node_modules = /node_modules/i;
 
 export const workletRule: RuleSetRule = {
   test: /\.worklet\.ts$/,
-  use: [loaders.workletLoader],
+  exclude: node_modules,
+  use: [loaders.workletLoader, loaders.tsLoader],
 };
 export const workerRule: RuleSetRule = {
   test: /\.worker\.ts$/i,
+  exclude: node_modules,
   use: [loaders.workerLoader],
 };
 export const wasmRule: RuleSetRule = {
   test: /\.wasm$/i,
-  // type: 'asset/inline', // makes a data uri
-  type: 'asset/resource', // emits a file
+  exclude: node_modules,
+  type: 'asset/inline', // makes a data uri
+  // type: 'asset/resource', // emits a file
 };
 export const waveRule: RuleSetRule = {
   test: /\.wav$/i,
+  exclude: node_modules,
   // type: 'asset/inline', // makes a data uri
   type: 'asset/resource', // emits a file
 };
 export const reactTypescriptRule: RuleSetRule = {
-  test: /\.tsx?$/i,
-  exclude: node_modules,
+  test: /\.[tj]sx?$/i,
+  exclude: [node_modules, workletRule.test],
   use: [
-    isDev && loaders.reactRefreshLoader,
+    ...ifDev(loaders.reactRefreshLoader),
     loaders.tsLoader
-  ].filter(Boolean),
+  ],
 };
 export const typescriptRule: RuleSetRule = {
   test: /\.ts$/i,
+  exclude: [node_modules, workletRule.test],
   use: [loaders.tsLoader],
 };
 export const jsRule: RuleSetRule = {
   test: /\.js$/i,
+  exclude: [node_modules],
   use: [loaders.tsLoader],
 };
 // export const scriptRule: RuleSetRule = {
@@ -53,17 +59,30 @@ export const nodeRule: RuleSetRule = {
 
 
 
+
 //#endregion
 
 //#region styles
 export const globalStylesheetRule: RuleSetRule = {
   test: /\b(global|vars)\.s?css$/i,
-  use: [...(isDev ? [loaders.cssHotLoader] : []), MiniCssExtractPlugin.loader, loaders.cssLoader, loaders.postcssLoader, loaders.sassLoader],
+  use: [
+    ...ifDev(loaders.cssHotLoader),
+    loaders.cssExtractLoader,
+    loaders.cssLoader,
+    loaders.postcssLoader,
+    loaders.sassLoader
+  ],
 };
 export const stylesheetRule: RuleSetRule = {
   test: /\.s?css$/i,
   exclude: /\b(global|vars)\.s?css$/i,
-  use: [...(isDev ? [loaders.cssHotModuleLoader] : []), MiniCssExtractPlugin.loader, loaders.cssModuleLoader, loaders.postcssLoader, loaders.sassLoader],
+  use: [
+    ...ifDev(loaders.cssHotModuleLoader),
+    loaders.cssExtractLoader,
+    loaders.cssModuleLoader,
+    loaders.postcssLoader,
+    loaders.sassLoader
+  ],
 };
 //#endregion
 
@@ -87,3 +106,11 @@ export const htmlRule: RuleSetRule = {
   use: ['html-loader'],
 };
 //#endregion
+
+
+function ifDev<T extends any[]>(...values: T): T | [] {
+  if (isDev) {
+    return values;
+  }
+  return [];
+}

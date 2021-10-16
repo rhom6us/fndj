@@ -1,3 +1,4 @@
-import { Lazy } from '@fndj/util';
 
-export const audioContext = new Lazy(() => new AudioContext());
+const audioContext = new AudioContext();
+
+export { audioContext };

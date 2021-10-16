@@ -3,7 +3,7 @@
     "version": "4.41.26",
     "description": "TypeScript definitions for waves-masters",
     "license": "MIT",
-    "private":true,
+    "private": true,
     "contributors": [
         {
             "name": "Thomas Butler",
@@ -12,5 +12,8 @@
         }
     ],
     "main": "index.d.ts",
-    "types": "index.d.ts"
+    "types": "index.d.ts",
+    "devDependencies": {
+        "typescript": "^4.4.3"
+    }
 }

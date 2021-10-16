@@ -1,4 +1,4 @@
-import { audioContext } from '../audio-context';
+import { audioContextLazy } from '../audio-context';
 import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';
 import url from './FnFormulaProcessor.worklet.ts';
 

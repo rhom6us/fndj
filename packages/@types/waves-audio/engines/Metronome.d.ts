@@ -20,6 +20,7 @@ export default Metronome;
  */
 declare class Metronome extends AudioTimeEngine {
     constructor(options?: {
+        audioContext?: BaseAudioContext,
         period?: number,
         clickFreq?: number,
         clickAttack?: number,

@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import * as plugins from './plugins';
 import { entryPoint, isDev, outDir, projectDir } from './settings';
 export default {
-  devtool: "source-map",// isDev ? 'eval-cheap-module-source-map' : undefined, // 'eval-source-map',
+  devtool: 'eval-source-map',
   context: projectDir,
   entry: path.join(projectDir, entryPoint),
   output: {
@@ -25,6 +25,8 @@ export default {
       // stream: false /*require.resolve('stream-browserify')*/,
       // zlib: false /*require.resolve('zlib-browserify')*/,
       // util: false /*require.resolve('util/')*/,
+      child_process: false,
+      http2: require.resolve('spdy-or-http2'),
 
       dns: false /*require.resolve('chrome-dns')*/,
       net: false /*require.resolve('net-browserify')*/,

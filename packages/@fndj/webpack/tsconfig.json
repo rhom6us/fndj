@@ -9,6 +9,8 @@
     "inlineSourceMap": true,
     "inlineSources": false,
     "resolveJsonModule": true,
-    "skipDefaultLibCheck": true
+    "skipDefaultLibCheck": true,
+    "incremental": true, /* Enable incremental compilation */
+    "tsBuildInfoFile": "./.tsbuildinfo"
   }
 }

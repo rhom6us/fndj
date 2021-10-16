@@ -2,11 +2,11 @@ import { FFT_SIZE, PITCH_FACTOR, PROCESSOR_NAME } from './constants';
 // import processorUrl from './phase-vocoder-processor.worklet.ts';
 import { FftSize } from './FftSize';
 
-import url from './phase-vocoder-processor.worklet.ts';
-import { audioContext } from '../..';
+// import url from 'worklet-loader!./phase-vocoder-processor.worklet';
 import { enableLogging, logger } from '@fndj/util';
-await audioContext.value.audioWorklet.addModule(url);
-//const url = new URL('./phase-vocoder-processor.w.ts', import.meta.url);
+import { audioContext } from '../audio-context';
+
+// await audioContext.audioWorklet.addModule(new URL('./phase-vocoder-processor.worklet.ts', import.meta.url));
 
 
 export interface PhaseVocoderNodeOptions {

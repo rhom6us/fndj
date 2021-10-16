@@ -1,5 +1,5 @@
 import { Skip, Length, PartialList, Tail } from './type-helpers/array';
-import { Inc } from './type-helpers/integer';
+import { Inc } from './type-helpers/counter';
 
 type _CurryBasic<TArgs extends any[], TReturn> =
     <T extends PartialList<TArgs>>(...args: T) =>

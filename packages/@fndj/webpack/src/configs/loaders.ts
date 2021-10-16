@@ -1,16 +1,18 @@
+
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { Rule } from 'postcss';
 import postcssImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
 import type { RuleSetUseItem } from 'webpack';
-import { isDev } from './settings';
-export const cssModuleLoader: RuleSetUseItem = {
-  loader: 'css-loader',
-  options: {
-    importLoaders: 2,
-    modules: true,
-    import: true,
-    sourceMap: isDev,
-  },
-};
+import { isDev, targetElectronVersion } from './settings';
+
+
+
+
+/**
+ * Seperates css into a seperate bundle in order to prevent brief flash of unstyled content.
+ */
+export const cssExtractLoader: RuleSetUseItem = MiniCssExtractPlugin.loader;
 export const cssHotLoader: RuleSetUseItem = {
   loader: 'css-hot-loader',
 };
@@ -28,10 +30,30 @@ export const cssLoader: RuleSetUseItem = {
     sourceMap: isDev,
   },
 };
-export const sassLoader: RuleSetUseItem = {
-  loader: 'sass-loader',
+export const cssModuleLoader: RuleSetUseItem = {
+  loader: 'css-loader',
   options: {
+    importLoaders: 2,
+    modules: true,
+    import: true,
     sourceMap: isDev,
+  },
+};
+
+/** @deprecated  */
+export const fileLoader: RuleSetUseItem = {
+  loader: 'file-loader',
+  options: {
+    name: '[name]__[hash:base64:5].[ext]'
+  }
+};
+/** @deprecated  */
+export const fontLoader: RuleSetUseItem = {
+  loader: 'url-loader',
+  options: {
+    name: 'fonts/[name]--[folder].[ext]',
+    limit: 10240,
+    // mimetype: 'application/font-woff'
   },
 };
 export const postcssLoader: RuleSetUseItem = {
@@ -43,36 +65,14 @@ export const postcssLoader: RuleSetUseItem = {
     },
   },
 };
-export const fileLoader: RuleSetUseItem = {
-  loader: 'file-loader?name=[name]__[hash:base64:5].[ext]',
+export const sassLoader: RuleSetUseItem = {
+  loader: 'sass-loader',
+  options: {
+    sourceMap: isDev,
+  },
 };
 export const threadLoader: RuleSetUseItem = {
   loader: 'thread-loader',
-};
-export const electronMainBabelLoader: RuleSetUseItem = {
-  loader: 'babel-loader',
-  options: {
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          debug: isDev,
-          modules: false,
-          targets: {
-            electron: '6.0.12',
-          },
-        },
-      ],
-    ],
-  },
-};
-export const fontLoader: RuleSetUseItem = {
-  loader: 'url-loader',
-  options: {
-    name: 'fonts/[name]--[folder].[ext]',
-    limit: 10240,
-    // mimetype: 'application/font-woff'
-  },
 };
 // export const wasmLoader: RuleSetUseItem = {
 //   loader: 'url-loader',
@@ -81,6 +81,7 @@ export const fontLoader: RuleSetUseItem = {
 //     name: 'imgs/[name]--[folder].[ext]',
 //   },
 // };
+/** @deprecated  */
 export const imageLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
@@ -91,9 +92,9 @@ export const imageLoader: RuleSetUseItem = {
 export const workletLoader: RuleSetUseItem = {
   loader: 'worklet-loader',
   options: {
-    name: 'js/[hash].worklet.js'
+    inline: false
   }
-}
+};
 
 export const workerLoader: RuleSetUseItem = {
   loader: 'worker-loader',
@@ -103,7 +104,7 @@ export const workerLoader: RuleSetUseItem = {
     chunkFilename: "[id].[contenthash].worker.js",
     esModule: true,
   }
-}
+};
 export const reactRefreshLoader: RuleSetUseItem = {
   loader: 'babel-loader',
   options: { plugins: ['react-refresh/babel', '@babel/plugin-syntax-top-level-await', '@babel/plugin-proposal-class-properties'] },
@@ -111,7 +112,8 @@ export const reactRefreshLoader: RuleSetUseItem = {
 export const tsLoader: RuleSetUseItem = {
   loader: 'ts-loader',
   options: {
-    transpileOnly: isDev,
+    transpileOnly: isDev
+
     // projectReferences: true,
     // appendTsSuffixTo: [{}],
     // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
@@ -119,47 +121,6 @@ export const tsLoader: RuleSetUseItem = {
 };
 
 
-// export const jsLoader: RuleSetUseItem = {
-//   loader: 'babel-loader',
-//   options: {
-//     presets: [
-//       [
-//         '@babel/preset-env',
-//         {
-//           debug: isDev,
-//           modules: false,
-//           targets: {
-//             electron: '6.0.12',
-//           },
-//         },
-//       ],
-//     ],
-//   },
-// };
-
-// export const babelLoader: RuleSetUseItem = {
-//   loader: 'babel-loader',
-//   options: {
-//     cacheDirectory: true,
-//     babelrc: false,
-//     presets: [
-//       [
-//         '@babel/preset-env',
-//         { targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
-//       ],
-//       '@babel/preset-typescript',
-//       '@babel/preset-react',
-//     ],
-//     plugins: [
-//       // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
-//       ['@babel/plugin-proposal-decorators', { legacy: true }],
-//       ['@babel/plugin-proposal-class-properties', { loose: true }],
-//       'react-hot-loader/babel',
-//     ],
-//   },
-// };
-
-
 export const nodeLoader: RuleSetUseItem = {
   loader: 'node-loader'
-}
+};

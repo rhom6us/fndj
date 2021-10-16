@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { Server } from 'http';
 import webpack, { Compiler, Configuration, Stats, Watching } from 'webpack';
-import WebpackDevServer, { addDevServerEntrypoints } from 'webpack-dev-server';
+import WebpackDevServer, { } from 'webpack-dev-server';
 import cliLogger from './cliLogger';
 import * as configs from './configs';
 import { App, staticSourceDir } from './configs/settings';
@@ -88,7 +88,7 @@ export function compile(app: App): Compiler {
 
   const compiler = getCompiler(config, callback);
 
-  compiler.run(callback);
+  // compiler.run(callback);
   return compiler;
 }
 export function watch(app: App): Watching {
@@ -99,34 +99,32 @@ export function watch(app: App): Watching {
   return compiler.watch({}, callback);
 }
 
-export function serve(app: App): Server {
+export async function serve(app: App): Promise<URL> {
   const config = { ...configs[app], watch: true };
   const devServerConfig: WebpackDevServer.Configuration = {
-    contentBase: [staticSourceDir],
     host: 'localhost',
     port: 9080,
     // hot: true,
-    noInfo: true,
     open: false,
-    overlay: true,
     historyApiFallback: true,
     // clientLogLevel: "warning",
-    stats: {
-      colors: true,
-      assets: false,
-      entrypoints: false,
-      warnings: false,
-      // warningsFilter(warning) {
-      //   const pattern = /export .* was not found in/i;
-      //   return warning.split(/\r?\n/g).every(line => !pattern.test(line));
-      // },
-      modules: false,
-      timings: false,
-      version: false,
-      hash: false,
-    },
+
+    // stats: {
+    //   colors: true,
+    //   assets: false,
+    //   entrypoints: false,
+    //   warnings: false,
+    //   // warningsFilter(warning) {
+    //   //   const pattern = /export .* was not found in/i;
+    //   //   return warning.split(/\r?\n/g).every(line => !pattern.test(line));
+    //   // },
+    //   modules: false,
+    //   timings: false,
+    //   version: false,
+    //   hash: false,
+    // },
   };
-  addDevServerEntrypoints(config, devServerConfig);
+
   function handler(err: Error, stats: Stats) {
     if (err) {
       // eslint-disable-next-line no-console
@@ -137,9 +135,14 @@ export function serve(app: App): Server {
       console.info(stats);
     }
   }
-  const server = new WebpackDevServer(webpack(config) as any, devServerConfig);
-  return server.listen(devServerConfig.port!, devServerConfig.host!, () => {
-    // eslint-disable-next-line no-console
-    console.log(`dev server ready on http://${devServerConfig.host}:${devServerConfig.port}/`);
-  });
+  // config.entry ??= {};
+  // config.entry[process.env.npm_package_name].unshift(`webpack-dev-server/client?http://${devServerConfig.host}:${devServerConfig.port}/`, 'webpack/hot/dev-server');
+  const compiler = webpack(config);
+  const server = new WebpackDevServer(devServerConfig, compiler as any);
+  await server.start();
+  return new URL(`http://${devServerConfig.host}:${devServerConfig.port}/`);
+  // return server.listen(+devServerConfig.port!, devServerConfig.host!, () => {
+  //   // eslint-disable-next-line no-console
+  //   console.log(`dev server ready on http://${devServerConfig.host}:${devServerConfig.port}/`);
+  // });
 }

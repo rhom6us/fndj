@@ -3,8 +3,8 @@
     "tasks": [
         {
             "type": "npm",
-            "label": "serve-renderer",
-            "script": "start",
+            "label": "serve-browser",
+            "script": "start-browser",
             "isBackground": true,
             "problemMatcher": [
                 "$ts-checker-eslint-webpack-watch"

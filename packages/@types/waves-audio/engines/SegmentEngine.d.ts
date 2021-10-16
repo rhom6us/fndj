@@ -54,6 +54,7 @@ export default SegmentEngine;
  */
 declare class SegmentEngine extends AudioTimeEngine {
     constructor(options?: {
+        audioContext?: BaseAudioContext,
         buffer?: AudioBuffer,
         periodAbs?: number,
         periodRel?: number,

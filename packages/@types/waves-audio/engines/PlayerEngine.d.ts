@@ -21,6 +21,7 @@ export default PlayerEngine;
 declare class PlayerEngine extends AudioTimeEngine {
     constructor(buffer: AudioBuffer);
     constructor(options?: {
+        audioContext?: BaseAudioContext,
         buffer?: AudioBuffer,
         fadeTime?: number,
         cyclic?: boolean,

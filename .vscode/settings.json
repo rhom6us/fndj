@@ -11,51 +11,61 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.tsbuildinfo": true,
     "**/*.csproj.user": true,
     "**/bin/": true,
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
     "yarn.lock": true,
     "**/yarn-error.log": true,
-    "packages/@fndj/webpack/lib": false,
-    "packages/@fndj/webpack/__tests__": false,
-    "dist": true,
-    "packages/**/node_modules/[!@]*": false,
-    "**/*.d.ts.map": false,
-    ".*": false,
-    "**/desktop.ini": false,
-    "**/*.rar": false,
+    "**/*.d.ts.map": true,
+    "**/desktop.ini": true,
+    "pnpm-lock.yaml": true,
+    "**/.pnpm-debug.log": true,
     "packages/YouTubeProxy": false,
     "packages/@types": false,
     "packages/@fndj/webpack": false,
+    "packages/@fndj/webpack/lib": true,
     "**/node_modules": true,
-    "pnpm-lock.yaml": false,
-    "packages\\@fndj/superpowered": false,
-    "packages/fniterate": false,
-    "packages/redux-command-pattern": false,
-    "**/.pnpm-debug.log": true
+    "dist": true,
+    "**/.tmp.driveupload": true
   },
-
   // The package manager you use to install node modules.
-  "prettier.packageManager": "yarn",
-
+  "prettier.packageManager": "pnpm",
   // The package manager you use to install node modules.
-  "tslint.packageManager": "yarn",
-
+  "tslint.packageManager": "pnpm",
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",
   "editor.formatOnSaveMode": "modifications",
   "editor.formatOnType": true,
-  "editor.formatOnSave": true,
   "typescript.format.semicolons": "insert",
   "eslint.format.enable": true,
-  "explorerExclude.backup": null,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "npm.packageManager": "pnpm",
-  "files.autoSaveDelay": 3000,
-  "files.autoSave": "off",
-  "vscode-edge-devtools.browserFlavor": "Beta",
+  "files.autoSaveDelay": 5000,
+  "files.autoSave": "afterDelay",
   "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
-  "vscode-edge-devtools.headless": true
+  "explorerExclude.backup": null,
+  "scm.alwaysShowActions": true,
+  "notebook.consolidatedRunButton": true,
+  "eslint.codeAction.disableRuleComment": {
+    "location": "sameLine"
+  },
+  "githubIssues.createIssueTriggers": [
+    "TODO",
+    "todo",
+    "BUG",
+    "FIXME",
+    "ISSUE",
+    "HACK",
+    "DRAGON",
+    "DRAGONS"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 
 }

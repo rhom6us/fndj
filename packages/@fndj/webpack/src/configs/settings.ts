@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 
+
 export type Environment = 'production' | 'development';
 export type App = 'webApp';
 export type Command = 'fnbuild' | 'fnwatch' | 'fnserve';
@@ -17,3 +18,6 @@ export const rootDir = path.join(projectDir, '../../../');
 
 export const staticSourceDir = path.join(rootDir, 'static');
 export const outDir = path.join(rootDir, 'dist');
+
+
+export const targetElectronVersion = '6.0.12';

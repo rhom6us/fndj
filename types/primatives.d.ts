@@ -1,4 +1,4 @@
-export {};
+export { };
 declare global {
   type Join<T extends unknown[], D extends string> = T extends []
     ? ''
@@ -14,7 +14,6 @@ declare global {
     : S extends `${infer T}${D}${infer U}`
     ? [T, ...Split<U, D>]
     : [S];
-
 
   interface Array<T> {
     join<This extends T[], TSeperator extends string>(this: This, seperator: TSeperator): Join<This, TSeperator>;

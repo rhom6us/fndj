@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { audioContext } from '../audio-context';
 import { PROCESSOR_NAME } from './constants';
 import { FnEventTarget } from './FnEventTarget';
 import { FnMeterEvent } from './FnMeterEvent';
+// import url from './FnMeter.worklet.ts';
+// const url = new URL('./FnMeter.worklet.ts', import.meta.url);
+// console.log('heeeeeeeeey', { audioContext, url });
 
-import url from './FnMeter.worklet.ts';
-import { audioContext } from '../..';
-await audioContext.value.audioWorklet.addModule(url);
+// await audioContext.audioWorklet.addModule(url, {});
 
 interface FnMeterNodeEventMap extends AudioWorkletNodeEventMap {
   "meterdataupdated": FnMeterEvent;

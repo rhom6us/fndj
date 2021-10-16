@@ -9,3 +9,6 @@ export * from './SuperpoweredTrackLoader';
 export * from './SuperpoweredWebAudio';
 
 export * from './mods';
+
+declare const wasmUrl: string;
+export { wasmUrl };

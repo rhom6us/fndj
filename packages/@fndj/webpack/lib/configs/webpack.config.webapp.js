@@ -47,7 +47,9 @@ var plugins = __importStar(require("./plugins"));
 var rules = __importStar(require("./rules"));
 var settings_1 = require("./settings");
 var webpack_config_common_1 = __importDefault(require("./webpack.config.common"));
-exports.configuration = __assign(__assign({}, webpack_config_common_1.default), { target: 'web', mode: settings_1.isDev ? 'development' : 'production', 
+exports.configuration = __assign(__assign({}, webpack_config_common_1.default), { entry: __spreadArray(__spreadArray([], (Array.isArray(webpack_config_common_1.default.entry) ? webpack_config_common_1.default.entry : [webpack_config_common_1.default.entry]), true), [
+        "./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts"
+    ], false), target: 'web', mode: settings_1.isDev ? 'development' : 'production', 
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
     // entry: [
     //    // 'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
@@ -55,15 +57,12 @@ exports.configuration = __assign(__assign({}, webpack_config_common_1.default), 
     //     entryPoint // Your appʼs entry point
     // ],
     resolve: __assign(__assign({}, webpack_config_common_1.default.resolve), { extensions: __spreadArray(__spreadArray([], webpack_config_common_1.default.resolve.extensions, true), [
-            '.tsx', '.css', '.scss'
+            '.tsx', '.css', '.swcss', '.wasm', '.workletts'
         ], false), fallback: __assign({}, webpack_config_common_1.default.resolve.fallback) }), module: __assign(__assign({}, webpack_config_common_1.default.module), { rules: [
             rules.workletRule,
-            rules.workerRule,
+            // rules.workerRule,
             rules.wasmRule,
             rules.reactTypescriptRule,
-            rules.jsRule,
-            // rules.typescriptRule,
-            // nodeRule,
             rules.globalStylesheetRule,
             rules.stylesheetRule,
             rules.imageRule,
@@ -79,4 +78,4 @@ exports.configuration = __assign(__assign({}, webpack_config_common_1.default), 
         topLevelAwait: true,
     } });
 exports.default = exports.configuration;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUVBLGlEQUFxQztBQUNyQyw2Q0FBaUM7QUFDakMsdUNBQTJEO0FBQzNELGtGQUE2QztBQWFoQyxRQUFBLGFBQWEseUJBQ25CLCtCQUFNLEtBQ1QsTUFBTSxFQUFFLEtBQUssRUFDYixJQUFJLEVBQUUsZ0JBQUssQ0FBQyxDQUFDLENBQUMsYUFBYSxDQUFDLENBQUMsQ0FBQyxZQUFZO0lBQzFDLDZEQUE2RDtJQUM3RCxXQUFXO0lBQ1gsMkZBQTJGO0lBQzNGLGtGQUFrRjtJQUNsRiwyQ0FBMkM7SUFDM0MsS0FBSztJQUNMLE9BQU8sd0JBQ0EsK0JBQU0sQ0FBQyxPQUFPLEtBQ2pCLFVBQVUsa0NBQ0gsK0JBQU0sQ0FBQyxPQUFRLENBQUMsVUFBVTtZQUM3QixNQUFNLEVBQUUsTUFBTSxFQUFFLE9BQU87bUJBRTNCLFFBQVEsZUFDRCwrQkFBTSxDQUFDLE9BQU8sQ0FBQyxRQUFRLE1BSWxDLE1BQU0sd0JBQ0MsK0JBQU0sQ0FBQyxNQUFNLEtBQ2hCLEtBQUssRUFBRTtZQUNILEtBQUssQ0FBQyxXQUFXO1lBQ2pCLEtBQUssQ0FBQyxVQUFVO1lBQ2hCLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLG1CQUFtQjtZQUN6QixLQUFLLENBQUMsTUFBTTtZQUNaLHdCQUF3QjtZQUN4QixZQUFZO1lBQ1osS0FBSyxDQUFDLG9CQUFvQjtZQUMxQixLQUFLLENBQUMsY0FBYztZQUNwQixLQUFLLENBQUMsU0FBUztZQUNmLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLFFBQVE7U0FDakIsS0FFTCxPQUFPLEVBQUUsZ0NBQ0YsK0JBQU0sQ0FBQyxPQUFPO1FBRWpCLGdCQUFLLElBQUksT0FBTyxDQUFDLG9CQUFvQjtRQUNyQyxnQkFBSyxJQUFJLE9BQU8sQ0FBQyxZQUFZO1FBQzdCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxlQUFlO1FBQ3ZCLE9BQU8sQ0FBQyxhQUFhO2NBRXZCLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFDakIsV0FBVyxFQUFFO1FBQ1QsYUFBYSxFQUFFLElBQUk7S0FFdEIsSUFHSDtBQUdGLGtCQUFlLHFCQUFhLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay5jb25maWcud2ViYXBwLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbmZpZ3Mvd2VicGFjay5jb25maWcud2ViYXBwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUVBLGlEQUFxQztBQUNyQyw2Q0FBaUM7QUFDakMsdUNBQTJEO0FBQzNELGtGQUE2QztBQWFoQyxRQUFBLGFBQWEseUJBQ25CLCtCQUFNLEtBQ1QsS0FBSyxrQ0FDRSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsK0JBQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsK0JBQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsK0JBQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUNoRSxvRUFBb0U7ZUFFeEUsTUFBTSxFQUFFLEtBQUssRUFDYixJQUFJLEVBQUUsZ0JBQUssQ0FBQyxDQUFDLENBQUMsYUFBYSxDQUFDLENBQUMsQ0FBQyxZQUFZO0lBQzFDLDZEQUE2RDtJQUM3RCxXQUFXO0lBQ1gsMkZBQTJGO0lBQzNGLGtGQUFrRjtJQUNsRiwyQ0FBMkM7SUFDM0MsS0FBSztJQUNMLE9BQU8sd0JBQ0EsK0JBQU0sQ0FBQyxPQUFPLEtBQ2pCLFVBQVUsa0NBQ0gsK0JBQU0sQ0FBQyxPQUFRLENBQUMsVUFBVTtZQUM3QixNQUFNLEVBQUUsTUFBTSxFQUFFLFFBQVEsRUFBRSxPQUFPLEVBQUUsWUFBWTttQkFFbkQsUUFBUSxlQUNELCtCQUFNLENBQUMsT0FBTyxDQUFDLFFBQVEsTUFJbEMsTUFBTSx3QkFDQywrQkFBTSxDQUFDLE1BQU0sS0FDaEIsS0FBSyxFQUFFO1lBQ0gsS0FBSyxDQUFDLFdBQVc7WUFDakIsb0JBQW9CO1lBQ3BCLEtBQUssQ0FBQyxRQUFRO1lBQ2QsS0FBSyxDQUFDLG1CQUFtQjtZQUN6QixLQUFLLENBQUMsb0JBQW9CO1lBQzFCLEtBQUssQ0FBQyxjQUFjO1lBQ3BCLEtBQUssQ0FBQyxTQUFTO1lBQ2YsS0FBSyxDQUFDLFFBQVE7WUFDZCxLQUFLLENBQUMsUUFBUTtTQUNqQixLQUVMLE9BQU8sRUFBRSxnQ0FDRiwrQkFBTSxDQUFDLE9BQU87UUFFakIsZ0JBQUssSUFBSSxPQUFPLENBQUMsb0JBQW9CO1FBQ3JDLGdCQUFLLElBQUksT0FBTyxDQUFDLFlBQVk7UUFDN0IsT0FBTyxDQUFDLGVBQWU7UUFDdkIsT0FBTyxDQUFDLGVBQWU7UUFDdkIsT0FBTyxDQUFDLGFBQWE7Y0FFdkIsTUFBTSxDQUFDLE9BQU8sQ0FBQyxFQUNqQixXQUFXLEVBQUU7UUFDVCxhQUFhLEVBQUUsSUFBSTtLQUV0QixJQUdIO0FBR0Ysa0JBQWUscUJBQWEsQ0FBQyJ9

@@ -11,7 +11,10 @@
             "githubUsername": "rhom6us"
         }
     ],
+    "main": "index.d.ts",
+    "types": "index.d.ts",
     "typings": "index.d.ts",
     "devDependencies": {
+        "typescript": "^4.4.3"
     }
 }

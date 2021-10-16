@@ -1,5 +1,5 @@
-export {};
+// export {};
 
-declare global {
-  interface AudioParamMap extends Map<string, AudioParam> {}
-}
+// declare global {
+declare interface AudioParamMap extends Map<string, AudioParam> {}
+// }

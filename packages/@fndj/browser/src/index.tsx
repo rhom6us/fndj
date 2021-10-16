@@ -1,10 +1,16 @@
+import { audioContext } from '@fndj/core';
+import fnMeterUrl from '@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts';
+import { setImmediateAsync } from '@rhombus/async-timers';
 import React from 'react';
 import { render } from 'react-dom';
-import { Root } from './Root';
-import { setImmediateAsync } from '@fndj/util';
 import './global.scss';
+import { Root } from './Root';
+audioContext.audioWorklet.addModule(new URL(fnMeterUrl));
 
 const div = document.body.appendChild(document.createElement('app'));
+
+const eq = audioContext.createBiquadFilter();
+eq.type
 await setImmediateAsync();
 render(
     <Root />
