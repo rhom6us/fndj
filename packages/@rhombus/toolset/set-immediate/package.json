@@ -1,0 +1,12 @@
+{
+  "name": "@rhombus/set-immediate",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "Thomas Butler",
+  "dependencies": {
+    "setimmediate": "^1.0.5"
+  }
+}

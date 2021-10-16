@@ -1,4 +1,4 @@
-import { Func } from './';
+import { Action, Func } from '@rhombus/func'
 
 type Callback<T = void> =
   T extends void ? (error?: any) => void :
@@ -7,22 +7,22 @@ type Callback<T = void> =
 
 
 
-type InferPromisify<TFn extends Func<any>> =
+type InferPromisify<TFn extends Action> =
 
-  TFn extends Func<[Callback<infer TValue>]> ? [[],TValue] :
-  TFn extends Func<[infer TArg1, Callback<infer TValue>]> ? [[TArg1],TValue] :
-  TFn extends Func<[infer TArg1, infer TArg2, Callback<infer TValue>]> ? [[TArg1, TArg2],TValue] :
-  TFn extends Func<[infer TArg1, infer TArg2, infer TArg3, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3],TValue] :
-  TFn extends Func<[infer TArg1, infer TArg2, infer TArg3, infer TArg4, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3, TArg4],TValue] :
-  TFn extends Func<[infer TArg1, infer TArg2, infer TArg3, infer TArg4, infer TArg5, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3, TArg4, TArg5],TValue] :
+  TFn extends Action<[Callback<infer TValue>]> ? [[], TValue] :
+  TFn extends Action<[infer TArg1, Callback<infer TValue>]> ? [[TArg1], TValue] :
+  TFn extends Action<[infer TArg1, infer TArg2, Callback<infer TValue>]> ? [[TArg1, TArg2], TValue] :
+  TFn extends Action<[infer TArg1, infer TArg2, infer TArg3, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3], TValue] :
+  TFn extends Action<[infer TArg1, infer TArg2, infer TArg3, infer TArg4, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3, TArg4], TValue] :
+  TFn extends Action<[infer TArg1, infer TArg2, infer TArg3, infer TArg4, infer TArg5, Callback<infer TValue>]> ? [[TArg1, TArg2, TArg3, TArg4, TArg5], TValue] :
   never;
 
-type InferNonCbArgs<TFn extends Func<any>> = InferPromisify<TFn>[0];
-type InferValue<TFn extends Func<any>> = InferPromisify<TFn>[1];
+type InferNonCbArgs<TFn extends Action> = InferPromisify<TFn>[0];
+type InferValue<TFn extends Action> = InferPromisify<TFn>[1];
 
-export function promisify<TFn extends Func<any>>(fn: TFn): Func<InferNonCbArgs<TFn>, Promise<InferValue<TFn>>> {
-  return (...args: any[]) => {
-    return new Promise((resolve, reject) => {
+export function promisify<TFn extends Action>(fn: TFn) {
+  return (...args: InferNonCbArgs<TFn>) => {
+    return new Promise<InferValue<TFn>>((resolve, reject) => {
       fn(...args, (err: any, result: any) => err ? reject(err) : resolve(result))
     });
   };

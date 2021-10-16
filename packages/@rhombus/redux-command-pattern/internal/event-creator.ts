@@ -1,14 +1,14 @@
 import { InferPayload, ReducerFnAny } from './reducer-fn';
 import { StandardEvent } from './standard-event';
-import { DeepDictionary, DeepDictionaryItem, Restify } from './utils';
+import { Cast, DeepDictionary, DeepDictionaryItem, Inc, Restify } from './utils';
 
- type EventCreator<TReducerFn extends ReducerFnAny> = (...payload: Restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>>;
- type EventCreatorMap<TReducerFnMap extends DeepDictionary<ReducerFnAny>> = {
-  [K in keyof TReducerFnMap]: EventCreatorOrMap<TReducerFnMap[K]>;
-};
-type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>> =
-  TReducerFnOrMap extends ReducerFnAny ? EventCreator<TReducerFnOrMap> :
-  TReducerFnOrMap extends DeepDictionary<ReducerFnAny> ? EventCreatorMap<TReducerFnOrMap> :
+ type EventCreator<TReducerFn extends ReducerFnAny, Name extends string|unknown> = (...payload: Restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>, Name>;
+
+export type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>, NameAcc extends string|unknown = unknown> =
+  TReducerFnOrMap extends ReducerFnAny ? EventCreator<TReducerFnOrMap, NameAcc> :
+  TReducerFnOrMap extends DeepDictionary<ReducerFnAny> ? {
+    [K in keyof TReducerFnOrMap]: EventCreatorOrMap<TReducerFnOrMap[K], NameAcc extends string ? `${NameAcc}.${Cast<K, string>}` : K>;
+   } :
   never;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -27,3 +27,12 @@ export function getEventCreator<TReducers extends DeepDictionaryItem<ReducerFnAn
     },
   }) as EventCreatorOrMap<TReducers>;
 }
+
+
+export type EventTypes<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>, NameAcc extends string | unknown = unknown, MaxDepth extends number = 10, CurrentDepth extends number = 0> =
+  CurrentDepth extends MaxDepth ? never :
+  TReducerFnOrMap extends ReducerFnAny ? StandardEvent<InferPayload<TReducerFnOrMap>, NameAcc> :
+  TReducerFnOrMap extends DeepDictionary<ReducerFnAny> ? {
+    [K in keyof TReducerFnOrMap]: EventTypes<TReducerFnOrMap[K], NameAcc extends string ? `${NameAcc}.${Cast<K, string>}` : K, MaxDepth, Inc<CurrentDepth>>;
+   }[keyof TReducerFnOrMap] :
+  never;

@@ -1,12 +1,13 @@
+import { setImmediateAsync } from '@rhombus/async-timers';
+import { Func } from '@rhombus/func';
 import { get, noop } from 'lodash';
 import { StandardCommand } from './standard-command';
-import { isStandardEvent, StandardEvent, StandardEventAny } from './standard-event';
+import { isStandardEvent, StandardEventAny } from './standard-event';
 import { Dispatch, GetState } from './store';
 import {
-    AnyTypeOf, assertNever, Await, DeepDictionary, DeepDictionaryItem, defer, exec, Func, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isObservable, isPromiseLike,
-    isThunk, Observable, restify, Restify, Thunk
+  AnyTypeOf, assertNever, Await, DeepDictionary, DeepDictionaryItem, defer, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isObservable, isPromiseLike,
+  isThunk, Observable, restify, Restify, Thunk
 } from './utils';
-import { setImmediateAsync } from './utils/async-timers';
 
 type CommandGenerator<TState, TEvent extends StandardEventAny | void> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, [TState | undefined]>;
 type AsyncCommandGenerator<TState, TEvent extends StandardEventAny | void> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, Promise<TState>>;
@@ -14,7 +15,7 @@ type AsyncCommandGenerator<TState, TEvent extends StandardEventAny | void> = Asy
 // type CommandIterable<TState, TEvent extends StandardEventAny | void> = Iterable<CommandResult<TState, TEvent>>;
 // type AsyncCommandIterable<TState, TEvent extends StandardEventAny | void> = AsyncIterable<CommandResult<TState, TEvent>>;
 
-// type Thunk = Func<Dispatch>;
+// type Thunk = Action<[Dispatch]>;
 // type CommandResult<TState, TEvent extends StandardEventAny | void> =
 //   | TEvent
 //   | Thunk
@@ -52,20 +53,32 @@ export type InferPayload<T extends CommandFnMap> =
 
 
 
-type Canceller = Func;
-interface Store<TState, TEvents extends StandardEvent = StandardEventAny> {
+type Canceller = Func<[], void>;
+export type CommandHandler<TPayload> = Func<[StandardCommand<TPayload>], Canceller>;
+export interface Store<TState, TEvents extends StandardEventAny = StandardEventAny> {
   dispatch: Dispatch<TEvents>,
   getState: GetState<TState>
 };
-export function createCommandHandler<T extends DeepDictionary<CommandFnAny>>(store: Store<InferState<T>, InferEvents<T>>, implementation: T): Func<StandardCommand<InferPayload<T>>, Canceller> {
+
+export type InferStore<T extends DeepDictionary<CommandFnAny>> = Store<InferState<T>, InferEvents<T>>;
+
+/**
+ * Accepts a standard-command, looks up its implementation, invokes it, and dispatches the resulting events to the store.
+ * @param store
+ * @param implementation {[command-name]: (state, payload)=>events}
+ * @returns ({command-name, payload}) => canceller
+ */
+export function createCommandHandler<T extends DeepDictionary<CommandFnAny>>(store: InferStore<T>, implementation: T): CommandHandler<InferPayload<T>> {
   type TState = InferState<T>;
   type TPayload = InferPayload<T>;
   type TEvents = InferEvents<T>;
 
-  return function handleCommand({ type, payload }: StandardCommand<TPayload>): Canceller {
+  return function handleCommand({ type, payload }) {
     const fn = get(implementation, type) as CommandFn<TState, TPayload, TEvents>;
+    if (typeof fn !== 'function') {
+      throw new TypeError('Invalid command');
+    }
     const result = fn(store.getState(), ...restify(payload));
-
     return handle(result, store);
 
   };
@@ -105,6 +118,10 @@ function handle<TState, TEvents extends StandardEventAny>(result: CommandResult<
 
   return assertNever(result);
 }
+function handleStandardAction<TStore extends AnyStore>(value: StandardEventAny, {dispatch}: TStore): Canceller {
+  dispatch(value);
+  return noop;
+}
 function handleIterable<TStore extends AnyStore>(value: Iterable<Result<TStore>>, store: TStore): Canceller {
   let cancelled = false;
   (async () => {
@@ -133,19 +150,15 @@ function handleAsyncIterable<TStore extends AnyStore>(value: AsyncIterable<Resul
     cancelled = true;
   }
 }
-function handleStandardAction<TStore extends AnyStore>(value: StandardEventAny, {dispatch}: TStore): Canceller {
-  dispatch(value);
-  return noop;
-}
 function handlePromiseLike<TStore extends AnyStore>(value: PromiseLike<Result<TStore>>, store: TStore ): Canceller {
   let cancelled = false;
-  const cancel = exec(async (value) => {
+  const cancel = (async (value) => {
     const result = await value;
     if (cancelled) {
       return noop;
     }
     return handle(result, store);
-  }, value);
+  })(value);
   return () => {
     cancelled = true;
     cancel.then(p => p());

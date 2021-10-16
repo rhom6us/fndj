@@ -1,0 +1,12 @@
+{
+  "name": "@rhombus/async-timers",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "Thomas Butler",
+  "dependencies": {
+    "@rhombus/set-immediate": "workspace:*"
+  }
+}

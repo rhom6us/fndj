@@ -1,14 +1,15 @@
 
+import { Func } from '@rhombus/func';
 import { Dictionary, isFunction, toPairs } from 'lodash';
+import { EventTypes } from './event-creator';
 import { Reducer as ReduxReducer } from './external/redux';
-import { StandardEvent } from './standard-event';
-import { Func, restify, Restify, tuple } from './utils';
+import { restify, Restify, tuple } from './utils';
 import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
   state: TState,
   ...payload: Restify<TPayload>
-) => TState;red
+) => TState;
 export type ReducerFnAny = ReducerFn<any, any>;
 
 export type InferState<TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<any,any>>> = TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<infer TState, any>>
@@ -32,7 +33,7 @@ function isReducer(value: any): value is ReducerFnAny {
 }
 const pairs: <T extends Dictionary<any>>(value: T) => T extends Dictionary<infer TValue> ? [string, TValue][] : never = toPairs;
 
-export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reducers: T): ReduxReducer<InferState<T>, StandardEvent<InferPayload<T>>> {
+export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reducers: T): ReduxReducer<InferState<T>, EventTypes<T>> {
   type TState = InferState<T>;
   type TPayload = InferPayload<T>;
   type TReducer = ReducerFn<TState, TPayload>;
@@ -48,7 +49,7 @@ export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reduce
     }
   }
 
-  return function rootReducerfn(state: TState | undefined, { type, payload }: StandardEvent<TPayload>): TState {
+  return function rootReducerfn(state: TState | undefined, { type, payload }: EventTypes<T>): TState {
     if (state === undefined) {
       throw new TypeError('redux-command-pattern does not support undefined state. Please preload with an initial state');
     }
@@ -57,6 +58,6 @@ export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reduce
       console.warn(`reducer not found for action: ${type}`);
       return state;
     }
-    return finalMap[type](state, ...restify(payload));
+    return finalMap[type](state, ...restify(payload as any));
   };
 }

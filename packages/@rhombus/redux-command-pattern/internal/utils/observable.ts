@@ -1,14 +1,22 @@
+import { Action } from '@rhombus/func';
+
+declare global {
+  interface SymbolConstructor {
+    readonly observable: unique symbol;
+  }
+}
+
 export interface Observer<T> {
     onNext(value: T): void;
 }
-export type Unsubscribe = () => void;
+export type Unsubscribe = Action<[]>;
 
 /**
  * A minimal observable of state changes.
  * For more information, see the observable proposal:
  * https://github.com/tc39/proposal-observable
  */
-export type Observable<T> = {
+export interface Observable<T> {
   /**
    * The minimal observable subscription method.
    * @param {Object} observer Any object that can be used as an observer.

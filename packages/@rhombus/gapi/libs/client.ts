@@ -1,0 +1,36 @@
+/// <reference types="gapi.client.youtube" />
+
+import { getGapi, loadLib } from '../gapi';
+
+// const g = await (async function addScript() {
+//     const script = document.createElement('script');
+//     script.src = 'https://apis.google.com/js/api.js';
+//     script.onload = e => {
+//         console.log('gapi ONLOADED', { gapi, e });
+//     };
+//     document.head.appendChild(script);
+//     console.log('gapi appended');
+//     await setImmediateAsync();
+//     console.warn('****************************************');
+//     console.log('waited immediate', { gapi });
+//     return window.gapi;
+// }());
+export type GapiClient = typeof gapi.client;
+let cache: GapiClient | undefined;
+
+export async function getClient(): Promise<GapiClient> {
+    if (cache) {
+        return cache;
+    }
+    await loadLib('client');
+    const gapi = await getGapi();
+    await gapi.client.init({
+        // Your API key will be automatically added to the Discovery Document URLs.
+        // 'apiKey': 'YOUR_API_KEY',
+        // discoveryDocs: [
+        //     // 'https://people.googleapis.com/$discovery/rest',
+        //     'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
+        // ],
+    });
+    return cache = gapi.client;
+}

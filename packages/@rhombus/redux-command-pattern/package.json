@@ -1,18 +1,19 @@
 {
-  "name": "redux-command-pattern",
+  "name": "@rhombus/redux-command-pattern",
   "version": "1.1.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rhombus/async-timers": "workspace:*",
+    "@rhombus/func": "workspace:*",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.150"
+    "@types/lodash": "^4.14.175"
   }
 }
