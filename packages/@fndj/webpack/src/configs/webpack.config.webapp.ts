@@ -1,8 +1,7 @@
-import path from 'path';
 import { Configuration } from 'webpack';
 import * as plugins from './plugins';
 import * as rules from './rules';
-import { entryPoint, isDev, projectDir } from './settings';
+import { isDev } from './settings';
 import config from './webpack.config.common';
 interface Config extends Configuration {
     experiments?: {
@@ -47,6 +46,7 @@ export const configuration: any = {
             rules.workletRule,
             // rules.workerRule,
             rules.wasmRule,
+            rules.waveRule,
             rules.reactTypescriptRule,
             rules.globalStylesheetRule,
             rules.stylesheetRule,

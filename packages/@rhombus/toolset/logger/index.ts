@@ -1,3 +1,4 @@
+import { Action } from '@rhombus/func';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 
@@ -21,29 +22,43 @@
 
 // }
 type RemapReturns<T> = {
-    [K in keyof T]: T[K] extends (...args: any[]) => void ? <TArgs extends Parameters<T[K]>>(...args: TArgs) => (
-        TArgs extends [] ? T :
-        TArgs extends [infer TSingleItem] ? TSingleItem :
-        TArgs extends [infer TFirst, ...any] ? TFirst :
-        T
-
+    [K in keyof T]: T[K] extends Action ? <Args extends Parameters<T[K]>>(...args: Args) => (
+        Args extends [...any[], infer Last] ? Last : T
     ) : T[K]
 };
 
-let _enabled = false;
-export function enableLogging(enable = true) {
-    _enabled = enable;
-}
-export const logger: RemapReturns<Console> = new Proxy(console, {
-    get: function (target: any, prop, receiver) {
-        return (...args: any[]) => {
-            if (_enabled) {
-                target[prop](...args);
-            }
-            return args.length ? args[0] : target;
-        };
+export type LoggerBase = RemapReturns<Console>;
+type CreateLoggerResult<T extends LoggerBase = LoggerBase> = readonly [logger:T, enableLogging:Action<[enable?:boolean]>];
+export function createLogger(enabled = false):CreateLoggerResult {
+    let _enabled = enabled;
+    function enableLogging(enable = true) {
+        _enabled = enable;
     }
-});;
+    const logger: LoggerBase = new Proxy(console, {
+        get: function (target: any, prop, receiver) {
+            return (...args: [any, ...any]) => {
+                if (_enabled) {
+                    target[prop](...args);
+                }
+                return args.length ? args.slice(-1)[0] : target;
+            };
+        }
+    });
+    return [logger, enableLogging] as const;
+}
+export function createNoopLogger(): CreateLoggerResult {
+    function enableLogging(enable = true) {
+    }
+    const logger: LoggerBase = new Proxy(console, {
+        get: function (target: any, prop, receiver) {
+            return (...args: [any, ...any]) => {
+                return args.length ? args.slice(-1)[0] : target;
+            };
+        }
+    });
+    return [logger, enableLogging] as const;
+}
+export const [logger, enableLogging] = createLogger();
 
 
 // function keys<T>(obj: T) {

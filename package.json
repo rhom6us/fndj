@@ -13,7 +13,6 @@
     "start-main": "pnpm -C packages/@fndj/main serve",
     "build-browser": "pnpm -C packages/@fndj/browser compile",
     "start-browser": "pnpm -C packages/@fndj/browser serve",
-    "build": "pnpm -C packages/@fndj/ui build",
     "wp": "pnpm -C packages/@fndj/webpack build",
     "wp-watch": "pnpm -C packages/@fndj/webpack watch",
     "check-env": "node -e 'console.log(process.env)' | grep npm",

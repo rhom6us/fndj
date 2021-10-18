@@ -1,0 +1,1 @@
+{"version":3,"file":"CheapRingBuffer.js","sourceRoot":"","sources":["../../src/CheapRingBuffer.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,eAAmB,SAAQ,KAAQ;IAC5C,IAAI,CAAC,KAAQ;QACT,KAAK,CAAC,KAAK,EAAE,CAAC;QACd,OAAO,KAAK,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;IAC7B,CAAC;CACJ"}

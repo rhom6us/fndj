@@ -23,6 +23,7 @@ export const wasmRule: RuleSetRule = {
   type: 'asset/inline', // makes a data uri
   // type: 'asset/resource', // emits a file
 };
+
 export const waveRule: RuleSetRule = {
   test: /\.wav$/i,
   exclude: node_modules,

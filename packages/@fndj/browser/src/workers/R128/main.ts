@@ -1,10 +1,9 @@
+import { R128 } from '@fndj/core';
 import { logger } from '@rhombus/logger';
+import { CheapRingBuffer } from '@rhombus/type-helpers';
 import * as ASSESS from './assess';
-import { CheapRingBuffer } from './CheapRingBuffer';
-import './helpers';
 import { $, maxAbs, roundTo1Decimal, using } from './helpers';
-import url from './impulse-responses_3sec-1-mono_44100.wav';
-import { R128 } from './R128';
+import impulseResponseUrl from './impulse-responses_3sec-1-mono_44100.wav';
 
 const context = new AudioContext();
 
@@ -27,7 +26,7 @@ const rmsHistory_L = CheapRingBuffer.from(peakHistory.slice());
 const rmsHistory_R = CheapRingBuffer.from(peakHistory.slice());
 const psrHistory = CheapRingBuffer.from(peakHistory.slice());
 const impulseResponseBuffer = await (async function () {
-    const response = await fetch(url);
+    const response = await fetch(impulseResponseUrl);
     const arrayBuffer = await response.arrayBuffer();
     return context.decodeAudioData(arrayBuffer);
 }());
@@ -68,7 +67,7 @@ const dataArrayPeak = new Float32Array(analyserNode.frequencyBinCount);
     psrHistory.push(psr_lu);
     using(canvas_waveform, '2d', ctx => {
         ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.fillRect(0, 0, canvas_waveform.width, canvas_waveform.width);
+        ctx.fillRect(0, 0, canvas_waveform.width, canvas_waveform.height);
         ctx.lineWidth = 1;
 
         //PEAK
@@ -102,7 +101,7 @@ const dataArrayPeak = new Float32Array(analyserNode.frequencyBinCount);
 
     using(canvas_loudness, '2d', ctx => {
         ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.fillRect(0, 0, canvas_waveform.width, canvas_waveform.width);
+        ctx.fillRect(0, 0, canvas_waveform.width, canvas_waveform.height);
         ctx.lineWidth = 1;
         psrHistory.forEach((psr_value, x) => {
             ctx.beginPath();

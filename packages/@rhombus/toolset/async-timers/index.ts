@@ -1,4 +1,4 @@
-import { setImmediate, clearImmediate } from "@rhombus/set-immediate";
+import { clearImmediate, setImmediate } from "@rhombus/set-immediate";
 
 declare class AbortSignal {
     addEventListener(name: string, cb: (ev: any) => void): void;
@@ -15,7 +15,7 @@ export function setImmediateAsync(...args: any) {
     const [first, ...rest] = args;
     const signal = first instanceof AbortSignal ? first : undefined;
     const params = signal ? rest : args;
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
         let token: any;
         signal?.addEventListener('abort', (ev) => {
             if (token) {
@@ -39,7 +39,7 @@ export function setTimeoutAsync(timeout: number, ...args: any) {
     const signal = first instanceof AbortSignal ? first : undefined;
     const params = signal ? rest : args;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
         let token: any;
         signal?.addEventListener('abort', (ev) => {
             if (token) {

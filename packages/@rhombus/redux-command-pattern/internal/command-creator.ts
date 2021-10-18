@@ -1,6 +1,7 @@
+import { Restify, unrestify } from '@rhombus/type-helpers';
 import { CommandFnAny, CommandHandler, InferPayload } from './command-fn';
 import { StandardCommand } from './standard-command';
-import { DeepDictionary, DeepDictionaryItem, Restify, unrestify } from './utils';
+import { DeepDictionary, DeepDictionaryItem } from './utils';
 
 export type CommandCreator<TCommandFn extends CommandFnAny> = (...payload: Restify<InferPayload<TCommandFn>>) => StandardCommand<InferPayload<TCommandFn>>;
 

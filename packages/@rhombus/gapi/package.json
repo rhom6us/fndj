@@ -2,16 +2,21 @@
   "name": "@rhombus/gapi",
   "version": "1.1.0",
   "description": "",
-  "main": "index.ts",
-  "scripts": {},
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist -d  --noEmit false"
+  },
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
     "@rhombus/async-timers": "workspace:*"
   },
   "devDependencies": {
+    "@maxim_mazurok/gapi.client.youtube": "^3.0.20211013",
     "@types/gapi": "^0.0.41",
     "@types/gapi.auth2": "^0.0.55",
+    "@types/gapi.client": "^1.0.5",
     "@types/gapi.client.youtube": "^3.0.2"
   }
 }

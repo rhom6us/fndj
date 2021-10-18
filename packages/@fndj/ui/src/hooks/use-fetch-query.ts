@@ -1,4 +1,4 @@
-import { useQuery, QueryKey } from 'react-query';
+import { QueryKey, useQuery } from 'react-query';
 import { fetchWithThrow } from '../api/fetch-with-throw';
 
 

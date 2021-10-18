@@ -1,0 +1,1 @@
+{"version":3,"file":"standard-event.js","sourceRoot":"","sources":["../internal/standard-event.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAE,QAAQ,EAAE,MAAM,QAAQ,CAAC;AAS9C,MAAM,UAAU,eAAe,CAAC,KAAU;IACxC,OAAO,CAAC,UAAU,CAAC,KAAK,CAAC,IAAI,KAAK,CAAC,IAAI,IAAI,QAAQ,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC;AAClE,CAAC"}

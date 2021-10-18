@@ -1,10 +1,9 @@
 
 import { Func } from '@rhombus/func';
-import { tuple } from '@rhombus/type-helpers';
+import { Restify, restify, tuple } from '@rhombus/type-helpers';
 import { Dictionary, isFunction, toPairs } from 'lodash';
 import { EventTypes } from './event-creator';
 import { Reducer as ReduxReducer } from './external/redux';
-import { restify, Restify } from './utils';
 import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
@@ -40,7 +39,7 @@ export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reduce
   type TReducer = ReducerFn<TState, TPayload>;
 
   const finalMap: Dictionary<TReducer> = {};
-  const stack: [string, DeepDictionaryItem<TReducer>][] = toPairs(reducers);
+  const stack: (readonly [string, DeepDictionaryItem<TReducer>])[] = toPairs(reducers);
   while (stack.length) {
     const [prefix, mapOrFun] = stack.pop()!;
     if (isReducer(mapOrFun)) {

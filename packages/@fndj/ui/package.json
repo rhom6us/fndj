@@ -14,6 +14,8 @@
     "@fluentui/react": "^8.36.0",
     "@fndj/core": "workspace:*",
     "@rhombus/type-helpers": "workspace:*",
+    "@rhombus/type-guards": "workspace:*",
+    "@rhombus/react": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
     "classnames": "^2.3.1",

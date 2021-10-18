@@ -48,8 +48,11 @@ importers:
       '@hot-loader/react-dom': ^17.0.1
       '@rhombus/async-timers': workspace:*
       '@rhombus/func': workspace:*
+      '@rhombus/gapi': workspace:*
       '@rhombus/gapi-react': workspace:*
       '@rhombus/logger': workspace:*
+      '@rhombus/react': workspace:*
+      '@rhombus/type-guards': workspace:*
       '@rhombus/type-helpers': workspace:*
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
@@ -82,8 +85,11 @@ importers:
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
       '@rhombus/func': link:../../@rhombus/toolset/func
+      '@rhombus/gapi': link:../../@rhombus/gapi
       '@rhombus/gapi-react': link:../../@rhombus/gapi-react
       '@rhombus/logger': link:../../@rhombus/toolset/logger
+      '@rhombus/react': link:../../@rhombus/react
+      '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
       '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       comlink: 4.3.1
@@ -298,6 +304,8 @@ importers:
       '@fndj/core': workspace:*
       '@fndj/webpack': workspace:*
       '@rhombus/async-timers': workspace:*
+      '@rhombus/react': workspace:*
+      '@rhombus/type-guards': workspace:*
       '@rhombus/type-helpers': workspace:*
       '@types/prop-types': ^15.7.4
       '@types/react': ^17.0.26
@@ -330,6 +338,8 @@ importers:
       '@fndj/core': link:../core
       '@fndj/webpack': link:../webpack
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
+      '@rhombus/react': link:../../@rhombus/react
+      '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
       '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       normalize.css: 8.0.1
@@ -474,21 +484,26 @@ importers:
 
   packages/@rhombus/gapi:
     specifiers:
+      '@maxim_mazurok/gapi.client.youtube': ^3.0.20211013
       '@rhombus/async-timers': workspace:*
       '@types/gapi': ^0.0.41
       '@types/gapi.auth2': ^0.0.55
+      '@types/gapi.client': ^1.0.5
       '@types/gapi.client.youtube': ^3.0.2
     dependencies:
       '@rhombus/async-timers': link:../toolset/async-timers
     devDependencies:
+      '@maxim_mazurok/gapi.client.youtube': 3.0.20211013
       '@types/gapi': 0.0.41
       '@types/gapi.auth2': 0.0.55
+      '@types/gapi.client': 1.0.5
       '@types/gapi.client.youtube': 3.0.2
 
   packages/@rhombus/gapi-react:
     specifiers:
       '@rhombus/func': workspace:*
       '@rhombus/gapi': workspace:*
+      '@rhombus/react': workspace:*
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
       react: ^17.0.1
@@ -496,6 +511,26 @@ importers:
     dependencies:
       '@rhombus/func': link:../toolset/func
       '@rhombus/gapi': link:../gapi
+      '@rhombus/react': link:../react
+    devDependencies:
+      '@types/react': 17.0.26
+      '@types/react-dom': 17.0.9
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+
+  packages/@rhombus/react:
+    specifiers:
+      '@rhombus/func': workspace:*
+      '@rhombus/logger': workspace:*
+      '@rhombus/type-guards': workspace:*
+      '@types/react': ^17.0.26
+      '@types/react-dom': ^17.0.9
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@rhombus/func': link:../toolset/func
+      '@rhombus/logger': link:../toolset/logger
+      '@rhombus/type-guards': link:../toolset/type-guards
     devDependencies:
       '@types/react': 17.0.26
       '@types/react-dom': 17.0.9
@@ -507,6 +542,7 @@ importers:
       '@rhombus/async-timers': workspace:*
       '@rhombus/defer': workspace:*
       '@rhombus/func': workspace:*
+      '@rhombus/type-guards': workspace:*
       '@rhombus/type-helpers': workspace:*
       '@types/lodash': ^4.14.175
       lodash: ^4.17.15
@@ -514,6 +550,7 @@ importers:
       '@rhombus/async-timers': link:../toolset/async-timers
       '@rhombus/defer': link:../toolset/defer
       '@rhombus/func': link:../toolset/func
+      '@rhombus/type-guards': link:../toolset/type-guards
       '@rhombus/type-helpers': link:../toolset/type-helpers
       lodash: 4.17.21
     devDependencies:
@@ -541,13 +578,22 @@ importers:
     specifiers: {}
 
   packages/@rhombus/toolset/logger:
-    specifiers: {}
+    specifiers:
+      '@rhombus/func': workspace:*
+    dependencies:
+      '@rhombus/func': link:../func
 
   packages/@rhombus/toolset/set-immediate:
     specifiers:
       setimmediate: ^1.0.5
     dependencies:
       setimmediate: 1.0.5
+
+  packages/@rhombus/toolset/type-guards:
+    specifiers:
+      '@rhombus/func': workspace:*
+    dependencies:
+      '@rhombus/func': link:../func
 
   packages/@rhombus/toolset/type-helpers:
     specifiers:
