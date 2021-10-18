@@ -1,5 +1,5 @@
 // import React, { useCallback, useContext, useState } from 'react';
-// import { logger } from '@fndj/util';
+// import { logger } from '@rhombus/type-helpers';
 
 
 // const LoggerContext = React.createContext<[logger: LoggerBase, enableLogging: (enabled?: boolean) => void]>([new ConsoleLogger(), (enabled?: boolean) => { }]);

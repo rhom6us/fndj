@@ -8,6 +8,6 @@
       "ESNext.Symbol"
     ]
   },
-  "include": ["internal"],
+  "include": ["internal", "../toolset/type-helpers/src/tuple.ts", "../toolset/type-helpers/src/assert-never.ts", "../toolset/type-helpers/src/await.ts", "../toolset/type-helpers/src/cast.ts", "../toolset/type-helpers/src/counter.ts", "../toolset/type-helpers/src/is-iterable.ts", "../toolset/type-helpers/src/is-promise.ts", "../toolset/type-helpers/src/restify.ts"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

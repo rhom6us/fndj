@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { logger } from '@fndj/util';
-import { range } from '@fndj/util/src/array';
-import React, { memo, SVGAttributes, useMemo } from 'react';
+import { logger } from '@rhombus/type-helpers';
+import { range } from '@rhombus/type-helpers/src/array';
+import React, { SVGAttributes, useMemo } from 'react';
 
 interface Props extends SVGAttributes<SVGElement> {
     buffer: Float32Array;

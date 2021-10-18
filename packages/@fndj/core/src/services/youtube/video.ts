@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { GaxiosResponse } from '.pnpm/gaxios@4.3.2/node_modules/gaxios';
-import { isDefined } from '@fndj/util';
-import axios from 'axios';
-import type { google, youtube_v3 } from 'googleapis';
+import { isDefined } from '@rhombus/type-helpers';
+import type { youtube_v3 } from 'googleapis';
 import settings from '../../../settings.json';
 import * as youtube from './api';
 // const youtube = google.youtube("v3");

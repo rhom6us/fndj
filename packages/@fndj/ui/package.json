@@ -13,7 +13,7 @@
   "dependencies": {
     "@fluentui/react": "^8.36.0",
     "@fndj/core": "workspace:*",
-    "@fndj/util": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
     "classnames": "^2.3.1",

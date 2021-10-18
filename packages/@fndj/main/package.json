@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@fndj/core": "workspace:*",
-    "@fndj/util": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@hot-loader/react-dom": "^17.0.1",
     "classnames": "^2.3.1",

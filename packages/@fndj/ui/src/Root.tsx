@@ -1,12 +1,10 @@
 
 // import { hot } from 'react-hot-loader';
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import type { Store } from 'redux';
+import { obj } from '@rhombus/type-helpers';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { PreProcess } from './preprocess';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { obj } from '@fndj/util';
 // import DevTools from './DevTools';
 // import { CounterState } from '../reducers';
 // import { CounterAction } from '../actions/CounterActions';

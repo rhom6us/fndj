@@ -1,5 +1,5 @@
 import { audioContext, FnMeterNode, PhaseVocoderNode } from '@fndj/core/src/web-audio';
-import { isUrl, logger } from '@fndj/util';
+import { isUrl, logger } from '@rhombus/type-helpers';
 
 const log = logger.log;
 

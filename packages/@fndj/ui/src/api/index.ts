@@ -1,4 +1,4 @@
-import { obj } from '@fndj/util';
+import { obj } from '@rhombus/type-helpers';
 import audioContext from '../audio-context';
 import { fetchWithThrow } from './fetch-with-throw';
 

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { logger, range } from '@fndj/util';
-import React, { ChangeEventHandler, HTMLAttributes, useCallback } from 'react';
+import { logger } from '@rhombus/type-helpers';
+import React, { HTMLAttributes, useCallback } from 'react';
 interface Props {
     value: number;
     min: number;

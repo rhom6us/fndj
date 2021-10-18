@@ -1,7 +1,7 @@
 
 // import { audioContext as context } from './audio-context';
 
-// import { logger, enableLogging } from '@fndj/util';
+// import { logger, enableLogging } from '@rhombus/type-helpers';
 
 // declare global {
 //     interface Window {

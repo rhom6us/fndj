@@ -1,6 +1,5 @@
-import { logger, enableLogging } from '@fndj/util';
+import { logger } from '@rhombus/logger';
 import { AudioWorkletProcessorBase, ParameterData } from './AudioWorkletProcessorBase';
-
 // //declare global {
 // declare class AudioWorkletProcessor {
 //   static readonly parameterDescriptors: AudioParamDescriptor[];
@@ -25,6 +24,7 @@ import { AudioWorkletProcessorBase, ParameterData } from './AudioWorkletProcesso
 //   abstract process (inputs: Float32Array[][], outputs: Float32Array[][], parameters: Record<string, Float32Array>);
 // }
 import { PROCESSOR_NAME, QUANTUM_SIZE, WINDOW_SIZE } from './constants';
+
 
 function calcMeterValues(inputs: number[]) {
   const sqr = inputs.map(p => p ** 2);

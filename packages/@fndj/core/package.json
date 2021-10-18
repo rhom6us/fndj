@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@fndj/superpowered": "workspace:*",
-    "@fndj/util": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
     "@rhombus/func": "workspace:*",
     "@rhombus/gapi": "workspace:*",
+    "@rhombus/logger": "workspace:*",
     "@rhombus/redux-command-pattern": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "axios": "^0.22.0",
     "fastpriorityqueue": "^0.7.1",
     "fft.js": "^4.0.4",

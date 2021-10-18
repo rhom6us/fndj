@@ -2,7 +2,7 @@
 // import settings from '../../../settings.json';
 // // import { Credentials, OAuth2Client } from 'google-auth-library';
 // import { store } from '../store';
-// import { isDefined, logger } from '@fndj/util';
+// import { isDefined, logger } from '@rhombus/type-helpers';
 // import { getVideo } from './video';
 // import {  GoogleAuth } from '@rhombus/gapi';
 // import { AsyncFunc, Func } from '@rhombus/func';

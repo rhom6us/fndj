@@ -1,0 +1,12 @@
+{
+  "name": "@rhombus/type-helpers",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "Thomas Butler",
+  "dependencies": {
+    "@rhombus/func":"workspace:*"
+  }
+}

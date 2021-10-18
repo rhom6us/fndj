@@ -44,11 +44,13 @@ importers:
       '@fluentui/style-utilities': ^8.3.3
       '@fndj/browser-ui': workspace:*
       '@fndj/core': workspace:*
-      '@fndj/util': workspace:*
       '@fndj/webpack': workspace:*
       '@hot-loader/react-dom': ^17.0.1
       '@rhombus/async-timers': workspace:*
+      '@rhombus/func': workspace:*
       '@rhombus/gapi-react': workspace:*
+      '@rhombus/logger': workspace:*
+      '@rhombus/type-helpers': workspace:*
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
       '@types/react-redux': ^7.1.18
@@ -76,11 +78,13 @@ importers:
       '@fluentui/style-utilities': 8.3.3_e79ceb4a9ecca84ea40dbf4bef5d274a
       '@fndj/browser-ui': link:../browser-ui
       '@fndj/core': link:../core
-      '@fndj/util': link:../util
       '@fndj/webpack': link:../webpack
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
+      '@rhombus/func': link:../../@rhombus/toolset/func
       '@rhombus/gapi-react': link:../../@rhombus/gapi-react
+      '@rhombus/logger': link:../../@rhombus/toolset/logger
+      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       comlink: 4.3.1
       phaze-vocoder: github.com/olvb/phaze/841f37b822c955868075072a6abe8bfad782432e
@@ -111,9 +115,9 @@ importers:
       '@fluentui/style-utilities': ^8.3.3
       '@fluentui/theme': ^2.4.0
       '@fndj/core': workspace:*
-      '@fndj/util': workspace:*
       '@fndj/webpack': workspace:*
       '@hot-loader/react-dom': ^17.0.1
+      '@rhombus/type-helpers': workspace:*
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
       '@types/react-redux': ^7.1.18
@@ -142,9 +146,9 @@ importers:
       '@fluentui/style-utilities': 8.3.3_e79ceb4a9ecca84ea40dbf4bef5d274a
       '@fluentui/theme': 2.4.0_e79ceb4a9ecca84ea40dbf4bef5d274a
       '@fndj/core': link:../core
-      '@fndj/util': link:../util
       '@fndj/webpack': link:../webpack
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
+      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       mongodb: 4.1.2
       normalize.css: 8.0.1
@@ -173,11 +177,12 @@ importers:
   packages/@fndj/core:
     specifiers:
       '@fndj/superpowered': workspace:*
-      '@fndj/util': workspace:*
       '@rhombus/async-timers': workspace:*
       '@rhombus/func': workspace:*
       '@rhombus/gapi': workspace:*
+      '@rhombus/logger': workspace:*
       '@rhombus/redux-command-pattern': workspace:*
+      '@rhombus/type-helpers': workspace:*
       '@types/fft.js': workspace:*
       '@types/phaze-vocoder': workspace:*
       '@types/waves-audio': workspace:*
@@ -195,11 +200,12 @@ importers:
       waves-loaders: ^0.1.5
     dependencies:
       '@fndj/superpowered': link:../superpowered
-      '@fndj/util': link:../util
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
       '@rhombus/func': link:../../@rhombus/toolset/func
       '@rhombus/gapi': link:../../@rhombus/gapi
+      '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/redux-command-pattern': link:../../@rhombus/redux-command-pattern
+      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       axios: 0.22.0
       fastpriorityqueue: 0.7.1
       fft.js: 4.0.4
@@ -220,9 +226,9 @@ importers:
   packages/@fndj/main:
     specifiers:
       '@fndj/core': workspace:*
-      '@fndj/util': workspace:*
       '@fndj/webpack': workspace:*
       '@hot-loader/react-dom': ^17.0.1
+      '@rhombus/type-helpers': workspace:*
       '@types/fft.js': workspace:*
       '@types/phaze-vocoder': workspace:*
       '@types/react': ^17.0.26
@@ -249,9 +255,9 @@ importers:
       waves-ui: wavesjs/ui
     dependencies:
       '@fndj/core': link:../core
-      '@fndj/util': link:../util
       '@fndj/webpack': link:../webpack
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
+      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       mongodb: 4.1.2
       normalize.css: 8.0.1
@@ -290,9 +296,9 @@ importers:
     specifiers:
       '@fluentui/react': ^8.36.0
       '@fndj/core': workspace:*
-      '@fndj/util': workspace:*
       '@fndj/webpack': workspace:*
       '@rhombus/async-timers': workspace:*
+      '@rhombus/type-helpers': workspace:*
       '@types/prop-types': ^15.7.4
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
@@ -322,9 +328,9 @@ importers:
     dependencies:
       '@fluentui/react': 8.36.0_941057caa8a908e56d824c90886c4468
       '@fndj/core': link:../core
-      '@fndj/util': link:../util
       '@fndj/webpack': link:../webpack
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
+      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       normalize.css: 8.0.1
       prop-types: 15.7.2
@@ -352,14 +358,6 @@ importers:
       '@types/wavesurfer.js': 5.2.2
       typescript: 4.4.3
       typescript-styled-plugin: 0.15.0
-
-  packages/@fndj/util:
-    specifiers:
-      '@rhombus/func': workspace:*
-      navigator.locks: ^0.8.1
-    dependencies:
-      '@rhombus/func': link:../../@rhombus/toolset/func
-      navigator.locks: 0.8.1
 
   packages/@fndj/webpack:
     specifiers:
@@ -507,12 +505,16 @@ importers:
   packages/@rhombus/redux-command-pattern:
     specifiers:
       '@rhombus/async-timers': workspace:*
+      '@rhombus/defer': workspace:*
       '@rhombus/func': workspace:*
+      '@rhombus/type-helpers': workspace:*
       '@types/lodash': ^4.14.175
       lodash: ^4.17.15
     dependencies:
       '@rhombus/async-timers': link:../toolset/async-timers
+      '@rhombus/defer': link:../toolset/defer
       '@rhombus/func': link:../toolset/func
+      '@rhombus/type-helpers': link:../toolset/type-helpers
       lodash: 4.17.21
     devDependencies:
       '@types/lodash': 4.14.175
@@ -522,6 +524,9 @@ importers:
       '@rhombus/set-immediate': workspace:*
     dependencies:
       '@rhombus/set-immediate': link:../set-immediate
+
+  packages/@rhombus/toolset/defer:
+    specifiers: {}
 
   packages/@rhombus/toolset/fniterate:
     specifiers:
@@ -535,11 +540,20 @@ importers:
   packages/@rhombus/toolset/func:
     specifiers: {}
 
+  packages/@rhombus/toolset/logger:
+    specifiers: {}
+
   packages/@rhombus/toolset/set-immediate:
     specifiers:
       setimmediate: ^1.0.5
     dependencies:
       setimmediate: 1.0.5
+
+  packages/@rhombus/toolset/type-helpers:
+    specifiers:
+      '@rhombus/func': workspace:*
+    dependencies:
+      '@rhombus/func': link:../func
 
   packages/@types/fft.js:
     specifiers:
@@ -5781,10 +5795,6 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
-
-  /navigator.locks/0.8.1:
-    resolution: {integrity: sha512-OtPqGxxWAuJM3NOi2B9UaufKyvP3tflHSVkG1h5KeeIYH4+W1E83wYGp/3XRApFcMEzKNY+KTgIU9maegms99A==}
-    dev: false
 
   /negotiator/0.6.2:
     resolution: {integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==}

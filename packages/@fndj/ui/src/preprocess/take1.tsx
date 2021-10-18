@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Prep } from '@fndj/core';
+import { logger } from '@rhombus/type-helpers';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useClientRect } from '../hooks';
 import { useAudioBuffer } from '../hooks/use-audio-buffer';
-import metadata from './metadata.json';
 import { NumberChooser } from './number-chooser';
-import { RenderElement } from './render-element';
 import { WaveForm } from './Waveform';
 
-import { Prep } from '@fndj/core';
-import { logger } from '@fndj/util';
 export const PreProcess: React.FC = () => {
     // const [trackIndex] = useState(0);
     const [buffer] = useAudioBuffer('https://fuckingdj.blob.core.windows.net/test/Jewelz%20%26%20Scott%20Sparks%20feat.%20Quilla%20%E2%80%93%20Unless%20We%20Forget%20(Original%20Mix).mp3');

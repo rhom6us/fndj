@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "@rhombus/async-timers": "workspace:*",
+    "@rhombus/defer": "workspace:*",
     "@rhombus/func": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

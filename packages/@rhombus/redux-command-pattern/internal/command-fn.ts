@@ -1,16 +1,16 @@
 import { setImmediateAsync } from '@rhombus/async-timers';
 import { Func } from '@rhombus/func';
-import { get, noop } from 'lodash';
+import { get } from 'lodash';
 import { StandardCommand } from './standard-command';
 import { isStandardEvent, StandardEventAny } from './standard-event';
 import { Dispatch, GetState } from './store';
 import {
-  AnyTypeOf, assertNever, Await, DeepDictionary, DeepDictionaryItem, defer, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isObservable, isPromiseLike,
+  AnyTypeOf, assertNever, Await, DeepDictionary, DeepDictionaryItem, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isObservable, isPromiseLike,
   isThunk, Observable, restify, Restify, Thunk
 } from './utils';
 
-type CommandGenerator<TState, TEvent extends StandardEventAny | void> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, [TState | undefined]>;
-type AsyncCommandGenerator<TState, TEvent extends StandardEventAny | void> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, Promise<TState>>;
+type CommandGenerator<TState, TEvent extends StandardEventAny> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent>|void, TState>;
+type AsyncCommandGenerator<TState, TEvent extends StandardEventAny> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent>|void, TState>;
 
 // type CommandIterable<TState, TEvent extends StandardEventAny | void> = Iterable<CommandResult<TState, TEvent>>;
 // type AsyncCommandIterable<TState, TEvent extends StandardEventAny | void> = AsyncIterable<CommandResult<TState, TEvent>>;
@@ -25,10 +25,10 @@ type AsyncCommandGenerator<TState, TEvent extends StandardEventAny | void> = Asy
 //   | AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent>, Promise<TState>>
 //   | Iterable<CommandResult<TState, TEvent>>
 //   | AsyncIterable<CommandResult<TState, TEvent>> // including this makes generator functions return 'never' type from yields
-  ;
-type CommandResult<TState, TEvent extends StandardEventAny | void> = AnyTypeOf<TEvent, void, [TState], Promise<TState>>;
-export type CommandFn<TState, TPayload, TEvents extends StandardEventAny | void> =
-  (state:TState, ...payload:Restify<TPayload>) => CommandResult<TState, TEvents>// | PromiseLike<CommandResult<TState>>
+;
+type CommandResult<TState, TEvent extends StandardEventAny> = AnyTypeOf<TEvent, TState>;
+export type CommandFn<TState, TPayload, TEvents extends StandardEventAny> =
+  (state: TState, ...payload: Restify<TPayload>) => CommandResult<TState, TEvents>;// | PromiseLike<CommandResult<TState>>
 
 
 export type CommandFnAny = CommandFn<any, any, any>;
@@ -52,15 +52,22 @@ export type InferPayload<T extends CommandFnMap> =
 
 
 
-
-type Canceller = Func<[], void>;
-export type CommandHandler<TPayload> = Func<[StandardCommand<TPayload>], Canceller>;
-export interface Store<TState, TEvents extends StandardEventAny = StandardEventAny> {
+export type CommandHandler<TPayload> = Func<[StandardCommand<TPayload>, AbortSignal?], Promise<void>>;
+export interface Store<TState = any, TEvents extends StandardEventAny = StandardEventAny> {
   dispatch: Dispatch<TEvents>,
-  getState: GetState<TState>
+  getState: GetState<TState>;
 };
 
 export type InferStore<T extends DeepDictionary<CommandFnAny>> = Store<InferState<T>, InferEvents<T>>;
+const DEFAULT_SIGNAL: AbortSignal = Object.freeze({
+  aborted: false,
+  onabort() { throw 'DEFAULT_SIGNAL cannot be aborted'; },
+  addEventListener(type: 'abort') { },
+  dispatchEvent(): boolean {
+    return false;
+  },
+  removeEventListener() { }
+});
 
 /**
  * Accepts a standard-command, looks up its implementation, invokes it, and dispatches the resulting events to the store.
@@ -73,170 +80,101 @@ export function createCommandHandler<T extends DeepDictionary<CommandFnAny>>(sto
   type TPayload = InferPayload<T>;
   type TEvents = InferEvents<T>;
 
-  return function handleCommand({ type, payload }) {
+  return async function handleCommand({ type, payload }, signal: AbortSignal = DEFAULT_SIGNAL) {
     const fn = get(implementation, type) as CommandFn<TState, TPayload, TEvents>;
     if (typeof fn !== 'function') {
       throw new TypeError('Invalid command');
     }
-    const result = fn(store.getState(), ...restify(payload));
-    return handle(result, store);
+    await setImmediateAsync();
+    if (!signal.aborted) {
+      const result = fn(store.getState(), ...restify(payload));
+      return handle(result, store, signal);
+    }
 
   };
 }
-type AnyStore = Store<any, any>;
-type Result<T extends AnyStore> =
+type Result<T extends Store> =
   T extends Store<infer TState, infer TEvents> ? CommandResult<TState, TEvents> : never;
-function handle<TState, TEvents extends StandardEventAny>(result: CommandResult<TState, TEvents>, store:Store<TState, TEvents>): Canceller {
+async function handle<TState, TEvents extends StandardEventAny>(result: CommandResult<TState, TEvents>, store: Store<TState, TEvents>, signal: AbortSignal): Promise<void> {
   if (!result) {
-    return noop;
+    return;
   }
   if (isStandardEvent(result)) {
-    return handleStandardAction(result, store);
+    return handleStandardEvent(result, store);
   }
   if (isThunk(result)) {
-    return handleThunk(result, store);
-  }
-  if (isObservable(result)) {
-    return handleObservable(result, store);
+    return handleThunk(result, store, signal);
   }
   if (isPromiseLike(result)) {
-    return handlePromiseLike(result, store);
+    return handlePromiseLike(result, store, signal);
   }
-  if (isGenerator(result)) {
-    return handleGenerator(result, store);
+  if (isObservable(result)) {
+    return handleObservable(result, store, signal);
   }
-  if (isAsyncGenerator(result)) {
-    return handleAsyncGenerator(result, store)
+  if (isGenerator(result) || isAsyncGenerator(result)) { // this MUST happen before the 'isIterable()' check
+    return handleGenerator(result, store, signal);
   }
-
-  if (isIterable(result)) {
-    return handleIterable(result, store);
-  }
-  if (isAsyncIterable(result)) {
-    return handleAsyncIterable(result, store);
+  if (isIterable(result) || isAsyncIterable(result)) {
+    return handleIterable(result, store, signal);
   }
 
   return assertNever(result);
 }
-function handleStandardAction<TStore extends AnyStore>(value: StandardEventAny, {dispatch}: TStore): Canceller {
+
+async function handleStandardEvent<TStore extends Store<any, any>>(value: StandardEventAny, { dispatch }: TStore) {
+  // we do NOT check for abort here because the assumption is that once an event is returned/yielded,
+  // that event WILL be processed.
   dispatch(value);
-  return noop;
 }
-function handleIterable<TStore extends AnyStore>(value: Iterable<Result<TStore>>, store: TStore): Canceller {
-  let cancelled = false;
-  (async () => {
-    for (const item of value) {
-      if (await setImmediateAsync(cancelled)) {
-        return;
-      }
-      handle(item, store);
-    }
-  })
-  return () => {
-    cancelled = true;
-  }
-}
-function handleAsyncIterable<TStore extends AnyStore>(value: AsyncIterable<Result<TStore>>, store: TStore): Canceller {
-  let cancelled = false;
-  (async () => {
-    for await (const item of value) {
-      if (cancelled) {
-        return;
-      }
-      handle(item, store);
-    }
-  })
-  return () => {
-    cancelled = true;
-  }
-}
-function handlePromiseLike<TStore extends AnyStore>(value: PromiseLike<Result<TStore>>, store: TStore ): Canceller {
-  let cancelled = false;
-  const cancel = (async (value) => {
-    const result = await value;
-    if (cancelled) {
-      return noop;
-    }
-    return handle(result, store);
-  })(value);
-  return () => {
-    cancelled = true;
-    cancel.then(p => p());
-  }
-}
-// type AnyCommandResult = CommandResult<any, any>
-function handleGenerator<TState, TEvents extends StandardEventAny>(value: CommandGenerator<TState, TEvents>,store: Store<TState, TEvents>): Canceller{
-  const iter = value[Symbol.iterator]();
-  // const asf: AsyncGenerator<AnyCommandResult, AnyCommandResult | void, Promise<TState>> = {
-  //   next:(state) => setImmediateAsync(iter.next(Promise.resolve(state))),
-  //   return:(...args) => setImmediateAsync(iter.return(...args)),
-  //   throw:(...args) => setImmediateAsync(iter.throw(...args)),
-  //   [Symbol.asyncIterator]() {
-  //     return this;
-  //   }
-  // }
-  // return handleAsyncGenerator(asf, store);
-  let current: ReturnType<typeof iter.next>;// = iter.next();
-  const cancellers: Canceller[] = [];
-  do {
-    const getState:[TState | undefined] = [undefined];
-    current = iter.next(getState);
-    if (current.value) {
-        cancellers.push(handle(current.value, store));
-    }
-    getState[0] = store.getState();
-  } while(!current.done)
 
-  return () => {
-    if (iter.return) {
-      const cancelledEvent: StandardEventAny = { type: 'command_cancelled', payload: 'iterator return called.' };
-      const current = iter.return(cancelledEvent as any);
-      if (current.value) {
-        cancellers.push(handle(current.value, store));
-      }
-    }
-    cancellers.forEach(p => p());
-  }
-}
-function handleAsyncGenerator<TState, TEvents extends StandardEventAny>(value: AsyncCommandGenerator<TState, TEvents>,store: Store<TState, TEvents>): Canceller{
-  const iter = value[Symbol.asyncIterator]();
-  const cancellers: Canceller[] = [];
-  (async () => {
-  let current: Await<ReturnType<typeof iter.next>>;// = iter.next();
-    do {
-      const state = defer<TState>();
-      current = await iter.next(state.promise);
-      if (current.value) {
-        cancellers.push(handle(current.value, store));
-      }
-      state.resolve(store.getState());
-    } while (!current.done);
-  })();
+async function handleThunk<TStore extends Store<any, any>>(thunk: Thunk<Result<TStore>>, store: TStore, signal: AbortSignal) {
+  await setImmediateAsync();
+  if (signal.aborted)
+    return;
 
-  return async () => {
-    if (iter.return) {
-      const current = await iter.return({ type: 'command_cancelled', payload: 'iterator return called.' } as any);
-      if (current.value) {
-        cancellers.push(handle(current.value, store));
-      }
-    }
-    cancellers.forEach(p => p());
-  };
-}
-function handleObservable<TStore extends AnyStore>(obs: Observable<Result<TStore>>, store: TStore): Canceller {
-    const sub = obs.subscribe({onNext: value => handle(value, store)})
-    return () => sub.unsubscribe();
-}
-function handleThunk<TStore extends AnyStore>(thunk: Thunk<Result<TStore>>, store: TStore): Canceller {
-  let cancelled = false;
-  const cancellers: Canceller[] = [];
-  thunk((value) => {
-    if (!cancelled) {
-      cancellers.push(handle(value, store));
-    }
+  return new Promise<void>(resolve => {
+    thunk(value => resolve(handle(value, store, signal)));
   });
-  return () => {
-    cancelled = true;
-    cancellers.forEach(p => p());
-  };
+}
+
+async function handlePromiseLike<TStore extends Store<any, any>,>(value: PromiseLike<Result<TStore>>, store: TStore, signal: AbortSignal) {
+  await setImmediateAsync();
+  if (signal.aborted)
+    return;
+
+  return handle(await value, store, signal);
+}
+
+async function handleObservable<TStore extends Store<any, any>>(obs: Observable<Result<TStore>>, store: TStore, signal: AbortSignal) {
+  await setImmediateAsync();
+  if (signal.aborted)
+    return;
+
+  const handler = (value: Result<TStore>) => handle(value, store, signal);
+  const sub = obs.subscribe({ onNext: handler, next: handler });
+  signal.addEventListener('abort', ev => sub.unsubscribe());
+}
+
+async function handleGenerator<TState, TEvents extends StandardEventAny>(iter: CommandGenerator<TState, TEvents> | AsyncCommandGenerator<TState, TEvents>, store: Store<TState, TEvents>, signal: AbortSignal): Promise<void> {
+  await setImmediateAsync();
+  if (signal.aborted)
+    return;
+
+  let current: Await<ReturnType<typeof iter.next>>;// = await iter.next(store.getState());
+  do {
+    current = await iter.next(store.getState());
+    if (current.value) {
+      await handle(current.value, store, signal);
+    }
+  } while (!current.done && !signal.aborted);
+}
+
+async function handleIterable<TStore extends Store<any, any>>(value: Iterable<Result<TStore>> | AsyncIterable<Result<TStore>>, store: TStore, signal: AbortSignal) {
+  // we do NOT check for abort here because the assumption is that once an event is returned/yielded,
+  // that event WILL be processed. We can't do that here because value might be an array. The value
+  // parameter is defenitely not a generator function with 'yield' statements because we checked for
+  // that earlier in the general 'handle' function above.
+  for await (const item of value) {
+    await handle(item, store, signal);
+  }
 }

@@ -1,7 +1,6 @@
 
-import type { LayerOptions, Domain } from 'waves-ui/core/layer';
-import { Simplify } from '@fndj/util';
 import wavesUI from 'waves-ui';
+import type { LayerOptions } from 'waves-ui/core/layer';
 import { Marker } from './shapes';
 
 const defaults = {

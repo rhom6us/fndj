@@ -1,9 +1,10 @@
 
 import { Func } from '@rhombus/func';
+import { tuple } from '@rhombus/type-helpers';
 import { Dictionary, isFunction, toPairs } from 'lodash';
 import { EventTypes } from './event-creator';
 import { Reducer as ReduxReducer } from './external/redux';
-import { restify, Restify, tuple } from './utils';
+import { restify, Restify } from './utils';
 import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
