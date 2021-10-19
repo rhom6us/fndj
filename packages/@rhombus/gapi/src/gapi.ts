@@ -18,20 +18,11 @@ function loadScript(src = 'https://apis.google.com/js/api.js') {
         document.head.appendChild(script);
     });
 }
+export const gapi = await loadScript();
 export type Gapi = typeof gapi;
-let cache: Gapi;
-export async function getGapi(): Promise<Gapi> {
-    return cache ??= await loadScript();
-}
 
 
-export async function loadLib<K extends keyof Gapi>(lib: K): Promise<Gapi[K]>;
-export async function loadLib<K extends keyof Gapi>(gapi: Gapi, lib: K): Promise<Gapi[K]>;
-export async function loadLib<K extends keyof Gapi>(...args: [K] | [Gapi, K]): Promise<Gapi[K]> {
-    if (args.length === 1) {
-        return loadLib(await getGapi(), args[0]);
-    }
-    const [gapi, lib] = args;
+export async function loadLib<K extends keyof Gapi>(lib: K): Promise<Gapi[K]>{
     return new Promise<Gapi[K]>((resolve) => {
         gapi.load(lib, () => resolve(gapi[lib]));
     });;

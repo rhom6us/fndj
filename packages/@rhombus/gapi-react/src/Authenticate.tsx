@@ -1,7 +1,7 @@
 import { Action } from '@rhombus/func';
 import { getAuth2, GoogleAuth, GoogleUser } from '@rhombus/gapi';
 import { usePromise } from '@rhombus/react';
-import React, { Children, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { Children, ReactNode, useCallback, useEffect, useState } from 'react';
 
 interface Children {
     children?: ReactNode;
@@ -17,12 +17,12 @@ function ResultRoot({ children }: Children) {
 
 
 export function Authenticate(props: Props) {
-    const [ready, auth2] = usePromise(useMemo(() => getAuth2(props.clientId), [props.clientId]));
+    const [ready, auth2] = usePromise(() => getAuth2(props.clientId), [props.clientId]);
 
     if (!ready) {
         return (
             <ResultRoot >
-                <p>auth2 loading...</p>
+                <p>auth2 loading.......</p>
             </ResultRoot >
         );
     }
@@ -40,7 +40,7 @@ function Authenticate_Internal({ children, auth2, onLogin }: Props & { auth2: Go
 
     const signIn = useCallback(async () => {
         try {
-            const user = await auth2.signIn();
+            const user = await auth2.signIn({scope:"https://www.googleapis.com/auth/youtube.readonly"});
             onLogin?.(user);
         } catch (er: any) {
             setLoginError(er?.error ?? er?.toString() ?? 'unknown error logging into google');

@@ -1,17 +1,8 @@
 
 
-import { getGapi } from '../gapi';
-import { getClient } from './client';
+import { client } from './client';
 
-export type Youtube = typeof gapi.client.youtube;
-let cache: typeof gapi.client.youtube | undefined;
+await client.load('youtube', 'v3');
+export const youtube = client.youtube;
 
-export async function getYoutube(): Promise<Youtube> {
-    if (cache) {
-        return cache;
-    }
-    const gapi = await getGapi();
-    const client = await getClient();
-    await client.load('youtube', 'v3');
-    return cache = gapi.client.youtube;
-}
+export { client };

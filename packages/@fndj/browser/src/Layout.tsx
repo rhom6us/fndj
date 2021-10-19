@@ -1,8 +1,8 @@
-import { DefaultPalette, IStackItemStyles, IStackStyles, Stack, initializeIcons } from '@fluentui/react';
-import React from 'react';
-import { FC } from 'react';
+import { initializeIcons, IStackItemStyles, IStackStyles, Stack } from '@fluentui/react';
 import { CommandBarBasicExample } from '@fndj/browser-ui/src/CommandBarBasicExample';
 import { Authenticate, LogoutButton } from '@rhombus/gapi-react';
+import React, { FC } from 'react';
+import { Search } from './add-track/search';
 
 initializeIcons();
 const stackStyles: IStackStyles = {
@@ -26,8 +26,8 @@ export const Layout: FC = () => {
             <LogoutButton >logout</LogoutButton>
         </Stack.Item>
         <Stack.Item styles={stackItemStyles}>
-            <Authenticate clientId="725047741145-anp1d89o2hf63g72h8hpjo3tte9so6f5.apps.googleusercontent.com">
-                <p> we are secure!</p>
+            <Authenticate clientId="777867454715-hjdi9a3j20sm3i4k9cfueubn9bc1vtdj.apps.googleusercontent.com">
+                <Search/>
             </Authenticate>
         </Stack.Item>
     </Stack>;

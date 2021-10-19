@@ -1,11 +1,11 @@
 import { getAuth2, GoogleAuth } from '@rhombus/gapi';
 import { usePromise } from '@rhombus/react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 
 export function LogoutButton(props: { clientId?: string; } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
 
-    const [ready, auth2] = usePromise(useMemo(() => getAuth2(props.clientId), [props.clientId]));
+    const [ready, auth2] = usePromise(() => getAuth2(props.clientId), [props.clientId]);
 
     if (!ready) {
         return <></>;

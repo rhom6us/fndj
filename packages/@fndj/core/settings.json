@@ -8,6 +8,10 @@
                 "client_id": "725047741145-anp1d89o2hf63g72h8hpjo3tte9so6f5.apps.googleusercontent.com",
                 "client_secret": "3ekklzPHXn4xO5ssZxgvYlZ-",
                 "redirect_url": ""
+            },
+            "web client 1":{
+                "client_id":"777867454715-hjdi9a3j20sm3i4k9cfueubn9bc1vtdj.apps.googleusercontent.com",
+                "client_secret": "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"
             }
         },
         "api-keys": {

@@ -28,8 +28,9 @@
     "packages/@fndj/webpack": false,
     "packages/@fndj/webpack/lib": true,
     "**/node_modules": true,
-    "dist": true,
-    "**/.tmp.driveupload": true
+    "dist": false,
+    "**/.tmp.driveupload": true,
+    "**/dist": true
   },
   // The package manager you use to install node modules.
   "prettier.packageManager": "pnpm",
