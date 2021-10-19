@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "incremental": true, /* Enable incremental compilation */
-    "tsBuildInfoFile": "./.tsbuildinfo"
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "lib": ["ESNext"]
   }
 }

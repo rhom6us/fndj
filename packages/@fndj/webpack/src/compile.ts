@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import { Server } from 'http';
-import webpack, { Compiler, Configuration, Stats, Watching } from 'webpack';
-import WebpackDevServer, { } from 'webpack-dev-server';
+import { AbortSignal } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
+import webpack, { Configuration, Stats } from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import cliLogger from './cliLogger';
 import * as configs from './configs';
-import { App, staticSourceDir } from './configs/settings';
+import { App } from './configs/settings';
 declare interface CallbackWebpack<T> {
   (err?: Error, stats?: T): void;
 }
@@ -13,8 +13,9 @@ declare interface CallbackWebpack<T> {
 //   return ['fnbuild', 'fnwatch', 'fnserve'].includes(command) && ['main', 'renderer'].includes(app) && ['production', 'development'].includes(mode);
 // }
 
-function getCompiler(config: Configuration, callback: CallbackWebpack<Stats>) {
-  const compiler = webpack(config, callback);
+function getCompiler(config: Configuration) {
+  delete config.watch;
+  const compiler = webpack(config);
   if (config.watch) {
     compiler.hooks.watchRun.tap('WebpackInfo', compilation => {
       cliLogger.info(`Compilation ${compilation?.name || ''} watching…`);
@@ -82,25 +83,32 @@ function getCallback(config: Configuration): CallbackWebpack<Stats> {
 //     throw new Error(`invalid command "([${process.execPath}] ${process.execArgv.join(' ')}) -- ${process.argv.join(' ')}"`);
 //   }
 // }
-export function compile(app: App): Compiler {
-  const config = { ...configs[app], watch: true };
+function closeError(err: Error) {
+  console.error('error closing the compiler', err);
+}
+export function compile(app: App) {
+  const config = { ...configs[app], watch: false };
   const callback = getCallback(config);
 
-  const compiler = getCompiler(config, callback);
+  const compiler = getCompiler(config);
 
   // compiler.run(callback);
-  return compiler;
+   compiler.run((...args) => {
+    compiler.close(closeError);
+    return callback(...args);
+  });
 }
-export function watch(app: App): Watching {
-  const config = { ...configs[app], watch: true };
+export function watch(app: App, signal:AbortSignal) {
+  const config = { ...configs[app], watch: false };
   const callback = getCallback(config);
-  const compiler = getCompiler(config, callback);
+  const compiler = getCompiler(config);
 
-  return compiler.watch({}, callback);
+  const watcher = compiler.watch({}, callback);
+  signal.addEventListener('abort', () => watcher.close(closeError), { once: true });
+  return watcher;
 }
 
-export async function serve(app: App): Promise<URL> {
-  const config = { ...configs[app], watch: true };
+export async function serve(app: App, signal: AbortSignal): Promise<readonly [string, WebpackDevServer]> {
   const devServerConfig: WebpackDevServer.Configuration = {
     host: 'localhost',
     port: 9080,
@@ -137,10 +145,19 @@ export async function serve(app: App): Promise<URL> {
   }
   // config.entry ??= {};
   // config.entry[process.env.npm_package_name].unshift(`webpack-dev-server/client?http://${devServerConfig.host}:${devServerConfig.port}/`, 'webpack/hot/dev-server');
-  const compiler = webpack(config);
+  const compiler = getCompiler(configs[app]);
   const server = new WebpackDevServer(devServerConfig, compiler as any);
   await server.start();
-  return new URL(`http://${devServerConfig.host}:${devServerConfig.port}/`);
+  signal.addEventListener('abort', async () => {
+    console.info('stopping server....');
+    await server.stop();
+    console.info('stopped. starting server...');
+    await server.start();
+    console.info('started!');
+  }, { once: false });
+  const url = `http://${devServerConfig.host}:${devServerConfig.port}/`;
+  console.log(`dev server ready on ${url}`)
+  return [url, server] as const;
   // return server.listen(+devServerConfig.port!, devServerConfig.host!, () => {
   //   // eslint-disable-next-line no-console
   //   console.log(`dev server ready on http://${devServerConfig.host}:${devServerConfig.port}/`);

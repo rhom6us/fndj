@@ -1,11 +1,16 @@
-
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { Rule } from 'postcss';
 import postcssImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 import type { RuleSetUseItem } from 'webpack';
-import { isDev, targetElectronVersion } from './settings';
+import { isDev } from './settings';
 
+function onlyif<T extends any[]>(test: boolean, ...args: T): T | []{
+  if (test) {
+    return args;
+  }
+  return [];
+}
 
 
 
@@ -40,14 +45,14 @@ export const cssModuleLoader: RuleSetUseItem = {
   },
 };
 
-/** @deprecated  */
+/** @deprecated use asset/resource */
 export const fileLoader: RuleSetUseItem = {
   loader: 'file-loader',
   options: {
     name: '[name]__[hash:base64:5].[ext]'
   }
 };
-/** @deprecated  */
+/** @deprecated use asset/inline */
 export const fontLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
@@ -81,7 +86,7 @@ export const threadLoader: RuleSetUseItem = {
 //     name: 'imgs/[name]--[folder].[ext]',
 //   },
 // };
-/** @deprecated  */
+/** @deprecated use asset/inline */
 export const imageLoader: RuleSetUseItem = {
   loader: 'url-loader',
   options: {
@@ -89,14 +94,14 @@ export const imageLoader: RuleSetUseItem = {
     name: 'imgs/[name]--[folder].[ext]',
   },
 };
-export const workletLoader: RuleSetUseItem = {
+export const worklet_loader: RuleSetUseItem = {
   loader: 'worklet-loader',
   options: {
     inline: false
   }
 };
 
-export const workerLoader: RuleSetUseItem = {
+export const worker_loader: RuleSetUseItem = {
   loader: 'worker-loader',
   options: {
     publicPath: "/scripts/workers/",
@@ -105,22 +110,34 @@ export const workerLoader: RuleSetUseItem = {
     esModule: true,
   }
 };
-export const reactRefreshLoader: RuleSetUseItem = {
+export const experimental_ts_features_loader: RuleSetUseItem = {
   loader: 'babel-loader',
-  options: { plugins: ['react-refresh/babel', '@babel/plugin-syntax-top-level-await', '@babel/plugin-proposal-class-properties'] },
+  options: { plugins: [/*'react-refresh/babel', */'@babel/plugin-syntax-top-level-await', '@babel/plugin-proposal-class-properties'] },
 };
-export const tsLoader: RuleSetUseItem = {
-  loader: 'ts-loader',
-  options: {
-    transpileOnly: isDev
+export function babel(...features: Array<'top_level_await' | 'class_properties'>) {
+  return {
+    loader: require.resolve('babel-loader'),
+    options: {
+      plugins: [
+        ...onlyif(features.includes('top_level_await'), '@babel/plugin-syntax-top-level-await'),
+        ...onlyif(features.includes('class_properties'), '@babel/plugin-proposal-class-properties'),
+      ]
+    }
+  }
+}
+export function typescript(...features: Array<'react_refresh' | 'transpile_only'>): RuleSetUseItem {
+  return {
+    loader: require.resolve('ts-loader'),
+    options: {
+      getCustomTransformers: () => ({
+        before: onlyif(features.includes('react_refresh'), ReactRefreshTypeScript()),
+      }),
+      transpileOnly: features.includes('transpile_only')
+      // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
+    },
+  };
+}
 
-    // projectReferences: true,
-    // appendTsSuffixTo: [{}],
-    // configFile: "C:\\dev\\fndebrid\\tsconfig.json"
-  },
-};
-
-
-export const nodeLoader: RuleSetUseItem = {
+export const node_loader: RuleSetUseItem = {
   loader: 'node-loader'
 };

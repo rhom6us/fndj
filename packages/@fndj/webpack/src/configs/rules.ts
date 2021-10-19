@@ -1,4 +1,3 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetRule } from 'webpack';
 import * as loaders from './loaders';
 import { isDev } from './settings';
@@ -7,47 +6,52 @@ import { isDev } from './settings';
 const node_modules = /node_modules/i;
 //#region code
 
+export const workletQueryRule:RuleSetRule = {
+  resourceQuery: /worklet/,
+  // type: 'asset/resource',
+  use: [
+    loaders.worklet_loader,
+  ],
+}
 export const workletRule: RuleSetRule = {
-  test: /\.worklet\.ts$/,
+  test: /\.worklet\.ts$/i,
   exclude: node_modules,
-  use: [loaders.workletLoader, loaders.tsLoader],
+  use: [
+    loaders.worklet_loader,
+  ],
 };
 export const workerRule: RuleSetRule = {
   test: /\.worker\.ts$/i,
   exclude: node_modules,
-  use: [loaders.workerLoader],
+  use: [loaders.worker_loader],
 };
 export const wasmRule: RuleSetRule = {
   test: /\.wasm$/i,
   exclude: node_modules,
-  type: 'asset/inline', // makes a data uri
-  // type: 'asset/resource', // emits a file
+  // type: 'asset/inline', // makes a data uri
+  type: 'asset/resource', // emits a file
 };
-
-export const waveRule: RuleSetRule = {
+export const wavRule: RuleSetRule = {
   test: /\.wav$/i,
   exclude: node_modules,
   // type: 'asset/inline', // makes a data uri
   type: 'asset/resource', // emits a file
 };
-export const reactTypescriptRule: RuleSetRule = {
+export const typescriptRule: RuleSetRule = {
   test: /\.[tj]sx?$/i,
-  exclude: [node_modules, workletRule.test],
+  exclude: [node_modules],
   use: [
-    ...ifDev(loaders.reactRefreshLoader),
-    loaders.tsLoader
+    loaders.babel('top_level_await', 'class_properties'),
+    ...ifDev(loaders.typescript('react_refresh', 'transpile_only')),
+    ...ifProd(loaders.typescript()),
   ],
 };
-export const typescriptRule: RuleSetRule = {
-  test: /\.ts$/i,
-  exclude: [node_modules, workletRule.test],
-  use: [loaders.tsLoader],
-};
-export const jsRule: RuleSetRule = {
-  test: /\.js$/i,
-  exclude: [node_modules],
-  use: [loaders.tsLoader],
-};
+
+// export const jsRule: RuleSetRule = {
+//   test: /\.js$/i,
+//   exclude: [node_modules],
+//   use: [loaders.ts_with_react_refresh_loader],
+// };
 // export const scriptRule: RuleSetRule = {
 //   test: /\.(j|t)sx?$/i,
 //   exclude: [node_modules],
@@ -55,7 +59,7 @@ export const jsRule: RuleSetRule = {
 // };
 export const nodeRule: RuleSetRule = {
   test: /\.node$/i,
-  use: loaders.nodeLoader,
+  use: loaders.node_loader,
 };
 
 
@@ -94,12 +98,14 @@ export const stylesheetRule: RuleSetRule = {
 // };
 export const imageRule: RuleSetRule = {
   test: /\.(png|jpg|gif)$/i,
-  use: [loaders.imageLoader],
+  type: 'asset',
+  // use: [loaders.imageLoader],
 };
 
 export const fontRule: RuleSetRule = {
   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
-  use: [loaders.fontLoader],
+  type: 'asset',
+  // use: [loaders.fontLoader],
 };
 
 export const htmlRule: RuleSetRule = {
@@ -111,6 +117,13 @@ export const htmlRule: RuleSetRule = {
 
 function ifDev<T extends any[]>(...values: T): T | [] {
   if (isDev) {
+    return values;
+  }
+  return [];
+}
+
+function ifProd<T extends any[]>(...values: T): T | [] {
+  if (!isDev) {
     return values;
   }
   return [];

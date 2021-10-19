@@ -46,8 +46,8 @@ export const configuration: any = {
             rules.workletRule,
             // rules.workerRule,
             rules.wasmRule,
-            rules.waveRule,
-            rules.reactTypescriptRule,
+            rules.wavRule,
+            rules.typescriptRule,
             rules.globalStylesheetRule,
             rules.stylesheetRule,
             rules.imageRule,
@@ -67,7 +67,7 @@ export const configuration: any = {
     ].filter(Boolean),
     experiments: {
         topLevelAwait: true,
-
+        asset: true,
     }
 
 
