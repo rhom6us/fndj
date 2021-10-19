@@ -21,7 +21,7 @@ export function usePromise<T>(factory: AsyncFunc<[], T>, deps: DependencyList | 
             setResult(result);
             setReady(true);
         });
-    }, [p, ...(deps ?? [])]);
+    }, [p, ...(deps ?? [])]); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (ready) {
         return [true, result!];
