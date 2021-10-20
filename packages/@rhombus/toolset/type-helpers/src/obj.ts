@@ -1,12 +1,27 @@
-export function keys<T>(obj: T): Array<keyof T> {
+
+export type keys<T> = keyof T;
+export function keys<T>(obj: T): keys<T>[] {
     return Object.keys(obj) as any;
 }
 
-export function entries<T>(obj: T): Array<readonly [keyof T, T[keyof T]]> {
+export type entries<T> = {
+    [K in keyof T]: readonly [K, T[K]]
+}[keyof T]
+export function entries<T>(obj: T): entries<T>[]{
     return Object.entries(obj) as any;
 }
-export function values<T>(obj: T): Array<T[keyof T]> {
+
+export type values<T> = T[keyof T];
+export function values<T>(obj: T): values<T>[] {
     return Object.values(obj);
+}
+
+
+export type fromEntries<TUnion extends readonly [PropertyKey, any]> = {
+    [Entry in TUnion as Entry[0]]: Entry[1]
+}
+export function fromEntries<TPair extends readonly [PropertyKey, any]>(entries: TPair[]): fromEntries<TPair> {
+    return Object.fromEntries(entries) as any;
 }
 
 type MergeTarget<Target, Source> =

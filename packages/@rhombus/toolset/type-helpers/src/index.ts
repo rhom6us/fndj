@@ -7,7 +7,7 @@ export * from './curry';
 export * from './identity';
 export * from './Lazy';
 export * from './node-callback-to-async';
-export * from './obj';
+export * as obj from './obj';
 export * from './range';
 export * from './restify';
 export * from './Singleton';
