@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace YouTubeProxy.Models {
+namespace YouTubeProxy.Models
+{
     public static class Grouping {
-        public static Grouping<TGroup, TKey, TElement> Create<TGroup, TKey, TElement>(TGroup group, IDictionary<TKey, TElement> items) {
+        public static Grouping<TGroup, TKey, TElement> Create<TGroup, TKey, TElement>(TGroup group, IDictionary<TKey, TElement> items) where TKey : notnull {
             return new Grouping<TGroup, TKey, TElement>(group, items);
         }
     }
-    public class Grouping<TGroup, TKey, TElement> : IGrouping<TGroup, KeyValuePair<TKey, TElement>>, IReadOnlyDictionary<TKey, TElement> {
+    public class Grouping<TGroup, TKey, TElement> : IGrouping<TGroup, KeyValuePair<TKey, TElement>>, IReadOnlyDictionary<TKey, TElement> where TKey : notnull {
         public Grouping(TGroup group, IDictionary<TKey, TElement> items) {
             this.Key = group;
             _items = new ReadOnlyDictionary<TKey, TElement>(items);
@@ -19,7 +19,7 @@ namespace YouTubeProxy.Models {
 
         public TGroup Key { get; }
 
-        public IEnumerator<KeyValuePair<TKey, TElement>> GetEnumerator() {
+        IEnumerator<KeyValuePair<TKey, TElement>> IEnumerable<KeyValuePair<TKey, TElement>>.GetEnumerator() {
             return _items.GetEnumerator();
         }
 
@@ -28,22 +28,21 @@ namespace YouTubeProxy.Models {
         }
 
 
-        public int Count => _items.Count;
+        int IReadOnlyCollection<KeyValuePair<TKey, TElement>>.Count => _items.Count;
 
 
-        public bool ContainsKey(TKey key) {
+        bool IReadOnlyDictionary<TKey, TElement>.ContainsKey(TKey key) {
             return _items.ContainsKey(key);
         }
 
-
-        public bool TryGetValue(TKey key, out TElement value) {
-            return _items.TryGetValue(key, out value);
+        bool IReadOnlyDictionary<TKey, TElement>.TryGetValue(TKey key, [AllowNull]out TElement value) {
+            return _items.TryGetValue(key, out value!);
         }
 
-        public TElement this[TKey key] => _items[key];
-        public IEnumerable<TKey> Keys => _items.Keys;
+        TElement IReadOnlyDictionary<TKey, TElement>.this[TKey key] => _items[key];
+        IEnumerable<TKey> IReadOnlyDictionary<TKey, TElement>.Keys => _items.Keys;
 
-        public IEnumerable<TElement> Values => _items.Values;
+        IEnumerable<TElement> IReadOnlyDictionary<TKey, TElement>.Values => _items.Values;
         private readonly IReadOnlyDictionary<TKey, TElement> _items;
     }
 }

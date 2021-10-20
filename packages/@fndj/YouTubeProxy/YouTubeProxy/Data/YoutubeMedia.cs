@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
 using YoutubeExplode.Videos;
 
-namespace YouTubeProxy.Data {
-    public class Thmubnail {
-        public int Height { get; private set; }
-        public int Width { get; private set; }
-        public string Url { get; private set; }
-    }
+namespace YouTubeProxy.Data
+{
+    // public class Thmubnail {
+    //     public int Height { get; private set; }
+    //     public int Width { get; private set; }
+    //     public string Url { get; private set; }
+    // }
     public class YoutubeMedia {
         public YoutubeMedia(string author, string description, TimeSpan duration, string id, string title, DateTimeOffset uploadDate, string url) {
             this.Author = author;
@@ -55,6 +49,6 @@ namespace YouTubeProxy.Data {
             return new YoutubeMedia(video.Author.Title, video.Description, video.Duration.Value, video.Id, video.Title, video.UploadDate, video.Url);
         }
 
-        
+
     }
 }

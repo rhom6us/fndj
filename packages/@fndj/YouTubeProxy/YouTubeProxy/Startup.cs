@@ -1,23 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OData.Edm;
 using YoutubeExplode;
 using YouTubeProxy.Data;
@@ -25,17 +16,8 @@ using YouTubeProxy.Models;
 using YouTubeProxy.Platform;
 using YouTubeProxy.Services;
 
-namespace YouTubeProxy {
-    public class TimeSpanToStringConverter : JsonConverter<TimeSpan> {
-        public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
-            var value = reader.GetString();
-            return TimeSpan.Parse(value);
-        }
-
-        public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options) {
-            writer.WriteNumberValue((int)value.TotalMilliseconds);
-        }
-    }
+namespace YouTubeProxy
+{
     public class Startup {
         public Startup(IConfiguration configuration)
         {
@@ -53,7 +35,7 @@ namespace YouTubeProxy {
             services.AddControllers().AddJsonOptions(
                 p => {
                     p.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-                    
+
 
                     p.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     //p.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonTimeSpanConverter());
@@ -73,8 +55,8 @@ namespace YouTubeProxy {
             services.Configure<RouteOptions>(options => {
                 options.ConstraintMap.Add("streamType", typeof(StreamTypeConstraint));
             });
-            services.AddSingleton<YoutubeClient>(); 
-            services.AddSingleton<YoutubeService>(); 
+            services.AddSingleton<YoutubeClient>();
+            services.AddSingleton<YoutubeService>();
             services.AddResponseCaching(options =>
             {
                 options.MaximumBodySize = 10 * 1024 * 1024;
@@ -101,13 +83,13 @@ namespace YouTubeProxy {
 
             app.UseRouting();
             //app.UseMvc(
-            //    builder => { 
-                    
+            //    builder => {
+
             //        builder.Select().Expand().Filter().OrderBy().Count();
             //        //builder.MapVersionedODataRoutes("odata", "odata", modelBuilder.GetEdmModels());
             //        builder.MapVersionedODataRoute("odata", "odata", modelBuilder.GetEdmModels());
             //    });
-            
+
             app.UseAuthorization();
 
             app.UseCors("something");
