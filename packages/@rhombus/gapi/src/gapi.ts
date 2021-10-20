@@ -1,5 +1,5 @@
 function loadScript(src = 'https://apis.google.com/js/api.js') {
-    return new Promise<typeof window.gapi>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         const id = 'gapi-script';
         let script = document.getElementById(id) as HTMLScriptElement | null;
         if (script) {
@@ -7,23 +7,25 @@ function loadScript(src = 'https://apis.google.com/js/api.js') {
                 reject(`script was already loaded but "gapi" global couldn't be found`);
                 return;
             }
-            resolve(window.gapi);
+            resolve();
             return;
         }
         script = document.createElement('script');
         script.id = id;
         script.src = src;
-        script.addEventListener('load', () => resolve(window.gapi), { once: true });
+        script.addEventListener('load', () => resolve(), { once: true });
 
         document.head.appendChild(script);
     });
 }
-export const gapi = await loadScript();
+await loadScript();
+
 export type Gapi = typeof gapi;
 
 
 export async function loadLib<K extends keyof Gapi>(lib: K): Promise<Gapi[K]>{
     return new Promise<Gapi[K]>((resolve) => {
+
         gapi.load(lib, () => resolve(gapi[lib]));
     });;
 }
