@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { audioContext } from '../audio-context';
 import { PROCESSOR_NAME } from './constants';
 import { FnEventTarget } from './FnEventTarget';
 import { FnMeterEvent } from './FnMeterEvent';
@@ -17,10 +16,10 @@ export class FnMeterNode extends AudioWorkletNode implements EventTarget {
 
   private fnTargets: FnEventTarget;
   public onmeterdataupdated?: ((this: FnMeterNode, ev: FnMeterEvent) => any);
-  addEventListener<K extends keyof FnMeterNodeEventMap>(type: K, listener: (this: FnMeterNode, ev: FnMeterNodeEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void {
+  override addEventListener<K extends keyof FnMeterNodeEventMap>(type: K, listener: (this: FnMeterNode, ev: FnMeterNodeEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void {
     this.fnTargets.addEventListener(type, listener as any);
   }
-  removeEventListener<K extends keyof FnMeterNodeEventMap>(type: K, listener: (this: AudioWorkletNode, ev: FnMeterNodeEventMap[K]) => any, options?: boolean | EventListenerOptions): void {
+  override removeEventListener<K extends keyof FnMeterNodeEventMap>(type: K, listener: (this: AudioWorkletNode, ev: FnMeterNodeEventMap[K]) => any, options?: boolean | EventListenerOptions): void {
     this.fnTargets.removeEventListener(type, listener as any);
   }
 
