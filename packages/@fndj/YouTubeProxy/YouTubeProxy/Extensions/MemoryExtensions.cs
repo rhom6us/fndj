@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using YouTubeProxy.Platform;
 
-namespace YouTubeProxy {
+namespace YouTubeProxy
+{
     public static class MemoryExtensions {
         //public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this T[] array) => new ReadOnlyMemory<T>(array);
         //public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this T[] array, Range range) => AsReadOnlyMemory<T>(array, range.Start.Value, range.End.Value - range.Start.Value);
@@ -58,7 +60,7 @@ namespace YouTubeProxy {
                 var startIndex = range.Start;
                 var endIndex = range.End;
                 if (!startIndex.Equals(Index.Start) || !endIndex.Equals(Index.Start))
-                    ThrowHelper.ThrowArgumentNullException(ExceptionArgument.array);
+                    throw GenerateJsonException.ThrowArgumentNullException(ExceptionArgument.array);
 
                 return default;
             }
@@ -87,7 +89,7 @@ namespace YouTubeProxy {
         /// </exception>
         public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this ArraySegment<T> segment, int start) {
             if (((uint)start) > (uint)segment.Count)
-                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
+                throw GenerateJsonException.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
 
             return new ReadOnlyMemory<T>(segment.Array, segment.Offset + start, segment.Count - start);
         }
@@ -106,9 +108,9 @@ namespace YouTubeProxy {
         /// </exception>
         public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this ArraySegment<T> segment, int start, int length) {
             if (((uint)start) > (uint)segment.Count)
-                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
+                throw GenerateJsonException.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
             if (((uint)length) > (uint)(segment.Count - start))
-                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.length);
+                throw GenerateJsonException.ThrowArgumentOutOfRangeException(ExceptionArgument.length);
 
             return new ReadOnlyMemory<T>(segment.Array, segment.Offset + start, length);
         }

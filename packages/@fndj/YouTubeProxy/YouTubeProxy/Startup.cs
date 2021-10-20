@@ -22,6 +22,7 @@ using Microsoft.OData.Edm;
 using YoutubeExplode;
 using YouTubeProxy.Data;
 using YouTubeProxy.Models;
+using YouTubeProxy.Platform;
 using YouTubeProxy.Services;
 
 namespace YouTubeProxy {
@@ -32,7 +33,7 @@ namespace YouTubeProxy {
         }
 
         public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options) {
-            writer.WriteStringValue(value.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
+            writer.WriteNumberValue((int)value.TotalMilliseconds);
         }
     }
     public class Startup {
@@ -56,7 +57,10 @@ namespace YouTubeProxy {
 
                     p.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                     //p.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonTimeSpanConverter());
-                    p.JsonSerializerOptions.Converters.Add(new TimeSpanToStringConverter());
+                    p.JsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter
+                    {
+                        Format = JsonTimeSpanFormat.NumericMilliseconds,
+                    });
                 });
             //services.AddMvcCore(options =>
             //{

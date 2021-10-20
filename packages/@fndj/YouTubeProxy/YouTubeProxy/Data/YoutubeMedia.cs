@@ -30,7 +30,7 @@ namespace YouTubeProxy.Data {
 
 
 
-        //[JsonConverter(typeof(JsonStandardTimeSpanConverter))]
+        //[JsonConverter(typeof(TimeSpanConverter))]
 
 
         //public Engagement Engagement  { get; private set; }
