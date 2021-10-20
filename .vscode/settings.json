@@ -47,7 +47,7 @@
   "files.autoSaveDelay": 5000,
   "files.autoSave": "afterDelay",
   "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
-  "explorerExclude.backup": null,
+  "explorerExclude.backup": {},
   "scm.alwaysShowActions": true,
   "notebook.consolidatedRunButton": true,
   "eslint.codeAction.disableRuleComment": {
