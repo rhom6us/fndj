@@ -2,10 +2,9 @@
   "name": "@rhombus/type-helpers",
   "version": "1.1.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
-    "build":"tsc --outDir dist -d  --noEmit false"
   },
   "keywords": [],
   "author": "Thomas Butler",
