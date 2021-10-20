@@ -31,3 +31,4 @@ packages/YouTubeProxy/YouTubeProxy/obj
 *.csproj.user
 packages/**/*.rar
 **/.tmp.driveupload
+**/bin/
