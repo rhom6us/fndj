@@ -1,7 +1,8 @@
 import { Stack } from '@fluentui/react';
-import { youtube } from '@rhombus/gapi';
 import { usePromise } from '@rhombus/react';
-import React, { FC, ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useCallback } from 'react';
+import { useThrottledState } from '../hooks';
+import { youtube } from '../services';
 interface Props {
 
 }
@@ -11,23 +12,6 @@ interface Children {
 function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 };
-function useThrottledState<T>(initialValue: T, ms: number) {
-    const [value, setValue] = useState(initialValue);
-    const [throttledValue, setThrottledValue] = useState(value);
-    const [token, setToken] = useState<number | void>();
-    const cancelUpdate = useCallback((token: number | void) => clearTimeout(token!), []);
-    const updateValue = useCallback((forced = false) => {
-        setThrottledValue(value);
-        setToken(cancelUpdate);
-    }, [cancelUpdate, value]);
-    useEffect(() => {
-        setToken(setTimeout(updateValue, ms));
-        return () => setToken(cancelUpdate);
-
-    }, [cancelUpdate, updateValue, ms]);
-
-    return [value, setValue, throttledValue, () => updateValue(true)] as const;
-}
 export const Search: FC<Props> = (props) => {
     const [term, setTerm, throttledTerm, forceUpdate] = useThrottledState('', 1000);
 
@@ -38,24 +22,7 @@ export const Search: FC<Props> = (props) => {
         return false;
     }, [forceUpdate]);
 
-    const [ready, response] = usePromise(async () => {
-        const listResponse = await youtube.search.list({
-            part: [
-                "snippet"
-            ],
-            maxResults: 25,
-            order: "viewCount",
-            q: throttledTerm,
-            type: [
-                "video"
-            ]
-        });
-        const vidResponse = await youtube.videos.list({
-            part: ['snippet', 'contentDetails'],
-            id: listResponse.result.items!.map(p => p.id?.videoId).filter(Boolean).join(',')
-        });
-        return vidResponse.result!.items!;
-    }, [throttledTerm]);
+    const [ready, response] = usePromise(youtube.useSearch([throttledTerm]), [throttledTerm]);
 
     return (
         <ResultRoot>
