@@ -32,3 +32,4 @@ packages/YouTubeProxy/YouTubeProxy/obj
 packages/**/*.rar
 **/.tmp.driveupload
 **/bin/
+.tsbuildinfo
