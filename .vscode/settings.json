@@ -33,8 +33,6 @@
     "**/dist": true
   },
   // The package manager you use to install node modules.
-  "prettier.packageManager": "pnpm",
-  // The package manager you use to install node modules.
   "tslint.packageManager": "pnpm",
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",
@@ -47,7 +45,7 @@
   "files.autoSaveDelay": 5000,
   "files.autoSave": "afterDelay",
   "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
-  "explorerExclude.backup": null,
+  "explorerExclude.backup": {},
   "scm.alwaysShowActions": true,
   "notebook.consolidatedRunButton": true,
   "eslint.codeAction.disableRuleComment": {

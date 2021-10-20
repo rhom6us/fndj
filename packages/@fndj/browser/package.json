@@ -4,9 +4,9 @@
   "main": "src/index.tsx",
   "license": "MIT",
   "scripts": {
-    "compile": "fnbuild webApp development",
-    "serve": "fnserve webApp development",
-    "watch": "fnwatch webApp development"
+    "build": "fnbuild webApp development",
+    "start": "fnserve webApp development",
+    "build:watch": "fnwatch webApp development"
   },
   "dependencies": {
     "@fluentui/react": "^8.36.0",

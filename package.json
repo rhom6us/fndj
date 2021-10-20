@@ -9,7 +9,7 @@
     "nm": "nodemon -w packages/@fndj/webpack/lib -w packages/@fndj/*/package.json --ignore **/node_modules/**",
     "start": "pnpm start-browser",
     "wp-main": "run-s --print-name wp start-main",
-    "wp-browser": "run-s --print-name wp start-browser",
+    "build": "run-s --print-name wp build-browser",
     "start-main": "pnpm -C packages/@fndj/main serve",
     "build-browser": "pnpm -C packages/@fndj/browser compile",
     "start-browser": "pnpm -C packages/@fndj/browser serve",
