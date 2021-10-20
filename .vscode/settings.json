@@ -12,7 +12,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/.tsbuildinfo": false,
+    "**/.tsbuildinfo": true,
     "**/*.csproj.user": true,
     "**/bin/": true,
     "**/obj/": true,
@@ -30,7 +30,9 @@
     "**/node_modules": true,
     "dist": false,
     "**/.tmp.driveupload": true,
-    "**/dist": true
+    "**/dist": true,
+    ".gitattributes": true,
+    ".ionide": true
   },
   // The package manager you use to install node modules.
   "tslint.packageManager": "pnpm",
@@ -45,7 +47,7 @@
   "files.autoSaveDelay": 5000,
   "files.autoSave": "afterDelay",
   "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
-  "explorerExclude.backup": {},
+  "explorerExclude.backup": null,
   "scm.alwaysShowActions": true,
   "notebook.consolidatedRunButton": true,
   "eslint.codeAction.disableRuleComment": {
