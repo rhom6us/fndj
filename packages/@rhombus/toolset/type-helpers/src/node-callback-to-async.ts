@@ -1,17 +1,16 @@
-import { Func } from '@rhombus/func';
+import { Action } from '@rhombus/func';
 
-type NodeStyleCallback<TResult = any, TError = any> = Func<[TError, TResult], void>;
-type NodeStyleFn<TArgs extends any[] = any[], TResult = any> = Func<[...TArgs, NodeStyleCallback<TResult>], void>;
-type NodeStyleFnParts<F extends NodeStyleFn> =
-    F extends NodeStyleFn<infer args, infer result> ? [args, result] : never;
-// F extends (...args: [...infer Args, Callback<infer V>]) => void ? [Args, V] : never;
-type NodeStyleParameters<F extends NodeStyleFn> = NodeStyleFnParts<F>[0];
-type NodeStyleResult<F extends NodeStyleFn> = NodeStyleFnParts<F>[1];
 
-export function nodeCallbackToAsync<TFn extends NodeStyleFn>(fn: TFn) {
-    return (...args: NodeStyleParameters<TFn>) => new Promise<NodeStyleResult<TFn>>((resolve, reject) => {
+type InferArgs<F extends NodeStyleFn> = F extends NodeStyleFn<infer args, any> ? args : never;
+type InferResult<F extends NodeStyleFn> = F extends NodeStyleFn<any, infer result> ? result : never;
+
+type Callback<TResult = any, TError = any> = Action<[error: TError, result: TResult]>;
+type NodeStyleFn<Args extends any[] = any[], TResult = any> = Action<[...args: Args, callback: Callback<TResult>]>;
+
+export function nodeCallbackToAsync<T extends NodeStyleFn>(fn: T) {
+    return (...args: InferArgs<T>) => new Promise<InferResult<T>>((resolve, reject) => {
         fn(...args, (err: any, result: any) => {
-            if (err) {
+            if (err !== undefined) {
                 reject(err);
             } else {
                 resolve(result);

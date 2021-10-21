@@ -1,5 +1,5 @@
-import { Length, Skip, Tail } from '../src/array';
-import { Cast } from '../src/cast';
+import { Length, Skip, Tail } from './array';
+import { Cast } from './cast';
 
 
 type CounterArray = never[];
