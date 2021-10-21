@@ -1,3 +1,4 @@
+import path from 'path';
 import { Configuration } from 'webpack';
 import * as plugins from './plugins';
 import * as rules from './rules';
@@ -31,6 +32,10 @@ export const configuration: any = {
     // ],
     resolve: {
         ...config.resolve,
+        alias: {
+            ...config.resolve.alias,
+            '@fndj/browser': [path.join(__dirname, 'packages', '@fndj/browser'), path.join(config.context, 'src')],
+        },
         extensions: [
             ...config.resolve!.extensions,
             '.tsx', '.css', '.swcss', '.wasm', '.workletts'
