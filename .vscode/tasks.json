@@ -2,41 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "browser:start",
             "type": "npm",
-            "label": "serve-browser",
-            "script": "start-browser",
-            "isBackground": true,
-            "problemMatcher": [
-                "$ts-checker-eslint-webpack-watch"
-            ],
+            "script": "start",
+            "path": "packages/@fndj/browser/",
+            "dependsOn": "webpack:build",
+            "problemMatcher": [ "$ts-checker-eslint-webpack-watch" ],
+            "detail": "fnserve webApp development",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": false,
                 "panel": "dedicated",
                 "showReuseMessage": false,
-                "clear": true,
+                "clear": false,
                 "group": "serve"
-            }
-        },
-        {
-            "type": "npm",
-            "script": "build",
-            "group": "build",
-            "problemMatcher": [
-                "$ts-checker-eslint-webpack-watch"
-            ],
-            "label": "npm: build - packages/@fndj/ui",
-            "detail": "fnbuild webApp development",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true,
-                "group": "serve"
-            }
+            },
         },
         {
             "label": "browser:build",
@@ -51,9 +32,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$ts-checker-eslint-webpack-watch"
-            ],
+            "problemMatcher": [ "$ts-checker-eslint-webpack-watch" ],
             "detail": "fnbuild webApp development",
             "presentation": {
                 "echo": true,

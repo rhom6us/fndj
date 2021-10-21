@@ -5,12 +5,32 @@
             "name": "Compound",
             "configurations": [
                 ".NET Core Launch (local web)",
-                "Launch - @fndj/ui"
+                "Launch"
             ],
-            "stopAll": true
+            "stopAll": true,
+            "preLaunchTask": "browser:start",
+            "presentation": {
+                "hidden": false,
+                "group": "",
+                "order": 1
+            }
         }
     ],
     "configurations": [
+        {
+            "type": "vscode-edge-devtools.debug",
+            "request": "launch",
+            "name": "Launch",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack://*": "${webRoot}/packages/*"
+            },
+            "pathMapping": {
+                "/": "${workspaceFolder}"
+            }
+        },
         {
             "type": "vscode-edge-devtools.debug",
             "request": "launch",
@@ -23,6 +43,7 @@
             "port": 9222,
             "request": "attach",
             "type": "pwa-msedge",
+            "version": "dev",
             "webRoot": "${workspaceFolder}"
         },
         {
@@ -80,21 +101,6 @@
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}",
             "port": 9222,
-            "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "webpack://*": "${webRoot}/packages/*"
-            },
-            "pathMapping": {
-                "/": "${workspaceFolder}"
-            }
-        },
-        {
-            "type": "vscode-edge-devtools.debug",
-            "preLaunchTask": "serve-renderer",
-            "request": "launch",
-            "name": "Launch Microsoft Edge and open the Edge DevTools",
-            "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}",
             "sourceMaps": true,
             "sourceMapPathOverrides": {
                 "webpack://*": "${webRoot}/packages/*"
