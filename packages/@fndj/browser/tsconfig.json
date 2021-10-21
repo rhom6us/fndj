@@ -1,6 +1,10 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@fndj/browser/*": ["*"]
+    }
   }
 }
