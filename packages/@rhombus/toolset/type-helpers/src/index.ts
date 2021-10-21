@@ -10,6 +10,5 @@ export * from './node-callback-to-async';
 export * as obj from './obj';
 export * from './range';
 export * from './restify';
-export * from './Singleton';
 export * from './tuple';
 export * from './utility-types';
