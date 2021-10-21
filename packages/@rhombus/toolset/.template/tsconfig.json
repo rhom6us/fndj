@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+
+    /** CODE **/
+    "strict": true,
+    "moduleResolution": "Node",
+    "lib": [
+      "ESNext",
+    ],                       /* Report errors in .js files. */
+    "types": [],
+    "noImplicitOverride": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    // "allowJs": true,
+
+    /** BUILD **/
+    "noEmit": true,
+    "noEmitOnError": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "skipLibCheck": true,
+    // "checkJs": true,
+
+    "declaration": true,                   /* Generates corresponding '.d.ts' file. */
+    "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    // "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+
+
+    /** OUTPUT **/
+    "target": "ESNext",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "preserveConstEnums": true,
+    "importsNotUsedAsValues": "remove",
+    "noErrorTruncation": true,
+    "stripInternal": true,
+    "newLine": "lf",
+     "emitDecoratorMetadata": true,
+
+
+
+
+
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/index.ts"]
+}
