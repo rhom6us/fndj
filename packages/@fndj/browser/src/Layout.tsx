@@ -2,7 +2,7 @@ import { initializeIcons, IStackItemStyles, IStackStyles, Stack } from '@fluentu
 import { CommandBarBasicExample } from '@fndj/browser-ui/src/CommandBarBasicExample';
 import { Authenticate, LogoutButton } from '@rhombus/gapi-react';
 import React, { FC } from 'react';
-import { Search } from './add-track/search';
+import { AddTrack } from './add-track';
 
 initializeIcons();
 const stackStyles: IStackStyles = {
@@ -27,7 +27,7 @@ export const Layout: FC = () => {
         </Stack.Item>
         <Stack.Item styles={stackItemStyles}>
             <Authenticate clientId="777867454715-hjdi9a3j20sm3i4k9cfueubn9bc1vtdj.apps.googleusercontent.com">
-                <Search/>
+                <AddTrack/>
             </Authenticate>
         </Stack.Item>
     </Stack>;

@@ -1,10 +1,10 @@
 import { Stack } from '@fluentui/react';
-import { usePromise } from '@rhombus/react';
-import React, { FC, ReactNode, useCallback } from 'react';
-import { useThrottledState } from '../hooks';
-import { youtube } from '../services';
-interface Props {
+import { useThrottledState } from '@fndj/browser/hooks';
+import React, { FC, ReactNode, useCallback, useEffect } from 'react';
+import { Video } from './services/youtube';
+import { commands, SearchState } from './store';
 
+interface Props extends SearchState {
 }
 interface Children {
     children?: ReactNode;
@@ -12,7 +12,8 @@ interface Children {
 function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 };
-export const Search: FC<Props> = (props) => {
+export const Search: FC<Props> = ({ pending, results }) => {
+
     const [term, setTerm, throttledTerm, forceUpdate] = useThrottledState('', 1000);
 
 
@@ -22,33 +23,40 @@ export const Search: FC<Props> = (props) => {
         return false;
     }, [forceUpdate]);
 
-    const [ready, response] = usePromise(youtube.useSearch([throttledTerm]), [throttledTerm]);
+    useEffect(() => {
+        if (throttledTerm) {
+            commands.addTrack.search(throttledTerm);
+        }
+    }, [throttledTerm]);
 
     return (
         <ResultRoot>
             <form onSubmit={onSubmit}>
                 <input type="text" value={term} onChange={e => setTerm(e.target.value)} />
             </form>
-            {ready ? <Search_Results response={response!} /> : <p>loading results...</p>}
+            {pending ? <p>loading results...</p> : <></>}
+            <Search_Results videos={results} />
         </ResultRoot>
     );
 };
 
-const Search_Results: FC<{ response: gapi.client.youtube.Video[]; }> = ({ response }) => {
-
+const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
+    const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video), []);
     return (
         <ResultRoot>
             <ul>
-                {response.map(item =>
-                    <li key={item.id}>
-                        <Stack horizontal={true}>
-                            <img src={item.snippet!.thumbnails!.default!.url} />
-                            <Stack>
-                                <h3>{item.snippet!.title}</h3>
-                                <p><strong>{item.snippet!.channelTitle}</strong><small>{item.contentDetails?.duration}</small></p>
-                                <p>{item.snippet!.description}</p>
+                {videos.map(video =>
+                    <li key={video.id}>
+                        <a onClick={onClick(video)}>
+                            <Stack horizontal={true}>
+                                <img src={video.snippet!.thumbnails!.default!.url} />
+                                <Stack>
+                                    <h3>{video.snippet!.title}</h3>
+                                    <p><strong>{video.snippet!.channelTitle}</strong><small>{video.contentDetails?.duration}</small></p>
+                                    <p>{video.snippet!.description}</p>
+                                </Stack>
                             </Stack>
-                        </Stack>
+                        </a>
                     </li>
                 )}
             </ul>

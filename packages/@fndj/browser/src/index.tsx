@@ -9,8 +9,7 @@ audioContext.audioWorklet.addModule(new URL(fnMeterUrl));
 
 const div = document.body.appendChild(document.createElement('app'));
 
-const eq = audioContext.createBiquadFilter();
-eq.type
+
 await setImmediateAsync();
 render(
     <Root />

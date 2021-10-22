@@ -1,6 +1,6 @@
 import { youtube } from '@rhombus/gapi';
 
-export async function useSearch(query: string) {
+export async function search(query: string) {
     const listResponse = await youtube.search.list({
         part: [
             "snippet"
@@ -16,5 +16,6 @@ export async function useSearch(query: string) {
         part: ['snippet', 'contentDetails'],
         id: listResponse.result.items!.map(p => p.id?.videoId).filter(Boolean).join(',')
     });
-    return vidResponse.result!.items!;
+    return vidResponse.result?.items;
 }
+export type Video = youtube.Video;
