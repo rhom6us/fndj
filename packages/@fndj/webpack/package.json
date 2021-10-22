@@ -17,6 +17,8 @@
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-syntax-top-level-await": "^7.12.13",
+    "@babel/plugin-transform-react-jsx-self": "^7.14.9",
+    "@babel/plugin-transform-react-jsx-source": "^7.14.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
     "abortcontroller-polyfill": "^1.7.3",
     "babel-loader": "^8.2.2",

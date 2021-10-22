@@ -5,7 +5,7 @@ import ReactRefreshTypeScript from 'react-refresh-typescript';
 import type { RuleSetUseItem } from 'webpack';
 import { isDev } from './settings';
 
-function onlyif<T extends any[]>(test: boolean, ...args: T): T | []{
+export function onlyif<T extends any[]>(test: boolean, ...args: T): T | [] {
   if (test) {
     return args;
   }
@@ -17,50 +17,85 @@ function onlyif<T extends any[]>(test: boolean, ...args: T): T | []{
 /**
  * Seperates css into a seperate bundle in order to prevent brief flash of unstyled content.
  */
-export const cssExtractLoader: RuleSetUseItem = MiniCssExtractPlugin.loader;
-export const cssHotLoader: RuleSetUseItem = {
-  loader: 'css-hot-loader',
-};
-export const cssHotModuleLoader: RuleSetUseItem = {
-  loader: 'css-hot-loader',
-  options: {
-    cssModule: true,
-  },
-};
-export const cssLoader: RuleSetUseItem = {
-  loader: 'css-loader',
-  options: {
-    importLoaders: 2,
-    modules: false,
-    sourceMap: isDev,
-  },
-};
-export const cssModuleLoader: RuleSetUseItem = {
-  loader: 'css-loader',
-  options: {
-    importLoaders: 2,
-    modules: true,
-    import: true,
-    sourceMap: isDev,
-  },
-};
+export const css_extract_loader = MiniCssExtractPlugin.loader;
+// export function css_extract_loader(options?: MiniCssExtractPlugin.LoaderOptions) {
+//   return {
+//     loader: MiniCssExtractPlugin.loader,
+//     options
+//   };
+// }
+export function css_hot_loader(options?: { cssModule: boolean; }) {
+  return {
+    loader: require.resolve('css-hot-loader'),
+    options
+  };
+}
 
-/** @deprecated use asset/resource */
-export const fileLoader: RuleSetUseItem = {
-  loader: 'file-loader',
-  options: {
-    name: '[name]__[hash:base64:5].[ext]'
-  }
-};
-/** @deprecated use asset/inline */
-export const fontLoader: RuleSetUseItem = {
-  loader: 'url-loader',
-  options: {
-    name: 'fonts/[name]--[folder].[ext]',
-    limit: 10240,
-    // mimetype: 'application/font-woff'
-  },
-};
+interface UrlOption {
+  /**
+   * Allow to filter url(). All filtered url() will not be resolved (left in the code as they were written).
+   *
+   * @param {string} url
+   * @param {string} resourcePath
+   * @returns {boolean}
+   * @memberof UrlOption
+   */
+  filter(url: string, resourcePath: string): boolean;
+}
+interface CssLoaderOptions {
+
+  /**
+   * Allow to enable/disables handling the CSS functions url and image-set. If set to false, css-loader will not parse any paths specified in url or image-set. A function can also be passed to control this behavior dynamically based on the path to the asset. Starting with version 4.0.0, absolute paths are parsed based on the server root.
+   *
+   * @type {(string | UrlOption)}
+   * @default true
+   * @memberof CssLoaderOptions
+   */
+  url?: string | UrlOption;
+  /**
+   * Allows to enable/disable CSS Modules or ICSS and setup configuration:
+   * - undefined: enable CSS modules for all files matching /\.module\.\w+$/i.test(filename) and /\.icss\.\w+$/i.test(filename) regexp.
+   * - true: enable CSS modules for all files.
+   * - false: disables CSS Modules for all files.
+   * - string: disables CSS Modules for all files and set the mode option, more information you can read here
+   * - object: enable CSS modules for all files, if modules.auto option is not specified, otherwise the modules.auto option will determine whether if it is CSS modules or not, more information you can read here
+   *
+   * The modules option enables/disables the CSS Modules specification and setup basic behaviour.
+   *
+   * Using false value increase performance because we avoid parsing CSS Modules features, it will be useful for developers who use vanilla css or use other technologies.
+   *
+   * @type {boolean}
+   * @default undefined
+   * @memberof CssLoaderOptions
+   */
+  modules?: boolean;
+  /**
+   * Allows to enables/disables or setups number of loaders applied before CSS loader for @import at-rules, CSS modules and ICSS imports, i.e. @import/composes/@value value from './values.css'/etc.
+   *
+   * The option importLoaders allows you to configure how many loaders before css-loader should be applied to @imported resources and CSS modules/ICSS imports.
+   *
+   * @type {number}
+   * @default 0
+   * @memberof CssLoaderOptions
+   */
+  importLoaders: number;
+  sourceMap?: boolean;
+  /**
+   * Allows to enables/disables @import at-rules handling. Control @import resolving. Absolute urls in @import will be moved in runtime code.
+   *
+   * @type {boolean}
+   * @default true
+   * @memberof CssLoaderOptions
+   */
+  import?: boolean;
+}
+
+export function css_loader(options?: CssLoaderOptions) {
+  return {
+    loader: require.resolve('css-loader'),
+    options
+  };
+}
 export const postcssLoader: RuleSetUseItem = {
   loader: 'postcss-loader',
   options: {
@@ -79,25 +114,12 @@ export const sassLoader: RuleSetUseItem = {
 export const threadLoader: RuleSetUseItem = {
   loader: 'thread-loader',
 };
-// export const wasmLoader: RuleSetUseItem = {
-//   loader: 'url-loader',
-//   options: {
-//     limit: 10240,
-//     name: 'imgs/[name]--[folder].[ext]',
-//   },
-// };
-/** @deprecated use asset/inline */
-export const imageLoader: RuleSetUseItem = {
-  loader: 'url-loader',
-  options: {
-    limit: 10240,
-    name: 'imgs/[name]--[folder].[ext]',
-  },
-};
+
 export const worklet_loader: RuleSetUseItem = {
   loader: 'worklet-loader',
   options: {
-    inline: false
+    inline: true,
+    // publicPath: "/scripts/worklets/",
   }
 };
 
@@ -105,27 +127,26 @@ export const worker_loader: RuleSetUseItem = {
   loader: 'worker-loader',
   options: {
     publicPath: "/scripts/workers/",
-    filename: "[name].[contenthash].worker.js",
-    chunkFilename: "[id].[contenthash].worker.js",
+    // filename: "[name].[contenthash].worker.js",
+    // chunkFilename: "[id].[contenthash].worker.js",
     esModule: true,
   }
 };
-export const experimental_ts_features_loader: RuleSetUseItem = {
-  loader: 'babel-loader',
-  options: { plugins: [/*'react-refresh/babel', */'@babel/plugin-syntax-top-level-await', '@babel/plugin-proposal-class-properties'] },
-};
-export function babel(...features: Array<'top_level_await' | 'class_properties'>) {
+
+export function babel_loader(...features: Array<'top_level_await' | 'class_properties' | 'jsx_self' | 'jsx_source'>) {
   return {
     loader: require.resolve('babel-loader'),
     options: {
       plugins: [
         ...onlyif(features.includes('top_level_await'), '@babel/plugin-syntax-top-level-await'),
         ...onlyif(features.includes('class_properties'), '@babel/plugin-proposal-class-properties'),
+        ...onlyif(features.includes('jsx_self'), '@babel/plugin-transform-react-jsx-self'),
+        ...onlyif(features.includes('jsx_source'), '@babel/plugin-transform-react-jsx-source'),
       ]
     }
-  }
+  };
 }
-export function typescript(...features: Array<'react_refresh' | 'transpile_only'>): RuleSetUseItem {
+export function ts_loader(...features: Array<'react_refresh' | 'transpile_only'>) {
   return {
     loader: require.resolve('ts-loader'),
     options: {

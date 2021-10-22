@@ -1,66 +1,59 @@
-import { RuleSetRule } from 'webpack';
-import * as loaders from './loaders';
+import { RuleBuilder } from './builder';
+import { babel_loader, css_extract_loader, css_hot_loader, css_loader, postcssLoader, sassLoader, ts_loader, worker_loader, worklet_loader } from './loaders';
 import { isDev } from './settings';
 
 
 const node_modules = /node_modules/i;
 //#region code
+const builder = new RuleBuilder(isDev);
+export const workletQueryRule = builder
+  .when(undefined)
+  .withResourceQuery(/worklet/)
+  .using(worklet_loader)
+  .result();
+export const workletRule = builder
+  .when(/\.worklet\.ts$/i)
+  .using(worklet_loader)
+  .result();
 
-export const workletQueryRule:RuleSetRule = {
-  resourceQuery: /worklet/,
-  // type: 'asset/resource',
-  use: [
-    loaders.worklet_loader,
-  ],
-}
-export const workletRule: RuleSetRule = {
-  test: /\.worklet\.ts$/i,
-  exclude: node_modules,
-  use: [
-    loaders.worklet_loader,
-  ],
-};
-export const workerRule: RuleSetRule = {
-  test: /\.worker\.ts$/i,
-  exclude: node_modules,
-  use: [loaders.worker_loader],
-};
-export const wasmRule: RuleSetRule = {
-  test: /\.wasm$/i,
-  exclude: node_modules,
-  // type: 'asset/inline', // makes a data uri
-  type: 'asset/resource', // emits a file
-};
-export const wavRule: RuleSetRule = {
-  test: /\.wav$/i,
-  exclude: node_modules,
-  // type: 'asset/inline', // makes a data uri
-  type: 'asset/resource', // emits a file
-};
-export const typescriptRule: RuleSetRule = {
-  test: /\.[tj]sx?$/i,
-  exclude: [node_modules],
-  use: [
-    loaders.babel('top_level_await', 'class_properties'),
-    ...ifDev(loaders.typescript('react_refresh', 'transpile_only')),
-    ...ifProd(loaders.typescript()),
-  ],
-};
+export const workerRule = builder
+  .when(/\.worker\.ts$/i)
+  .butNotWhen(node_modules)
+  .using(worker_loader)
+  .result();
+
+export const wasmRule = builder.when(/\.wasm$/i).asAsset(false).result();
+export const wavRule = builder.when(/\.wav$/i).asAsset(false).result();
+export const typescriptRule = builder
+  .when(/\.[tj]sx?$/i)
+  .butNotWhen(node_modules)
+  .usingDev(babel_loader('top_level_await', 'class_properties', 'jsx_self', 'jsx_source'))
+  .usingProd(babel_loader('top_level_await', 'class_properties'))
+  .usingDev(ts_loader('react_refresh', 'transpile_only'))
+  .usingProd(ts_loader())
+  .result('typescriptRule');
+
+// export const typescriptRule: RuleSetRule = {
+//   test: /\.[tj]sx?$/i,
+//   exclude: [node_modules],
+//   use: [
+//     babel_loader('top_level_await', 'class_properties'),
+//     ...onlyif(isDev, ts_loader('react_refresh', 'transpile_only')),
+//     ...onlyif(!isDev, ts_loader()),
+//   ],
+// }
 
 // export const jsRule: RuleSetRule = {
 //   test: /\.js$/i,
 //   exclude: [node_modules],
-//   use: [loaders.ts_with_react_refresh_loader],
+//   use: [ts_with_react_refresh_loader],
 // };
 // export const scriptRule: RuleSetRule = {
 //   test: /\.(j|t)sx?$/i,
 //   exclude: [node_modules],
 //   use: [babelLoader],
 // };
-export const nodeRule: RuleSetRule = {
-  test: /\.node$/i,
-  use: loaders.node_loader,
-};
+
 
 
 
@@ -68,63 +61,113 @@ export const nodeRule: RuleSetRule = {
 //#endregion
 
 //#region styles
-export const globalStylesheetRule: RuleSetRule = {
+export const globalStylesheetRule = {
   test: /\b(global|vars)\.s?css$/i,
   use: [
-    ...ifDev(loaders.cssHotLoader),
-    loaders.cssExtractLoader,
-    loaders.cssLoader,
-    loaders.postcssLoader,
-    loaders.sassLoader
+    css_hot_loader(),
+    css_extract_loader,
+    css_loader({
+            importLoaders: 2,
+            modules: false,
+            sourceMap: true,
+          }),
+    postcssLoader,
+    sassLoader
   ],
 };
-export const stylesheetRule: RuleSetRule = {
-  test: /\.s?css$/i,
-  exclude: /\b(global|vars)\.s?css$/i,
-  use: [
-    ...ifDev(loaders.cssHotModuleLoader),
-    loaders.cssExtractLoader,
-    loaders.cssModuleLoader,
-    loaders.postcssLoader,
-    loaders.sassLoader
-  ],
-};
-//#endregion
+// export const globalStylesheetRule = builder.when(/\b(global|vars)\.s?css$/i)
+//   .usingDev(css_hot_loader())
+//   .using(css_extract_loader)
+//   .usingDev(
+//     css_loader({
+//       importLoaders: 2,
+//       modules: false,
+//       sourceMap: true,
+//     })
+//   )
+//   .usingProd(
+//     css_loader({
+//       importLoaders: 2,
+//       modules: false,
+//       sourceMap: false,
+//     })
+//   )
+//   .using(
+//     postcssLoader,
+//     sassLoader,
+//   )
+//   .result('global stylesheet rule');
+export const stylesheetRule = builder.when(/\.s?css$/i).butNotWhen(globalStylesheetRule.test, node_modules)
+  .usingDev(
+    css_hot_loader({
+      cssModule: true
+    })
+  )
+  .using(
+    css_extract_loader
+  )
+  .usingDev(
+    css_loader({
+      importLoaders: 2,
+      modules: true,
+      import: true,
+      sourceMap: true,
+    })
+  )
+  .usingProd(
+    css_loader({
+      importLoaders: 2,
+      modules: true,
+      import: true,
+      sourceMap: false,
+    })
+  )
+  .using(
+    postcssLoader,
+    sassLoader,
+  )
+  .result('stylesheetRule');
 
-//#region assets
-// export const assetRule:RuleSetRule = {
-//   test: /\.(png|svg|jpg|jpeg|gif)$/i,
-//   type: 'asset/resource',
+// export const globalStylesheetRule: RuleSetRule = {
+//   test: /\b(global|vars)\.s?css$/i,
+//   use: [
+//     ...onlyif(isDev, css_hot_loader()),
+//     cssExtractLoader(),
+//     css_loader({
+//       importLoaders: 2,
+//       modules: false,
+//       sourceMap: isDev,
+//     }),
+//     postcssLoader,
+//     sassLoader
+//   ],
 // };
-export const imageRule: RuleSetRule = {
-  test: /\.(png|jpg|gif)$/i,
-  type: 'asset',
-  // use: [loaders.imageLoader],
-};
-
-export const fontRule: RuleSetRule = {
-  test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
-  type: 'asset',
-  // use: [loaders.fontLoader],
-};
-
-export const htmlRule: RuleSetRule = {
-  test: /\.(html)$/i,
-  use: ['html-loader'],
-};
+// export const stylesheetRule: RuleSetRule = {
+//   test: /\.s?css$/i,
+//   exclude: /\b(global|vars)\.s?css$/i,
+//   use: [
+//     ...onlyif(isDev, css_hot_loader({ cssModule: true })),
+//     cssExtractLoader({ esModule: true }),
+//     css_loader({
+//       importLoaders: 2,
+//       modules: true,
+//       import: true,
+//       sourceMap: isDev,
+//     }),
+//     postcssLoader,
+//     sassLoader
+//   ],
+// };
 //#endregion
 
 
-function ifDev<T extends any[]>(...values: T): T | [] {
-  if (isDev) {
-    return values;
-  }
-  return [];
-}
 
-function ifProd<T extends any[]>(...values: T): T | [] {
-  if (!isDev) {
-    return values;
-  }
-  return [];
-}
+export const imageRule = builder.when(/\.(png|jpg|gif)$/i)
+  .asAsset()
+  .result();
+export const fontRule = builder.when(/\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i)
+  .asAsset()
+  .result();
+export const htmlRule = builder.when(/\.(html)$/i)
+  .using('html-loader')
+  .result('htmlRule');

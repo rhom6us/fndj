@@ -378,6 +378,8 @@ importers:
       '@babel/core': ^7.13.14
       '@babel/plugin-proposal-class-properties': ^7.14.5
       '@babel/plugin-syntax-top-level-await': ^7.12.13
+      '@babel/plugin-transform-react-jsx-self': ^7.14.9
+      '@babel/plugin-transform-react-jsx-source': ^7.14.5
       '@pmmmwh/react-refresh-webpack-plugin': ^0.5.1
       '@types/html-webpack-plugin': ^3.2.6
       '@types/loader-utils': ^2.0.3
@@ -437,6 +439,8 @@ importers:
       '@babel/core': 7.15.5
       '@babel/plugin-proposal-class-properties': 7.14.5_@babel+core@7.15.5
       '@babel/plugin-syntax-top-level-await': 7.14.5_@babel+core@7.15.5
+      '@babel/plugin-transform-react-jsx-self': 7.14.9_@babel+core@7.15.5
+      '@babel/plugin-transform-react-jsx-source': 7.14.5_@babel+core@7.15.5
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.1_ae63a758b070f6c8f0763e3e1c915012
       abortcontroller-polyfill: 1.7.3
       babel-loader: 8.2.2_171a5bf2a395ada1ca3f122663ee45f5
@@ -987,6 +991,26 @@ packages:
 
   /@babel/plugin-syntax-top-level-await/7.14.5_@babel+core@7.15.5:
     resolution: {integrity: sha512-hx++upLv5U1rgYfwe1xBQUhRmU41NEvpUvrp8jkrSCdvGSnM5/qdRMtylJ6PG5OFkBaHkbTAKTnd3/YyESRHFw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.15.5
+      '@babel/helper-plugin-utils': 7.14.5
+    dev: false
+
+  /@babel/plugin-transform-react-jsx-self/7.14.9_@babel+core@7.15.5:
+    resolution: {integrity: sha512-Fqqu0f8zv9W+RyOnx29BX/RlEsBRANbOf5xs5oxb2aHP4FKbLXxIaVPUiCti56LAR1IixMH4EyaixhUsKqoBHw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.15.5
+      '@babel/helper-plugin-utils': 7.14.5
+    dev: false
+
+  /@babel/plugin-transform-react-jsx-source/7.14.5_@babel+core@7.15.5:
+    resolution: {integrity: sha512-1TpSDnD9XR/rQ2tzunBVPThF5poaYT9GqP+of8fAtguYuI/dm2RkrMBDemsxtY0XBzvW7nXjYM0hRyKX9QYj7Q==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
