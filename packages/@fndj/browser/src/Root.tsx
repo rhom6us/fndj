@@ -1,5 +1,4 @@
 
-// import { hot } from 'react-hot-loader';
 import { ThemeProvider } from '@fndj/browser-ui';
 import React, { FC } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';

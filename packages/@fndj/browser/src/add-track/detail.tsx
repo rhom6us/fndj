@@ -16,7 +16,6 @@ export const Detail: FC<Props> = ({ video }) => {
     return (
         <ResultRoot>
             <button onClick={goBack}>go back</button>
-
             <Stack horizontal={true}>
                 <img src={video.snippet!.thumbnails!.default!.url} />
                 <Stack>

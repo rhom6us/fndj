@@ -1,5 +1,5 @@
-import { StandardEventAny } from './standard-event';
 import { Action, Func } from '@rhombus/func';
+import { StandardEventAny } from './standard-event';
 
 export type Dispatch<TAction extends StandardEventAny = StandardEventAny> = Action<[TAction]>;//<T extends A>(action: T) => void;
 export type GetState<TState> = Func<[], TState>;

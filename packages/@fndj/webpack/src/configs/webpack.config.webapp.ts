@@ -18,10 +18,10 @@ interface Config extends Configuration {
 
 export const configuration: any = {
     ...config,
-    entry: [
-        ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
-        `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
-    ],
+    // entry: [
+    //     ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
+    //     `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
+    // ],
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -61,13 +61,13 @@ export const configuration: any = {
         ],
     },
     plugins: [
-        ...config.plugins,
-
-        isDev && plugins.hotModuleReplacement,
         isDev && plugins.reachRefresh,
+
+        plugins.tsChecker,
+        // isDev && plugins.hotModuleReplacement,
         plugins.createIndexHtml,
         plugins.extractCssFiles,
-        plugins.cleanBuildDir,
+        // plugins.cleanBuildDir,
         // hotModuleReplacement
     ].filter(Boolean),
     experiments: {

@@ -4,9 +4,9 @@ import { EventTypes, getEventCreator } from './event-creator';
 import { createReducer, InferState, ReducerFn, ReducerFnAny } from './reducer-fn';
 import { DeepDictionary, DeepDictionaryItem } from './utils';
 
-export { StandardEvent, StandardEventAny } from './standard-event';
-export { CommandFn, createCommandHandler };
-export { ReducerFn };
+export type { StandardEvent, StandardEventAny } from './standard-event';
+export type { ReducerFn, CommandFn };
+export { createCommandHandler };
 
 export function parseReducers<TReducers extends DeepDictionaryItem<ReducerFnAny>>(reducers: TReducers) {
     const reducer = createReducer(reducers);

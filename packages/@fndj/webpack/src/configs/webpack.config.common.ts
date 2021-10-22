@@ -1,6 +1,5 @@
 
 import path from 'path';
-import webpack from 'webpack';
 import * as plugins from './plugins';
 import { entryPoint, isDev, outDir, projectDir } from './settings';
 export default {
@@ -13,20 +12,21 @@ export default {
     chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
   },
   stats: {
-    warnings: false,
-    warningsFilter: /export .* was not found in/,
+    // warnings: false,
+    // warningsFilter: /export .* was not found in/,
   },
   resolve: {
     fallback: {
-      // crypto: false /*require.resolve('crypto-browserify')*/,
-      // path: false /*require.resolve('path-browserify')*/,
-      // os: false /*require.resolve('os-browserify/browser')*/,
-      // http: false /*require.resolve('stream-http')*/,
-      // stream: false /*require.resolve('stream-browserify')*/,
-      // zlib: false /*require.resolve('zlib-browserify')*/,
-      // util: false /*require.resolve('util/')*/,
+      url: require.resolve('url'),
+      crypto: false /*require.resolve('crypto-browserify')*/,
+      path: false /*require.resolve('path-browserify')*/,
+      os: false /*require.resolve('os-browserify/browser')*/,
+      http: false /*require.resolve('stream-http')*/,
+      stream: false /*require.resolve('stream-browserify')*/,
+      zlib: false /*require.resolve('zlib-browserify')*/,
+      util: false /*require.resolve('util/')*/,
       child_process: false,
-      http2: require.resolve('spdy-or-http2'),
+      http2: false, //require.resolve('spdy-or-http2'),
 
       dns: false /*require.resolve('chrome-dns')*/,
       net: false /*require.resolve('net-browserify')*/,
@@ -40,9 +40,8 @@ export default {
       // '~renderer': path.resolve(rendererSourceDir),
       // '~common': path.resolve(commonSourceDir),
       // common: path.resolve(commonSourceDir),
-      // 'react-dom': '@hot-loader/react-dom',
     },
-    extensions: ['.js', '.ts', '.json', '.node'],
+    extensions: ['.js', '.ts', '.json'],
   },
   // node: {
   //   __dirname: true,
@@ -65,8 +64,8 @@ export default {
   //   // },
   // },
   plugins: [
-    plugins.nodePolyfill,
-    isDev && plugins.webpackBar,
+    // plugins.nodePolyfill,
+    // isDev && plugins.webpackBar,
     plugins.tsChecker,
     // plugins.cleanBuildDir,
     // plugins.defineStaticDirConst,

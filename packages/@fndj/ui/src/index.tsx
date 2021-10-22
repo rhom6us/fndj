@@ -1,9 +1,8 @@
-// import 'react-hot-loader/patch';
+import { setImmediateAsync } from '@rhombus/async-timers';
 import React from 'react';
 import { render } from 'react-dom';
 // import configureStore from './store';
 import { Root } from './Root';
-import { setImmediateAsync } from '@rhombus/async-timers';
 
 // //const store = configureStore();
 const div = document.body.appendChild(document.createElement('div'));

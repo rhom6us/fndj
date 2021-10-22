@@ -1,5 +1,4 @@
 
-// import { hot } from 'react-hot-loader';
 import { obj } from '@rhombus/type-helpers';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';

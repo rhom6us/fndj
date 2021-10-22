@@ -112,7 +112,7 @@ export async function serve(app: App, signal: AbortSignal): Promise<readonly [st
   const devServerConfig: WebpackDevServer.Configuration = {
     host: 'localhost',
     port: 9080,
-    // hot: true,
+    hot: true,
     open: false,
     historyApiFallback: true,
     // clientLogLevel: "warning",
