@@ -47,12 +47,13 @@ importers:
       '@fndj/webpack': workspace:*
       '@hot-loader/react-dom': ^17.0.1
       '@rhombus/async-timers': workspace:*
-      '@rhombus/fetch': workspace:^1.1.0
+      '@rhombus/fetch': workspace:*
       '@rhombus/func': workspace:*
       '@rhombus/gapi': workspace:*
       '@rhombus/gapi-react': workspace:*
       '@rhombus/logger': workspace:*
       '@rhombus/react': workspace:*
+      '@rhombus/redux-command-pattern': workspace:^1.1.0
       '@rhombus/type-guards': workspace:*
       '@rhombus/type-helpers': workspace:*
       '@types/react': ^17.0.26
@@ -91,6 +92,7 @@ importers:
       '@rhombus/gapi-react': link:../../@rhombus/gapi-react
       '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/react': link:../../@rhombus/react
+      '@rhombus/redux-command-pattern': link:../../@rhombus/redux-command-pattern
       '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
       '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
@@ -123,14 +125,16 @@ importers:
       '@fluentui/style-utilities': ^8.3.3
       '@fluentui/theme': ^2.4.0
       '@fndj/core': workspace:*
+      '@fndj/webpack': workspace:*
       '@hot-loader/react-dom': ^17.0.1
-      '@rhombus/func': workspace:^1.1.0
-      '@rhombus/logger': workspace:^1.1.0
       '@rhombus/type-helpers': workspace:*
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
       '@types/react-redux': ^7.1.18
-      '@types/waves-ui': workspace:*
+      '@types/waves-audio': '*'
+      '@types/waves-blocks': '*'
+      '@types/waves-loaders': '*'
+      '@types/waves-ui': '*'
       classnames: ^2.3.1
       mongodb: ^4.1.2
       normalize.css: ^8.0.1
@@ -152,9 +156,8 @@ importers:
       '@fluentui/style-utilities': 8.3.3_e79ceb4a9ecca84ea40dbf4bef5d274a
       '@fluentui/theme': 2.4.0_e79ceb4a9ecca84ea40dbf4bef5d274a
       '@fndj/core': link:../core
+      '@fndj/webpack': link:../webpack
       '@hot-loader/react-dom': 17.0.1_react@17.0.2
-      '@rhombus/func': link:../../@rhombus/toolset/func
-      '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       mongodb: 4.1.2
@@ -174,6 +177,9 @@ importers:
       '@types/react': 17.0.26
       '@types/react-dom': 17.0.9
       '@types/react-redux': 7.1.18
+      '@types/waves-audio': link:../../@types/waves-audio
+      '@types/waves-blocks': link:../../@types/waves-blocks
+      '@types/waves-loaders': link:../../@types/waves-loaders
       '@types/waves-ui': link:../../@types/waves-ui
       typescript: 4.4.3
       typescript-styled-plugin: 0.15.0
@@ -602,6 +608,9 @@ importers:
       setimmediate: ^1.0.5
     dependencies:
       setimmediate: 1.0.5
+
+  packages/@rhombus/toolset/singleton:
+    specifiers: {}
 
   packages/@rhombus/toolset/type-guards:
     specifiers:
@@ -1322,8 +1331,8 @@ packages:
       '@types/gapi.client': 1.0.5
     dev: true
 
-  /@maxim_mazurok/gapi.client.youtube/3.0.20211015:
-    resolution: {integrity: sha512-v5bpEWU+BuseSC7DM2eEn8rYqxfWX6dDz2/rXkNsrtzvbrfZo6natZDaOM+5W2lYAW4QkawNZa3Kymbs7/S/Rg==}
+  /@maxim_mazurok/gapi.client.youtube/3.0.20211020:
+    resolution: {integrity: sha512-12Old24pWRwSw44OatNL2iOBYohKkQtzaLXUJBKSqb2O2TmwNQpWoMIa8plrz83XjMPjyWkv4qg2vPnoqBrQkQ==}
     dependencies:
       '@types/gapi.client': 1.0.5
     dev: true
@@ -1486,7 +1495,7 @@ packages:
   /@types/gapi.client.youtube/3.0.2:
     resolution: {integrity: sha512-SmWCofuA5DtzU/m87I2+TMgeir7b9eHO81SDkqlEIs0OQj8MjiJk8xnjLIf2UfmYuViW31qAjjBcUFINImNaTw==}
     dependencies:
-      '@maxim_mazurok/gapi.client.youtube': 3.0.20211015
+      '@maxim_mazurok/gapi.client.youtube': 3.0.20211020
     dev: true
 
   /@types/gapi.client/1.0.5:
