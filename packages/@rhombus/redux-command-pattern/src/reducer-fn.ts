@@ -14,7 +14,7 @@ export type ReducerFnAny = ReducerFn<any, any>;
 
 export type InferState<TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<any,any>>> = TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<infer TState, any>>
   ? TState
-  : never;
+  : { ERROR: {  T: TReducerFnOrMap}};
 
 
 export type InferPayload<TMap extends DeepRecordItem<string, ReducerFnAny>> =

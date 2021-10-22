@@ -3,7 +3,7 @@ import { isFunction, isString } from 'lodash';
 import type { Action as ReduxAction } from './external/redux';
 
 export type EventType = string;
-export interface StandardEvent<TPayload, TEventType extends string> extends ReduxAction<TEventType> {
+export interface StandardEvent<TPayload, TEventType> extends ReduxAction<TEventType> {
   payload: TPayload;
 }
 export type StandardEventAny = StandardEvent<any, any>;

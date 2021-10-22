@@ -1,12 +1,4 @@
 {
   "extends": "../../../tsconfig.json",
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": [
-      "ESNext",
-      "WebWorker",
-      "ESNext.Symbol"
-    ]
-  },
-  "include": ["internal/index.ts"]
+  "include": ["src/index.ts"]
 }
