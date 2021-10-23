@@ -1,20 +1,23 @@
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import React, { FC } from 'react';
 import { useStore } from '../hooks';
 import { Detail } from './detail';
 import { Search } from './search';
-import { State, store } from './store';
+import { SearchState, store } from './store';
+
+const Bottom: FC<{ pending: boolean; }> = ({children, pending}) => <article>
+    {pending && <Spinner size={SpinnerSize.large} />}
+    {children}
+</article>
+
 export const AddTrack: FC = () => {
 
-    const state = useStore(store) as State;
-    switch (state.activeContext.kind) {
-        case 'search':
-            return (<Search {...state.activeContext} ></Search>);
-        case 'detail':
-            return <Detail {...state.activeContext} />;
-        default:
-            return <>
-                <h3>Well this is embarrasing</h3>
-                <h4>it looks like we fucked up</h4>
-            </>;
+    const state = useStore(store) as SearchState;
+
+    if (state.selectedItem) {
+        return <Bottom pending={state.pending ?? false}><Detail video={state.selectedItem} download={state.download} /></Bottom>;
     }
+    return (<Bottom pending={state.pending ?? false}><Search {...state} ></Search></Bottom>);
+
+
 };

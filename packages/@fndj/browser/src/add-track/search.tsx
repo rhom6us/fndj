@@ -52,7 +52,7 @@ const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
                                 <img src={video.snippet!.thumbnails!.default!.url} />
                                 <Stack>
                                     <h3>{video.snippet!.title}</h3>
-                                    <p><strong>{video.snippet!.channelTitle}</strong><small>{video.contentDetails?.duration}</small></p>
+                                    <strong>{video.contentDetails?.duration}</strong>
                                     <p>{video.snippet!.description}</p>
                                 </Stack>
                             </Stack>

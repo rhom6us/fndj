@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { render } from 'react-dom';
 import './global.scss';
+import './pre';
 import { Root } from './Root';
 // audioContext.audioWorklet.addModule(new URL(fnMeterUrl));
 

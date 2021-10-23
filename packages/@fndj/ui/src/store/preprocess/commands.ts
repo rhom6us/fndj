@@ -26,7 +26,7 @@ export function updateTrackInfo(state: FnState, ...payload: Parameters<typeof ev
 };
 
 // function MakeDefaultCommand<T extends EventCreatorAny>(eventCreator: T): CommandFn<FnState, Parameters<T>, ReturnType<T>> {
-//     return (state: FnState, ...payload: Restify<Parameters<T>>) => eventCreator(...payload);
+//     return (state: FnState, ...payload: restify<Parameters<T>>) => eventCreator(...payload);
 // }
 
     // export const updateTrackInfo: FnCommandFor<typeof events.preprocess.trackInfoUpdated> = (state, payload) => {

@@ -1,20 +1,17 @@
 
 import { Func } from '@rhombus/func';
-import { Restify, restify, tuple } from '@rhombus/type-helpers';
-import { Dictionary, isFunction, toPairs } from 'lodash';
-import { EventTypes } from './event-creator';
-import { Reducer as ReduxReducer } from './external/redux';
-import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils/deep-record';
+import { restify } from '@rhombus/type-helpers';
+import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils';
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
   state: TState,
-  ...payload: Restify<TPayload>
+  ...payload: restify<TPayload>
 ) => TState;
 export type ReducerFnAny = ReducerFn<any, any>;
 
-export type InferState<TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<any,any>>> = TReducerFnOrMap extends DeepDictionaryItem<ReducerFn<infer TState, any>>
-  ? TState
-  : { ERROR: {  T: TReducerFnOrMap}};
+export type InferState<T extends DeepDictionaryItem<ReducerFn<any, any>>> =
+  T extends DeepDictionaryItem<ReducerFn<infer TState, any>> ? TState
+  : { ERROR: { T: T; }; };
 
 
 export type InferPayload<TMap extends DeepRecordItem<string, ReducerFnAny>> =
@@ -23,41 +20,3 @@ export type InferPayload<TMap extends DeepRecordItem<string, ReducerFnAny>> =
     [K in keyof TMap]: InferPayload<TMap[K]>
   }[keyof TMap] :
   never;
-
-function join(...args: string[]): string {
-  return args.filter(Boolean).join(".");
-}
-
-function isReducer(value: any): value is ReducerFnAny {
-  return isFunction(value);
-}
-const pairs: <T extends Dictionary<any>>(value: T) => T extends Dictionary<infer TValue> ? [string, TValue][] : never = toPairs;
-
-export function createReducer<T extends DeepDictionaryItem<ReducerFnAny>>(reducers: T): ReduxReducer<InferState<T>, EventTypes<T>> {
-  type TState = InferState<T>;
-  type TPayload = InferPayload<T>;
-  type TReducer = ReducerFn<TState, TPayload>;
-
-  const finalMap: Dictionary<TReducer> = {};
-  const stack: (readonly [string, DeepDictionaryItem<TReducer>])[] = toPairs(reducers);
-  while (stack.length) {
-    const [prefix, mapOrFun] = stack.pop()!;
-    if (isReducer(mapOrFun)) {
-      finalMap[prefix] = mapOrFun;
-    } else {
-      pairs(mapOrFun).map(([key, p]) => tuple(join(prefix, key), p)).forEach(p => stack.push(p))
-    }
-  }
-
-  return function rootReducerfn(state: TState | undefined, { type, payload }: EventTypes<T>): TState {
-    if (state === undefined) {
-      throw new TypeError('redux-command-pattern does not support undefined state. Please preload with an initial state');
-    }
-    if (!(type in finalMap)) {
-      // eslint-disable-next-line no-console
-      console.warn(`reducer not found for action: ${type}`);
-      return state;
-    }
-    return finalMap[type](state, ...restify(payload as any));
-  };
-}

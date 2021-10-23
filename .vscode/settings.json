@@ -24,7 +24,7 @@
     "pnpm-lock.yaml": true,
     "**/.pnpm-debug.log": true,
     "packages/YouTubeProxy": false,
-    "packages/@types": false,
+    "packages/@types": true,
     "packages/@fndj/webpack": false,
     "packages/@fndj/webpack/lib": true,
     "**/node_modules": true,
@@ -32,7 +32,16 @@
     "**/.tmp.driveupload": true,
     "**/dist": false,
     ".gitattributes": true,
-    ".ionide": true
+    ".ionide": true,
+    "packages\\@fndj/main": true,
+    "packages\\@fndj/superpowered": true,
+    "packages\\@fndj/ui": true,
+    "packages\\@fndj/YouTubeProxy": false,
+    "**/.*": true,
+    "assets": true,
+    "types": true,
+    "pnpm-workspace.yaml": true,
+    "packages\\@fndj/webpack": true
   },
   // The package manager you use to install node modules.
   "tslint.packageManager": "pnpm",

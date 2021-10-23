@@ -1,5 +1,6 @@
-import { audioContext, FnMeterNode, PhaseVocoderNode } from '@fndj/core/src/web-audio';
-import { isUrl, logger } from '@rhombus/type-helpers';
+import { audioContext, FnMeterNode, PhaseVocoderNode } from '@fndj/core/';
+import { logger } from '@rhombus/logger';
+import { isUrl } from '@rhombus/type-guards';
 
 const log = logger.log;
 
@@ -13,8 +14,8 @@ declare global {
         fn: any;
     }
 }
-window.fnctx = audioContext.value;
-const context = audioContext.value;
+window.fnctx = audioContext;
+const context = audioContext;
 // import { SuperpoweredWebAudio } from '@fndj/superpowered';
 
 

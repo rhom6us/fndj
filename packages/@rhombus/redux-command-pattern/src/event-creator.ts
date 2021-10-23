@@ -1,9 +1,9 @@
-import { Cast, Inc, Restify } from '@rhombus/type-helpers';
+import { Cast, Inc, restify } from '@rhombus/type-helpers';
 import { InferPayload, ReducerFnAny } from './reducer-fn';
 import { StandardEvent } from './standard-event';
 import { DeepDictionary, DeepDictionaryItem } from './utils';
 
- type EventCreator<TReducerFn extends ReducerFnAny, Name extends string> = (...payload: Restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>, Name>;
+ type EventCreator<TReducerFn extends ReducerFnAny, Name extends string> = (...payload: restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>, Name>;
 
 export type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>, NameAcc extends string = ''> =
   TReducerFnOrMap extends ReducerFnAny ? EventCreator<TReducerFnOrMap, NameAcc> :
@@ -11,7 +11,6 @@ export type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<Reducer
     [K in keyof TReducerFnOrMap]: EventCreatorOrMap<TReducerFnOrMap[K], NameAcc extends '' ? K : `${NameAcc}.${Cast<K, string>}`>;
    } :
   never;
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 function defaultFn() {}
 export function getEventCreator<TReducers extends DeepDictionaryItem<ReducerFnAny>>(type?: string): EventCreatorOrMap<TReducers> {
   return new Proxy(defaultFn, {

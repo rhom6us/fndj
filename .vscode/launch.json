@@ -5,10 +5,9 @@
             "name": "Compound",
             "configurations": [
                 ".NET Core Launch (local web)",
-                "Launch"
+                "qq"
             ],
             "stopAll": true,
-            "preLaunchTask": "browser:start",
             "presentation": {
                 "hidden": false,
                 "group": "",
@@ -94,20 +93,21 @@
         {
             // start msedge --remote-debugging-port=9222
             // "type": "vscode-edge-devtools.debug",
-            "type": "edge",
+            "type": "pwa-msedge",
             "version": "dev",
             "request": "attach",
-            "name": "qqAttach to Microsoft Edge and open the Edge DevTools",
+            "name": "qq",
+            "preLaunchTask": "browser:start",
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}",
             "port": 9222,
-            "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "webpack://*": "${webRoot}/packages/*"
-            },
-            "pathMapping": {
-                "/": "${workspaceFolder}"
-            }
+            "sourceMaps": true
+            // "sourceMapPathOverrides": {
+            //     "webpack://*": "${webRoot}/packages/*"
+            // },
+            // "pathMapping": {
+            //     "/": "${workspaceFolder}"
+            // }
         },
 
         {

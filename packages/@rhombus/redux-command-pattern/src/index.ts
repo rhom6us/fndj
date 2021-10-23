@@ -1,19 +1,20 @@
-import { getCommands } from './command-creator';
-import { CommandFn, createCommandHandler, Store } from './command-fn';
+import { CommandFn, createCommandHandler } from './create-command-handler';
+import { createReducer } from './createReducer';
 import { EventTypes, getEventCreator } from './event-creator';
-import { createReducer, InferState, ReducerFn, ReducerFnAny } from './reducer-fn';
+import { getCommands } from './get-commands';
+import { InferState, ReducerFn, ReducerFnAny } from './reducer-fn';
+import { Store } from './store';
 import { DeepDictionary, DeepDictionaryItem } from './utils';
 
 export type { StandardEvent, StandardEventAny } from './standard-event';
 export type { ReducerFn, CommandFn };
 export { createCommandHandler };
-
-export function parseReducers<TReducers extends DeepDictionaryItem<ReducerFnAny>>(reducers: TReducers) {
+export function parseReducers<TReducers extends DeepDictionary<ReducerFnAny>>(reducers: TReducers) {
     const reducer = createReducer(reducers);
     const events = getEventCreator<TReducers>();
     return [reducer, events] as const;
 }
-export function parseCommands<TReducers extends DeepDictionaryItem<ReducerFnAny>, TCommands extends DeepDictionary<CommandFn<InferState<TReducers>, any, EventTypes<TReducers>>>>(implementation: TCommands, store: Store<InferState<TReducers>, EventTypes<TReducers>>, reducers?: TReducers) {
+export function parseCommands<TReducers extends DeepDictionaryItem<ReducerFnAny>, TCommands extends DeepDictionary<CommandFn<InferState<TReducers>, any, EventTypes<TReducers>>>>(implementation: TCommands, store: Store, reducers?: TReducers) {
     const handler = createCommandHandler(store, implementation);
     const commands = getCommands<TCommands>(handler);
     return commands;

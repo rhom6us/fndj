@@ -35,3 +35,15 @@ type CompileArray<Target, Sources extends any[]> =
 export function assign<T extends object, A extends any[]>(target: T, ...sources: A): CompileArray<T, A> {
     return Object.assign(target, ...sources);
 }
+
+export function assignDeep<A extends object, B extends object>(target: A, stuff: B): A & B {
+    if (!(target instanceof Object)) {
+      throw new RangeError('this function only useful on things with an Object prototype');
+    }
+    let current: any = target;
+    while (Reflect.getPrototypeOf(current)?.constructor && Reflect.getPrototypeOf(current)!.constructor !== Object) {
+      current = Reflect.getPrototypeOf(current)!;
+    }
+    Reflect.setPrototypeOf(current, Reflect.getPrototypeOf(stuff));
+    return Object.assign(target, stuff);
+  }
