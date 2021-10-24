@@ -5,8 +5,9 @@
             "name": "Compound",
             "configurations": [
                 ".NET Core Launch (local web)",
-                "qq"
+                "Launch"
             ],
+            "preLaunchTask": "browser:start",
             "stopAll": true,
             "presentation": {
                 "hidden": false,
@@ -20,15 +21,20 @@
             "type": "vscode-edge-devtools.debug",
             "request": "launch",
             "name": "Launch",
+            "vscode-edge-devtools.browserFlavor": "Stable",
+            "port":9222,
+
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}",
             "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "webpack://*": "${webRoot}/packages/*"
-            },
-            "pathMapping": {
-                "/": "${workspaceFolder}"
-            }
+            "userDataDir": false,
+            "useHttps": true
+            // "sourceMapPathOverrides": {
+            //     "webpack://*": "${webRoot}/packages/*"
+            // },
+            // "pathMapping": {
+            //     "/": "${workspaceFolder}"
+            // }
         },
         {
             "type": "vscode-edge-devtools.debug",
@@ -42,13 +48,11 @@
             "port": 9222,
             "request": "attach",
             "type": "pwa-msedge",
-            "version": "dev",
             "webRoot": "${workspaceFolder}"
         },
         {
             "type": "vscode-edge-devtools.debug",
             "request": "attach",
-            "version": "dev",
             "name": "11Attach to Microsoft Edge and open the Edge DevTools",
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}"
@@ -110,36 +114,7 @@
             // }
         },
 
-        {
-            "name": "Launch - @fndj/ui",
-            "preLaunchTask": "serve-renderer",
-            "type": "edge",
-            // "type": "vscode-edge-devtools.debug",
-            "version": "dev",
-            // "runtimeExecutable": "beta",
-            "request": "launch",
-            "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}",
-            "smartStep": true,
-            // "port": 9222,
-            // "webRoot": "${workspaceRoot}",
-            // "timeout": 150000,
-            "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "webpack://*": "${webRoot}/packages/*",
-            },
-            "presentation": {
-                "hidden": false,
-                "group": "serve",
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true,
-                "order": 1
-            }
-        },
+
         // {
         //     "name": "Attach - @fndj/ui",
         //     "preLaunchTask": "serve-renderer",
