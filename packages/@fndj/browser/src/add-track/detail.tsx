@@ -1,9 +1,9 @@
 import { ProgressIndicator, Stack } from '@fluentui/react';
+import { YoutubeEmbed } from '@fndj/browser-ui';
 import React, { FC, memo, ReactNode, useCallback, useMemo } from 'react';
 import { SearchStateDownload } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
-import { YoutubeEmbed } from './YoutubeEmbed';
 interface Props {
     video: Video;
     download?: SearchStateDownload;
