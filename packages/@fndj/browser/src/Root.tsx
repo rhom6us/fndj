@@ -4,7 +4,6 @@ import React, { FC } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Layout } from './Layout';
 
-
 const queryClient = new QueryClient();
 
 
@@ -15,6 +14,7 @@ export const Root: FC = () => {
         <Layout />
       </ThemeProvider>
       {/* <ReactQueryDevtools initialIsOpen={true} position="bottom-left" /> */}
+      {/* <DevTools store={store as any} /> */}
     </QueryClientProvider>
   );
 };;

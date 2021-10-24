@@ -127,7 +127,7 @@ export const Waveform: React.FC<Props> = ({ buffer, trackStart, trackStartChange
 
     const style = {
         backgroundColor: 'black',
-        // height: CSS.vh(100).toString()
+         height: CSS.vh(100).toString()
     };
     return (
         <article>

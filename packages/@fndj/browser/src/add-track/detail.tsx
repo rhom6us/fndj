@@ -1,7 +1,9 @@
 import { ProgressIndicator, Stack } from '@fluentui/react';
 import React, { FC, memo, ReactNode, useCallback, useMemo } from 'react';
+import { SearchStateDownload } from './reducers';
 import { Video } from './services/youtube';
-import { commands, SearchStateDownload } from './store';
+import { commands } from './store';
+import { YoutubeEmbed } from './YoutubeEmbed';
 interface Props {
     video: Video;
     download?: SearchStateDownload;
@@ -12,23 +14,28 @@ interface Children {
 const ResultRoot = memo(function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 });
-const Desc = memo(function Desc({ video }: {video:Video}) {
+const Desc = memo(function Desc({ video }: { video: Video; }) {
     return <>
-        <Stack horizontal={true}>
-            <img src={video.snippet!.thumbnails!.default!.url} />
-            <Stack>
+        <Stack>
+            <Stack horizontal={true}>
                 <h3>{video.snippet!.title}</h3>
-                <p><strong>{video.snippet!.channelTitle}</strong><small>{video.contentDetails?.duration}</small></p>
-                <p>{video.snippet!.description}</p>
+                <strong>{video.snippet!.channelTitle}</strong>
+                <small>{video.contentDetails?.duration}</small>
             </Stack>
+
+            <YoutubeEmbed id={video.id!} />
+
         </Stack>
     </>;
 });
 
 export const Detail: FC<Props> = memo(function Detail({ video, download }: Props & Children) {
-
-    const startDwnload = useCallback(() => commands.addTrack.download(video.id!), [video.id]);
-    const goBack = useCallback(() => commands.addTrack.goBack(), []);
+    const ctrl = useMemo(() => new AbortController(), []);
+    const startDwnload = useCallback(() => commands.addTrack.download(video.id!, ctrl.signal), [ctrl.signal, video.id]);
+    const goBack = useCallback(() => {
+        ctrl.abort();
+        commands.addTrack.goBack();
+    }, [ctrl]);
     const downloading = useMemo(() => {
         return download && !download.buffer;
     }, [download]);

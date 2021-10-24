@@ -1,5 +1,6 @@
 import { defer } from '@rhombus/defer';
 import '@rhombus/fetch';
+import { wrapResponse } from '@rhombus/fetch';
 import { Func } from '@rhombus/func';
 import { youtube } from '@rhombus/gapi';
 
@@ -23,9 +24,18 @@ export async function search(query: string) {
     return vidResponse.result?.items;
 }
 
-export function download(id: string) {
+export async function download(id: string) {
     const url = `https://localhost:5001/${id}/audio`;
-    const response = fetch(url);
+    const request = new Request(url);
+    const cache = await caches.open('youtube');
+    const cacheResponse = await cache.match(request);
+    if (cacheResponse) {
+        console.log('returning from cache!');
+        return wrapResponse(cacheResponse.clone());
+    }
+
+    const response = await fetch(request.clone());
+    cache.put(request, response.clone());
     return response;
     // const add:AddRemoveListener<ProgressEvent> = p=>response.addEventListener('progress', p);
     // const remove:AddRemoveListener<ProgressEvent> = p=> response.removeEventListener('progress', p);

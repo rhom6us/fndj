@@ -11,7 +11,7 @@ export type { ReducerFn, CommandFn };
 export { createCommandHandler };
 export function parseReducers<TReducers extends DeepDictionary<ReducerFnAny>>(reducers: TReducers) {
     const reducer = createReducer(reducers);
-    const events = getEventCreator<TReducers>();
+     const events = getEventCreator(reducers);;
     return [reducer, events] as const;
 }
 export function parseCommands<TReducers extends DeepDictionaryItem<ReducerFnAny>, TCommands extends DeepDictionary<CommandFn<InferState<TReducers>, any, EventTypes<TReducers>>>>(implementation: TCommands, store: Store, reducers?: TReducers) {

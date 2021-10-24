@@ -7,7 +7,6 @@
                 ".NET Core Launch (local web)",
                 "Launch"
             ],
-            "preLaunchTask": "browser:start",
             "stopAll": true,
             "presentation": {
                 "hidden": false,

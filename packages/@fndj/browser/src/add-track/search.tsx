@@ -1,8 +1,9 @@
 import { Stack } from '@fluentui/react';
 import { useThrottledState } from '@fndj/browser/hooks';
 import React, { FC, ReactNode, useCallback, useEffect } from 'react';
+import { SearchState } from './reducers';
 import { Video } from './services/youtube';
-import { commands, SearchState } from './store';
+import { commands } from './store';
 
 interface Props extends SearchState {
 }
