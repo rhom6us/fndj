@@ -1,6 +1,6 @@
 import { ThunkDispatch } from '@rhombus/redux-command-pattern/src/utils';
 import { events, SearchState } from './reducers';
-import { download, search, Video } from './services/youtube';
+import { download, search } from './services/youtube';
 
 
 export const commandImplementation = {
@@ -10,19 +10,24 @@ export const commandImplementation = {
             const result = await search(term);
             yield events.search.completed(term, result ?? []);
         },
-        selectResult(state: SearchState, video: Video) {
-            return events.resultSelected(video);
+        selectResult(state: SearchState, videoId: string) {
+            return events.search.resultSelected(videoId);
         },
         goBack(state: SearchState) {
+            if (state.download && state.download?.state !== 'complete') {
+                state.download.ctrl.abort();
+            }
             return events.search.wentBack();
         },
-        async *download(state: SearchState, id: string, signal?:AbortSignal) {
-            yield events.download.started();
-            const response = await download(id);
+        async *download(state: SearchState, id: string) {
             const ctrl = new AbortController();
-            signal?.addEventListener('abort', () => {
+            yield events.download.started(ctrl);
+
+            const response = await download(id);
+
+            ctrl.signal.addEventListener('abort', () => {
                 response.cancel();
-            }, { once: true, capture: false, passive: true, signal:ctrl.signal });
+            });
             yield (dispatch: ThunkDispatch) => {
                 let wait = false;
                 response.progress.addEventListener('progress', e => {

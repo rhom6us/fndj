@@ -1,21 +1,22 @@
 import { Stack } from '@fluentui/react';
 import { useThrottledState } from '@fndj/browser/hooks';
-import React, { FC, ReactNode, useCallback, useEffect } from 'react';
+import React, { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { SearchState } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
 
-interface Props extends SearchState {
-}
+
+type Props = Pick<SearchState, 'pending' | 'results' | 'searchTerm'>;
 interface Children {
     children?: ReactNode;
 }
 function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 };
-export const Search: FC<Props> = ({ pending, results }) => {
+export const Search: FC<Props> = ({ searchTerm, pending, results }) => {
 
-    const [term, setTerm, throttledTerm, forceUpdate] = useThrottledState('', 1000);
+    const [term, setTerm, throttledTerm, forceUpdate] = useThrottledState(searchTerm, 1000);
+    const videos = useMemo(() => results && Array.from(results.values()), [results]);
 
 
     const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -36,13 +37,13 @@ export const Search: FC<Props> = ({ pending, results }) => {
                 <input type="text" value={term} onChange={e => setTerm(e.target.value)} />
             </form>
             {pending ? <p>loading results...</p> : <></>}
-            <Search_Results videos={results} />
+            {videos && <Search_Results videos={videos} />}
         </ResultRoot>
     );
 };
 
 const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
-    const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video), []);
+    const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video.id!), []);
     return (
         <ResultRoot>
             <ul>
