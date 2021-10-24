@@ -1,3 +1,4 @@
+import { AnalysisResults } from '@fndj/core/src/services/superpowered';
 import { parseReducers } from '@rhombus/redux-command-pattern';
 import { Video } from './services/youtube';
 
@@ -23,53 +24,66 @@ export interface DownloadState_Complete extends DownloadState_Started {
 }
 export type SearchStateDownload = DownloadState_Pending | DownloadState_Ongoing | DownloadState_Complete;
 
-export interface Analysis {
-    readonly bpm: number;
-    readonly firstBeat: number;
-}
+
 export interface SearchState {
     readonly searchTerm: string;
     readonly pending?: boolean;
     readonly results?: Map<string, Video>;
-    readonly selectedItem?: string;
-    readonly download?: SearchStateDownload;
 }
-export const initialState: SearchState = {
+export interface DetailsState extends SearchState {
+    readonly selectedItem: string;
+}
+export interface DownloadState extends DetailsState {
+    readonly download: SearchStateDownload;
+}
+
+export interface AnalysisState extends DownloadState {
+    readonly analysis?: {
+        state: 'decoding' | 'analyzing'
+    } | {
+        state: 'complete';
+        results: AnalysisResults;
+    }
+}
+export type State = SearchState | DetailsState | DownloadState | AnalysisState;
+export const initialState: State = {
     searchTerm: '',
 };
-
+function remove(obj: object, ...keys: string[])  {
+    const result: any = { ...obj };
+    for (const key of keys) {
+        delete result[key];
+    }
+    return result;
+}
 export const reducers = {
     search: {
-        started(state: SearchState, searchTerm: string):SearchState {
+        started(state: State, searchTerm: string):State {
             return {
                 ...state,
                 pending: true,
                 searchTerm
             };
         },
-        completed(state: SearchState, query: string, results: Video[]):SearchState {
+        completed(state: State, query: string, results: Video[]):State {
             return {
                 ...state,
                 pending: false,
                 results: new Map(results.map(p => [p.id!, p])),
             };
         },
-        resultSelected(state: SearchState, videoId: string): SearchState {
+        resultSelected(state: State, videoId: string): State {
             return {
                 ...state,
                 selectedItem: videoId,
             };
         },
-        wentBack(state: SearchState): SearchState {
-            return {
-                ...state,
-                selectedItem: undefined,
-                download: undefined,
-            };
+        wentBack(state: State): State {
+            return remove(state, 'analysis', 'download', 'selectedItem');
         }
     },
     download: {
-        started(state: SearchState, ctrl:AbortController): SearchState {
+        started(state: State, ctrl:AbortController): State {
             return {
                 ...state,
                 download: {
@@ -79,8 +93,8 @@ export const reducers = {
                 }
             };
         },
-        progress(state: SearchState, loaded: number, total: number): SearchState {
-            if(!state.download || state.download?.state === 'complete')  throw 'wtf mate';
+        progress(state: State, loaded: number, total: number): State {
+            if(!('download' in state) || state.download?.state === 'complete')  throw 'wtf mate';
             return {
                 ...state,
                 pending: false,
@@ -94,8 +108,8 @@ export const reducers = {
                 }
             };
         },
-        complete(state: SearchState, buffer: ArrayBuffer): SearchState {
-            if(state.download?.state !== 'ongoing')  throw 'wtf mate';
+        complete(state: State, buffer: ArrayBuffer): State {
+            if(!('download' in state) || state.download?.state !== 'ongoing')  throw 'wtf mate';
             return {
                 ...state,
                 download: {
@@ -109,6 +123,37 @@ export const reducers = {
                 }
             };
         },
+    },
+    analyze: {
+        decodingStarted(state: State): State{
+            return {
+                ...state,
+                analysis: {
+                    state: 'decoding'
+                }
+            }
+        },
+        analysisStarted(state: State): State{
+            if(!('analysis' in state)) throw 'wtf mate?';
+            return {
+                ...state,
+                analysis: {
+                    ...state.analysis,
+                    state: 'analyzing'
+                }
+            }
+        },
+        analysisCompleted(state: State, results: AnalysisResults): State{
+            if(!('analysis' in state)) throw 'wtf mate?';
+            return {
+                ...state,
+                analysis: {
+                    ...state.analysis,
+                    state: 'complete',
+                    results
+                }
+            }
+        }
     }
 };
 

@@ -1,25 +1,26 @@
 import { ThunkDispatch } from '@rhombus/redux-command-pattern/src/utils';
-import { events, SearchState } from './reducers';
+import { events, State } from './reducers';
+import { analyze } from './services/analyze';
 import { download, search } from './services/youtube';
-
+const ctx = new AudioContext();
 
 export const commandImplementation = {
     addTrack: {
-        async *search(state: SearchState, term: string) {
+        async *search(state: State, term: string) {
             yield events.search.started(term);
             const result = await search(term);
             yield events.search.completed(term, result ?? []);
         },
-        selectResult(state: SearchState, videoId: string) {
+        selectResult(state: State, videoId: string) {
             return events.search.resultSelected(videoId);
         },
-        goBack(state: SearchState) {
-            if (state.download && state.download?.state !== 'complete') {
+        goBack(state: State) {
+            if ('download' in state && state.download?.state !== 'complete') {
                 state.download.ctrl.abort();
             }
             return events.search.wentBack();
         },
-        async *download(state: SearchState, id: string) {
+        async *download(state: State, id: string) {
             const ctrl = new AbortController();
             yield events.download.started(ctrl);
 
@@ -41,6 +42,16 @@ export const commandImplementation = {
             const buffer = await response.arrayBuffer();
             ctrl.abort();
             yield events.download.complete(buffer);
+        },
+        async *analyze(state: State) {
+            if (!('download' in state) || state.download?.state !== 'complete') {
+                throw 'wtf mate?';
+            }
+            yield events.analyze.decodingStarted();
+            const audioBuffer = await ctx.decodeAudioData(state.download.buffer);
+            yield events.analyze.analysisStarted();
+            const results = analyze(audioBuffer);
+            yield events.analyze.analysisCompleted(results);
         }
     }
 };

@@ -1,25 +1,29 @@
 
 
 import { ProgressIndicator } from '@fluentui/react';
-import React, { FC, memo, useCallback } from 'react';
-import { SearchStateDownload } from './reducers';
+import React, { FC, memo, useCallback, useEffect } from 'react';
+import { AnalysisState, SearchStateDownload } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
 
 interface Props {
     video: Video;
     download: SearchStateDownload;
+    analysis: AnalysisState['analysis'];
 }
 
 
-export const Import: FC<Props> = ({ video, download }) => {
+export const Import: FC<Props> = ({ video, download, analysis }) => {
+    useEffect(() => {
+
+     }, []);
     return (
         <section>
             {/* <Stack> */}
                 <button onClick={useCallback(()=>commands.addTrack.goBack(),[])}>Back</button>
                 <h1>{download.state === 'complete' ? 'Done!' : 'downloading...'}</h1>
                 <Downloading progress={download.progress} />
-                {download.state === 'complete' && <Analyzing buffer={download.buffer!} />}
+                {download.state === 'complete' && <Analyzing data={analysis}  />}
             {/* </Stack> */}
         </section>
     );
@@ -39,8 +43,13 @@ export const Downloading: FC<DownloadingProps> = memo(function Downloading({ pro
 });
 
 interface AnalyzingProps {
-    buffer: ArrayBuffer;
+    data: AnalysisState['analysis'];
 }
-export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ buffer }: AnalyzingProps) {
-    return <h1>analyzing... {buffer.byteLength}</h1>;
+export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ data }: AnalyzingProps) {
+
+    useEffect(() => {
+        commands.addTrack.analyze();
+    }, []);
+
+    return <h1>analyzing... {data?.state}</h1>;
 });

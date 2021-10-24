@@ -1,12 +1,12 @@
 import { Stack } from '@fluentui/react';
 import { useThrottledState } from '@fndj/browser/hooks';
 import React, { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
-import { SearchState } from './reducers';
+import { State } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
 
 
-type Props = Pick<SearchState, 'pending' | 'results' | 'searchTerm'>;
+type Props = Pick<State, 'pending' | 'results' | 'searchTerm'>;
 interface Children {
     children?: ReactNode;
 }

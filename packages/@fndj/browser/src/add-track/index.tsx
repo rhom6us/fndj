@@ -4,7 +4,7 @@ import React, { FC, memo, useMemo } from 'react';
 import { useStore } from '../hooks';
 import { Detail } from './Detail';
 import { Import } from './Import';
-import { SearchState } from './reducers';
+import { State } from './reducers';
 import { Search } from './Search';
 import { store } from './store';
 
@@ -13,7 +13,7 @@ const Bottom: FC<{ pending: boolean; }> = ({ children, pending }) => <article>
     {children}
 </article>;
 
-function whatView(state: SearchState) {
+function whatView(state: any) {
     if (state.download) {
         return 'import' as const;
     }
@@ -23,21 +23,21 @@ function whatView(state: SearchState) {
 
     return 'search' as const;
 }
-function getView(state: SearchState) {
+function getView(state: any) {
 
     const view = whatView(state);
     const selectedVideo = state.results?.get(state.selectedItem!);
     switch (view) {
         case 'search': return <Search searchTerm={state.searchTerm} pending={state.pending} results={state.results} />;
         case 'detail': return <Detail video={selectedVideo!} />;
-        case 'import': return <Import video={selectedVideo!} download={state.download!} />;
+        case 'import': return <Import video={selectedVideo!} download={state.download!} analysis={state.analysis} />;
         default: return assertNever(view);
     }
 }
 
 export const AddTrack: FC = memo(function AddTrack() {
 
-    const state = useStore(store) as SearchState;
+    const state = useStore(store) as State;
     return (
         <Bottom pending={state.pending ?? false}>
             {useMemo(() => getView(state), [state])}

@@ -1,8 +1,15 @@
 import { glue } from './glue';
 
+export interface AnalysisResults{
+    averageDb: number;
+    loudpartsAverageDb: number;
+    peakDb: number;
+    bpm: number;
+    beatgridStartMs: number;
+    keyIndex: number;
+}
 
-
-export function analyze(audio: AudioBuffer) {
+export function analyze(audio: AudioBuffer):AnalysisResults {
     const analyzer = new glue.Analyzer(audio.sampleRate, audio.duration);
 
     const superInput // = glue.createFloatArray(audio.getChannelData(0).length * audio.numberOfChannels); /*
