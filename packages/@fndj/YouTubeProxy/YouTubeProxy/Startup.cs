@@ -18,7 +18,8 @@ using YouTubeProxy.Services;
 
 namespace YouTubeProxy
 {
-    public class Startup {
+    public class Startup
+    {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,13 +28,15 @@ namespace YouTubeProxy
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services)
+        {
             services.AddDbContext<YoutubeMediaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllers().AddJsonOptions(
-                p => {
+                p =>
+                {
                     p.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 
 
@@ -52,20 +55,36 @@ namespace YouTubeProxy
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             //services.AddApiVersioning();
             services.AddOData();//.EnableApiVersioning();
-            services.Configure<RouteOptions>(options => {
+            services.Configure<RouteOptions>(options =>
+            {
                 options.ConstraintMap.Add("streamType", typeof(StreamTypeConstraint));
             });
             services.AddSingleton<YoutubeClient>();
             services.AddSingleton<YoutubeService>();
-            services.AddResponseCaching(options =>
-            {
-                options.MaximumBodySize = 10 * 1024 * 1024;
-                options.SizeLimit = options.MaximumBodySize * 100;
-                options.UseCaseSensitivePaths = false;
-            });
-            services.AddCors(p => {
-                p.AddPolicy(name: "something", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });
+            // services.AddResponseCaching(options =>
+            // {
+            //     options.MaximumBodySize = 10 * 1024 * 1024;
+            //     options.SizeLimit = options.MaximumBodySize * 100;
+            //     options.UseCaseSensitivePaths = false;
+            // });
+
+            // In order to allow "Cross-Origin Embedder Policy"-enabled documents to load this resource, we require:
+            //
+            // Cross-Origin-Resource-Policy: same-site      =private resources
+            // -or-
+            // Cross-Origin-Resource-Policy: cross-origin   =public resources
+            // -or-
+            // Access-Control-Allow-*
+            //
+            services.AddCors(p => p
+                .AddDefaultPolicy(builder => builder
+                    .SetIsOriginAllowed(p => new System.Uri(p).Authority.Equals("localhost:9080", System.StringComparison.OrdinalIgnoreCase))
+// .AllowAnyOrigin()
+// .AllowAnyMethod()
+                    .WithMethods("GET")
+                    .AllowAnyHeader()
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +94,8 @@ namespace YouTubeProxy
             {
                 app.UseDeveloperExceptionPage();
             }
-            else {
+            else
+            {
                 app.UseHsts();
             }
 
@@ -90,9 +110,9 @@ namespace YouTubeProxy
             //        builder.MapVersionedODataRoute("odata", "odata", modelBuilder.GetEdmModels());
             //    });
 
-            app.UseAuthorization();
+            // app.UseAuthorization();
 
-            app.UseCors("something");
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
@@ -102,7 +122,8 @@ namespace YouTubeProxy
                 //endpoints.MapODataRoute("odata", "odata", GetEdmModel());
             });
         }
-        private static IEdmModel GetEdmModel() {
+        private static IEdmModel GetEdmModel()
+        {
             var odataBuilder = new ODataConventionModelBuilder();
             odataBuilder.EntitySet<Track>("Tracks");
 

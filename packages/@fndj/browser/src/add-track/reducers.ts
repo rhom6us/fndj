@@ -23,30 +23,78 @@ export interface DownloadState_Complete extends DownloadState_Started {
     readonly buffer: ArrayBuffer;
 }
 export type SearchStateDownload = DownloadState_Pending | DownloadState_Ongoing | DownloadState_Complete;
-
-
-export interface SearchState {
-    readonly searchTerm: string;
-    readonly pending?: boolean;
-    readonly results?: Map<string, Video>;
+export interface StateBase<T extends StateType> {
+    readonly type: T;
 }
-export interface DetailsState extends SearchState {
+
+export interface SearchState extends StateBase<StateType.search>, SearchStateData { }
+export interface SearchStateData {
+    readonly searchTerm: string;
+    readonly pending: boolean;
+    // readonly selectedItem?: string;
+    // readonly download?: SearchStateDownload;
+    // readonly analysis?: AnalysisStateDataData;
+}
+export interface SearchResultsState extends StateBase<StateType.search_results>, SearchResultsStateData { }
+export interface SearchResultsStateData extends SearchStateData {
+    readonly results: Map<string, Video>;
+
+}
+export interface DetailsState extends StateBase<StateType.details>, DetailsStateData { }
+export interface DetailsStateData extends SearchResultsStateData {
     readonly selectedItem: string;
 }
-export interface DownloadState extends DetailsState {
+export interface DownloadState extends StateBase<StateType.download>, DownloadStateData { }
+export interface DownloadStateData extends DetailsStateData {
+    readonly results: Map<string, Video>;
     readonly download: SearchStateDownload;
 }
+type  AnalysisStateDataData = {
+    state: 'decoding' | 'analyzing'
+} | {
+    state: 'complete';
+    results: AnalysisResults;
+}
+export interface AnalysisState extends StateBase<StateType.analysis>, AnalysisStateData { }
+export interface AnalysisStateData extends DownloadStateData {
+    readonly analysis: AnalysisStateDataData;
+}
 
-export interface AnalysisState extends DownloadState {
-    readonly analysis?: {
-        state: 'decoding' | 'analyzing'
-    } | {
-        state: 'complete';
-        results: AnalysisResults;
+
+export interface WaveformState extends StateBase<StateType.waveform>, WaveformStateData { }
+export interface WaveformStateData extends AnalysisStateData {
+    readonly waveFormData: {
+        readonly viewWidth: number;
+        readonly viewHeight: number;
+        readonly duration: number;
+        readonly startOffset: number;
     }
 }
-export type State = SearchState | DetailsState | DownloadState | AnalysisState;
+export interface DrawState extends StateBase<StateType.draw>, DrawStateData { }
+export interface DrawStateData extends WaveformStateData {
+    readonly waveformImageData: SharedArrayBuffer;
+}
+
+export type State =
+    | SearchState
+    | SearchResultsState
+    | DetailsState
+    | DownloadState
+    | AnalysisState
+    | WaveformState
+    | DrawState;
+export enum StateType {
+    search ,
+    search_results ,
+    details ,
+    download ,
+    analysis,
+    waveform,
+    draw ,
+}
 export const initialState: State = {
+    type: StateType.search,
+    pending: false,
     searchTerm: '',
 };
 function remove(obj: object, ...keys: string[])  {
@@ -61,6 +109,7 @@ export const reducers = {
         started(state: State, searchTerm: string):State {
             return {
                 ...state,
+                type: StateType.search,
                 pending: true,
                 searchTerm
             };
@@ -68,24 +117,33 @@ export const reducers = {
         completed(state: State, query: string, results: Video[]):State {
             return {
                 ...state,
+                type: StateType.search_results,
                 pending: false,
                 results: new Map(results.map(p => [p.id!, p])),
             };
         },
-        resultSelected(state: State, videoId: string): State {
+        resultSelected(state: SearchResultsState, videoId: string): State {
+            if (state.type < StateType.search_results) throw 'wtf mate?';
+
             return {
                 ...state,
+                type: StateType.details,
                 selectedItem: videoId,
             };
         },
         wentBack(state: State): State {
-            return remove(state, 'analysis', 'download', 'selectedItem');
+            return {
+                // ...remove(state, 'analysis', 'download', 'selectedItem'),
+                ...state,
+                type: StateType.search
+            };
         }
     },
     download: {
-        started(state: State, ctrl:AbortController): State {
+        started(state: DetailsState, ctrl:AbortController): State {
             return {
                 ...state,
+                type: StateType.download,
                 download: {
                     state: 'pending',
                     progress: undefined,
@@ -94,13 +152,16 @@ export const reducers = {
             };
         },
         progress(state: State, loaded: number, total: number): State {
+
             if(!('download' in state) || state.download?.state === 'complete')  throw 'wtf mate';
             return {
                 ...state,
+                type:StateType.download,
                 pending: false,
                 download: {
                     ...state.download,
                     state: 'ongoing',
+                    ctrl:new AbortController(),
                     progress: {
                         loaded,
                         total
@@ -108,15 +169,15 @@ export const reducers = {
                 }
             };
         },
-        complete(state: State, buffer: ArrayBuffer): State {
-            if(!('download' in state) || state.download?.state !== 'ongoing')  throw 'wtf mate';
+        complete(state: DownloadState, buffer: ArrayBuffer): State {
             return {
                 ...state,
+                type: StateType.download,
                 download: {
                     ...state.download,
                     progress: {
-                        ...state.download.progress,
-                        loaded: state.download.progress.total,
+                        total:state.download.progress!.total!,
+                        loaded: state.download.progress!.total!,
                     },
                     state: 'complete',
                     buffer
@@ -125,16 +186,19 @@ export const reducers = {
         },
     },
     analyze: {
-        decodingStarted(state: State): State{
+        decodingStarted(state: DownloadState): State{
+            if (state.type < StateType.download) throw 'wtf mate?';
             return {
                 ...state,
+                type: StateType.analysis,
                 analysis: {
                     state: 'decoding'
                 }
             }
         },
-        analysisStarted(state: State): State{
-            if(!('analysis' in state)) throw 'wtf mate?';
+        analysisStarted(state: AnalysisState): State{
+            if (state.type < StateType.analysis) throw 'wtf mate?';
+            // if(!('analysis' in state)) throw 'wtf mate?';
             return {
                 ...state,
                 analysis: {
@@ -143,8 +207,9 @@ export const reducers = {
                 }
             }
         },
-        analysisCompleted(state: State, results: AnalysisResults): State{
-            if(!('analysis' in state)) throw 'wtf mate?';
+        analysisCompleted(state: AnalysisState, results: AnalysisResults): State{
+            if (state.type < StateType.analysis) throw 'wtf mate?';
+            // if(!('analysis' in state)) throw 'wtf mate?';
             return {
                 ...state,
                 analysis: {
@@ -152,6 +217,20 @@ export const reducers = {
                     state: 'complete',
                     results
                 }
+            }
+        },
+        waveformsStarted(state: AnalysisState, waveFormData:WaveformState['waveFormData']):WaveformState {
+            return {
+                ...state,
+                type: StateType.waveform,
+                waveFormData
+            }
+        },
+        waveformComputed(state: WaveformState, waveformImageData: SharedArrayBuffer) {
+            return {
+                ...state,
+                type: StateType.draw,
+                waveformImageData,
             }
         }
     }

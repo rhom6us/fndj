@@ -2,18 +2,18 @@
 
 import { ProgressIndicator } from '@fluentui/react';
 import React, { FC, memo, useCallback, useEffect } from 'react';
-import { AnalysisState, SearchStateDownload } from './reducers';
+import { AnalysisStateData, SearchStateDownload } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
 
 interface Props {
     video: Video;
     download: SearchStateDownload;
-    analysis: AnalysisState['analysis'];
+    // analysis: AnalysisStateData['analysis'];
 }
 
 
-export const Import: FC<Props> = ({ video, download, analysis }) => {
+export const Import: FC<Props> = ({ video, download }) => {
     useEffect(() => {
 
      }, []);
@@ -23,7 +23,7 @@ export const Import: FC<Props> = ({ video, download, analysis }) => {
                 <button onClick={useCallback(()=>commands.addTrack.goBack(),[])}>Back</button>
                 <h1>{download.state === 'complete' ? 'Done!' : 'downloading...'}</h1>
                 <Downloading progress={download.progress} />
-                {download.state === 'complete' && <Analyzing data={analysis}  />}
+                {/* {download.state === 'complete' && <Analyzing data={analysis}  />} */}
             {/* </Stack> */}
         </section>
     );
@@ -43,7 +43,7 @@ export const Downloading: FC<DownloadingProps> = memo(function Downloading({ pro
 });
 
 interface AnalyzingProps {
-    data: AnalysisState['analysis'];
+    data: AnalysisStateData['analysis'];
 }
 export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ data }: AnalyzingProps) {
 

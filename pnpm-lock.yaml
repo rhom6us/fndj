@@ -226,6 +226,7 @@ importers:
       '@rhombus/gapi': workspace:*
       '@rhombus/logger': workspace:*
       '@rhombus/redux-command-pattern': workspace:*
+      '@rhombus/type-guards': workspace:^1.1.0
       '@rhombus/type-helpers': workspace:*
       '@types/fft.js': workspace:*
       '@types/phaze-vocoder': workspace:*
@@ -249,6 +250,7 @@ importers:
       '@rhombus/gapi': link:../../@rhombus/gapi
       '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/redux-command-pattern': link:../../@rhombus/redux-command-pattern
+      '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
       '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       axios: 0.22.0
       fastpriorityqueue: 0.7.1

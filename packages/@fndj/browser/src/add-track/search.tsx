@@ -1,19 +1,20 @@
 import { Stack } from '@fluentui/react';
 import { useThrottledState } from '@fndj/browser/hooks';
 import React, { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
-import { State } from './reducers';
+import { SearchResultsState, SearchState } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
 
 
-type Props = Pick<State, 'pending' | 'results' | 'searchTerm'>;
+type Props = SearchState | SearchResultsState;//Pick<State, 'pending' | 'results' | 'searchTerm'>;
 interface Children {
     children?: ReactNode;
 }
 function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 };
-export const Search: FC<Props> = ({ searchTerm, pending, results }) => {
+export const Search: FC<Props> = (state) => {
+    const { searchTerm, pending, results } = state as SearchResultsState;
 
     const [term, setTerm, throttledTerm, forceUpdate] = useThrottledState(searchTerm, 1000);
     const videos = useMemo(() => results && Array.from(results.values()), [results]);

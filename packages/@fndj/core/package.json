@@ -15,6 +15,7 @@
     "@rhombus/gapi": "workspace:*",
     "@rhombus/logger": "workspace:*",
     "@rhombus/redux-command-pattern": "workspace:*",
+    "@rhombus/type-guards": "workspace:^1.1.0",
     "@rhombus/type-helpers": "workspace:*",
     "axios": "^0.22.0",
     "fastpriorityqueue": "^0.7.1",
