@@ -24,7 +24,7 @@ function getView(state: State) {
         case StateType.download:
         case StateType.analysis:
         case StateType.waveform:
-        case StateType.draw: return <Import video={state.results.get(state.selectedItem)!} download={state.download!} />;
+        case StateType.draw: return <Import video={state.results.get(state.selectedItem)!} state={state} />;
         default: return assertNever(type);
     }
 }

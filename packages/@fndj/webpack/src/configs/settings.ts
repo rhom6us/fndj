@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs';
 
 
 export type Environment = 'production' | 'development';
@@ -14,10 +13,10 @@ export const entryPoint: string = process.env.npm_package_main || process.env.np
 
 // This will be running from "./packages/@fndj/main/" or the like.
 // Get back up to the root dir
-export const rootDir = path.join(projectDir, '../../../');
+export const rootDir = path.resolve(path.join(projectDir, '../../../'));
 
 export const staticSourceDir = path.join(rootDir, 'static');
-export const outDir = path.join(rootDir, 'dist');
+export const outDir = path.resolve(path.join(rootDir, 'dist'));
 
 
 export const targetElectronVersion = '6.0.12';

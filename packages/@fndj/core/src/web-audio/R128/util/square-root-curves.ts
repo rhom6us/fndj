@@ -13,6 +13,6 @@ export const squareRootCurves:Float32Array[] = new Proxy({} as any, {
         if (isNaN(amount)) {
             throw new TypeError('Invalid argument in makeSquareRootCurve');
         }
-        return target[prop] ??= new Float32Array(amount).map((_, i) => i > (amount / 2) ? Math.sqrt(slope[amount] * i - 1) : 0);
+        return target[prop] ??= new Float32Array(amount).map((_, i) => i > (amount / 2) ? Math.sqrt(slope[amount]! * i - 1) : 0);
     }
 });

@@ -1,3 +1,4 @@
+import { Func } from '@rhombus/func';
 import { clearImmediate, setImmediate } from "@rhombus/set-immediate";
 
 declare class AbortSignal {
@@ -54,8 +55,7 @@ export function setTimeoutAsync(timeout: number, ...args: any) {
 
 type NotNull<T> = Exclude<T, null>;
 type Cast<T, R> = T extends R ? T : R;
-type InferEventType<T extends EventTarget, N extends string> = Cast<Parameters<NotNull<T[Cast<`on${N}`, keyof T>]>>[0], Event>;
-
+type InferEventType<T extends EventTarget, N extends string> = Cast<Parameters<Cast<NotNull<T[Cast<`on${N}`, keyof T>]>, Func>>[0], Event>;
 export function listenEventAsync<T extends EventTarget, N extends Parameters<T['addEventListener']>[0]>(target: T, name: N, options: Omit<AddEventListenerOptions, 'once'> | boolean = {}) {
     return new Promise<InferEventType<T, N>>(resolve => {
         const opts = typeof options === 'boolean' ? { capture: options } : options;

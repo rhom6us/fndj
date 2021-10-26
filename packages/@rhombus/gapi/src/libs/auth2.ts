@@ -3,8 +3,8 @@
 /// <reference types="gapi.client" />
 /// <reference types="gapi.client.youtube" />
 
+import { defer } from '@rhombus/defer';
 import { loadLib } from '../gapi';
-import { defer } from './defer';
 export type GoogleAuth = Omit<gapi.auth2.GoogleAuth, 'then'>;
 export type GoogleUser = gapi.auth2.GoogleUser;
 
@@ -15,7 +15,7 @@ const def = defer<GoogleAuth>();
 export async function getAuth2(client_id?: string, ...scopes: string[]): Promise<GoogleAuth> {
     if (!client_id) {
         if (!cache) {
-            return def.promise;
+            return await def.promise;
         }
         return cache;
     }
@@ -30,9 +30,8 @@ export async function getAuth2(client_id?: string, ...scopes: string[]): Promise
         });
         auth2Promise.then((p:gapi.auth2.GoogleAuth) => resolve(omit(p, 'then')));
     });
-    def.resolve(result);
-    return cache = result;
-
+    
+    return await def.resolve(cache = result);
 }
 
 function omit<T, K extends keyof T>(source: T, ...keys: K[]): Omit<T, K> {

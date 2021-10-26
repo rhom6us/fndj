@@ -64,7 +64,7 @@ export const R128:R128Constructor = class extends GainNode {
                 // Square root
                 .connect(new WaveShaperNode(this.context, {
                     oversample: '4x',
-                    curve: squareRootCurves[40000000]
+                    curve: squareRootCurves[40000000]!
                 }))
                 .connect(new AnalyserNode(this.context, {
                     fftSize: 2048

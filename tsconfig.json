@@ -81,7 +81,7 @@
 
 
     /***** Typescript 4.1 ***********/
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false,
 
 
     /***** Typescript 4.2 ***********/

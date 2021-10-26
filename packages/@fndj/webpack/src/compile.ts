@@ -116,7 +116,7 @@ export async function serve(app: App, signal: AbortSignal): Promise<readonly [st
     open: false,
     historyApiFallback: true,
     headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+      'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp',
     }
     // clientLogLevel: "warning",

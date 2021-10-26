@@ -24,7 +24,7 @@ export const roundTo1Decimal = function (val: number) {
 export function absoluteValueToDBFS(value: number){
     return 20 * Math.log10(value);
 }
-export function getFloatTimeDomainData(node: AnalyserNode) {
+export function getFloatTimeDomainData(node: AnalyserNode):Float32Array {
     const result = new Float32Array(node.frequencyBinCount);
     node.getFloatTimeDomainData(result);
     return result;

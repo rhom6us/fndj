@@ -17,7 +17,7 @@ export const SquaringNode: SquaringNodeConstructor = class extends GainNode {
         return super.gain;
     }
     constructor(context: BaseAudioContext, options?: SquaringNodeOptions) {
-        super(context, {...options, gain: options?.inputGain});
+        super(context, {...options, gain: options?.inputGain ?? 1});
         const squareNode = this.squareNode = context.createGain();
         super.connect(squareNode);
         super.connect(squareNode.gain);

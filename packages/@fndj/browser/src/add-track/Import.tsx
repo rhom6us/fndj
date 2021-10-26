@@ -22,9 +22,12 @@ export const Import: FC<Props> = ({ video, state }) => {
             {/* <Stack> */}
                 <button onClick={useCallback(()=>commands.addTrack.goBack(),[])}>Back</button>
                 <h1>{state.download.state === 'complete' ? 'Done!' : 'downloading...'}</h1>
-            <Downloading progress={state.download.progress} />
-            {state.type >= StateType.analysis && <Analyzing data={(state as AnalysisState).analysis} />}
-            {state.type >= StateType.waveform && <GeneratingWaveform data={(state as AnalysisState).analysis} />}
+            {state.download.state === 'pending' && <Downloading />}
+            {state.download.state !== 'pending' && <Downloading progress={state.download.progress} />}
+
+            
+            {state.type >= StateType.analysis && <Analyzing analysis={(state as AnalysisState).analysis} />}
+            {state.type >= StateType.waveform && <GeneratingWaveform waveFormData={(state as WaveformState).waveFormData} />}
                 {/* {download.state === 'complete' && <Analyzing data={analysis}  />} */}
             {/* </Stack> */}
         </section>
@@ -32,7 +35,7 @@ export const Import: FC<Props> = ({ video, state }) => {
 };
 
 interface DownloadingProps {
-    readonly progress?: {
+    readonly progress?: undefined | {
         readonly loaded: number;
         readonly total?: number;
     };
@@ -45,25 +48,24 @@ export const Downloading: FC<DownloadingProps> = memo(function Downloading({ pro
 });
 
 interface AnalyzingProps {
-    data: AnalysisStateData['analysis'];
+    analysis: AnalysisStateData['analysis'];
 }
-export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ data }: AnalyzingProps) {
+export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ analysis }: AnalyzingProps) {
 
     useEffect(() => {
         commands.addTrack.analyze();
     }, []);
 
-    return <h1>analyzing... {data?.state}</h1>;
+    return <h1>analyzing... {analysis?.state}</h1>;
 });
 
 interface GeneratingWaveformProps {
     waveFormData: WaveformStateData['waveFormData'];
 }
-export const GeneratingWaveform: FC<AnalyzingProps> = memo(function GeneratingWaveform({ waveFormData }: GeneratingWaveformProps) {
+export const GeneratingWaveform: FC<GeneratingWaveformProps> = memo(function GeneratingWaveform({ waveFormData }: GeneratingWaveformProps) {
     const ref = useRef<HTMLCanvasElement>(null);
     useEffect(() => {
         const { width, height } = ref.current!.getBoundingClientRect();
-        commands.addTrack.;
     }, []);
 
     return <canvas ref={ref} ></canvas>;

@@ -29,18 +29,37 @@ export function Authenticate(props: Props) {
     return <Authenticate_Internal {...props} auth2={auth2!} />;
 };
 
-
 function Authenticate_Internal({ children, auth2, onLogin }: Props & { auth2: GoogleAuth; }) {
     const [loginError, setLoginError] = useState<string>();
     const [isLoggedIn, setIsLoggedIn] = useState(auth2.isSignedIn.get());
+    const [user, setUser] = useState(auth2.currentUser.get());
     useEffect(() => {
         setIsLoggedIn(auth2.isSignedIn.get());
-        auth2.isSignedIn.listen(setIsLoggedIn);
+        setUser(auth2.currentUser.get());
+
+        let stop = false;
+        auth2.isSignedIn.listen(p => !stop && setIsLoggedIn(p));
+        auth2.currentUser.listen(p => !stop && setUser(p));
+        return () => {
+            //TODO: how to stop listening properly instead of this hack?
+
+            //DRAGONS: This is a potential memory leak (sortof). If the component gets
+            //remounted over and over and over again, it will keep leaving
+            //behind these closed over 'stopped' listeners. I do not, however,
+            //believe that this will surmount into any real world issue.
+
+            stop = true;
+        }
     }, [auth2]);
 
     const signIn = useCallback(async () => {
         try {
-            const user = await auth2.signIn({scope:"https://www.googleapis.com/auth/youtube.readonly"});
+            const user = await auth2.signIn({
+                scope: "https://www.googleapis.com/auth/youtube.readonly",
+                ux_mode: 'redirect',
+                // redirect_uri: 'postmessage',
+                // origin: 'http://localhost:9080'
+            } as any);
             onLogin?.(user);
         } catch (er: any) {
             setLoginError(er?.error ?? er?.toString() ?? 'unknown error logging into google');

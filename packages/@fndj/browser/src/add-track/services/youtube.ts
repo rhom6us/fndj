@@ -65,7 +65,7 @@ function eventToIterator<E extends Event>(addEventListener: AddRemoveListener<E>
                 waiting = undefined;
             }
 
-            const result = {
+            const result:any =  {
                 value: next!,
                 done: isDone?.(next!)
             };

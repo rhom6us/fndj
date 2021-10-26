@@ -18,7 +18,7 @@
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
     "yarn.lock": true,
-    "**/node_modules": true,
+    "**/node_modules": false,
     "packages/@fndj/webpack": false,
     "packages/@fndj/main": true,
     "packages/@fndj/superpowered": true,
@@ -56,18 +56,9 @@
   "scm.alwaysShowActions": true,
   "notebook.consolidatedRunButton": true,
   "eslint.codeAction.disableRuleComment": {
-    "location": "sameLine"
+    "location": "separateLine"
   },
-  "githubIssues.createIssueTriggers": [
-    "TODO",
-    "todo",
-    "BUG",
-    "FIXME",
-    "ISSUE",
-    "HACK",
-    "DRAGON",
-    "DRAGONS"
-  ],
+  "githubIssues.createIssueTriggers": ["TODO", "todo", "BUG", "FIXME", "ISSUE", "HACK", "DRAGON", "DRAGONS"],
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.organizeImports": true
@@ -76,5 +67,11 @@
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
-
+  "vscode-edge-devtools.pathMapping": {
+    // "webpack:///./*": "${webRoot}/*",
+    // "webpack:///src/*": "${webRoot}/*",
+    // "webpack:///*": "*",
+    // "webpack:///./~/*": "${webRoot}/node_modules/*",
+    "webpack://*": "${webRoot}/packages/*"
+  }
 }

@@ -9,5 +9,8 @@
   "author": "Thomas Butler",
   "dependencies": {
     "@rhombus/set-immediate": "workspace:*"
+  },
+  "devDependencies": {
+    "@rhombus/func":"workspace:*"
   }
 }

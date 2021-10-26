@@ -3,9 +3,10 @@
     "compounds": [
         {
             "name": "Compound",
+            "preLaunchTask": "browser:start",
             "configurations": [
                 ".NET Core Launch (local web)",
-                "Launch"
+                "Attach to Edge"
             ],
             "stopAll": true,
             "presentation": {
@@ -16,22 +17,41 @@
         }
     ],
     "configurations": [
+        {
+            "name": "Attach to Edge",
+            "port": 9222,
+            "request": "attach",
+            "type": "pwa-msedge",
+            "urlFilter": "*localhost*",
+            // "webRoot": "${workspaceFolder}",
+            "webRoot": "${workspaceFolder}/packages/@fndj",
+            "smartStep": true,
+            // "sourceMapPathOverrides": {
+            //     "webpack://*": "${webRoot}/packages/*"
+            // },
+            // "pathMapping": {
+            //     "/": "${workspaceFolder}"
+            // }
+        },
         
         {
             "type": "vscode-edge-devtools.debug",
             "request": "launch",
             "name": "Launch",
-            "vscode-edge-devtools.browserFlavor": "Stable",
+            "vscode-edge-devtools.browserFlavor": "Canary",
             "port":9222,
-
             "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}",
+            "webRoot": "${workspaceFolder}/packages/@fndj",
             "sourceMaps": true,
             "userDataDir": false,
-            "useHttps": true
+            "useHttps": true,
             // "sourceMapPathOverrides": {
             //     "webpack://*": "${webRoot}/packages/*"
             // },
+        //         "webpack://*": "${webRoot}/packages/*",
+        //     //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
+        //     //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
+        //     }
             // "pathMapping": {
             //     "/": "${workspaceFolder}"
             // }
@@ -41,13 +61,6 @@
             "request": "launch",
             "name": "xxLaunch Microsoft Edge and open the Edge DevTools",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach to Edge",
-            "port": 9222,
-            "request": "attach",
-            "type": "pwa-msedge",
             "webRoot": "${workspaceFolder}"
         },
         {
