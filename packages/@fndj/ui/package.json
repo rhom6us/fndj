@@ -13,11 +13,11 @@
   "dependencies": {
     "@fluentui/react": "^8.36.0",
     "@fndj/core": "workspace:*",
-    "@rhombus/type-helpers": "workspace:*",
-    "@rhombus/type-guards": "workspace:*",
-    "@rhombus/react": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
+    "@rhombus/react": "workspace:*",
+    "@rhombus/type-guards": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "classnames": "^2.3.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
@@ -44,7 +44,6 @@
     "@types/waves-loaders": "workspace:^4.41.26",
     "@types/waves-ui": "workspace:*",
     "@types/wavesurfer.js": "^5.2.2",
-    "typescript": "^4.4.3",
     "typescript-styled-plugin": "^0.15.0"
   }
 }

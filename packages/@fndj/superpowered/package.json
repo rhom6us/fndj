@@ -15,7 +15,6 @@
     "types": "src/index.d.ts",
     "typings": "src/index.d.ts",
     "devDependencies": {
-        "@types/webaudio": "workspace:*",
-        "typescript": "^4.4.3"
+        "@types/webaudio": "workspace:*"
     }
 }

@@ -36,7 +36,6 @@
     "@types/waves-audio": "*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
-    "@types/waves-ui": "*",
-    "typescript": "^4.4.3"
+    "@types/waves-ui": "*"
   }
 }

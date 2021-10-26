@@ -77,13 +77,24 @@
     "importsNotUsedAsValues": "remove",
     "listFiles": false,
     "listEmittedFiles": false,
-    "explainFiles": false,
     // "resolveJsonModule": false
+
+
+    /***** Typescript 4.1 ***********/
+    "noUncheckedIndexedAccess": true,
+
+
+    /***** Typescript 4.2 ***********/
+    "noPropertyAccessFromIndexSignature":true,
+    "explainFiles": false,
 
 
     /***** Typescript 4.3 ***********/
     "noImplicitOverride": true,
     "noErrorTruncation": false,
+
+    /***** Typescript 4.4 ***********/
+    "exactOptionalPropertyTypes":true,
     "useUnknownInCatchVariables": true,
   },
   // "files": false,

@@ -49,7 +49,6 @@
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
     "@types/waves-ui": "*",
-    "typescript": "^4.4.3",
     "typescript-styled-plugin": "^0.15.0"
   }
 }

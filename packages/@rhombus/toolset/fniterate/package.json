@@ -5,15 +5,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build":"tsc --outDir dist -d  --noEmit false"
+    "build": "tsc --outDir dist -d  --noEmit false"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@rhombus/func": "workspace:*"
-  },
-  "devDependencies": {
-    "typescript": "^4.4.3"
   }
 }

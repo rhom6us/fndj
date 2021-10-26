@@ -32,7 +32,6 @@
     "@types/waves-audio": "workspace:*",
     "@types/waves-blocks": "*",
     "@types/waves-loaders": "*",
-    "@types/webaudio": "workspace:*",
-    "typescript": "^4.4.3"
+    "@types/webaudio": "workspace:*"
   }
 }

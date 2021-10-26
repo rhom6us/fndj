@@ -1,5 +1,5 @@
 import { ThunkDispatch } from '@rhombus/redux-command-pattern/src/utils';
-import { events, State } from './reducers';
+import { events, State, WaveformState } from './reducers';
 import { analyze } from './services/analyze';
 import { download, search } from './services/youtube';
 const ctx = new AudioContext();
@@ -52,6 +52,9 @@ export const commandImplementation = {
             yield events.analyze.analysisStarted();
             const results = analyze(audioBuffer);
             yield events.analyze.analysisCompleted(results);
+        },
+        generateWaveform(state:State, waveFormData: WaveformState['waveFormData']) {
+            return events.analyze.waveformsStarted(waveFormData);
         }
     }
 };

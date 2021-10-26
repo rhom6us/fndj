@@ -1,4 +1,5 @@
 
+export default KindaWeakMap;
 export class KindaWeakMap<K, V extends object> implements Map<K, V> {
     #map = new Map<K, WeakRef<V>>();
     #registry = new FinalizationRegistry((key: K) => {

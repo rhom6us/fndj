@@ -15,7 +15,6 @@
     "devDependencies": {
         "@types/waves-audio": "*",
         "@types/waves-masters": "*",
-        "@types/waves-ui": "*",
-        "typescript": "^4.4.3"
+        "@types/waves-ui": "*"
     }
 }
