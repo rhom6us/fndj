@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { AbortController } from 'abortcontroller-polyfill/dist/cjs-ponyfill';
+import { AbortController } from 'abort-controller';
 import { watch } from './compile';
 import { App, Environment } from './configs/settings';
 

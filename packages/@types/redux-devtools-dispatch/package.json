@@ -13,7 +13,7 @@
     ],
     "types": "index.d.ts",
     "devDependencies": {
-        "@types/react": "^17.0.26",
+        "@types/react": "^17.0.33",
         "redux": "^4.1.1"
     }
 }

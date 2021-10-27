@@ -7,13 +7,32 @@
             "script": "start",
             "path": "packages/@fndj/browser/",
             "dependsOn": "webpack:build",
-            "problemMatcher": [ "$ts-checker-eslint-webpack-watch" ],
+            "runOptions": {
+                "instanceLimit": 1,
+                "runOn": "folderOpen",
+                "reevaluateOnRerun": true
+            },
+            "isBackground": true,
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$ts-webpack", // adds errors and warnings reported by ts-loader
+                "$ts-webpack-watch", // adds errors and warnings reported by ts-loader while in watch mode
+                "$ts-checker-webpack", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin
+                "$ts-checker-webpack-watch", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
+                "$ts-checker-eslint-webpack", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin
+                "$ts-checker-eslint-webpack-watch", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
+                "$tslint-webpack", // adds lint warnings reported by tslint-loader
+                "$tslint-webpack-watch", // adds lint warnings reported by tslint-loader while in watch mode
+            ],
             "detail": "fnserve webApp development",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": false,
-                "panel": "dedicated",
+                "panel": "shared",
                 "showReuseMessage": false,
                 "clear": false,
                 "group": "serve"
@@ -22,6 +41,7 @@
         {
             "label": "browser:build",
             "runOptions": {
+                "instanceLimit": 1,
                 "reevaluateOnRerun": true
             },
             "type": "npm",
@@ -32,7 +52,16 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [ "$ts-checker-eslint-webpack-watch" ],
+            "problemMatcher": [
+                "$ts-webpack", // adds errors and warnings reported by ts-loader
+                "$ts-webpack-watch", // adds errors and warnings reported by ts-loader while in watch mode
+                "$ts-checker-webpack", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin
+                "$ts-checker-webpack-watch", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
+                "$ts-checker-eslint-webpack", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin
+                "$ts-checker-eslint-webpack-watch", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
+                "$tslint-webpack", // adds lint warnings reported by tslint-loader
+                "$tslint-webpack-watch", // adds lint warnings reported by tslint-loader while in watch mode
+            ],
             "detail": "fnbuild webApp development",
             "presentation": {
                 "echo": true,
@@ -54,12 +83,13 @@
             "detail": "tsc",
             "presentation": {
                 "echo": true,
-                "reveal": "always",
+                "reveal": "silent",
+                "revealProblems": "onProblem",
                 "focus": false,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": true,
-                "group": "build"
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "serve"
             }
         }
     ]

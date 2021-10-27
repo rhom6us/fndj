@@ -9,21 +9,29 @@ import path from 'path';
 import { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin } from 'webpack';
 import WebpackBar from 'webpackbar';
 import { projectDir, staticSourceDir } from './settings';
-
+import ForkTsCheckerNotifierWebpackPlugin from 'fork-ts-checker-notifier-webpack-plugin';
 
 export const nodePolyfill = new NodePolyfillPlugin();
-export const webpackBar = new WebpackBar({});
+export const webpackBar = new WebpackBar({
+
+});
 export const reachRefresh = new ReactRefreshPlugin({
   forceEnable: true,
   esModule: true
 });
 export const tsChecker = new ForkTsCheckerWebpackPlugin({
   // silent: true
+
+  formatter: 'basic',
   typescript: {
     memoryLimit: 2048 * 4 //2048 is default
   }
 });
-
+export const tsCheckerNotifier = new ForkTsCheckerNotifierWebpackPlugin({
+  excludeWarnings: true,
+  skipSuccessful: false,
+  skipFirstNotification: false,
+});
 export const cleanBuildDir = new CleanWebpackPlugin();
 
 export const defineStaticDirConst = new DefinePlugin({

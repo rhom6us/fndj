@@ -12,6 +12,7 @@
     "skipDefaultLibCheck": true,
     "incremental": true, /* Enable incremental compilation */
     "tsBuildInfoFile": "./.tsbuildinfo",
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
+    "types": ["node"]
   }
 }

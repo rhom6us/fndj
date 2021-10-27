@@ -13,7 +13,7 @@
     "@rhombus/func": "workspace:^1.1.0"
   },
   "devDependencies": {
-    "@maxim_mazurok/gapi.client.youtube": "^3.0.20211013",
+    "@maxim_mazurok/gapi.client.youtube": "^3.0.20211026",
     "@types/gapi": "^0.0.41",
     "@types/gapi.auth2": "^0.0.55",
     "@types/gapi.client": "^1.0.5",

@@ -1,5 +1,6 @@
 import path from 'path';
 import { Configuration } from 'webpack';
+import { onlyif } from './loaders';
 import * as plugins from './plugins';
 import * as rules from './rules';
 import { isDev } from './settings';
@@ -18,6 +19,7 @@ interface Config extends Configuration {
 
 export const configuration: any = {
     ...config,
+    // stats: 'verbose',
     // entry: [
     //     ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
     //     `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
@@ -61,15 +63,19 @@ export const configuration: any = {
         ],
     },
     plugins: [
-        isDev && plugins.reachRefresh,
+        ...onlyif(isDev,
+            plugins.webpackBar,
+            plugins.reachRefresh,
+            plugins.tsChecker,
+            plugins.tsCheckerNotifier
+        ),
 
-        plugins.tsChecker,
         // isDev && plugins.hotModuleReplacement,
         plugins.createIndexHtml,
         plugins.extractCssFiles,
         // plugins.cleanBuildDir,
         // hotModuleReplacement
-    ].filter(Boolean),
+    ],
     experiments: {
         topLevelAwait: true,
         asset: true,

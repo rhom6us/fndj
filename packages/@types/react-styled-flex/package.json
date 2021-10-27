@@ -14,7 +14,7 @@
     "main": "index.d.ts",
     "types": "index.d.ts",
     "devDependencies": {
-        "@types/react": "^17.0.26",
+        "@types/react": "^17.0.33",
         "csstype": "^3.0.9",
         "react": "^17.0.2"
     },

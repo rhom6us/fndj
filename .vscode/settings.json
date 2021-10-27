@@ -18,7 +18,7 @@
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
     "yarn.lock": true,
-    "**/node_modules": false,
+    "**/node_modules": true,
     "packages/@fndj/webpack": false,
     "packages/@fndj/main": true,
     "packages/@fndj/superpowered": true,

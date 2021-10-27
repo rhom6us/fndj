@@ -11,7 +11,7 @@
     "watch": "fnwatch webApp development"
   },
   "dependencies": {
-    "@fluentui/react": "^8.36.0",
+    "@fluentui/react": "^8.37.3",
     "@fndj/core": "workspace:*",
     "@fndj/webpack": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
@@ -23,27 +23,27 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-query": "^3.25.0",
-    "react-redux": "^7.2.5",
+    "react-query": "^3.29.0",
+    "react-redux": "^7.2.6",
     "react-resize-detector": "^6.7.6",
     "react-router-static": "^1.0.0",
-    "react-styled-flex": "^1.0.19",
+    "react-styled-flex": "^2.2.0",
     "redux": "^4.1.1",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.3",
     "waves-loaders": "^0.1.5",
     "waves-ui": "github:wavesjs/waves-ui",
     "wavesurfer.js": "^5.2.0"
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.26",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-redux": "^7.1.18",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@types/react-redux": "^7.1.20",
     "@types/react-styled-flex": "workspace:^1.0.19",
-    "@types/styled-components": "^5.1.14",
+    "@types/styled-components": "^5.1.15",
     "@types/waves-loaders": "workspace:^4.41.26",
     "@types/waves-ui": "workspace:*",
     "@types/wavesurfer.js": "^5.2.2",
-    "typescript-styled-plugin": "^0.15.0"
+    "typescript-styled-plugin": "^0.18.1"
   }
 }

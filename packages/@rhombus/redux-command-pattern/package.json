@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "buildx":"tsc --outDir dist -d  --noEmit false"
+    "buildx": "tsc --outDir dist -d  --noEmit false"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +14,11 @@
     "@rhombus/async-timers": "workspace:*",
     "@rhombus/defer": "workspace:*",
     "@rhombus/func": "workspace:*",
-    "@rhombus/type-helpers": "workspace:*",
     "@rhombus/type-guards": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.175"
+    "@types/lodash": "^4.14.176"
   }
 }
