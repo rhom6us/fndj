@@ -19,6 +19,8 @@ importers:
       pnpm: ^6.19.1
       prettier: ^2.4.1
       prettier-plugin-packagejson: ^2.2.13
+      react: ^17.0.2
+      redux: ^4.1.1
       typescript: ^4.5.0-beta
     dependencies:
       typescript: 4.5.0-beta
@@ -38,6 +40,8 @@ importers:
       pnpm: 6.19.1
       prettier: 2.4.1
       prettier-plugin-packagejson: 2.2.13_prettier@2.4.1
+      react: 17.0.2
+      redux: 4.1.1
 
   packages/@fndj/browser:
     specifiers:
@@ -150,6 +154,7 @@ importers:
       '@redux-devtools/slider-monitor': ^2.0.0-8
       '@rhombus/async-timers': workspace:*
       '@rhombus/type-helpers': workspace:*
+      '@types/css-dom': workspace:^2.2.1
       '@types/react': ^17.0.33
       '@types/react-dom': ^17.0.10
       '@types/react-redux': ^7.1.20
@@ -206,6 +211,7 @@ importers:
       waves-loaders: 0.1.5
       waves-ui: github.com/wavesjs/ui/e4bc8887ce66933e0de08f5eeaf260ce0d403e35
     devDependencies:
+      '@types/css-dom': link:../../@types/css-dom
       '@types/react': 17.0.33
       '@types/react-dom': 17.0.10
       '@types/react-redux': 7.1.20
@@ -722,6 +728,12 @@ importers:
 
   packages/@types/webaudio:
     specifiers: {}
+
+  packages/script-audio-node:
+    specifiers:
+      '@types/webaudio': workspace:*
+    devDependencies:
+      '@types/webaudio': link:../@types/webaudio
 
 packages:
 

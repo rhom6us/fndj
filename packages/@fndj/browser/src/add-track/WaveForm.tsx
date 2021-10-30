@@ -1,0 +1,35 @@
+import React, { useEffect } from "react";
+import { useCanvas } from '../hooks';
+export interface WaveformProps {
+    data: Uint8ClampedArray;
+    width: number;
+}
+
+type CanvasProps = Omit<React.CanvasHTMLAttributes<HTMLCanvasElement>, keyof WaveformProps>;
+export const Waveform: React.FC<WaveformProps & CanvasProps> = ({ data, width, ...canvasProps }) => {
+    const [ref, setDraw] = useCanvas();
+
+    // useEffect(() => {
+    //     const canvas = ref.current!;
+    //     const { width: cssWidth, height: cssHeight } = canvas.getBoundingClientRect();
+    //     const { devicePixelRatio:ratio=1 } = window
+    //     canvas.width = cssWidth * devicePixelRatio;
+    //     canvas.height = cssHeight * devicePixelRatio;
+
+    // },[])
+
+    useEffect(() => {
+        const imgData = new ImageData(data, width);
+        const canvas = ref.current!;
+        canvas.width = width;
+        canvas.height = new Int32Array(data.buffer).length / width;
+        const { devicePixelRatio: ratio = 1 } = window;
+        canvas.style.width = CSS.px(canvas.width / ratio).toString();
+        canvas.style.height = CSS.px(canvas.height / ratio).toString();
+        canvas.getContext('2d')!.putImageData(imgData, 0, 0);
+    }, [data]);
+
+    return (
+        <canvas ref={ref} {...canvasProps} width={width} ></canvas>
+    );
+};

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.tsx",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "fnbuild webApp development",
     "start": "fnserve webApp development",

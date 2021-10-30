@@ -1,4 +1,3 @@
-
 import React, { CSSProperties, FC } from 'react';
 const divStyle: CSSProperties = {
     overflow: 'hidden',

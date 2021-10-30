@@ -14,6 +14,5 @@ export function useThrottledState<T>(initialValue: T, ms: number) {
         return () => setToken(cancelUpdate);
 
     }, [cancelUpdate, updateValue, ms]);
-
     return [value, setValue, throttledValue, () => updateValue(true)] as const;
 }

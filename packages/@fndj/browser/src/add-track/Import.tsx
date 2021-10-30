@@ -12,11 +12,8 @@ interface Props {
     // analysis: AnalysisStateData['analysis'];
 }
 
-
 export const Import: FC<Props> = ({ video, state }) => {
-    useEffect(() => {
-
-     }, []);
+    
     return (
         <section>
             {/* <Stack> */}
