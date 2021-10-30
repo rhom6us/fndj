@@ -1,6 +1,7 @@
 
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import ForkTsCheckerNotifierWebpackPlugin from 'fork-ts-checker-notifier-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -9,7 +10,6 @@ import path from 'path';
 import { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin } from 'webpack';
 import WebpackBar from 'webpackbar';
 import { projectDir, staticSourceDir } from './settings';
-import ForkTsCheckerNotifierWebpackPlugin from 'fork-ts-checker-notifier-webpack-plugin';
 
 export const nodePolyfill = new NodePolyfillPlugin();
 export const webpackBar = new WebpackBar({
@@ -29,8 +29,9 @@ export const tsChecker = new ForkTsCheckerWebpackPlugin({
 });
 export const tsCheckerNotifier = new ForkTsCheckerNotifierWebpackPlugin({
   excludeWarnings: true,
-  skipSuccessful: false,
-  skipFirstNotification: false,
+  skipSuccessful: true,
+  skipFirstNotification: true,
+  alwaysNotify: false,
 });
 export const cleanBuildDir = new CleanWebpackPlugin();
 
