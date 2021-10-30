@@ -1,6 +1,10 @@
 {
   "recommendations": [
-    "arcanis.vscode-zipfs",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ms-dotnettools.csharp",
+    "dennismaxjung.vscode-dotnet-auto-attach",
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "amodio.tsl-problem-matcher"
   ]
 }

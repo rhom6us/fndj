@@ -18,8 +18,15 @@
     "**/obj/": true,
     "**/Properties/Resources.resx": true,
     "yarn.lock": true,
-    "**/node_modules": true,
-    "packages/@fndj/webpack": false,
+    "**/*.d.ts.map": false,
+    "**/desktop.ini": true,
+    "pnpm-lock.yaml": false,
+    "**/.pnpm-debug.log": true,
+    "**/.tmp.driveupload": true,
+    ".gitattributes": true,
+    ".ionide": true,
+    "assets": true,
+    "pnpm-workspace.yaml": false,
     "packages/@fndj/main": true,
     "packages/@fndj/superpowered": true,
     "packages/@fndj/ui": false,
@@ -29,21 +36,11 @@
     "**/.*": false,
     "packages/@fndj/webpack/lib": true,
     "**/dist": false,
-    "**/*.d.ts.map": false,
-    "**/desktop.ini": true,
-    "pnpm-lock.yaml": false,
-    "**/.pnpm-debug.log": true,
-    "**/.tmp.driveupload": true,
-    ".gitattributes": true,
-    ".ionide": true,
-    "assets": true,
-    "pnpm-workspace.yaml": true
+    "**/node_modules": true,
+    "packages/@fndj/webpack": false
   },
   // The package manager you use to install node modules.
-  "tslint.packageManager": "pnpm",
-  // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",
-  "editor.formatOnSaveMode": "modifications",
   "editor.formatOnType": true,
   "typescript.format.semicolons": "insert",
   "eslint.format.enable": true,
@@ -63,7 +60,6 @@
     "source.fixAll": true,
     "source.organizeImports": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
@@ -73,5 +69,6 @@
     // "webpack:///*": "*",
     // "webpack:///./~/*": "${webRoot}/node_modules/*",
     "webpack://*": "${webRoot}/packages/*"
-  }
+  },
+  "editor.formatOnSaveMode": "modificationsIfAvailable"
 }
