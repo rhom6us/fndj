@@ -1,7 +1,7 @@
 import { Action } from '@rhombus/func';
 import { getAuth2, GoogleAuth, GoogleUser } from '@rhombus/gapi';
 import { usePromise } from '@rhombus/react';
-import React, { Children, ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { Children, createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 interface Children {
     children?: ReactNode;
@@ -15,7 +15,8 @@ function ResultRoot({ children }: Children) {
     return <section>{children}</section>;
 };
 
-
+const AuthenticateContext = createContext<GoogleUser | null>(null);
+export const useGoogleUser = useContext(AuthenticateContext);
 export function Authenticate(props: Props) {
     const [ready, auth2] = usePromise(() => getAuth2(props.clientId), [props.clientId]);
 
@@ -49,7 +50,7 @@ function Authenticate_Internal({ children, auth2, onLogin }: Props & { auth2: Go
             //believe that this will surmount into any real world issue.
 
             stop = true;
-        }
+        };
     }, [auth2]);
 
     const signIn = useCallback(async () => {
@@ -57,8 +58,6 @@ function Authenticate_Internal({ children, auth2, onLogin }: Props & { auth2: Go
             const user = await auth2.signIn({
                 scope: "https://www.googleapis.com/auth/youtube.readonly",
                 ux_mode: 'redirect',
-                // redirect_uri: 'postmessage',
-                // origin: 'http://localhost:9080'
             } as any);
             onLogin?.(user);
         } catch (er: any) {
@@ -66,24 +65,16 @@ function Authenticate_Internal({ children, auth2, onLogin }: Props & { auth2: Go
         }
     }, [auth2, onLogin]);
 
-    if (loginError) {
-        return (
-            <ResultRoot>
-                <h1>Whoops!</h1>
-                <h4>There was an error logging in</h4>
-                <p>{loginError}</p>
-            </ResultRoot>
-        );
-    }
+    const errorBody = useMemo(()=> <>
+        <h1>Whoops!</h1>
+        <h4>There was an error logging in</h4>
+        <p>{loginError}</p>
+    </>,[loginError]);
+    const notLoggedInBody = useMemo(()=> <button onClick={signIn}>sign in</button>,[signIn]);
+    const successBody = useMemo(() => <AuthenticateContext.Provider value={user}>{children}</AuthenticateContext.Provider>, [user, children]);
 
-
-    if (!isLoggedIn) {
-        return (
-            <ResultRoot>
-                <button onClick={signIn}>sign in</button>
-            </ResultRoot >
-        );
-    }
-    return <>{children}</>;
+    return  loginError ? errorBody :
+            isLoggedIn ? successBody :
+            /* else */   notLoggedInBody;
 
 };
