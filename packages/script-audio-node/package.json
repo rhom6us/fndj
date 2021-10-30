@@ -1,0 +1,13 @@
+{
+  "name": "script-audio-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Thomas Butler",
+  "devDependencies": {
+    "@types/webaudio":"workspace:*"
+  }
+}
