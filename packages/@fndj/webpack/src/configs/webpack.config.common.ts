@@ -9,15 +9,15 @@ export default {
   output: {
     path: outDir,
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
-    chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
+    // chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
     //  devtoolModuleFilenameTemplate: 'ala:///[resource-path]?[loaders]',
     // devtoolModuleFilenameTemplate: (info: Record<'absoluteResourcePath'|'allLoaders'|'hash'|'id'|'loaders'|'resource'|'resourcePath'|'namespace', string>) => {
     //   const result = `alla://@fndj/${path.relative(rootDir, path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))}`;
     //   console.log(result);
     // }
-    
+
     // devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
-  
+
   },
   stats: {
     // warnings: false,
@@ -83,4 +83,8 @@ export default {
     rules: [
     ],
   },
+  experiments: {
+    topLevelAwait: true,
+    asset: true,
+  }
 };// as webpack.Configuration;

@@ -19,11 +19,26 @@ interface Config extends Configuration {
 
 export const configuration: any = {
     ...config,
-    // stats: 'verbose',
-    // entry: [
-    //     ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
-    //     `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
-    // ],
+    output:{
+        ...config.output,
+        filename: '[name].js',
+        library: {
+            name:'[name]',
+            type: 'umd'
+        }
+    },
+    /**
+     * PEER DEPENDANCIES
+     */
+    externals:{
+        react: 'react',
+    },
+    /**
+     * Webpack will generate code like import * as X from '...' for externals used in a module.
+     */
+    externalsType:'module',
+
+
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -78,8 +93,8 @@ export const configuration: any = {
     ],
     experiments: {
         ...config.experiments,
+        outputModue: true
     }
-
 
 };
 
