@@ -1,4 +1,6 @@
 
+///<reference lib="esnext" />
+
 export type ConnectParams<T extends AudioNode = AudioNode> = ConnectParamParams | ConnectNodeParams<T>;
 export type ConnectNodeParams<T extends AudioNode = AudioNode> = readonly [destinationNode: T, output?: number, input?: number];
 export type ConnectParamParams = readonly [destinationParam: AudioParam, output?: number];

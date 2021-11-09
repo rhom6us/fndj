@@ -70,5 +70,11 @@
     // "webpack:///./~/*": "${webRoot}/node_modules/*",
     "webpack://*": "${webRoot}/packages/*"
   },
-  "editor.formatOnSaveMode": "modificationsIfAvailable"
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "azureFunctions.deploySubpath": ".",
+  "azureFunctions.scmDoBuildDuringDeployment": true,
+  "azureFunctions.pythonVenv": ".venv",
+  "azureFunctions.projectLanguage": "Python",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen"
 }

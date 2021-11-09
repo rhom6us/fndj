@@ -17,12 +17,19 @@ export function getEventCreator<TReducers extends DeepDictionaryItem<ReducerFnAn
     const [argNames] = /(?<=^\w+\()((?:\w+,)*\w+,?)(?=\))/.exec(reducers.toString().replace(/[\r\n\s]+/g, '').replace(/^function(?=\w)/, ''))!;
     const [, ...payloadArgNames] = argNames.split(/,\s*/);
 
+    return function (...args: any[]) {
+      return {
+        type: `${prefix.join('.')}`,
+        payload: unrestify(args),
+      };
+    } as any;
+    
     // we do it this way so that the redux devtools 'dispatch' feature can read the argument names
-    return new Function(...payloadArgNames, `
-        return {
-          type: '${prefix.join('.')}',
-          payload: (${unrestify.toString()})(Array.from(arguments))
-      };`) as any;
+    // return new Function(...payloadArgNames, `
+    //     return {
+    //       type: '${prefix.join('.')}',
+    //       payload: (${unrestify.toString()})(Array.from(arguments))
+    //   };`) as any;
   }
   for (const key in reducers) {
     result[key] = getEventCreator((reducers as any)[key], [...prefix, key]);

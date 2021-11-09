@@ -68,8 +68,18 @@ export async function serve(app: App, signal: AbortSignal) {
     open: false,
     historyApiFallback: true,
     headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'require-corp',
+      // 'Cross-Origin-Opener-Policy': 'same-origin',
+      // 'Cross-Origin-Embedder-Policy': 'require-corp',
+
+      
+      /**
+       * token for localhost:9080
+       * valid until Jul 26, 2022 
+       * 
+       * Could also put it in the html:
+       * <meta http-equiv="origin-trial" content="TOKEN_GOES_HERE">
+       */
+      'Origin-Trial': 'AsIb6IddAbt9Zc87X/4Z14Cak3+hHwNSVh6AeRqvfPY5//w0DaCI/eVeds9OCDT/1K3cBvxg6i1LxOrkCow87wMAAABgeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjkwODAiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2NTg4Nzk5OTl9'
     }
     // clientLogLevel: "warning",
 

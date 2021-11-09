@@ -1,5 +1,7 @@
 {
   "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-python.python",
     "esbenp.prettier-vscode",
     "ms-dotnettools.csharp",
     "dennismaxjung.vscode-dotnet-auto-attach",

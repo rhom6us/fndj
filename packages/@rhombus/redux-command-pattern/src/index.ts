@@ -6,6 +6,7 @@ import { ReducerFn, ReducerFnAny } from './reducer-fn';
 import { Store } from './store';
 import { DeepDictionary, DeepDictionaryItem } from './utils';
 
+export type { AsyncCommandGenerator, CommandGenerator, CommandResult } from './create-command-handler';
 export type { StandardEvent, StandardEventAny } from './standard-event';
 export type { ReducerFn, CommandFn };
 export { createCommandHandler };

@@ -23,38 +23,20 @@
             "request": "attach",
             "type": "pwa-msedge",
             "urlFilter": "*localhost*",
-            // "webRoot": "${workspaceFolder}",
             "webRoot": "${workspaceFolder}/packages/@fndj",
-            "smartStep": true,
-            // "sourceMapPathOverrides": {
-            //     "webpack://*": "${webRoot}/packages/*"
-            // },
-            // "pathMapping": {
-            //     "/": "${workspaceFolder}"
-            // }
+            "smartStep": true
         },
-        
         {
             "type": "vscode-edge-devtools.debug",
             "request": "launch",
             "name": "Launch",
             "vscode-edge-devtools.browserFlavor": "Canary",
-            "port":9222,
+            "port": 9222,
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}/packages/@fndj",
             "sourceMaps": true,
             "userDataDir": false,
-            "useHttps": true,
-            // "sourceMapPathOverrides": {
-            //     "webpack://*": "${webRoot}/packages/*"
-            // },
-        //         "webpack://*": "${webRoot}/packages/*",
-        //     //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
-        //     //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
-        //     }
-            // "pathMapping": {
-            //     "/": "${workspaceFolder}"
-            // }
+            "useHttps": true
         },
         {
             "type": "vscode-edge-devtools.debug",
@@ -74,7 +56,6 @@
             "name": ".NET Core Launch (local web)",
             "type": "coreclr",
             "request": "launch",
-            // "preLaunchTask": "build",
             "program": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
             "args": [],
             "cwd": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/",
@@ -82,11 +63,6 @@
             "launchBrowser": {
                 "enabled": false
             },
-            // "serverReadyAction": {
-            //     "action": "openExternally",
-            //     "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-            //     "uriFormat": "%s/tracks",
-            // },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
@@ -106,10 +82,7 @@
                 "order": 1
             }
         },
-
         {
-            // start msedge --remote-debugging-port=9222
-            // "type": "vscode-edge-devtools.debug",
             "type": "pwa-msedge",
             "version": "dev",
             "request": "attach",
@@ -119,31 +92,13 @@
             "webRoot": "${workspaceFolder}",
             "port": 9222,
             "sourceMaps": true
-            // "sourceMapPathOverrides": {
-            //     "webpack://*": "${webRoot}/packages/*"
-            // },
-            // "pathMapping": {
-            //     "/": "${workspaceFolder}"
-            // }
         },
-
-
-        // {
-        //     "name": "Attach - @fndj/ui",
-        //     "preLaunchTask": "serve-renderer",
-        //     // "type": "pwa-msedge",
-        //     "type": "edge",
-        //     // "version": "beta",
-        //     "request": "attach",
-        //     "port": 9222,
-        //     "webRoot": "${workspaceRoot}",
-        //     "url": "http://localhost:9080",
-        //     "sourceMaps": true,
-        //     "sourceMapPathOverrides": {
-        //         "webpack://*": "${webRoot}/packages/*",
-        //     //     "webpack:///./*": "${workspaceRoot}/packages/@fndj/ui/*",
-        //     //     "webpack:///../*": "${workspaceRoot}/packages/@fndj/*"
-        //     }
-        // }
+        {
+            "name": "Attach to Python Functions",
+            "type": "python",
+            "request": "attach",
+            "port": 9091,
+            "preLaunchTask": "func: host start"
+        }
     ]
 }

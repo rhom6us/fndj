@@ -1,8 +1,7 @@
-
 export default KindaWeakMap;
 export class KindaWeakMap<K, V extends object> implements Map<K, V> {
-    #map = new Map<K, WeakRef<V>>();
-    #registry = new FinalizationRegistry((key: K) => {
+    readonly #map = new Map<K, WeakRef<V>>();
+    readonly #registry = new FinalizationRegistry((key: K) => {
         this.#map.delete(key);
     });
     set(key: K, value: V): this {
@@ -25,7 +24,10 @@ export class KindaWeakMap<K, V extends object> implements Map<K, V> {
         return this.#map.has(key);
     }
     clear(): void {
-        return this.#map.clear();
+        for (const value of this.values()) {
+            this.#registry.unregister(value);
+        }
+        this.#map.clear();
     }
     forEach(callbackfn: (value: V, key: K, map: Map<K, V>) => void, thisArg?: any): void {
         for (const [key, value] of this) {
@@ -49,7 +51,7 @@ export class KindaWeakMap<K, V extends object> implements Map<K, V> {
     values(): IterableIterator<V> {
         type me = this;
         return (function* (this: me) {
-            for (const [_, value] of this.entries()) {
+            for (const [, value] of this.entries()) {
                 yield value;
             }
         }).call(this);

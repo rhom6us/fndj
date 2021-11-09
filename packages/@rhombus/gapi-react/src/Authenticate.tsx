@@ -16,7 +16,7 @@ function ResultRoot({ children }: Children) {
 };
 
 const AuthenticateContext = createContext<GoogleUser | null>(null);
-export const useGoogleUser = useContext(AuthenticateContext);
+export const useGoogleUser = () => useContext(AuthenticateContext);
 export function Authenticate(props: Props) {
     const [ready, auth2] = usePromise(() => getAuth2(props.clientId), [props.clientId]);
 

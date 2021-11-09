@@ -82,6 +82,7 @@ importers:
       react-query: ^3.29.0
       react-redux: ^7.2.6
       react-refresh: ^0.10.0
+      react-resize-detector: ^6.7.6
       react-router-static: ^1.0.0
       realm-web: ^1.4.0
       redux: ^4.1.1
@@ -118,6 +119,7 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       react-query: 3.29.0_react-dom@17.0.2+react@17.0.2
       react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
+      react-resize-detector: 6.7.6_react-dom@17.0.2+react@17.0.2
       react-router-static: 1.0.0_react@17.0.2
       realm-web: 1.4.0
       redux: 4.1.1
@@ -1399,6 +1401,12 @@ packages:
       '@types/gapi.client': 1.0.5
     dev: true
 
+  /@maxim_mazurok/gapi.client.youtube/3.0.20211106:
+    resolution: {integrity: sha512-1apTVPmGfR0+SqEOn6TfF+r1VdDnmq6+wbeUpPxeb5zwK8P3wh66vuRTv9v7gJgcjGiifvis1VENv/cxFWj6FQ==}
+    dependencies:
+      '@types/gapi.client': 1.0.5
+    dev: true
+
   /@microsoft/load-themed-styles/1.10.216:
     resolution: {integrity: sha512-JHJwWWY3J1vKDMRREIm2U8JB5sgpGPqlF6Kf7Sjl2I8f0AeLFt43+fdPDm77sNyt5sVB1yp9hiV45i5K4s6Yag==}
     dev: false
@@ -1780,7 +1788,7 @@ packages:
   /@types/gapi.client.youtube/3.0.2:
     resolution: {integrity: sha512-SmWCofuA5DtzU/m87I2+TMgeir7b9eHO81SDkqlEIs0OQj8MjiJk8xnjLIf2UfmYuViW31qAjjBcUFINImNaTw==}
     dependencies:
-      '@maxim_mazurok/gapi.client.youtube': 3.0.20211026
+      '@maxim_mazurok/gapi.client.youtube': 3.0.20211106
     dev: true
 
   /@types/gapi.client/1.0.5:

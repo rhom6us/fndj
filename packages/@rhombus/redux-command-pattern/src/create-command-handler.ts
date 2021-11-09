@@ -20,8 +20,8 @@ export type CommandFn<TState, TPayload, TEvents extends StandardEventAny> =
 
 export type CommandFnAny = CommandFn<any, any, any>;
 
-type CommandGenerator<TState, TEvent extends StandardEventAny> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, TState>;
-type AsyncCommandGenerator<TState, TEvent extends StandardEventAny> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, TState>;
+export type CommandGenerator<TState, TEvent extends StandardEventAny=StandardEventAny> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, TState>;
+export type AsyncCommandGenerator<TState, TEvent extends StandardEventAny=StandardEventAny> = AsyncGenerator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, TState>;
 export type CommandResult<TState = any, TEvent extends StandardEventAny = StandardEventAny> = AnyTypeOf<TEvent, TState>;
 
 

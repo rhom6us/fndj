@@ -18,14 +18,14 @@
                 "isDefault": true
             },
             "problemMatcher": [
-                "$ts-webpack", // adds errors and warnings reported by ts-loader
-                "$ts-webpack-watch", // adds errors and warnings reported by ts-loader while in watch mode
-                "$ts-checker-webpack", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin
-                "$ts-checker-webpack-watch", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
-                "$ts-checker-eslint-webpack", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin
-                "$ts-checker-eslint-webpack-watch", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
-                "$tslint-webpack", // adds lint warnings reported by tslint-loader
-                "$tslint-webpack-watch", // adds lint warnings reported by tslint-loader while in watch mode
+                "$ts-webpack",
+                "$ts-webpack-watch",
+                "$ts-checker-webpack",
+                "$ts-checker-webpack-watch",
+                "$ts-checker-eslint-webpack",
+                "$ts-checker-eslint-webpack-watch",
+                "$tslint-webpack",
+                "$tslint-webpack-watch"
             ],
             "detail": "fnserve webApp development",
             "presentation": {
@@ -36,7 +36,7 @@
                 "showReuseMessage": false,
                 "clear": false,
                 "group": "serve"
-            },
+            }
         },
         {
             "label": "browser:build",
@@ -53,14 +53,14 @@
                 "isDefault": true
             },
             "problemMatcher": [
-                "$ts-webpack", // adds errors and warnings reported by ts-loader
-                "$ts-webpack-watch", // adds errors and warnings reported by ts-loader while in watch mode
-                "$ts-checker-webpack", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin
-                "$ts-checker-webpack-watch", // adds errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
-                "$ts-checker-eslint-webpack", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin
-                "$ts-checker-eslint-webpack-watch", // adds ESLint errors and warnings reported by the fork-ts-checker-webpack-plugin while in watch mode
-                "$tslint-webpack", // adds lint warnings reported by tslint-loader
-                "$tslint-webpack-watch", // adds lint warnings reported by tslint-loader while in watch mode
+                "$ts-webpack",
+                "$ts-webpack-watch",
+                "$ts-checker-webpack",
+                "$ts-checker-webpack-watch",
+                "$ts-checker-eslint-webpack",
+                "$ts-checker-eslint-webpack-watch",
+                "$tslint-webpack",
+                "$tslint-webpack-watch"
             ],
             "detail": "fnbuild webApp development",
             "presentation": {
@@ -91,6 +91,27 @@
                 "clear": false,
                 "group": "serve"
             }
+        },
+        {
+            "type": "func",
+            "command": "host start",
+            "problemMatcher": "$func-python-watch",
+            "isBackground": true,
+            "dependsOn": "pip install (functions)"
+        },
+        {
+            "label": "pip install (functions)",
+            "type": "shell",
+            "osx": {
+                "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+            },
+            "windows": {
+                "command": "${config:azureFunctions.pythonVenv}\\Scripts\\python -m pip install -r requirements.txt"
+            },
+            "linux": {
+                "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+            },
+            "problemMatcher": []
         }
     ]
 }
