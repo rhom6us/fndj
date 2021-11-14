@@ -32,6 +32,10 @@ export const configuration: any = {
     //    // 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     //     entryPoint // Your appʼs entry point
     // ],
+    output: {
+        ...config.output,
+        publicPath: '/',
+    },
     resolve: {
         ...config.resolve,
         alias: {
@@ -67,7 +71,7 @@ export const configuration: any = {
             plugins.webpackBar,
             plugins.reachRefresh,
             plugins.tsChecker,
-            plugins.tsCheckerNotifier
+            // plugins.tsCheckerNotifier
         ),
 
         // isDev && plugins.hotModuleReplacement,

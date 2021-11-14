@@ -31,7 +31,7 @@ export async function getAuth2(client_id?: string, ...scopes: string[]): Promise
         auth2Promise.then((p:gapi.auth2.GoogleAuth) => resolve(omit(p, 'then')));
     });
     
-    return await def.resolve(cache = result);
+    return await def.resolve(cache = {...result});
 }
 
 function omit<T, K extends keyof T>(source: T, ...keys: K[]): Omit<T, K> {

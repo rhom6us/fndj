@@ -45,6 +45,7 @@ export const createIndexHtml = new HtmlWebpackPlugin({
   filename: `${'index'}.html`,
   // "chunks": [entry],
   inject: 'body',
+  
   // "compile": true,
   // chunks: 'all',
   // excludeChunks: [],

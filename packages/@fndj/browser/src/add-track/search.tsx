@@ -1,6 +1,7 @@
 import { Stack } from '@fluentui/react';
 import { useThrottledState } from '@fndj/browser/hooks';
 import React, { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
+import { useNavigate } from "react-router-dom";
 import { SearchResultsState, SearchState } from './reducers';
 import { Video } from './services/youtube';
 import { commands } from './store';
@@ -35,16 +36,17 @@ export const Search: FC<Props> = (state) => {
     return (
         <ResultRoot>
             <form onSubmit={onSubmit}>
-                <input type="text" value={term} onChange={e => setTerm(e.target.value)} />
+                <input type="text" title="term" value={term} onChange={e => setTerm(e.target.value)} />
             </form>
             {pending ? <p>loading results...</p> : <></>}
             {videos && <Search_Results videos={videos} />}
         </ResultRoot>
     );
 };
-
 const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
-    const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video.id!), []);
+    const navigate = useNavigate();
+    const onClick = useCallback((video: Video) => () => navigate(`/tracks/${video.id}`), []);
+    // const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video.id!), []);
     return (
         <ResultRoot>
             <ul>
@@ -52,7 +54,7 @@ const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
                     <li key={video.id}>
                         <a onClick={onClick(video)}>
                             <Stack horizontal={true}>
-                                <img src={video.snippet!.thumbnails!.default!.url} />
+                                <img alt="thumbnail" src={video.snippet!.thumbnails!.default!.url} />
                                 <Stack>
                                     <h3>{video.snippet!.title}</h3>
                                     <strong>{video.contentDetails?.duration}</strong>

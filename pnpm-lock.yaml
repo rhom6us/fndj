@@ -74,7 +74,7 @@ importers:
       '@types/webaudio': workspace:*
       classnames: ^2.3.1
       comlink: ^4.3.1
-      connected-react-router: ^6.9.1
+      history: ^5.1.0
       immutable: ^4.0.0
       phaze-vocoder: github:olvb/phaze
       react: ^17.0.1
@@ -83,6 +83,7 @@ importers:
       react-redux: ^7.2.6
       react-refresh: ^0.10.0
       react-resize-detector: ^6.7.6
+      react-router-dom: ^6.0.2
       react-router-static: ^1.0.0
       realm-web: ^1.4.0
       redux: ^4.1.1
@@ -112,7 +113,7 @@ importers:
       '@types/css-dom': link:../../@types/css-dom
       classnames: 2.3.1
       comlink: 4.3.1
-      connected-react-router: 6.9.1_6a029c022e6cc95c684e94a2b6bcdfa5
+      history: 5.1.0
       immutable: 4.0.0
       phaze-vocoder: github.com/olvb/phaze/841f37b822c955868075072a6abe8bfad782432e
       react: 17.0.2
@@ -120,6 +121,7 @@ importers:
       react-query: 3.29.0_react-dom@17.0.2+react@17.0.2
       react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
       react-resize-detector: 6.7.6_react-dom@17.0.2+react@17.0.2
+      react-router-dom: 6.0.2_react-dom@17.0.2+react@17.0.2
       react-router-static: 1.0.0_react@17.0.2
       realm-web: 1.4.0
       redux: 4.1.1
@@ -1020,7 +1022,7 @@ packages:
   /@babel/runtime/7.13.10:
     resolution: {integrity: sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==}
     dependencies:
-      regenerator-runtime: 0.13.7
+      regenerator-runtime: 0.13.9
     dev: false
 
   /@babel/runtime/7.15.4:
@@ -3364,25 +3366,6 @@ packages:
     engines: {node: '>=0.8'}
     dev: false
 
-  /connected-react-router/6.9.1_6a029c022e6cc95c684e94a2b6bcdfa5:
-    resolution: {integrity: sha512-BbtB6t0iqAwGwygDenJl9zmlk7vpKWIRSycULmkAOn2RUaF6+bqETprl0qcIqQmY5CTqSwKanaxkLXYWiffAfQ==}
-    peerDependencies:
-      history: ^4.7.2
-      react: ^16.4.0 || ^17.0.0
-      react-redux: ^6.0.0 || ^7.1.0
-      react-router: ^4.3.1 || ^5.0.0
-      redux: ^3.6.0 || ^4.0.0
-    dependencies:
-      lodash.isequalwith: 4.4.0
-      prop-types: 15.7.2
-      react: 17.0.2
-      react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
-      redux: 4.1.1
-    optionalDependencies:
-      immutable: 4.0.0
-      seamless-immutable: 7.1.4
-    dev: false
-
   /consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: false
@@ -5091,6 +5074,12 @@ packages:
     resolution: {integrity: sha512-MKla68wFGv+i7zU3Q4giWN74f+zWdkuf2Tk21fISV7aw55r8dH/noBbH5JsVlM4Z2WRTYCEmSxsoZ1QR/o68jg==}
     dev: false
 
+  /history/5.1.0:
+    resolution: {integrity: sha512-zPuQgPacm2vH2xdORvGGz1wQMuHSIB56yNAy5FnLuwOwgSYyPKptJtcMm6Ev+hRGeS+GzhbmRacHzvlESbFwDg==}
+    dependencies:
+      '@babel/runtime': 7.15.4
+    dev: false
+
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha1-0nRXAQJabHdabFRXk+1QL8DGSaE=}
     dependencies:
@@ -6077,10 +6066,6 @@ packages:
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
-    dev: false
-
-  /lodash.isequalwith/4.4.0:
-    resolution: {integrity: sha1-Jmcm3dUo+FTyH06pigZWBuD7xrA=}
     dev: false
 
   /lodash.merge/4.6.2:
@@ -7799,11 +7784,32 @@ packages:
       resize-observer-polyfill: 1.5.1
     dev: false
 
+  /react-router-dom/6.0.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-cOpJ4B6raFutr0EG8O/M2fEoyQmwvZWomf1c6W2YXBZuFBx8oTk/zqjXghwScyhfrtnt0lANXV2182NQblRxFA==}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      history: 5.1.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-router: 6.0.2_react@17.0.2
+    dev: false
+
   /react-router-static/1.0.0_react@17.0.2:
     resolution: {integrity: sha512-6VPHFny/2AlYRFeDQOxlmk296MKyFEgOp7ExQxAuD/EzTAnHL4hzVKpOAfswWeE6txuuvcNo4BVi3av9s0YIPA==}
     peerDependencies:
       react: '*'
     dependencies:
+      react: 17.0.2
+    dev: false
+
+  /react-router/6.0.2_react@17.0.2:
+    resolution: {integrity: sha512-8/Wm3Ed8t7TuedXjAvV39+c8j0vwrI5qVsYqjFr5WkJjsJpEvNSoLRUbtqSEYzqaTUj1IV+sbPJxvO+accvU0Q==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      history: 5.1.0
       react: 17.0.2
     dev: false
 
@@ -8004,10 +8010,6 @@ packages:
 
   /regenerator-runtime/0.11.1:
     resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
-    dev: false
-
-  /regenerator-runtime/0.13.7:
-    resolution: {integrity: sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==}
     dev: false
 
   /regenerator-runtime/0.13.9:
@@ -8289,12 +8291,6 @@ packages:
       js-base64: 2.6.4
       source-map: 0.4.4
     dev: false
-
-  /seamless-immutable/7.1.4:
-    resolution: {integrity: sha512-XiUO1QP4ki4E2PHegiGAlu6r82o5A+6tRh7IkGGTVg/h+UoeX4nFBeCGPOhb4CYjvkqsfm/TUtvOMYC1xmV30A==}
-    requiresBuild: true
-    dev: false
-    optional: true
 
   /select-hose/2.0.0:
     resolution: {integrity: sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=}

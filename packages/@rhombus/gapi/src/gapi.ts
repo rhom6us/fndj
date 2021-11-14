@@ -13,7 +13,7 @@ function loadScript(src = 'https://apis.google.com/js/api.js') {
         script = document.createElement('script');
         script.id = id;
         script.src = src;
-        script.setAttribute('crossorigin', 'anonymous');
+        script.crossOrigin = 'anonymous'
         script.addEventListener('load', () => resolve(), { once: true });
 
         document.head.appendChild(script);

@@ -32,5 +32,5 @@ function LogoutButton_Internal({ auth2, ...props }: { auth2: GoogleAuth; } & Rea
         return <></>;
     }
 
-    return <button {...props} onClick={cb} />;
+    return <button type="button" {...props} onClick={cb} >Logout</button>;
 }

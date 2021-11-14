@@ -26,7 +26,7 @@ namespace YouTubeProxy.Services {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
             var manifest = await _youtube.Videos.Streams.GetManifestAsync(id);
-
+           
             var streamInfo = manifest.GetAudioOnlyStreams().GetWithHighestBitrate() ?? throw new StreamNotFoundException("Stream not found", nameof(id));
 
             return await _youtube.Videos.Streams.GetAsync(streamInfo);
