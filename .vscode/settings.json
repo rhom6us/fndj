@@ -19,7 +19,7 @@
     "**/Properties/Resources.resx": false,
     "yarn.lock": false,
     "**/*.d.ts.map": false,
-    "**/desktop.ini": false,
+    "**/desktop.ini": true,
     "pnpm-lock.yaml": false,
     "**/.pnpm-debug.log": false,
     "**/.tmp.driveupload": false,

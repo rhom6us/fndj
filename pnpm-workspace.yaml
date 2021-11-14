@@ -1,4 +1,0 @@
-packages:
-  - 'packages/**'
-  - 'script-audio-node'
-  - '!packages/YouTubeProxy'
