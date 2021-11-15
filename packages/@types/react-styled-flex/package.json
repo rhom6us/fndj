@@ -11,7 +11,6 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "main": "index.d.ts",
     "types": "index.d.ts",
     "devDependencies": {
         "@types/react": "^17.0.33",
@@ -19,6 +18,10 @@
         "react": "^17.0.2"
     },
     "peerDependencies": {
+        "csstype": "^3.0.9",
         "react": "^17.0.2"
+    },
+    "scripts": {
+        "build": ""
     }
 }

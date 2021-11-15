@@ -11,10 +11,13 @@
             "githubUsername": "rhom6us"
         }
     ],
+    "scripts": {
+        "build": ""
+    },
     "types": "index.d.ts",
     "devDependencies": {
-        "@types/waves-audio": "*",
-        "@types/waves-masters": "*",
-        "@types/waves-ui": "*"
+        "@types/waves-audio": "workspace:*",
+        "@types/waves-masters": "workspace:*",
+        "@types/waves-ui": "workspace:*"
     }
 }

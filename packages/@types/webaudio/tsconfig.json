@@ -1,10 +1,6 @@
 {
-    "extends": "../../../tsconfig.json",
-    "compilerOptions": {
-        "lib": [
-            "ESNext",
-            "DOM"
-        ],
-        "allowSyntheticDefaultImports": true,
-    },
+  "extends": "./node_modules/@fndj/heft-web-rig/profiles/types/tsconfig-base.json",
+  "include": [
+    "./**/*.d.ts"
+  ]
 }

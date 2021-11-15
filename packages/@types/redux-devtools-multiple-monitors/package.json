@@ -14,5 +14,8 @@
     "types": "index.d.ts",
     "dependencies": {
         "@types/react": "^17.0.33"
+    },
+    "scripts": {
+        "build": ""
     }
 }

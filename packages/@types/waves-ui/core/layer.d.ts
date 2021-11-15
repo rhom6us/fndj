@@ -1,23 +1,20 @@
-import events from 'events';
-import ns from './namespace';
-import scales from '../utils/scales';
-import Segment, { SegmentAccessor, SegmentOptions } from '../shapes/segment';
-import TimeContextBehavior from '../behaviors/time-context-behavior';
-
 import BaseBehavior from '../behaviors/base-behavior';
-import BaseShape, { Accessor } from '../shapes/base-shape';
-import LayerTimeContext from './layer-time-context';
-import Marker, { MarkerAccessor, MarkerOptions } from '../shapes/marker';
+import TimeContextBehavior from '../behaviors/time-context-behavior';
 import AnnotatedMarker, { AnnotatedMarkerAccessor, AnnotatedMarkerOptions } from '../shapes/annotated-marker';
 import AnnotatedSegment, { AnnotatedSegmentAccessor, AnnotatedSegmentOptions } from '../shapes/annotated-segment';
+import BaseShape, { Accessor } from '../shapes/base-shape';
 import Cursor, { CursorAccessor, CursorOptions } from '../shapes/cursor';
 import Dot, { DotAccessor, DotOptions } from '../shapes/dot';
 import Line, { LineAccessor, LineOptions } from '../shapes/line';
+import Marker, { MarkerAccessor, MarkerOptions } from '../shapes/marker';
+import Segment, { SegmentAccessor, SegmentOptions } from '../shapes/segment';
 import Ticks, { TicksAccessor, TicksOptions } from '../shapes/ticks';
-import Waveform, { WaveformAccessor, WaveformOptions } from '../shapes/waveform';
 import TraceDots, { TraceDotsAccessor, TraceDotsOptions } from '../shapes/trace-dots';
 import TracePath, { TracePathAccessor, TracePathOptions } from '../shapes/trace-path';
+import Waveform, { WaveformAccessor, WaveformOptions } from '../shapes/waveform';
+import LayerTimeContext from './layer-time-context';
 
+export type { Accessor };
 export type DataType = 'entity' | 'collection';
 export type Datum<T> =
     T extends Array<infer R> ? R :
@@ -293,7 +290,7 @@ export default class Layer<TData = any, TOptions = LayerOptions> {
     configureCommonShape(ctor: typeof TraceDots, accessors?: Partial<TraceDotsAccessor<Datum<TData>>>, options?: Partial<TraceDotsOptions>): void;
     configureCommonShape(ctor: typeof TracePath, accessors?: Partial<TracePathAccessor<Datum<TData>>>, options?: Partial<TracePathOptions>): void;
     configureCommonShape(ctor: typeof Waveform, accessors?: Partial<WaveformAccessor<Datum<TData>>>, options?: Partial<WaveformOptions>): void;
-    configureCommonShape<T extends typeof BaseShape>(ctor: typeof T, accessors?: Accessor<TData>, options?: any): void;
+    configureCommonShape<T extends typeof BaseShape>(ctor: T, accessors?: Accessor<TData>, options?: any): void;
     /**
      * Register the behavior to use when interacting with a shape.
      *

@@ -12,5 +12,7 @@
         }
     ],
     "types": "index.d.ts",
-    "main": "index.d.ts"
+    "scripts": {
+        "build": ""
+    }
 }

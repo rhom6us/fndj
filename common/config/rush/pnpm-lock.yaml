@@ -140,6 +140,70 @@ importers:
       '@rushstack/eslint-config': 2.4.5
       '@rushstack/heft': 0.42.2
 
+  ../../packages/@types/css-dom:
+    specifiers: {}
+
+  ../../packages/@types/fft.js:
+    specifiers: {}
+
+  ../../packages/@types/phaze-vocoder:
+    specifiers: {}
+
+  ../../packages/@types/react-styled-flex:
+    specifiers:
+      '@types/react': ^17.0.33
+      csstype: ^3.0.9
+      react: ^17.0.2
+    devDependencies:
+      '@types/react': 17.0.34
+      csstype: 3.0.9
+      react: 17.0.2
+
+  ../../packages/@types/redux-devtools-dispatch:
+    specifiers:
+      '@types/react': ^17.0.33
+      redux: ^4.1.1
+    devDependencies:
+      '@types/react': 17.0.34
+      redux: 4.1.2
+
+  ../../packages/@types/redux-devtools-multiple-monitors:
+    specifiers:
+      '@types/react': ^17.0.33
+    dependencies:
+      '@types/react': 17.0.34
+
+  ../../packages/@types/waves-audio:
+    specifiers:
+      '@types/waves-masters': workspace:*
+    devDependencies:
+      '@types/waves-masters': link:../waves-masters
+
+  ../../packages/@types/waves-blocks:
+    specifiers:
+      '@types/waves-audio': workspace:*
+      '@types/waves-masters': workspace:*
+      '@types/waves-ui': workspace:*
+    devDependencies:
+      '@types/waves-audio': link:../waves-audio
+      '@types/waves-masters': link:../waves-masters
+      '@types/waves-ui': link:../waves-ui
+
+  ../../packages/@types/waves-loaders:
+    specifiers: {}
+
+  ../../packages/@types/waves-masters:
+    specifiers: {}
+
+  ../../packages/@types/waves-ui:
+    specifiers: {}
+
+  ../../packages/@types/webaudio:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../rigs/heft-web-rig
+
   ../../rigs/heft-web-rig:
     specifiers:
       '@microsoft/api-extractor': ^7.18.19
@@ -445,6 +509,13 @@ packages:
       '@babel/core': 7.16.0
       '@babel/helper-plugin-utils': 7.14.5
     dev: false
+
+  /@babel/runtime/7.16.3:
+    resolution: {integrity: sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.9
+    dev: true
 
   /@babel/template/7.16.0:
     resolution: {integrity: sha512-MnZdpFD/ZdYhXwiunMqqgyZyucaYsbL0IrjoGjaVhGilz+x8YB++kRfygSOIj1yOtWKPlx7NBp+9I1RQSgsd5A==}
@@ -1077,6 +1148,19 @@ packages:
   /@types/prettier/1.19.1:
     resolution: {integrity: sha512-5qOlnZscTn4xxM5MeGXAMOsIOIKIbh9e85zJWfBRVPlRMEVawzoPhINYbRGkBZCI8LxvBe7tJCdWiarA99OZfQ==}
     dev: false
+
+  /@types/prop-types/15.7.4:
+    resolution: {integrity: sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==}
+
+  /@types/react/17.0.34:
+    resolution: {integrity: sha512-46FEGrMjc2+8XhHXILr+3+/sTe3OfzSPU9YGKILLrUYbQ1CLQC9Daqo1KzENGXAWwrFwiY0l4ZbF20gRvgpWTg==}
+    dependencies:
+      '@types/prop-types': 15.7.4
+      '@types/scheduler': 0.16.2
+      csstype: 3.0.9
+
+  /@types/scheduler/0.16.2:
+    resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
 
   /@types/stack-utils/1.0.1:
     resolution: {integrity: sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==}
@@ -2439,6 +2523,9 @@ packages:
     dependencies:
       cssom: 0.3.8
     dev: false
+
+  /csstype/3.0.9:
+    resolution: {integrity: sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==}
 
   /cyclist/1.0.1:
     resolution: {integrity: sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=}
@@ -6151,6 +6238,14 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  /react/17.0.2:
+    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: true
+
   /read-pkg-up/7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
     engines: {node: '>=8'}
@@ -6226,6 +6321,16 @@ packages:
       indent-string: 4.0.0
       strip-indent: 3.0.0
     dev: false
+
+  /redux/4.1.2:
+    resolution: {integrity: sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==}
+    dependencies:
+      '@babel/runtime': 7.16.3
+    dev: true
+
+  /regenerator-runtime/0.13.9:
+    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
+    dev: true
 
   /regex-not/1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}

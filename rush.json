@@ -458,6 +458,66 @@
     //   "reviewCategory": "tools"
     // }
     {
+      "packageName": "@types/css-dom",
+      "projectFolder": "packages/@types/css-dom",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/fft.js",
+      "projectFolder": "packages/@types/fft.js",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/phaze-vocoder",
+      "projectFolder": "packages/@types/phaze-vocoder",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/react-styled-flex",
+      "projectFolder": "packages/@types/react-styled-flex",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/redux-devtools-dispatch",
+      "projectFolder": "packages/@types/redux-devtools-dispatch",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/redux-devtools-multiple-monitors",
+      "projectFolder": "packages/@types/redux-devtools-multiple-monitors",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/waves-audio",
+      "projectFolder": "packages/@types/waves-audio",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/waves-blocks",
+      "projectFolder": "packages/@types/waves-blocks",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/waves-loaders",
+      "projectFolder": "packages/@types/waves-loaders",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/waves-masters",
+      "projectFolder": "packages/@types/waves-masters",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/waves-ui",
+      "projectFolder": "packages/@types/waves-ui",
+      "reviewCategory": "types"
+    },
+    {
+      "packageName": "@types/webaudio",
+      "projectFolder": "packages/@types/webaudio",
+      "reviewCategory": "types"
+    },
+    {
       "packageName": "@rhombus/async-timers",
       "projectFolder": "packages/@rhombus/toolset/async-timers",
       "reviewCategory": "toolset"

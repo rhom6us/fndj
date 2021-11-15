@@ -11,6 +11,8 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "main": "index.d.ts",
+    "scripts": {
+        "build": ""
+    },
     "types": "index.d.ts"
 }
