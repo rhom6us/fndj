@@ -1,7 +1,4 @@
 {
-  "extends": "../../../../tsconfig.json",
-  "include": ["src/index.ts"],
-  "compilerOptions": {
-    "lib": ["DOM", "ESNext"]
-  }
+  "extends": "./node_modules/@fndj/heft-web-rig/profiles/library/tsconfig-base.json",
+  
 }

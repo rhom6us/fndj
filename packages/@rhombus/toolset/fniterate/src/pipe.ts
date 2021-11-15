@@ -141,6 +141,21 @@ export function map<TSource, TResult>(selector: (this: Iterable<TSource>, item: 
     //     }
     // };
 }
+
+type reducer<accumulator = any, current = any> = (a: accumulator, b: current) => accumulator;
+type transducer<TSource, TResult> = <A>(reducer: reducer<TSource, A>) => reducer<A, TResult>;
+type Transducer<TSource, A, TResult> = (reducer: reducer<TSource, A>) => reducer<A, TResult>;
+type transform<a = any, b = any> = Func<[a], b>;
+type map<a, b, step> = (transform: transform<a, b>) => (reducer: reducer<step, b>) => reducer;
+type map1 = (transform: transform) => (reducer: reducer) => reducer;
+type map2<a, b, step> = Func<[Func<[Func<[a], b>], step>], reducer>;//  (a => b) => step => reducer
+
+const mmap = <TSource, TResult>(selector: Func<[TSource], TResult>) => <A>(step: reducer<A, TResult>): reducer<A, TSource> => (a, c) => step(a, selector(c));
+
+const mapy: transducer<number, string> = (selector: Func<[number], string>) => <A>(step: reducer<A, string>): reducer<A, number> => (a, c) => step(a, selector(c));
+const mapxy: Transducer<number, string, number> = (selector: Func<[number], number>) => (step: reducer<string, number>): reducer<string, number> => (a, c) => step(a, selector(c));
+const mapxys: Transducer<number, string, number> = (selector) => (step) => (a: string, c: number) => step(a, selector(c)) as reducer<string, number>;
+
 export function first<TSource>(predicate?: (item: TSource) => boolean): Operator<TSource> {
     return {
         filter: predicate,
@@ -157,15 +172,14 @@ export function first<TSource>(predicate?: (item: TSource) => boolean): Operator
     //     throw new RangeError("Sequence contains no elements");
     // };
 }
-export function firstOrDefault<TSource>(defaultValue: TSource, predicate?: (item: TSource) => boolean) {
-    return function (source: Iterable<TSource>) {
-        for (const item of source) {
-            if (predicate?.call(source, item) ?? true) {
-                return item;
-            }
+
+export const firstOrDefault = <TSource>(defaultValue: TSource, predicate?: (item: TSource) => boolean) => (source: Iterable<TSource>) => {
+    for (const item of source) {
+        if (predicate?.call(source, item) ?? true) {
+            return item;
         }
-        return defaultValue;
-    };
+    }
+    return defaultValue;
 }
 export function take<TSource>(count: number) {
     return function* (source: Iterable<TSource>): Iterable<TSource> {

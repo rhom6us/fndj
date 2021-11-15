@@ -1,7 +1,3 @@
 {
-  "extends": "../../../../tsconfig.json",
-  "include": ["src/index.ts"],
-  "compilerOptions": {
-    "lib": ["ES2021", "DOM"]
-  }
+  "extends": "./node_modules/@fndj/heft-web-rig/profiles/library/tsconfig-base.json",
 }

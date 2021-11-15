@@ -176,7 +176,7 @@
    * and set projectFolderMaxDepth to a large number.
    */
   // "projectFolderMinDepth": 2,
-  // "projectFolderMaxDepth": 2,
+  "projectFolderMaxDepth": 20,
 
   /**
    * Today the npmjs.com registry enforces fairly strict naming rules for packages, but in the early
@@ -296,7 +296,7 @@
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"
      */
-    "defaultBranch": "rush",
+    "defaultBranch": "rush"
 
     /**
      * The default remote. This tells "rush change" which remote to compare against if the remote URL is
@@ -457,5 +457,69 @@
     //   "projectFolder": "tools/my-toolchain",
     //   "reviewCategory": "tools"
     // }
+    {
+      "packageName": "@rhombus/async-timers",
+      "projectFolder": "packages/@rhombus/toolset/async-timers",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/case-converter",
+      "projectFolder": "packages/@rhombus/toolset/case-converter",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/defer",
+      "projectFolder": "packages/@rhombus/toolset/defer",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/fetch",
+      "projectFolder": "packages/@rhombus/toolset/fetch",
+      "reviewCategory": "toolset"
+    },
+    // {
+    //   "packageName": "@rhombus/fniterate",
+    //   "projectFolder": "packages/@rhombus/toolset/fniterate",
+    //   "reviewCategory": "toolset"
+    // },
+    {
+      "packageName": "@rhombus/func",
+      "projectFolder": "packages/@rhombus/toolset/func",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/kinda-weak-map",
+      "projectFolder": "packages/@rhombus/toolset/kinda-weak-map",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/logger",
+      "projectFolder": "packages/@rhombus/toolset/logger",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/set-immediate",
+      "projectFolder": "packages/@rhombus/toolset/set-immediate",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/singleton",
+      "projectFolder": "packages/@rhombus/toolset/singleton",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/type-guards",
+      "projectFolder": "packages/@rhombus/toolset/type-guards",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@rhombus/type-helpers",
+      "projectFolder": "packages/@rhombus/toolset/type-helpers",
+      "reviewCategory": "toolset"
+    },
+    {
+      "packageName": "@fndj/heft-web-rig",
+      "projectFolder": "rigs/heft-web-rig"
+    }
   ]
 }

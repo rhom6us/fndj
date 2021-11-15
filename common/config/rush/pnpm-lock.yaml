@@ -5,6 +5,141 @@ importers:
   .:
     specifiers: {}
 
+  ../../packages/@rhombus/toolset/async-timers:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rhombus/set-immediate': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+      '@rhombus/set-immediate': link:../set-immediate
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/case-converter:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/defer:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/fetch:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rhombus/type-helpers': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+      '@rhombus/type-helpers': link:../type-helpers
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/func:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/kinda-weak-map:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/logger:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/set-immediate:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+      setimmediate: ^1.0.5
+    dependencies:
+      setimmediate: 1.0.5
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/singleton:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/type-guards:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/type-helpers:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rhombus/func': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
+    dependencies:
+      '@rhombus/func': link:../func
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
   ../../rigs/heft-web-rig:
     specifiers:
       '@microsoft/api-extractor': ^7.18.19
@@ -24,49 +159,6 @@ importers:
       tslib: 2.3.1
       typescript: 4.5.0-dev.20211101
     devDependencies:
-      '@rushstack/heft': 0.42.2
-
-  ../../toolset/async-timers:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rhombus/set-immediate': workspace:*
-      '@rushstack/eslint-config': ^2.4.5
-      '@rushstack/heft': ^0.42.2
-      tslib: ~2.3.1
-    dependencies:
-      '@rhombus/set-immediate': link:../set-immediate
-      tslib: 2.3.1
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../rigs/heft-web-rig
-      '@rhombus/func': link:../func
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../toolset/func:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': ^2.4.5
-      '@rushstack/heft': ^0.42.2
-      tslib: ~2.3.1
-    dependencies:
-      tslib: 2.3.1
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../toolset/set-immediate:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': ^2.4.5
-      '@rushstack/heft': ^0.42.2
-      setimmediate: ^1.0.5
-    dependencies:
-      setimmediate: 1.0.5
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
       '@rushstack/heft': 0.42.2
 
 packages:

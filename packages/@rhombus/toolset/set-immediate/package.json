@@ -2,13 +2,23 @@
   "name": "@rhombus/set-immediate",
   "version": "1.1.0",
   "description": "",
-  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhom6us/fndj.git",
+    "directory": "toolset/set-immediate"
+  },
+  "main": "lib/index.js",
   "scripts": {
-    "build":"tsc --outDir dist -d  --noEmit false"
+    "build": "heft test --clean"
   },
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
     "setimmediate": "^1.0.5"
+  },
+  "devDependencies": {
+    "@fndj/heft-web-rig": "workspace:*",
+    "@rushstack/eslint-config": "^2.4.5",
+    "@rushstack/heft": "^0.42.2"
   }
 }

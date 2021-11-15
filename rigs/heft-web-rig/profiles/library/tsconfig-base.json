@@ -1,5 +1,4 @@
 {
-    "$schema": "http://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "outDir": "../../../../../lib",
         "rootDir": "../../../../../src",
@@ -23,11 +22,12 @@
         "moduleResolution": "node",
         "target": "esnext",
         "lib": [
-            "esnext",
-            "dom"
+            "DOM",
+            "ESNext"
         ],
         // "incremental": true,
         // "tsBuildInfoFile": "./.tsbuildinfo",
+        "importHelpers": true,
         "allowSyntheticDefaultImports": true,
         /***** Typescript 4.1 ***********/
         "noUncheckedIndexedAccess": false,

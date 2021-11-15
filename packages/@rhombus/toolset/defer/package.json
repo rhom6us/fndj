@@ -2,10 +2,21 @@
   "name": "@rhombus/defer",
   "version": "1.1.0",
   "description": "",
-  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhom6us/fndj.git",
+    "directory": "toolset/defer"
+  },
+  "main": "lib/index.js",
   "scripts": {
+    "build": "heft test --clean"
   },
   "keywords": [],
   "author": "Thomas Butler",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@fndj/heft-web-rig": "workspace:*",
+    "@rushstack/eslint-config": "^2.4.5",
+    "@rushstack/heft": "^0.42.2"
+  }
 }

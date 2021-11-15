@@ -1,0 +1,1 @@
+{"version":3,"file":"is-url.js","sourceRoot":"","sources":["../src/is-url.ts"],"names":[],"mappings":"AACA,MAAM,UAAU,KAAK,CAAC,GAAQ;IAC5B,OAAO,GAAG,YAAY,GAAG,CAAC;AAC5B,CAAC","sourcesContent":["\r\nexport function isUrl(url: any): url is URL {\r\n  return url instanceof URL;\r\n}\r\n"]}

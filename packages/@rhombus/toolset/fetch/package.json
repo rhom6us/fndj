@@ -2,13 +2,24 @@
   "name": "@rhombus/fetch",
   "version": "1.1.0",
   "description": "",
-  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhom6us/fndj.git",
+    "directory": "toolset/fetch"
+  },
+  "main": "lib/index.js",
   "scripts": {
+    "build": "heft test --clean"
   },
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
-    "@rhombus/func":"workspace:*",
-    "@rhombus/type-helpers":"workspace:*"
+    "@rhombus/func": "workspace:*",
+    "@rhombus/type-helpers": "workspace:*"
+  },
+  "devDependencies": {
+    "@fndj/heft-web-rig": "workspace:*",
+    "@rushstack/eslint-config": "^2.4.5",
+    "@rushstack/heft": "^0.42.2"
   }
 }

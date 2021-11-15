@@ -32,12 +32,16 @@
     "packages/@fndj/ui": false,
     "packages/@fndj/YouTubeProxy": false,
     "packages/@types": false,
-    "types": false,
+    "**/*.build.log": true,
+    "**/*.build.error.log": true,
+    "**/.rush/": true,
+    "**/temp/": true,
     "**/.*": false,
     "packages/@fndj/webpack/lib": false,
-    "**/dist": false,
+    "packages/@fndj/webpack": false,
     "**/node_modules": false,
-    "packages/@fndj/webpack": false
+    "**/config": false,
+    "**/lib": false
   },
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",

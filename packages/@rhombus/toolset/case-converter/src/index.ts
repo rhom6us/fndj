@@ -166,10 +166,10 @@ type Replace<T, P extends string, R extends string> = T extends `${infer X}${P}$
 
 // eslint-disable-next-line prettier/prettier
 type J<T extends unknown[]> =
-    T extends [] ? '' :
-    T extends [any] ? `${T[0]}` :
-    T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` :
-    never;
+  T extends [] ? '' :
+  T extends [any] ? `${T[0]}` :
+  T extends [any, ...infer Y] ? `${T[0]}${J<Y>}` :
+  never;
 
 // type D2<T> = J<[T, T]>;
 // type D3<T> = J<[T, D2<T>]>;
@@ -213,8 +213,8 @@ type Reverse<T> = T extends '' ? '' : T extends J<[infer X, infer Y]> ? J<[Rever
 
 type InsertBefore<TInput, TSearch, TInsert> = TInput extends J<[infer X, infer Y, infer Z]>
   ? Y extends TSearch
-    ? J<[X, TInsert, Y, InsertBefore<Z, TSearch, TInsert>]>
-    : J<[X, InsertBefore<J<[Y, Z]>, TSearch, TInsert>]>
+  ? J<[X, TInsert, Y, InsertBefore<Z, TSearch, TInsert>]>
+  : J<[X, InsertBefore<J<[Y, Z]>, TSearch, TInsert>]>
   : TInput;
 
 // type SnakeCase<T extends string> =
@@ -227,9 +227,9 @@ type InsertBefore<TInput, TSearch, TInsert> = TInput extends J<[infer X, infer Y
 //     1;
 // type DashCase<T extends string> = Replace<SnakeCase<T>, '_', '-'>;
 
-type SnakeCase<T extends string> = Uppercase<InsertBefore<T, UpperCaseChar, '_'>>;
-type DashCase<T extends string> = Lowercase<InsertBefore<T, UpperCaseChar, '-'>>;
+export type SnakeCase<T extends string> = Uppercase<InsertBefore<T, UpperCaseChar, '_'>>;
+export type DashCase<T extends string> = Lowercase<InsertBefore<T, UpperCaseChar, '-'>>;
 type pdpd = SnakeCase<'ProperID4Form'>;
 type spdpd = DashCase<'Pro5per1ID4Form'>;
 
-export { };
+

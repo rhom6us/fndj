@@ -1,0 +1,1 @@
+{"version":3,"file":"is-async-iterable.js","sourceRoot":"","sources":["../../src/iterables/is-async-iterable.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,eAAe,CAAC,KAAU;IACxC,OAAO,MAAM,CAAC,aAAa,IAAI,KAAK,CAAC;AACvC,CAAC","sourcesContent":["export function isAsyncIterable(value: any): value is AsyncIterable<any> {\r\n  return Symbol.asyncIterator in value;\r\n}\r\n\r\n"]}
