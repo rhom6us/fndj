@@ -1,7 +1,7 @@
 import { Pointer } from '../Pointer';
 import { SuperpoweredBuffer } from '../SuperpoweredBuffer';
 
-export class Analyzer {
+export declare class Analyzer {
     constructor(sampleRate: number, seconds: number);
 
     /**

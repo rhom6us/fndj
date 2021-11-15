@@ -1,7 +1,7 @@
 import { Pointer } from '../Pointer';
 
 
-export class AdvancedAudioPlayer {
+export declare class AdvancedAudioPlayer {
     constructor(sampleRate: number, cachedPointCount: number, internalBufferSizeSeconds: number, negattiveSeconds: number, minimumTimestretchingPlaybackRate: number, maximumTimestretchingPlaybackRate: number, enableStems: boolean);
 
     /**

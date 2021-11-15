@@ -39,7 +39,7 @@
     "**/.*": false,
     "packages/@fndj/webpack/lib": false,
     "packages/@fndj/webpack": false,
-    "**/node_modules": true,
+    "**/node_modules": false,
     "**/config": false,
     "**/lib": false,
     "**/.heft": true

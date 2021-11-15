@@ -11,10 +11,16 @@
             "githubUsername": "rhom6us"
         }
     ],
+    "scripts": {
+        "build": "heft test --clean"
+    },
     "main": "src/index.ts",
     "types": "src/index.d.ts",
-    "typings": "src/index.d.ts",
     "devDependencies": {
-        "@types/webaudio": "workspace:*"
+        "@types/webaudio": "workspace:*",
+        "@fndj/heft-webpack-rig": "workspace:*",
+        "@rushstack/eslint-config": "^2.4.5",
+        "@rushstack/heft": "^0.42.2",
+        "ts-node": "^10.4.0"
     }
 }

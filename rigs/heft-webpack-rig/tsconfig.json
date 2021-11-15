@@ -1,0 +1,25 @@
+{
+  "extends": "./profiles/library/tsconfig-base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "rootDir": ".",
+    "outDir": "./webpack",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "skipDefaultLibCheck": true,
+    "exactOptionalPropertyTypes": false,
+    "strict": false,
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "./src/**/webpack.config.*.ts"
+  ]
+}

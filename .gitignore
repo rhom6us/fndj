@@ -1,5 +1,4 @@
 .DS_Store
-/dist/
 node_modules
 thumbs.db
 .idea/
@@ -95,12 +94,14 @@ common/autoinstallers/*/.npmrc
 .ionide
 **/.vs
 **/.suo
-packages/YouTubeProxy/YouTubeProxy/bin
-packages/YouTubeProxy/YouTubeProxy/obj
-.gitignore
 *.csproj.user
 packages/**/*.rar
 **/.tmp.driveupload
 **/bin/
 **/obj/
 .tsbuildinfo
+
+**/dist/
+**/lib/
+
+rigs/heft-webpack-rig/webpack/src/

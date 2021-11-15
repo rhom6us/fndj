@@ -1,8 +1,23 @@
 {
-  "extends": "../../../tsconfig.json",
+  "extends": "./node_modules/@fndj/heft-webpack-rig/profiles/library/tsconfig-base.json",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": false,
-    "tsBuildInfoFile": "./.tsbuildinfo"
-  }
+    "strict": false,
+    "exactOptionalPropertyTypes": false,
+    "types": [
+      "webaudio"
+    ]
+  },
+  // "include": [
+  //   "src/**/*.ts",
+  //   "src/**/*.d.ts",
+  //   "src/mods/**/*.d.ts",
+  //   "src/**/*.js"
+  // ]
+  "include": [
+    "src/*.js",
+    "src/wasm.d.ts",
+    "src/index.ts",
+  ]
 }

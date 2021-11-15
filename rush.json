@@ -578,10 +578,6 @@
       "reviewCategory": "toolset"
     },
     {
-      "packageName": "@fndj/heft-web-rig",
-      "projectFolder": "rigs/heft-web-rig"
-    },
-    {
       "packageName": "@rhombus/gapi",
       "projectFolder": "packages/@rhombus/gapi",
       "reviewCategory": "weblib"
@@ -600,6 +596,18 @@
       "packageName": "@rhombus/redux-command-pattern",
       "projectFolder": "packages/@rhombus/redux-command-pattern",
       "reviewCategory": "weblib"
+},
+{
+  "packageName": "@fndj/heft-web-rig",
+  "projectFolder": "rigs/heft-web-rig"
+},
+{
+  "packageName": "@fndj/heft-webpack-rig",
+  "projectFolder": "rigs/heft-webpack-rig"
+},
+{
+  "packageName": "@fndj/superpowered",
+  "projectFolder": "packages/@fndj/superpowered"
 }
   ]
 }

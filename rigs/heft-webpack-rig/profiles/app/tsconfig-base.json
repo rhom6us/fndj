@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+        "outDir": "../../../../../lib",
+        "rootDir": "../../../../../src",
+        "rootDirs": [
+            "../../../../../src",
+            "../../../../../temp/sass-ts"
+        ],
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "declaration": true,
+        "sourceMap": true,
+        "declarationMap": true,
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "noEmitOnError": false,
+        // "allowUnreachableCode": false,
+        "types": [],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "esnext",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        // "incremental": true,
+        // "tsBuildInfoFile": "./.tsbuildinfo",
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": true,
+        /***** Typescript 4.1 ***********/
+        "noUncheckedIndexedAccess": false,
+        /***** Typescript 4.2 ***********/
+        "noPropertyAccessFromIndexSignature": true,
+        "explainFiles": false,
+        /***** Typescript 4.3 ***********/
+        "noImplicitOverride": true,
+        "noErrorTruncation": false,
+        /***** Typescript 4.4 ***********/
+        "exactOptionalPropertyTypes": true,
+        "useUnknownInCatchVariables": true
+    },
+    "include": [
+        "../../../../../src/**/*.ts",
+        "../../../../../src/**/*.tsx"
+    ]
+}

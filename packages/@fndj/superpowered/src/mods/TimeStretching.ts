@@ -1,6 +1,6 @@
 import { Pointer } from '../Pointer';
 
-export class TimeStretching {
+export declare class TimeStretching {
     constructor(sampleRate: number, minimumRate: number, sound: 0 | 1 | 2);
 
     /**
