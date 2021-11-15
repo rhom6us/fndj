@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;AACA,mBAAmB;AACnB,qBAAqB;AACrB,sCAAsC;AACtC,sDAAuB","sourcesContent":["\n// import g = gapi;\n// export {g as gapi}\n// export type { Gapi } from './gapi';\nexport * from './libs';\n"]}

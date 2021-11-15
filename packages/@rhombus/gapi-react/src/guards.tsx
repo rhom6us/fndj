@@ -1,4 +1,3 @@
-import { usePromise } from '@rhombus/react';
 import React, { ComponentType, memo, ReactElement, ReactNode } from 'react';
 
 
@@ -58,15 +57,15 @@ export function partialApply<P, Applied extends Partial<P>>(Target: ComponentTyp
     });
 }
 export function isDefined<T>(value: T | null | undefined): value is NonNullable<T> {
-    return value !== null && value !== undefined;
+    return value != null;
 }
 
 
-export function Await<T>({ promise, children: render, fallback }: { promise: Promise<T>; children: (value: T) => ReactElement; fallback?: ReactNode; }): ReactElement {
-    const [ready, result] = usePromise(promise);
-    if (ready) {
-        return <>{render(result!)}</>;
-    }
+// export function Await<T>({ promise, children: render, fallback }: { promise: Promise<T>; children: (value: T) => ReactElement; fallback?: ReactNode; }): ReactElement {
+//     const [ready, result] = usePromise(promise);
+//     if (ready) {
+//         return <>{render(result!)}</>;
+//     }
 
-    return <>{fallback}</>;
-}
+//     return <>{fallback}</>;
+// }

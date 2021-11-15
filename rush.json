@@ -580,6 +580,26 @@
     {
       "packageName": "@fndj/heft-web-rig",
       "projectFolder": "rigs/heft-web-rig"
-    }
+    },
+    {
+      "packageName": "@rhombus/gapi",
+      "projectFolder": "packages/@rhombus/gapi",
+      "reviewCategory": "weblib"
+    },
+    {
+      "packageName": "@rhombus/gapi-react",
+      "projectFolder": "packages/@rhombus/gapi-react",
+      "reviewCategory": "weblib"
+    },
+    {
+      "packageName": "@rhombus/react",
+      "projectFolder": "packages/@rhombus/react",
+      "reviewCategory": "weblib"
+    },
+    {
+      "packageName": "@rhombus/redux-command-pattern",
+      "projectFolder": "packages/@rhombus/redux-command-pattern",
+      "reviewCategory": "weblib"
+}
   ]
 }
