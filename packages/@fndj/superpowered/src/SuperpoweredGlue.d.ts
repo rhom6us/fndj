@@ -1,6 +1,6 @@
-import { SuperpoweredBuffer, SuperpoweredBufferConstructor } from './SuperpoweredBuffer';
+import { AdvancedAudioPlayer, Analyzer, TimeStretching } from './mods';
 import { Pointer } from './Pointer';
-import { TimeStretching, AdvancedAudioPlayer, Analyzer } from './mods';
+import { SuperpoweredBuffer, SuperpoweredBufferConstructor } from './SuperpoweredBuffer';
 // import { AdvancedAudioPlayer, Analyzer, TimeStretching } from './wasm-modules';
 // import { SuperpoweredGlue as SuperpoweredGlueModules } from './wasm-modules';
 

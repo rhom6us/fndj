@@ -1,4 +1,4 @@
-import { SuperpoweredGlue } from './SuperpoweredGlueModule.js';
+import { SuperpoweredGlue } from './SuperpoweredGlue';
 import { SuperpoweredTrackLoader } from './SuperpoweredTrackLoaderModule.js';
 
 class SuperpoweredWebAudio {

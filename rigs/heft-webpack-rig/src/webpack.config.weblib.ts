@@ -21,10 +21,10 @@ export const configuration: any = {
     output: {
         ...config.output,
         filename: '[name].js',
-        // library: {
-        //     name: '[name]',
-        //     type: 'umd'
-        // }
+        library: {
+            name: '[name]',
+            type: 'umd'
+        }
     },
     /**
      * PEER DEPENDANCIES

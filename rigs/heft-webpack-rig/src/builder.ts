@@ -1,5 +1,14 @@
 import { RuleSetUseItem } from 'webpack';
-
+type IifPhrase<T> = readonly [test: boolean, truePart: T];
+function iif<T, F = T>(...args: readonly [...phrases: readonly IifPhrase<T>[], fallback: F]): T | F {
+    const [phrases, fallback] = args as any;
+    for (const [test, value] of phrases) {
+        if (test) {
+            return value;
+        }
+    }
+    return fallback;
+}
 interface Rule {
     readonly use?: RuleSetUseItem[];
     readonly test?: RegExp;
@@ -36,24 +45,28 @@ export class RuleBuilder {
     };
     asAsset(inline: boolean | undefined = undefined) {
         return this.extend({
-            type:
-                inline === undefined ? 'asset' :
-                    inline ? 'asset/inline' :
-                        'asset/resource'
+            type: iif(
+                [inline === undefined, 'asset' as const],
+                [inline, 'asset/inline' as const],
+                'asset/resource' as const),
+
+            // generator: {
+            //     dataUrl: content => {
+            //         content = content.toString();
+            //         return svgToMiniDataURI(content);
+            //     }
+            // }
+
         });
     };
     withResourceQuery(resourceQuery: RegExp) {
         return this.extend({ resourceQuery });
     };
     usingDev(...use: RuleSetUseItem[]) {
-        return this.extend({
-            use: !this.isDev ? this.use : [...(this.use ?? []), ...use],
-        });
+        return this.isDev ? this.using(...use) : this
     };
     usingProd(...use: RuleSetUseItem[]) {
-        return this.extend({
-            use: this.isDev ? this.use : [...(this.use ?? []), ...use],
-        });
+        return this.isDev ? this : this.using(...use);
     };
 
     using(...use: RuleSetUseItem[]) {

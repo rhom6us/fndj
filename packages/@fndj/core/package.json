@@ -2,11 +2,11 @@
   "name": "@fndj/core",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "src/index.ts",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "compile": "fnbuild webApp development",
-    "serve": "fnserve webApp development",
-    "watch": "fnwatch webApp development"
+    "build": "heft test --clean"
   },
   "dependencies": {
     "@fndj/superpowered": "workspace:*",
@@ -15,7 +15,7 @@
     "@rhombus/gapi": "workspace:*",
     "@rhombus/logger": "workspace:*",
     "@rhombus/redux-command-pattern": "workspace:*",
-    "@rhombus/type-guards": "workspace:^1.1.0",
+    "@rhombus/type-guards": "workspace:*",
     "@rhombus/type-helpers": "workspace:*",
     "axios": "^0.24.0",
     "fastpriorityqueue": "^0.7.1",
@@ -30,8 +30,11 @@
     "@types/fft.js": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
     "@types/waves-audio": "workspace:*",
-    "@types/waves-blocks": "*",
-    "@types/waves-loaders": "*",
-    "@types/webaudio": "workspace:*"
+    "@types/waves-blocks": "workspace:*",
+    "@types/waves-loaders": "workspace:*",
+    "@types/webaudio": "workspace:*",
+    "@fndj/heft-webpack-rig": "workspace:*",
+    "@rushstack/eslint-config": "^2.4.5",
+    "@rushstack/heft": "^0.42.2"
   }
 }

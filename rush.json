@@ -606,6 +606,10 @@
   "projectFolder": "rigs/heft-webpack-rig"
 },
 {
+  "packageName": "@fndj/core",
+  "projectFolder": "packages/@fndj/core"
+},
+{
   "packageName": "@fndj/superpowered",
   "projectFolder": "packages/@fndj/superpowered"
 }

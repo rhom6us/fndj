@@ -528,4 +528,4 @@ if (typeof exports === 'object' && typeof module === 'object') module.exports = 
 else if (typeof define === 'function' && define['amd']) define([], function() { return SuperpoweredGlue; });
 else if (typeof exports === 'object') exports["SuperpoweredGlue"] = SuperpoweredGlue;
 
-//export { SuperpoweredGlue };
+export { SuperpoweredGlue };

@@ -1,21 +1,27 @@
 /* eslint-disable */
-module.exports = {
-	entry: "./a.js",
-	output: {
-		filename: "lib.js",
-		library: {
-			type: "module"
-		}
-	},
-	target: "web",
-	optimization: {
-		minimize: true
-	},
-	experiments: {
-		topLevelAwait: true,
-		outputModule: true
-	}
-};
+const config = require('@fndj/heft-webpack-rig/webpack/src/webpack.config.weblib');
+
+module.exports = config;
+
+
+
+// module.exports = {
+// 	entry: "./a.js",
+// 	output: {
+// 		filename: "lib.js",
+// 		library: {
+// 			type: "module"
+// 		}
+// 	},
+// 	target: "web",
+// 	optimization: {
+// 		minimize: true
+// 	},
+// 	experiments: {
+// 		topLevelAwait: true,
+// 		outputModule: true
+// 	}
+// };
 
 
 /*

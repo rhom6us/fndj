@@ -15,9 +15,8 @@
   //   "src/mods/**/*.d.ts",
   //   "src/**/*.js"
   // ]
-  "include": [
-    "src/*.js",
-    "src/wasm.d.ts",
-    "src/index.ts",
-  ]
+  // "include": [
+  //   "src/wasm.d.ts",
+  //   "src/index.ts",
+  // ]
 }

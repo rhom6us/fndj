@@ -18,12 +18,12 @@
         "noEmitOnError": false,
         // "allowUnreachableCode": false,
         "types": [],
-        "module": "esnext",
+        "module": "ESNext",
         "moduleResolution": "node",
-        "target": "esnext",
+        "target": "ESNext",
         "lib": [
-            "esnext",
-            "dom"
+            "ESNext",
+            "DOM"
         ],
         // "incremental": true,
         // "tsBuildInfoFile": "./.tsbuildinfo",
