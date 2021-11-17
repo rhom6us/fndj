@@ -1,4 +1,3 @@
-import path from 'path';
 import { Configuration } from 'webpack';
 import { onlyif } from './loaders';
 import * as plugins from './plugins';
@@ -38,25 +37,24 @@ export const configuration: any = {
     },
     resolve: {
         ...config.resolve,
-        alias: {
-            ...config.resolve.alias,
-            '@fndj/browser': [path.join(__dirname, 'packages', '@fndj/browser'), path.join(__dirname, 'src')],
-        },
+
         extensions: [
             ...config.resolve!.extensions,
-            '.tsx', '.css', '.swcss', '.wasm', '.workletts'
+            '.css',
         ],
-        fallback: {
-            ...config.resolve.fallback,
-        }
+
 
     },
     module: {
         ...config.module,
         rules: [
-            rules.wasmRule,
             rules.wavRule,
             // rules.typescriptRule,
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: [require.resolve('source-map-loader')]
+            },
             rules.globalStylesheetRule,
             rules.stylesheetRule,
             rules.imageRule,

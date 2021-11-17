@@ -47,9 +47,9 @@
              */
             // "options": { }
         },
-        {
-            "plugin": "@rushstack/heft-jest-plugin"
-        },
+        // {
+        //     "plugin": "@rushstack/heft-jest-plugin"
+        // },
         {
             "plugin": "@rushstack/heft-sass-plugin"
         }

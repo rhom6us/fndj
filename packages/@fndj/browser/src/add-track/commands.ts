@@ -1,10 +1,10 @@
+import { audioContext as ctx } from '@rhombus/audioContext';
 import { Sub } from "@rhombus/func";
 import { CommandResult } from "@rhombus/redux-command-pattern";
 import { ThunkDispatch } from "@rhombus/redux-command-pattern/src/utils";
 import { AnalysisState, DrawingState, events, State } from "./reducers";
 import { analyze } from "./services/analyze";
 import { download, search } from "./services/youtube";
-const ctx = new AudioContext();
 
 export const commandImplementation = {
   addTrack: {

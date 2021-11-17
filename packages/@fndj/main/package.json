@@ -4,13 +4,10 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "fnbuild webApp development",
-    "serve": "fnserve webApp development",
-    "watch": "fnwatch webApp development"
+
   },
   "dependencies": {
     "@fndj/core": "workspace:*",
-    "@fndj/webpack": "workspace:*",
     "@reduxjs/toolkit": "^1.6.2",
     "@rhombus/type-helpers": "workspace:*",
     "classnames": "^2.3.1",

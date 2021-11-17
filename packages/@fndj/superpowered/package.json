@@ -11,8 +11,8 @@
             "githubUsername": "rhom6us"
         }
     ],
-"main": "dist/main.js",
-"types": "lib/index.d.ts",
+    "module": "dist/main.js",
+    "types": "lib/index.d.ts",
     "scripts": {
         "build": "",
         "build-broken": "heft test --clean"

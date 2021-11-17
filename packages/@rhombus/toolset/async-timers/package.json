@@ -8,6 +8,7 @@
     "directory": "toolset/async-timers"
   },
   "main": "lib/index.js",
+  "sideEffects": false,
   "scripts": {
     "build": "heft test --clean"
   },

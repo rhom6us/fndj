@@ -2,7 +2,7 @@ import { SuperpoweredBuffer } from './SuperpoweredBuffer';
 import { SuperpoweredGlue } from './SuperpoweredGlue';
 
 export class SuperpoweredWebAudio {
-    constructor(minimumSamplerate: number, superpowered: SuperpoweredGlue);
+    constructor(audioContext: BaseAudioContext, superpowered: SuperpoweredGlue);
 
     Superpowered: SuperpoweredGlue;
     audioContext: AudioContext;

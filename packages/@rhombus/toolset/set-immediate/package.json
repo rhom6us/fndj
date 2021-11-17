@@ -8,6 +8,9 @@
     "directory": "toolset/set-immediate"
   },
   "main": "lib/index.js",
+  "sideEffects": [
+    "lib/index.js"
+  ],
   "scripts": {
     "build": "heft test --clean"
   },

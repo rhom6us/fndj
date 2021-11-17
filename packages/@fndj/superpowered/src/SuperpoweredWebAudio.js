@@ -2,16 +2,9 @@ import { SuperpoweredGlue } from './SuperpoweredGlue';
 import { SuperpoweredTrackLoader } from './SuperpoweredTrackLoaderModule.js';
 
 class SuperpoweredWebAudio {
-    constructor(minimumSamplerate, superpowered) {
+    constructor(audioContext, superpowered) {
         this.Superpowered = superpowered;
-        this.audioContext = null;
-        let AudioContext = window.AudioContext || window.webkitAudioContext || false;
-        let c = new AudioContext();
-        if (c.sampleRate < minimumSamplerate) {
-            c.close();
-            c = new AudioContext({ sampleRate: minimumSamplerate });
-        }
-        this.audioContext = c;
+        this.audioContext = audioContext;
     }
 
     getUserMediaForAudio(constraints, onPermissionGranted, onPermissionDenied) {

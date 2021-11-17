@@ -8,6 +8,7 @@
     "directory": "toolset/case-converter"
   },
   "main": "lib/index.js",
+  "sideEffects": false,
   "scripts": {
     "build": "heft test --clean"
   },

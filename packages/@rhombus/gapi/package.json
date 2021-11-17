@@ -4,6 +4,12 @@
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "sideEffects": [
+    "./lib/gapi.js",
+    "./lib/libs/auth2.js",
+    "./lib/libs/client.js",
+    "./lib/libs/youtube.js"
+  ],
 "scripts": {
   "build": "heft test --clean"
 },

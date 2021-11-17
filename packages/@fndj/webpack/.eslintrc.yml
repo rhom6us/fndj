@@ -1,4 +1,0 @@
-root: false
-ignorePatterns:
-  - 'lib'
-  - '__tests__'

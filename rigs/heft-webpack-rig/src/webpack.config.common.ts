@@ -8,6 +8,7 @@ export default {
   output: {
     path: path.join(path.resolve('.'), 'dist'),
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
+    clean: true
     //   // chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
     //   //  devtoolModuleFilenameTemplate: 'ala:///[resource-path]?[loaders]',
     //   // devtoolModuleFilenameTemplate: (info: Record<'absoluteResourcePath'|'allLoaders'|'hash'|'id'|'loaders'|'resource'|'resourcePath'|'namespace', string>) => {

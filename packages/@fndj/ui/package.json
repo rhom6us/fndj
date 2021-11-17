@@ -5,15 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "build": "fnbuild webApp development",
-    "start": "fnserve webApp development",
-    "watch": "fnwatch webApp development"
+
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
     "@fndj/core": "workspace:*",
-    "@fndj/webpack": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
     "@rhombus/react": "workspace:*",
     "@rhombus/type-guards": "workspace:*",

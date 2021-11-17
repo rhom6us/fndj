@@ -7,7 +7,9 @@
     "url": "https://github.com/rhom6us/fndj.git",
     "directory": "toolset/audio-context"
   },
-  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "heft test --clean"
   },

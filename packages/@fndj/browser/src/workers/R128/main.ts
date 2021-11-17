@@ -1,11 +1,11 @@
 import { R128 } from '@fndj/core';
+import { audioContext as context } from '@rhombus/audioContext';
 import { logger } from '@rhombus/logger';
 import { CheapRingBuffer } from '@rhombus/type-helpers';
 import * as ASSESS from './assess';
 import { $, maxAbs, roundTo1Decimal, using } from './helpers';
 import impulseResponseUrl from './impulse-responses_3sec-1-mono_44100.wav';
 
-const context = new AudioContext();
 
 
 const audio_source_element = $("#audio_source") as HTMLMediaElement;

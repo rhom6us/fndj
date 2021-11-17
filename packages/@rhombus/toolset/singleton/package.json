@@ -8,6 +8,9 @@
     "directory": "toolset/singleton"
   },
   "main": "lib/index.js",
+  "sideEffects": [
+    "./lib/Singleton.js"
+  ],
   "scripts": {
     "build": "heft test --clean"
   },

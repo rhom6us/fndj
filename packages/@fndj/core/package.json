@@ -2,7 +2,7 @@
   "name": "@fndj/core",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "dist/main.js",
+  "module": "dist/main.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "heft test --clean"
@@ -21,18 +21,14 @@
     "google-auth-library": "^7.10.1",
     "realm-web": "^1.4.0",
     "safe-units": "^1.1.0",
-    "waves-audio": "^0.5.2",
-    "waves-loaders": "^0.1.5",
     "worker-url": "~1.1.0"
   },
   "peerDependencies": {
     "@rhombus/audio-context": "workspace:*"
   },
   "devDependencies": {
+    "@rhombus/audio-context": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
-    "@types/waves-audio": "workspace:*",
-    "@types/waves-blocks": "workspace:*",
-    "@types/waves-loaders": "workspace:*",
     "@types/webaudio": "workspace:*",
     "@fndj/heft-webpack-rig": "workspace:*",
     "@rushstack/eslint-config": "^2.4.5",

@@ -1,9 +1,8 @@
-import path from 'path';
 import { Configuration } from 'webpack';
 import { onlyif } from './loaders';
 import { workletPlugin } from './plugins';
 import * as rules from './rules';
-import { isDev, projectDir } from './settings';
+import { isDev } from './settings';
 import config from './webpack.config.common';
 interface Config extends Configuration {
     experiments?: {
@@ -21,17 +20,17 @@ export const configuration: any = {
     ...config,
     output: {
         ...config.output,
-        filename: '[name].js',
-        library: {
-            name: '[name]',
-            type: 'umd'
-        }
+        // library: {
+        //     name: '[name]',
+        //     type: 'umd'
+        // }
     },
     /**
      * PEER DEPENDANCIES
      */
     externals: {
-        react: 'commonjs react',
+        "realm-web": "realm-web",
+        react: 'react',
         "@rhombus/audio-context": "commonjs @rhombus/audio-context"
     },
     /**
@@ -39,7 +38,7 @@ export const configuration: any = {
      */
     externalsType: 'module',
 
-
+    devtool: "eval-cheap-module-source-map",
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -50,13 +49,8 @@ export const configuration: any = {
     // ],
     resolve: {
         ...config.resolve,
-        alias: {
-            ...config.resolve.alias,
-            '@fndj/browser': [path.join(projectDir, '..', '@fndj/browser'), path.join(projectDir, 'src')],
-        },
         extensions: [
             ...config.resolve!.extensions,
-            '.worklet.ts',
             '.css', '.wasm'
         ],
         fallback: {

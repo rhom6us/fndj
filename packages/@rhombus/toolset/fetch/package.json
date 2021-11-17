@@ -8,6 +8,9 @@
     "directory": "toolset/fetch"
   },
   "main": "lib/index.js",
+  "sideEffects": [
+    "lib/index.js"
+  ],
   "scripts": {
     "build": "heft test --clean"
   },

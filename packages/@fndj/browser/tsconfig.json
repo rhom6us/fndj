@@ -1,10 +1,6 @@
 {
-  "extends": "../../../tsconfig.json",
-  "compilerOptions": {
-    "resolveJsonModule": true,
-    "baseUrl": "./src/",
-    "paths": {
-      "@fndj/browser/*": ["*"]
-    }
-  }
+  "extends": "./node_modules/@fndj/heft-webpack-rig/profiles/library/tsconfig-base.json",
+  "include": [
+    "src/index.tsx",
+  ]
 }

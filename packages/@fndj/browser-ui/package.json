@@ -4,16 +4,13 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "fnbuild webApp development",
-    "serve": "fnserve webApp development",
-    "watch": "fnwatch webApp development"
+
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
     "@fluentui/style-utilities": "^8.3.4",
     "@fluentui/theme": "^2.4.1",
     "@fndj/core": "workspace:*",
-    "@fndj/webpack": "workspace:*",
     "@redux-devtools/core": "^3.9.0",
     "@redux-devtools/dock-monitor": "^1.4.0",
     "@redux-devtools/inspector-monitor": "^1.0.0",

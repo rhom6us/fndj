@@ -8,6 +8,7 @@
     "directory": "toolset/kinda-weak-map"
   },
   "main": "lib/index.js",
+  "sideEffects": false,
   "scripts": {
     "build": "heft test --clean"
   },

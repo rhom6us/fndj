@@ -611,6 +611,10 @@
   "projectFolder": "rigs/heft-webpack-rig"
 },
 {
+  "packageName": "@fndj/browser",
+  "projectFolder": "packages/@fndj/browser"
+},
+{
   "packageName": "@fndj/core",
   "projectFolder": "packages/@fndj/core"
 },
