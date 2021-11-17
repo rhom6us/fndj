@@ -7,7 +7,7 @@ import { DispatcherProps } from 'redux-devtools-dispatch';
 
 
 // createDevTools takes a monitor and produces a DevTools component
-export function createDevTools(actionCreators: DispatcherProps['actionCreators']) {
+export function createDevTools(actionCreators: DispatcherProps['actionCreators']): any {
   return _createDevTools(
     // Monitors are individually adjustable with props.
     // Consult their repositories to learn about those props.
@@ -30,7 +30,7 @@ export function createDevTools(actionCreators: DispatcherProps['actionCreators']
 }
 
 
-export function getDevToolEnhancers(devTool: ReturnType<typeof createDevTools>) {
+export function getDevToolEnhancers(devTool: ReturnType<typeof createDevTools>): any {
   return [
     devTool.instrument({
       trace: true,

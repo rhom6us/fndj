@@ -29,8 +29,8 @@ export const configuration: any = {
      * PEER DEPENDANCIES
      */
     externals: {
-        "realm-web": "realm-web",
-        react: 'react',
+        "realm-web": "commonjs realm-web",
+        react: 'commonjs react',
         "@rhombus/audio-context": "commonjs @rhombus/audio-context"
     },
     /**

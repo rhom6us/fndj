@@ -17,7 +17,7 @@
         "esModuleInterop": true,
         "noEmitOnError": false,
         // "allowUnreachableCode": false,
-        "types": [],
+        // "types": [],
         "module": "ESNext",
         "moduleResolution": "node",
         "target": "ESNext",

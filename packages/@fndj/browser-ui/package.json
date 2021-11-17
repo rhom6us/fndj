@@ -1,16 +1,16 @@
 {
   "name": "@fndj/browser-ui",
   "version": "1.0.0",
-  "main": "index.ts",
   "license": "MIT",
+  "module": "dist/main.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-
+    "build": "heft test --clean"
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
     "@fluentui/style-utilities": "^8.3.4",
     "@fluentui/theme": "^2.4.1",
-    "@fndj/core": "workspace:*",
     "@redux-devtools/core": "^3.9.0",
     "@redux-devtools/dock-monitor": "^1.4.0",
     "@redux-devtools/inspector-monitor": "^1.0.0",
@@ -21,32 +21,20 @@
     "@rhombus/async-timers": "workspace:*",
     "@rhombus/type-helpers": "workspace:*",
     "classnames": "^2.3.1",
-    "mongodb": "^4.1.3",
-    "normalize.css": "^8.0.1",
-    "phaze-vocoder": "github:olvb/phaze",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.6",
-    "react-router-static": "^1.0.0",
-    "realm-web": "^1.4.0",
-    "redux": "^4.1.1",
     "redux-devtools-dispatch": "^2.2.1",
-    "redux-devtools-multiple-monitors": "^1.0.1",
-    "waves-audio": "wavesjs/audio",
-    "waves-loaders": "^0.1.5",
-    "waves-ui": "wavesjs/ui"
+    "redux-devtools-multiple-monitors": "^1.0.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1"
   },
   "devDependencies": {
-    "@types/css-dom": "workspace:^2.2.1",
+    "react": "^17.0.1",
+    "@types/css-dom": "workspace:*",
     "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@types/react-redux": "^7.1.20",
     "@types/redux-devtools-dispatch": "workspace:*",
     "@types/redux-devtools-multiple-monitors": "workspace:*",
-    "@types/waves-audio": "*",
-    "@types/waves-blocks": "*",
-    "@types/waves-loaders": "*",
-    "@types/waves-ui": "*",
-    "typescript-styled-plugin": "^0.18.1"
+    "@fndj/heft-webpack-rig": "workspace:*",
+    "@rushstack/eslint-config": "^2.4.5",
+    "@rushstack/heft": "^0.42.2"
   }
 }

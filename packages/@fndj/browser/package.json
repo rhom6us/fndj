@@ -10,6 +10,7 @@
   "dependencies": {
     "@fluentui/react": "^8.37.3",
     "@fluentui/style-utilities": "^8.3.4",
+    "@fndj/browser-ui": "workspace:*",
     "@fndj/core": "workspace:*",
     "@rhombus/async-timers": "workspace:*",
     "@rhombus/audio-context": "workspace:*",

@@ -615,6 +615,10 @@
   "projectFolder": "packages/@fndj/browser"
 },
 {
+  "packageName": "@fndj/browser-ui",
+  "projectFolder": "packages/@fndj/browser-ui"
+},
+{
   "packageName": "@fndj/core",
   "projectFolder": "packages/@fndj/core"
 },
