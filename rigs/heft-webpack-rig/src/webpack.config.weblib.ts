@@ -1,6 +1,7 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 import { onlyif } from './loaders';
+import { workletPlugin } from './plugins';
 import * as rules from './rules';
 import { isDev, projectDir } from './settings';
 import config from './webpack.config.common';
@@ -30,7 +31,8 @@ export const configuration: any = {
      * PEER DEPENDANCIES
      */
     externals: {
-        react: 'react',
+        react: 'commonjs react',
+        "@rhombus/audio-context": "commonjs @rhombus/audio-context"
     },
     /**
      * Webpack will generate code like import * as X from '...' for externals used in a module.
@@ -54,7 +56,8 @@ export const configuration: any = {
         },
         extensions: [
             ...config.resolve!.extensions,
-            '.tsx', '.css', '.swcss', '.wasm', '.workletts'
+            '.worklet.ts',
+            '.css', '.wasm'
         ],
         fallback: {
             ...config.resolve.fallback,
@@ -64,7 +67,7 @@ export const configuration: any = {
     module: {
         ...config.module,
         rules: [
-            rules.workletRule,
+            // rules.workletRule,
             // rules.workerRule,
             rules.wasmRule,
             rules.wavRule,
@@ -87,7 +90,7 @@ export const configuration: any = {
             // plugins.tsChecker,
             // plugins.tsCheckerNotifier
         ),
-
+        workletPlugin
         // isDev && plugins.hotModuleReplacement,
         // plugins.createIndexHtml,
         // plugins.extractCssFiles,
@@ -97,8 +100,9 @@ export const configuration: any = {
     experiments: {
         ...config.experiments,
         outputModule: true
-    }
+    },
 
+    ignoreWarnings: [/Failed to parse source map/],
 };
 
 

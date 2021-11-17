@@ -1,11 +1,10 @@
-/* eslint-disable no-loops/no-loops */
-
-import FFT, { ComplexArray } from 'fft.js';
+///<reference types="webaudio" />
+import FFT from 'fft.js';
 import { BUFFERED_BLOCK_SIZE, PITCH_FACTOR, PROCESSOR_NAME, WEBAUDIO_BLOCK_SIZE } from './constants';
 import { FftSize } from './FftSize';
 import { OverlapAddProcessor } from './overlap-add-processor';
 
-
+type ComplexArray = number[];
 
 registerProcessor(
   PROCESSOR_NAME,

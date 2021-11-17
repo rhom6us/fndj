@@ -5,8 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import { EnvironmentPlugin, HotModuleReplacementPlugin } from 'webpack';
+import WorkerUrlPlugin from 'worker-url/plugin';
 import { projectDir } from './settings';
-
 
 export const reachRefresh = new ReactRefreshPlugin({
   forceEnable: true,
@@ -15,7 +15,7 @@ export const reachRefresh = new ReactRefreshPlugin({
 
 
 export const cleanBuildDir = new CleanWebpackPlugin();
-
+export const workletPlugin = new WorkerUrlPlugin();
 
 export const defineNodeEnvConst = new EnvironmentPlugin({ NODE_ENV: 'development' });
 export const createIndexHtml = new HtmlWebpackPlugin({

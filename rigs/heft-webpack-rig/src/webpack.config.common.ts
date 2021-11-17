@@ -3,7 +3,7 @@ import path from 'path';
 import { isDev, projectDir } from './settings';
 export default {
   devtool: 'eval-source-map',
-  context: projectDir,
+  context: 'C:\\dev\\@fndj',//path.join(projectDir, '../../'),
   entry: path.join(projectDir, 'lib', 'index.js'),
   output: {
     path: path.join(path.resolve('.'), 'dist'),

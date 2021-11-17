@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-types */
-
-import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';
+///<reference types="webaudio"/>
+import { ARG1, PROCESSOR_NAME } from './constants';
 
 registerProcessor(PROCESSOR_NAME, class extends AudioWorkletProcessor {
   private readonly _fn: Function;

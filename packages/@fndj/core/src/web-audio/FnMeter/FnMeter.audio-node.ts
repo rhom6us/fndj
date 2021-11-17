@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
+// const url = new URL('./FnMeter.worklet.ts', import.meta.url);
+// console.log('heeeeeeeeey', { audioContext, url });
+import audioContext from '@rhombus/audio-context';
+import { WorkerUrl } from 'worker-url';
 import { PROCESSOR_NAME } from './constants';
 import { FnEventTarget } from './FnEventTarget';
 import { FnMeterEvent } from './FnMeterEvent';
-// import url from './FnMeter.worklet.ts';
-// const url = new URL('./FnMeter.worklet.ts', import.meta.url);
-// console.log('heeeeeeeeey', { audioContext, url });
 
-// await audioContext.audioWorklet.addModule(url, {});
+await audioContext.audioWorklet.addModule(new WorkerUrl(new URL('./FnMeter.worklet.js', import.meta.url)));
 
 interface FnMeterNodeEventMap extends AudioWorkletNodeEventMap {
   "meterdataupdated": FnMeterEvent;
@@ -36,6 +37,9 @@ export class FnMeterNode extends AudioWorkletNode implements EventTarget {
   public current: [{ peak: number, rms: number; }, { peak: number, rms: number; }] | undefined;
   // constructor(context: BaseAudioContext, parameterData: FnMeterNodeParameters = {}) {
   constructor(context: BaseAudioContext, options = {}) {
+    if (context !== audioContext) {
+      throw 'this is only set up to work with the default audio context';
+    }
     super(context, PROCESSOR_NAME, { numberOfOutputs: 1, numberOfInputs: 1, processorOptions: {} });
     this.fnTargets = new FnEventTarget();
     this.port.onmessage = evt => {

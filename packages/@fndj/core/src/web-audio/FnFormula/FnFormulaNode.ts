@@ -1,10 +1,11 @@
-import { audioContextLazy } from '../audio-context';
+///<reference types="webaudio"/>
+import audioContext from '@rhombus/audio-context';
+// import url from './FnFormulaProcessor.worklet.js';
+import { WorkerUrl } from 'worker-url';
 import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';
-import url from './FnFormulaProcessor.worklet.ts';
 
-const registrations = new WeakMap<AudioContext, Promise<void>>();
+await audioContext.audioWorklet.addModule(new WorkerUrl(new URL('./FnFormulaProcessor.worklet.js', import.meta.url)));
 
-// await audioContext.value.audioWorklet.addModule(url);
 export interface ProcessorOptions {
   formula: string;
 }
@@ -33,21 +34,8 @@ interface FnFormulaNodeConstructor {
   new(context: BaseAudioContext, options: ProcessorOptions & ParameterData): FnFormulaNode;
   readonly prototype: FnFormulaNode;
 }
-declare global {
-  interface WeakMap<K, V> {
-    getOrAdd(this: WeakMap<K, V>, key: K, factory: (key: K) => V): V;
-  }
-}
-WeakMap.prototype.getOrAdd ??= function (key, factory) {
-  if (!this.has(key))
-    this.set(key, factory(key));
-  return this.get(key);
-};
-export async function init(context: AudioContext): Promise<FnFormulaNodeConstructor> {
-  await registrations.getOrAdd(context, ac => ac.audioWorklet.addModule(url));
-  return _FnFormulaNode;
-}
-class _FnFormulaNode extends AudioWorkletNode implements FnFormulaNode {
+
+export const FnFormulaNode: FnFormulaNodeConstructor = class extends AudioWorkletNode implements FnFormulaNode {
   get [ARG1]() {
     return this.parameters.get(ARG1)!;
   }
@@ -66,6 +54,9 @@ class _FnFormulaNode extends AudioWorkletNode implements FnFormulaNode {
       // [ARG3]:arg3
     }: ProcessorOptions & ParameterData,
   ) {
+    if (context !== audioContext) {
+      throw 'this is only set up to work with the default audio context';
+    }
 
     super(context, PROCESSOR_NAME, {
       processorOptions: { formula },

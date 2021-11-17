@@ -8,7 +8,7 @@
     "types": [
       "webaudio"
     ]
-  },
+  }
   // "include": [
   //   "src/**/*.ts",
   //   "src/**/*.d.ts",

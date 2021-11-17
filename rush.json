@@ -523,6 +523,11 @@
       "reviewCategory": "toolset"
     },
     {
+      "packageName": "@rhombus/audio-context",
+      "projectFolder": "packages/@rhombus/toolset/audio-context",
+      "reviewCategory": "toolset"
+    },
+    {
       "packageName": "@rhombus/case-converter",
       "projectFolder": "packages/@rhombus/toolset/case-converter",
       "reviewCategory": "toolset"

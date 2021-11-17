@@ -18,4 +18,3 @@ export const entryPoint: string = process.env['npm_package_main'] || process.env
 // export const staticSourceDir = path.join(rootDir, 'static');
 export const outDir = (path.join(projectDir, 'dist'));
 
-console.log({ outDir, projectDir, entryPoint });

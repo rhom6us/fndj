@@ -51,7 +51,7 @@
     "url-loader": "^4.1.1",
     "webpack-manifest-plugin": "^4.0.2",
     "webpack-merge": "^5.8.0",
-    "worklet-loader": "^2.0.0"
+    "worker-url": "~1.1.0"
   },
   "peerDependencies": {
     "@rushstack/heft": "^0.42.2"

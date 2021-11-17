@@ -37,7 +37,7 @@ registerProcessor(PROCESSOR_NAME, class extends AudioWorkletProcessor {
     const pitchShiftOutput = outputs[1][0];
 
     for (let i = 0; i < Math.max(playbackRateOutput.length, pitchShiftOutput.length); i++) {
-      const currentTempo = parameters.tempo[Math.min(i, parameters.tempo.length - 1)];
+      const currentTempo = parameters['tempo'][Math.min(i, parameters['tempo'].length - 1)];
       const playbackRate = currentTempo / this._baseTempo;
       const transpose = 12 * Math.log2(playbackRate);
 

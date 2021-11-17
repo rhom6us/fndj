@@ -1,19 +1,12 @@
+import { audioContext } from '@rhombus/audio-context';
+import { WorkerUrl } from 'worker-url';
 import { PROCESSOR_NAME } from './constants';
-import url from './FnPassthrough.worklet.ts';
+
+await audioContext.audioWorklet.addModule(new WorkerUrl(new URL('./FnPassthrough.worklet.js', import.meta.url)));
 export class FnPassthroughNode extends AudioWorkletNode {
-    private static _processInitialized = false;
-    public static async initialize(context: BaseAudioContext) {
-        if (!FnPassthroughNode._processInitialized) {
-            await context.audioWorklet.addModule(url);
-            FnPassthroughNode._processInitialized = true;
-        }
-        return;
-    }
-
-
     constructor(context: BaseAudioContext, options: AudioWorkletNodeOptions) {
-        if (!FnPassthroughNode._processInitialized) {
-            throw new Error(`this constructor isn't ready to be used yet. register it first`);
+        if (context !== audioContext) {
+            throw 'this is only set up to work with the default audio context'
         }
         super(context, PROCESSOR_NAME, options);
     }

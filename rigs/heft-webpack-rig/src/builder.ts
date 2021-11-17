@@ -1,13 +1,13 @@
 import { RuleSetUseItem } from 'webpack';
-type IifPhrase<T> = readonly [test: boolean, truePart: T];
-function iif<T, F = T>(...args: readonly [...phrases: readonly IifPhrase<T>[], fallback: F]): T | F {
-    const [phrases, fallback] = args as any;
-    for (const [test, value] of phrases) {
+type IifPhrase<T> = [test: boolean, truePart: T];
+function iif<T, F = T>(...args: [...phrases: IifPhrase<T>[], fallback: F]): T | F {
+    const fallback = args.splice(-1, 1);
+    for (const [test, value] of args as any) {
         if (test) {
             return value;
         }
     }
-    return fallback;
+    return fallback as any;
 }
 interface Rule {
     readonly use?: RuleSetUseItem[];
@@ -45,10 +45,11 @@ export class RuleBuilder {
     };
     asAsset(inline: boolean | undefined = undefined) {
         return this.extend({
-            type: iif(
-                [inline === undefined, 'asset' as const],
-                [inline, 'asset/inline' as const],
-                'asset/resource' as const),
+            type: 'asset/resource'
+            // type: iif(
+            //     [inline === undefined, 'asset' as const],
+            //     [inline, 'asset/inline' as const],
+            //     'asset/resource' as const),
 
             // generator: {
             //     dataUrl: content => {
@@ -63,10 +64,12 @@ export class RuleBuilder {
         return this.extend({ resourceQuery });
     };
     usingDev(...use: RuleSetUseItem[]) {
-        return this.isDev ? this.using(...use) : this
+        return this.using(...use);
+        // return this.isDev ? this.using(...use) : this
     };
     usingProd(...use: RuleSetUseItem[]) {
-        return this.isDev ? this : this.using(...use);
+        return this.using(...use);
+        // return this.isDev ? this : this.using(...use);
     };
 
     using(...use: RuleSetUseItem[]) {

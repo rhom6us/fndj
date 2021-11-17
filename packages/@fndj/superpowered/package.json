@@ -11,15 +11,11 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "exports": {
-        ".": {
-            "import": "./lib/index.js",
-            "types": "./lib/index.d.ts"
-        }
-    },
-    "type": "module",
+"main": "dist/main.js",
+"types": "lib/index.d.ts",
     "scripts": {
-        "build": "heft test --clean"
+        "build": "",
+        "build-broken": "heft test --clean"
     },
     "devDependencies": {
         "@types/webaudio": "workspace:*",

@@ -10,6 +10,7 @@ importers:
       '@fndj/heft-webpack-rig': workspace:*
       '@fndj/superpowered': workspace:*
       '@rhombus/async-timers': workspace:*
+      '@rhombus/audio-context': workspace:*
       '@rhombus/func': workspace:*
       '@rhombus/gapi': workspace:*
       '@rhombus/logger': workspace:*
@@ -18,7 +19,6 @@ importers:
       '@rhombus/type-helpers': workspace:*
       '@rushstack/eslint-config': ^2.4.5
       '@rushstack/heft': ^0.42.2
-      '@types/fft.js': workspace:*
       '@types/phaze-vocoder': workspace:*
       '@types/waves-audio': workspace:*
       '@types/waves-blocks': workspace:*
@@ -32,9 +32,11 @@ importers:
       safe-units: ^1.1.0
       waves-audio: ^0.5.2
       waves-loaders: ^0.1.5
+      worker-url: ~1.1.0
     dependencies:
       '@fndj/superpowered': link:../superpowered
       '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
+      '@rhombus/audio-context': link:../../@rhombus/toolset/audio-context
       '@rhombus/func': link:../../@rhombus/toolset/func
       '@rhombus/gapi': link:../../@rhombus/gapi
       '@rhombus/logger': link:../../@rhombus/toolset/logger
@@ -49,11 +51,11 @@ importers:
       safe-units: 1.1.0
       waves-audio: 0.5.2
       waves-loaders: 0.1.5
+      worker-url: 1.1.0
     devDependencies:
       '@fndj/heft-webpack-rig': link:../../../rigs/heft-webpack-rig
       '@rushstack/eslint-config': 2.4.5
       '@rushstack/heft': 0.42.2
-      '@types/fft.js': link:../../@types/fft.js
       '@types/phaze-vocoder': link:../../@types/phaze-vocoder
       '@types/waves-audio': link:../../@types/waves-audio
       '@types/waves-blocks': link:../../@types/waves-blocks
@@ -184,6 +186,16 @@ importers:
     dependencies:
       '@rhombus/func': link:../func
       '@rhombus/set-immediate': link:../set-immediate
+    devDependencies:
+      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
+      '@rushstack/eslint-config': 2.4.5
+      '@rushstack/heft': 0.42.2
+
+  ../../packages/@rhombus/toolset/audio-context:
+    specifiers:
+      '@fndj/heft-web-rig': workspace:*
+      '@rushstack/eslint-config': ^2.4.5
+      '@rushstack/heft': ^0.42.2
     devDependencies:
       '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
       '@rushstack/eslint-config': 2.4.5
@@ -446,7 +458,7 @@ importers:
       url-loader: ^4.1.1
       webpack-manifest-plugin: ^4.0.2
       webpack-merge: ^5.8.0
-      worklet-loader: ^2.0.0
+      worker-url: ~1.1.0
     dependencies:
       '@babel/core': 7.16.0
       '@babel/plugin-proposal-class-properties': 7.16.0_@babel+core@7.16.0
@@ -487,7 +499,7 @@ importers:
       url-loader: 4.1.1_file-loader@6.2.0
       webpack-manifest-plugin: 4.0.2
       webpack-merge: 5.8.0
-      worklet-loader: 2.0.0
+      worker-url: 1.1.0
     devDependencies:
       '@rushstack/heft': 0.42.2
       '@types/html-webpack-plugin': 3.2.6
@@ -1181,6 +1193,12 @@ packages:
       '@types/gapi.client': 1.0.5
     dev: true
 
+  /@maxim_mazurok/gapi.client.youtube/3.0.20211116:
+    resolution: {integrity: sha512-BCHGF7uzGVrX8vJuP4LnShKzeYeQ5LszEE7JERXLwQpbhEQYiBfs2IVwMpeTeftOIJpJcpMN7AztXYEgo9zrcA==}
+    dependencies:
+      '@types/gapi.client': 1.0.5
+    dev: true
+
   /@microsoft/api-extractor-model/7.13.16:
     resolution: {integrity: sha512-ttdxVXsTWL5dd26W1YNLe3LgDsE0EE273aZlcLe58W0opymBybCYU1Mn+OHQM8BuErrdvdN8LdpWAAbkiOEN/Q==}
     dependencies:
@@ -1623,7 +1641,7 @@ packages:
   /@types/gapi.client.youtube/3.0.2:
     resolution: {integrity: sha512-SmWCofuA5DtzU/m87I2+TMgeir7b9eHO81SDkqlEIs0OQj8MjiJk8xnjLIf2UfmYuViW31qAjjBcUFINImNaTw==}
     dependencies:
-      '@maxim_mazurok/gapi.client.youtube': 3.0.20211111
+      '@maxim_mazurok/gapi.client.youtube': 3.0.20211116
     dev: true
 
   /@types/gapi.client/1.0.5:
@@ -5254,12 +5272,6 @@ packages:
       minimalistic-crypto-utils: 1.0.1
     dev: false
 
-  /hoek/4.2.1:
-    resolution: {integrity: sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==}
-    engines: {node: '>=4.0.0'}
-    deprecated: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
-    dev: false
-
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: false
@@ -8841,14 +8853,6 @@ packages:
       object-assign: 4.1.1
     dev: true
 
-  /schema-utils/0.4.7:
-    resolution: {integrity: sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==}
-    engines: {node: '>= 4'}
-    dependencies:
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2_ajv@6.12.6
-    dev: false
-
   /schema-utils/1.0.0:
     resolution: {integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==}
     engines: {node: '>= 4'}
@@ -10528,15 +10532,11 @@ packages:
       errno: 0.1.8
     dev: false
 
-  /worklet-loader/2.0.0:
-    resolution: {integrity: sha512-zvCCyhgrn85C5g1+EQWDz4KHxkEMq/fZQXVftjFOcxTy6f+grBSRTJLoit3u8xyKIBTGEgQzYiousSm3YWt8oA==}
-    engines: {node: '>= 6.9.0 || >= 8.9.0'}
+  /worker-url/1.1.0:
+    resolution: {integrity: sha512-HDLF1ZcIsb9gGGUgYkvOmr4AJVkLLuWCdpJ4/xyETDYCQMuqmp3DvKkj7EGepQXvowaETg32lENI6Dmqq59ywA==}
+    engines: {node: '>=12.17.0'}
     peerDependencies:
-      webpack: ^3.0.0 || ^4.0.0-alpha.0 || ^4.0.0
-    dependencies:
-      hoek: 4.2.1
-      loader-utils: 1.4.0
-      schema-utils: 0.4.7
+      webpack: '>=5.0.0'
     dev: false
 
   /wrap-ansi/5.1.0:

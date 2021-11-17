@@ -1,6 +1,14 @@
 {
   "extends": "./node_modules/@fndj/heft-webpack-rig/profiles/library/tsconfig-base.json",
   "include": [
-    "src/index.ts"
-  ]
+    "src/index.ts",
+    "src/**/*.worklet.ts"
+  ],
+  "compilerOptions": {
+    "types": [
+      "webaudio"
+    ],
+    "target": "esnext",
+    "module": "esnext"
+  }
 }

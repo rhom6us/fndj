@@ -2,8 +2,7 @@
   "name": "@fndj/core",
   "version": "1.0.0",
   "license": "MIT",
-  "type": "module",
-  "main": "lib/index.js",
+  "main": "dist/main.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "heft test --clean"
@@ -17,17 +16,19 @@
     "@rhombus/redux-command-pattern": "workspace:*",
     "@rhombus/type-guards": "workspace:*",
     "@rhombus/type-helpers": "workspace:*",
-    "axios": "^0.24.0",
     "fastpriorityqueue": "^0.7.1",
     "fft.js": "^4.0.4",
     "google-auth-library": "^7.10.1",
     "realm-web": "^1.4.0",
     "safe-units": "^1.1.0",
     "waves-audio": "^0.5.2",
-    "waves-loaders": "^0.1.5"
+    "waves-loaders": "^0.1.5",
+    "worker-url": "~1.1.0"
+  },
+  "peerDependencies": {
+    "@rhombus/audio-context": "workspace:*"
   },
   "devDependencies": {
-    "@types/fft.js": "workspace:*",
     "@types/phaze-vocoder": "workspace:*",
     "@types/waves-audio": "workspace:*",
     "@types/waves-blocks": "workspace:*",

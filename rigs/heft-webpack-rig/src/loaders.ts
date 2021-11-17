@@ -115,23 +115,8 @@ export const threadLoader: RuleSetUseItem = {
   loader: 'thread-loader',
 };
 
-export const worklet_loader: RuleSetUseItem = {
-  loader: 'worklet-loader',
-  options: {
-    inline: true,
-    // publicPath: "/scripts/worklets/",
-  }
-};
 
-export const worker_loader: RuleSetUseItem = {
-  loader: 'worker-loader',
-  options: {
-    publicPath: "/scripts/workers/",
-    // filename: "[name].[contenthash].worker.js",
-    // chunkFilename: "[id].[contenthash].worker.js",
-    esModule: true,
-  }
-};
+
 
 export function babel_loader(...features: Array<'top_level_await' | 'class_properties' | 'jsx_self' | 'jsx_source'>) {
   return {

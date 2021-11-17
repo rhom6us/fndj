@@ -5,10 +5,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/heft/typescript.schema.json",
   "extends": "../node_modules/@fndj/heft-webpack-rig/profiles/library/config/typescript.json",
   "staticAssetsToCopy": {
-    // "fileExtensions": [
-    //   ".js",
-    //   ".d.ts"
-    // ],
+    "fileExtensions": [
+      ".js",
+      ".d.ts"
+    ]
     // "includeGlobs": [
     //   "*.js",
     //   "*.d.ts",

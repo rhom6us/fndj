@@ -1,6 +1,6 @@
+import { audioContext } from '@rhombus/audio-context';
 import { logger } from '@rhombus/logger';
 import * as waves from 'waves-audio';
-import { audioContext } from './audio-context';
 
 // const transport = new Transport();
 // const controller = new PlayControl(transport);

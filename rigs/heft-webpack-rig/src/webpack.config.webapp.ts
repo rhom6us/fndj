@@ -54,8 +54,6 @@ export const configuration: any = {
     module: {
         ...config.module,
         rules: [
-            rules.workletRule,
-            // rules.workerRule,
             rules.wasmRule,
             rules.wavRule,
             // rules.typescriptRule,

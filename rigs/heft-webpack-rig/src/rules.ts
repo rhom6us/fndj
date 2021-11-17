@@ -1,29 +1,16 @@
 import { RuleBuilder } from './builder';
-import { css_extract_loader, css_hot_loader, css_loader, postcssLoader, sassLoader, worker_loader, worklet_loader } from './loaders';
+import { css_extract_loader, css_hot_loader, css_loader, postcssLoader, sassLoader } from './loaders';
 import { isDev } from './settings';
 
 
 const node_modules = /node_modules/i;
 //#region code
 const builder = new RuleBuilder(isDev);
-export const workletQueryRule = builder
-  .when(undefined)
-  .withResourceQuery(/worklet/)
-  .using(worklet_loader)
-  .result();
-export const workletRule = builder
-  .when(/\.worklet\.ts$/i)
-  .using(worklet_loader)
-  .result();
 
-export const workerRule = builder
-  .when(/\.worker\.ts$/i)
-  .butNotWhen(node_modules)
-  .using(worker_loader)
-  .result();
 
-export const wasmRule = builder.when(/\.wasm$/i).asAsset().result();
-export const wavRule = builder.when(/\.wav$/i).asAsset().result();
+
+export const wasmRule = builder.when(/\.wasm$/i).asAsset(false).result();
+export const wavRule = builder.when(/\.wav$/i).asAsset(false).result();
 // export const typescriptRule = builder
 //   .when(/\.[tj]sx?$/i)
 //   .butNotWhen(node_modules)
