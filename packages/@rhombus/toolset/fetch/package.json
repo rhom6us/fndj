@@ -12,7 +12,9 @@
     "lib/index.js"
   ],
   "scripts": {
-    "build": "heft test --clean"
+    "test": "heft test --clean",
+    "build": "heft build --clean",
+    "build:watch": "heft build"
   },
   "keywords": [],
   "author": "Thomas Butler",
@@ -22,7 +24,7 @@
   },
   "devDependencies": {
     "@fndj/heft-web-rig": "workspace:*",
-    "@rushstack/eslint-config": "^2.4.5",
-    "@rushstack/heft": "^0.42.2"
+    "@rushstack/eslint-config": "*",
+    "@rushstack/heft": "*"
   }
 }

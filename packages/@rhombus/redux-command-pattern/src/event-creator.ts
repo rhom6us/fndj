@@ -1,7 +1,6 @@
-import { Cast, Inc, restify, unrestify } from '@rhombus/type-helpers';
+import { Cast, DeepDictionary, DeepDictionaryItem, Inc, restify, unrestify } from '@rhombus/type-helpers';
 import { InferPayload, ReducerFnAny } from './reducer-fn';
 import { StandardEvent } from './standard-event';
-import { DeepDictionary, DeepDictionaryItem } from './utils';
 
 type EventCreator<TReducerFn extends ReducerFnAny, Name extends string> = (...payload: restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>, Name>;
 

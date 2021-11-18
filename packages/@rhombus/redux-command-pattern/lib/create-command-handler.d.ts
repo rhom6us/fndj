@@ -6,11 +6,11 @@
  * @returns This is like a reducer for command objects
  */
 import { AsyncAction, Func } from '@rhombus/func';
-import { restify } from '@rhombus/type-helpers';
+import { DeepDictionary, DeepDictionaryItem, restify } from '@rhombus/type-helpers';
 import { StandardCommand } from './standard-command';
 import { StandardEventAny } from './standard-event';
 import { Store } from './store';
-import { AnyTypeOf, DeepDictionary, DeepDictionaryItem } from './utils';
+import { AnyTypeOf } from './utils';
 export declare type CommandFn<TState, TPayload, TEvents extends StandardEventAny> = (state: TState, ...payload: restify<TPayload>) => CommandResult<TState, TEvents>;
 export declare type CommandFnAny = CommandFn<any, any, any>;
 export declare type CommandGenerator<TState, TEvent extends StandardEventAny = StandardEventAny> = Generator<CommandResult<TState, TEvent>, CommandResult<TState, TEvent> | void, TState>;

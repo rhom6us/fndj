@@ -94,9 +94,8 @@ export const configuration: any = {
     experiments: {
         ...config.experiments,
         outputModule: true
-    },
+    }
 
-    ignoreWarnings: [/Failed to parse source map/],
 };
 
 

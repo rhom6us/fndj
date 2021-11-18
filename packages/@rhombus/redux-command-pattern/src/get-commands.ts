@@ -1,11 +1,10 @@
 import { Func } from '@rhombus/func';
-import { restify, unrestify } from '@rhombus/type-helpers';
+import { DeepDictionaryItem, restify, unrestify } from '@rhombus/type-helpers';
 import { CommandFnAny, CommandHandler, CommandMap, InferPayload as CommandPayload } from './create-command-handler';
 import { StandardCommand } from './standard-command';
-import { DeepDictionary, DeepDictionaryItem } from './utils';
 
 
-type CommandCreatorMap<T extends DeepDictionary<CommandFnAny>, OverrideReturn = never> = {
+type CommandCreatorMap<T extends CommandMap, OverrideReturn = never> = {
   [K in keyof T]: CommandCreatorOrMap<T[K], OverrideReturn>;
 };
 type CommandCreatorOrMap<T extends DeepDictionaryItem<CommandFnAny>, OverrideReturn = never> =

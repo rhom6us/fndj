@@ -5,7 +5,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "heft test --clean"
+    "test": "heft test --clean",
+    "build": "heft build --clean",
+    "build:watch": "heft build"
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
@@ -51,7 +53,13 @@
     "@types/webaudio": "workspace:*",
     "react-refresh": "^0.10.0",
     "@fndj/heft-webpack-rig": "workspace:*",
-    "@rushstack/eslint-config": "^2.4.5",
-    "@rushstack/heft": "^0.42.2"
+    "@rushstack/eslint-config": "*",
+    "@rushstack/heft": "*",
+    "@types/gapi.client.youtube": "^3.0.2",
+    "html-loader": "^3.0.0",
+    "postcss-loader": "^6.2.0",
+    "css-hot-loader": "^1.4.4",
+    "css-loader": "^6.5.0",
+    "sass-loader": "^12.2.0"
   }
 }

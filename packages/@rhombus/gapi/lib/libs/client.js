@@ -13,8 +13,7 @@ import { loadLib } from '../gapi';
 //     return window.gapi;
 // }());
 await loadLib('client');
-var client = gapi.client;
-await client.init({
+await gapi.client.init({
 // Your API key will be automatically added to the Discovery Document URLs.
 // 'apiKey': 'YOUR_API_KEY',
 // discoveryDocs: [
@@ -22,5 +21,4 @@ await client.init({
 //     'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 // ],
 });
-export { client };
 //# sourceMappingURL=client.js.map

@@ -18,14 +18,14 @@
                 "isDefault": true
             },
             "problemMatcher": [
-                // "$ts-webpack",
-                // "$ts-webpack-watch",
-                // "$ts-checker-webpack",
+                "$ts-webpack",
+                "$ts-webpack-watch",
+                "$ts-checker-webpack",
                 "$ts-checker-webpack-watch",
-                // "$ts-checker-eslint-webpack",
-                // "$ts-checker-eslint-webpack-watch",
-                // "$tslint-webpack",
-                // "$tslint-webpack-watch"
+                "$ts-checker-eslint-webpack",
+                "$ts-checker-eslint-webpack-watch",
+                "$tslint-webpack",
+                "$tslint-webpack-watch"
             ],
             "detail": "fnserve webApp development",
             "presentation": {

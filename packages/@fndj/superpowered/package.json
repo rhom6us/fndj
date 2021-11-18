@@ -20,7 +20,7 @@
     "devDependencies": {
         "@types/webaudio": "workspace:*",
         "@fndj/heft-webpack-rig": "workspace:*",
-        "@rushstack/eslint-config": "^2.4.5",
-        "@rushstack/heft": "^0.42.2"
+        "@rushstack/eslint-config": "*",
+        "@rushstack/heft": "*"
     }
 }

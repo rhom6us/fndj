@@ -6,15 +6,20 @@ import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';
 
 await audioContext.audioWorklet.addModule(new WorkerUrl(new URL('./FnFormulaProcessor.worklet.js', import.meta.url)));
 
+
+/** @public */
 export interface ProcessorOptions {
   formula: string;
 }
+
+/** @public */
 export interface ParameterData {
   [ARG1]?: any;
   [ARG2]?: any;
   [ARG3]?: any;
 }
 /**
+ * @public
  * formula instructions:
  * The processor will call the formula for each sample in each
  * channel. Available arguments are:
@@ -35,6 +40,7 @@ interface FnFormulaNodeConstructor {
   readonly prototype: FnFormulaNode;
 }
 
+/** @public */
 export const FnFormulaNode: FnFormulaNodeConstructor = class extends AudioWorkletNode implements FnFormulaNode {
   get [ARG1]() {
     return this.parameters.get(ARG1)!;

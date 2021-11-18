@@ -11,7 +11,9 @@
     "./lib/libs/youtube.js"
   ],
 "scripts": {
-  "build": "heft test --clean"
+  "test": "heft test --clean",
+  "build": "heft build --clean",
+  "build:watch": "heft build"
 },
   "keywords": [],
   "author": "Thomas Butler",
@@ -27,7 +29,7 @@
     "@types/gapi.client": "^1.0.5",
     "@types/gapi.client.youtube": "^3.0.2",
     "@fndj/heft-web-rig": "workspace:*",
-    "@rushstack/eslint-config": "^2.4.5",
-    "@rushstack/heft": "^0.42.2"
+    "@rushstack/eslint-config": "*",
+    "@rushstack/heft": "*"
   }
 }

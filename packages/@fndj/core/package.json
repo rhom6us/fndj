@@ -5,7 +5,9 @@
   "module": "dist/main.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "heft test --clean"
+    "test": "heft test --clean",
+    "build": "heft build --clean",
+    "build:watch": "heft build"
   },
   "dependencies": {
     "@fndj/superpowered": "workspace:*",
@@ -31,7 +33,7 @@
     "@types/phaze-vocoder": "workspace:*",
     "@types/webaudio": "workspace:*",
     "@fndj/heft-webpack-rig": "workspace:*",
-    "@rushstack/eslint-config": "^2.4.5",
-    "@rushstack/heft": "^0.42.2"
+    "@rushstack/eslint-config": "*",
+    "@rushstack/heft": "*"
   }
 }

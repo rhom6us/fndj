@@ -1,15 +1,17 @@
+import { DeepDictionary, DeepDictionaryItem } from '@rhombus/type-helpers';
 import { CommandFn, createCommandHandler } from './create-command-handler';
 import { createReducer } from './createReducer';
 import { EventTypes, getEventCreator } from './event-creator';
 import { getCommands } from './get-commands';
 import { ReducerFn, ReducerFnAny } from './reducer-fn';
 import { Store } from './store';
-import { DeepDictionary, DeepDictionaryItem } from './utils';
 
 export type { AsyncCommandGenerator, CommandGenerator, CommandResult } from './create-command-handler';
 export type { StandardEvent, StandardEventAny } from './standard-event';
+export type { ThunkDispatch } from './utils';
 export type { ReducerFn, CommandFn };
 export { createCommandHandler };
+
 export function parseReducers<TReducers extends DeepDictionary<ReducerFnAny>>(reducers: TReducers) {
     const reducer = createReducer(reducers);
      const events = getEventCreator(reducers);;

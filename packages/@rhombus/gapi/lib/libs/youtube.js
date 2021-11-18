@@ -1,5 +1,3 @@
-import { client } from './client';
-await client.load('youtube', 'v3');
-var youtube = client.youtube;
-export { youtube };
+await gapi.client.load('youtube', 'v3');
+export {};
 //# sourceMappingURL=youtube.js.map

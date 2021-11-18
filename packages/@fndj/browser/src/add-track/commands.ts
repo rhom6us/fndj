@@ -1,7 +1,6 @@
-import { audioContext as ctx } from '@rhombus/audioContext';
+import { audioContext as ctx } from '@rhombus/audio-context';
 import { Sub } from "@rhombus/func";
-import { CommandResult } from "@rhombus/redux-command-pattern";
-import { ThunkDispatch } from "@rhombus/redux-command-pattern/src/utils";
+import { CommandResult, ThunkDispatch } from "@rhombus/redux-command-pattern";
 import { AnalysisState, DrawingState, events, State } from "./reducers";
 import { analyze } from "./services/analyze";
 import { download, search } from "./services/youtube";
@@ -77,7 +76,7 @@ export const commandImplementation = {
     },
   },
 };
-const worker = new Worker(new URL("./services/waveform-worker.ts", import.meta.url), { type: "module" });
+const worker = new Worker(new URL("./services/waveform.worker.js", import.meta.url), { type: "module" });
 function thunk(fn: Sub<[ThunkDispatch]>) {
   return fn;
 }

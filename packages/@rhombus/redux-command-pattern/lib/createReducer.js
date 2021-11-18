@@ -1,5 +1,4 @@
-import { restify } from '@rhombus/type-helpers';
-import { flattenMap } from './utils';
+import { flattenMap, restify } from '@rhombus/type-helpers';
 export function createReducer(reducers) {
     const flatMap = flattenMap(reducers);
     return function rootReducerfn(state, { type, payload }) {

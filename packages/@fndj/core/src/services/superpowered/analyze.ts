@@ -1,5 +1,6 @@
 import { glue } from './glue';
 
+/** @public */
 export interface AnalysisResults{
     averageDb: number;
     loudpartsAverageDb: number;
@@ -9,6 +10,7 @@ export interface AnalysisResults{
     keyIndex: number;
 }
 
+/** @public */
 export function analyze(audio: AudioBuffer):AnalysisResults {
     const analyzer = new glue.Analyzer(audio.sampleRate, audio.duration);
 

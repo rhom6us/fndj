@@ -7,11 +7,11 @@
  */
 import { AsyncAction, Func } from '@rhombus/func';
 import { assertNever, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isPromiseLike } from '@rhombus/type-guards';
-import { Await, restify } from '@rhombus/type-helpers';
+import { Await, DeepDictionary, DeepDictionaryItem, flattenMap, restify } from '@rhombus/type-helpers';
 import { StandardCommand } from './standard-command';
 import { isStandardEvent, StandardEventAny } from './standard-event';
 import { Store } from './store';
-import { AnyTypeOf, DeepDictionary, DeepDictionaryItem, flattenMap, isObservable, isThunk, Observable, Thunk } from './utils';
+import { AnyTypeOf, isObservable, isThunk, Observable, Thunk } from './utils';
 
 
 export type CommandFn<TState, TPayload, TEvents extends StandardEventAny> =

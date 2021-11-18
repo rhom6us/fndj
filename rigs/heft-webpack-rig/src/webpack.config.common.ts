@@ -3,20 +3,19 @@ import path from 'path';
 import { isDev, projectDir } from './settings';
 export default {
   devtool: 'eval-source-map',
-  context: 'C:\\dev\\@fndj',//path.join(projectDir, '../../'),
+  context: projectDir,//'C:\\dev\\@fndj',//path.join(projectDir, '../../'),
   entry: path.join(projectDir, 'lib', 'index.js'),
   output: {
     path: path.join(path.resolve('.'), 'dist'),
     filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
-    clean: true
+    clean: true,
     //   // chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
     //   //  devtoolModuleFilenameTemplate: 'ala:///[resource-path]?[loaders]',
-    //   // devtoolModuleFilenameTemplate: (info: Record<'absoluteResourcePath'|'allLoaders'|'hash'|'id'|'loaders'|'resource'|'resourcePath'|'namespace', string>) => {
-    //   //   const result = `alla://@fndj/${path.relative(rootDir, path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))}`;
-    //   //   console.log(result);
-    //   // }
+    // devtoolModuleFilenameTemplate: (info: Record<'absoluteResourcePath' | 'allLoaders' | 'hash' | 'id' | 'loaders' | 'resource' | 'resourcePath' | 'namespace', string>) => {
+    //   const result = `alla://@fndj/${path.relative(rootDir, path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))}`;
+    // }
 
-    //   // devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
+    devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
 
   },
   // entry: {
@@ -93,5 +92,6 @@ export default {
   experiments: {
     topLevelAwait: true,
     asset: true,
-  }
+  },
+  ignoreWarnings: [/Failed to parse source map/],
 };// as webpack.Configuration;

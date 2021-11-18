@@ -1,10 +1,10 @@
 import { Stack } from '@fluentui/react';
 import { YoutubeEmbed } from '@fndj/browser-ui';
 import React, { FC, memo, useCallback } from 'react';
-import { Video } from './services/youtube';
+// import { Video } from './services/youtube';
 import { commands } from './store';
 interface Props {
-    video: Video;
+    video: gapi.client.youtube.Video;
 }
 
 

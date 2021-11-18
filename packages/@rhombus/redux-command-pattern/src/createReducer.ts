@@ -1,8 +1,7 @@
-import { restify } from '@rhombus/type-helpers';
+import { DeepDictionary, flattenMap, restify } from '@rhombus/type-helpers';
 import { EventTypes } from './event-creator';
 import { Reducer as ReduxReducer } from './external/redux';
 import { ReducerFnAny } from './reducer-fn';
-import { DeepDictionary, flattenMap } from './utils';
 
 
 export function createReducer<T extends DeepDictionary<ReducerFnAny>>(reducers: T): ReduxReducer</*InferState<T>*/any, EventTypes<T>> {

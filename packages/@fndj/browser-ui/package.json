@@ -5,7 +5,9 @@
   "module": "dist/main.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "heft test --clean"
+    "test": "heft test --clean",
+    "build": "heft build --clean",
+    "build:watch": "heft build"
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
@@ -34,7 +36,7 @@
     "@types/redux-devtools-dispatch": "workspace:*",
     "@types/redux-devtools-multiple-monitors": "workspace:*",
     "@fndj/heft-webpack-rig": "workspace:*",
-    "@rushstack/eslint-config": "^2.4.5",
-    "@rushstack/heft": "^0.42.2"
+    "@rushstack/eslint-config": "*",
+    "@rushstack/heft": "*"
   }
 }

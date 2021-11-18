@@ -8,7 +8,6 @@ import { loadLib } from '../gapi';
 export type GoogleAuth = Omit<gapi.auth2.GoogleAuth, 'then'>;
 export type GoogleUser = gapi.auth2.GoogleUser;
 
-;
 
 let cache: GoogleAuth | undefined;
 const def = defer<GoogleAuth>();

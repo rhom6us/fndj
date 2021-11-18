@@ -1,7 +1,6 @@
-import { Cast, Inc, restify } from '@rhombus/type-helpers';
+import { Cast, DeepDictionary, DeepDictionaryItem, Inc, restify } from '@rhombus/type-helpers';
 import { InferPayload, ReducerFnAny } from './reducer-fn';
 import { StandardEvent } from './standard-event';
-import { DeepDictionary, DeepDictionaryItem } from './utils';
 declare type EventCreator<TReducerFn extends ReducerFnAny, Name extends string> = (...payload: restify<InferPayload<TReducerFn>>) => StandardEvent<InferPayload<TReducerFn>, Name>;
 export declare type EventCreatorOrMap<TReducerFnOrMap extends DeepDictionaryItem<ReducerFnAny>, NameAcc extends string = ''> = TReducerFnOrMap extends ReducerFnAny ? EventCreator<TReducerFnOrMap, NameAcc> : TReducerFnOrMap extends DeepDictionary<ReducerFnAny> ? {
     [K in keyof TReducerFnOrMap]: EventCreatorOrMap<TReducerFnOrMap[K], NameAcc extends '' ? K : `${NameAcc}.${Cast<K, string>}`>;

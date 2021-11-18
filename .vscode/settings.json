@@ -41,9 +41,9 @@
     "packages/@fndj/webpack": false,
     "**/node_modules": true,
     "**/config": false,
-    "**/lib": false,
+    "**/lib": true,
     "**/.heft": true,
-    "**/dist": false
+    "**/dist": true
   },
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",

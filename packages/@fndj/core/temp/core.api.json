@@ -1,0 +1,1658 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.18.19",
+    "schemaVersion": 1004,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      }
+    }
+  },
+  "kind": "Package",
+  "canonicalReference": "@fndj/core!",
+  "docComment": "",
+  "name": "@fndj/core",
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@fndj/core!",
+      "name": "",
+      "members": [
+        {
+          "kind": "Interface",
+          "canonicalReference": "@fndj/core!FnFormulaNode:interface",
+          "docComment": "/**\n * formula instructions: The processor will call the formula for each sample in each channel. Available arguments are: x - the current sample value [ARG1] [ARG2] [ARG3]\n *\n * example1: \"12 * Math.log2(x)\" example2: \"x * [ARG1]\"\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FnFormulaNode extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AudioWorkletNode",
+              "canonicalReference": "!AudioWorkletNode:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FnFormulaNode",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!FnFormulaNode#arg1:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly ["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ARG1",
+                  "canonicalReference": "@fndj/core!ARG1"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AudioParam",
+                  "canonicalReference": "!AudioParam:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "arg1",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@fndj/core!FnFormulaNode:var",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "FnFormulaNode: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FnFormulaNodeConstructor",
+              "canonicalReference": "@fndj/core!~FnFormulaNodeConstructor:interface"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FnFormulaNode",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@fndj/core!FnMeterNode:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class FnMeterNode extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AudioWorkletNode",
+              "canonicalReference": "!AudioWorkletNode:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            },
+            {
+              "kind": "Content",
+              "text": "implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "EventTarget",
+              "canonicalReference": "!EventTarget:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FnMeterNode",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@fndj/core!FnMeterNode:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `FnMeterNode` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BaseAudioContext",
+                  "canonicalReference": "!BaseAudioContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{}"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@fndj/core!FnMeterNode#addEventListener:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "addEventListener<K extends "
+                },
+                {
+                  "kind": "Content",
+                  "text": "keyof "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNodeEventMap",
+                  "canonicalReference": "@fndj/core!~FnMeterNodeEventMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">(type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "K"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", listener: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(this: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNode",
+                  "canonicalReference": "@fndj/core!FnMeterNode:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", ev: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNodeEventMap",
+                  "canonicalReference": "@fndj/core!~FnMeterNodeEventMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[K]) => any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AddEventListenerOptions",
+                  "canonicalReference": "!AddEventListenerOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 15,
+                "endIndex": 16
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "type",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 4,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "listener",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 11
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 12,
+                    "endIndex": 14
+                  }
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "K",
+                  "constraintTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "name": "addEventListener"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@fndj/core!FnMeterNode#current:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "current: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "[{\n        peak: number;\n        rms: number;\n    }, {\n        peak: number;\n        rms: number;\n    }] | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "current",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@fndj/core!FnMeterNode#onmeterdataupdated:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onmeterdataupdated?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "((this: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNode",
+                  "canonicalReference": "@fndj/core!FnMeterNode:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", ev: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterEvent",
+                  "canonicalReference": "@fndj/core!FnMeterEvent:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => any)"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "onmeterdataupdated",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@fndj/core!FnMeterNode#removeEventListener:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "removeEventListener<K extends "
+                },
+                {
+                  "kind": "Content",
+                  "text": "keyof "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNodeEventMap",
+                  "canonicalReference": "@fndj/core!~FnMeterNodeEventMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">(type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "K"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", listener: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(this: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AudioWorkletNode",
+                  "canonicalReference": "!AudioWorkletNode:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", ev: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FnMeterNodeEventMap",
+                  "canonicalReference": "@fndj/core!~FnMeterNodeEventMap:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[K]) => any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "EventListenerOptions",
+                  "canonicalReference": "!EventListenerOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 15,
+                "endIndex": 16
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "type",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 4,
+                    "endIndex": 5
+                  }
+                },
+                {
+                  "parameterName": "listener",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 6,
+                    "endIndex": 11
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 12,
+                    "endIndex": 14
+                  }
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "K",
+                  "constraintTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 3
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "name": "removeEventListener"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": [
+            {
+              "startIndex": 4,
+              "endIndex": 6
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@fndj/core!ParameterData:interface",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ParameterData "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ParameterData",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!ParameterData#arg1:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ARG1",
+                  "canonicalReference": "@fndj/core!ARG1"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "arg1",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!ParameterData#arg2:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ARG2",
+                  "canonicalReference": "@fndj/core!ARG2"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "arg2",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!ParameterData#arg3:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ARG3",
+                  "canonicalReference": "@fndj/core!ARG3"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "arg3",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@fndj/core!PhaseVocoderNode:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class PhaseVocoderNode extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AudioWorkletNode",
+              "canonicalReference": "!AudioWorkletNode:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PhaseVocoderNode",
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@fndj/core!PhaseVocoderNode:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `PhaseVocoderNode` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BaseAudioContext",
+                  "canonicalReference": "!BaseAudioContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PhaseVocoderNodeOptions",
+                  "canonicalReference": "@fndj/core!PhaseVocoderNodeOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@fndj/core!PhaseVocoderNode#enableLogging:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "enableLogging(enabled?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "enabled",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "enableLogging"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@fndj/core!PhaseVocoderNode#pitchFactor:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get ["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PITCH_FACTOR",
+                  "canonicalReference": "@fndj/core!PITCH_FACTOR"
+                },
+                {
+                  "kind": "Content",
+                  "text": "](): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AudioParam",
+                  "canonicalReference": "!AudioParam:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "pitchFactor",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isStatic": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@fndj/core!PhaseVocoderNodeOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PhaseVocoderNodeOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PhaseVocoderNodeOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!PhaseVocoderNodeOptions#fftSize:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FFT_SIZE",
+                  "canonicalReference": "@fndj/core!FFT_SIZE"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FftSize",
+                  "canonicalReference": "@fndj/core!FftSize:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "fftSize",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!PhaseVocoderNodeOptions#pitchFactor:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PITCH_FACTOR",
+                  "canonicalReference": "@fndj/core!PITCH_FACTOR"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pitchFactor",
+              "propertyTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@fndj/core!ProcessorOptions:interface",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ProcessorOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ProcessorOptions",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@fndj/core!ProcessorOptions#formula:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "formula: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "formula",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@fndj/core!R128:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "R128: "
+            },
+            {
+              "kind": "Reference",
+              "text": "R128Constructor",
+              "canonicalReference": "@fndj/core!~R128Constructor:interface"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "R128",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Namespace",
+          "canonicalReference": "@fndj/core!services:namespace",
+          "docComment": "",
+          "excerptTokens": [],
+          "releaseTag": "None",
+          "name": "services",
+          "members": [
+            {
+              "kind": "Namespace",
+              "canonicalReference": "@fndj/core!services.superpowered:namespace",
+              "docComment": "",
+              "excerptTokens": [],
+              "releaseTag": "None",
+              "name": "superpowered",
+              "members": [
+                {
+                  "kind": "Interface",
+                  "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults:interface",
+                  "docComment": "/**\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export interface AnalysisResults "
+                    }
+                  ],
+                  "releaseTag": "Public",
+                  "name": "AnalysisResults",
+                  "members": [
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#averageDb:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "averageDb: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "averageDb",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#beatgridStartMs:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "beatgridStartMs: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "beatgridStartMs",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#bpm:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "bpm: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "bpm",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#keyIndex:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "keyIndex: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "keyIndex",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#loudpartsAverageDb:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "loudpartsAverageDb: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "loudpartsAverageDb",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    },
+                    {
+                      "kind": "PropertySignature",
+                      "canonicalReference": "@fndj/core!services.superpowered.AnalysisResults#peakDb:member",
+                      "docComment": "",
+                      "excerptTokens": [
+                        {
+                          "kind": "Content",
+                          "text": "peakDb: "
+                        },
+                        {
+                          "kind": "Content",
+                          "text": "number"
+                        },
+                        {
+                          "kind": "Content",
+                          "text": ";"
+                        }
+                      ],
+                      "isOptional": false,
+                      "releaseTag": "Public",
+                      "name": "peakDb",
+                      "propertyTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "extendsTokenRanges": []
+                },
+                {
+                  "kind": "Function",
+                  "canonicalReference": "@fndj/core!services.superpowered.analyze:function(1)",
+                  "docComment": "/**\n * @public\n */\n",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "export declare function analyze(audio: "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AudioBuffer",
+                      "canonicalReference": "!AudioBuffer:interface"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "): "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "AnalysisResults",
+                      "canonicalReference": "@fndj/core!AnalysisResults:interface"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "returnTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "releaseTag": "Public",
+                  "overloadIndex": 1,
+                  "parameters": [
+                    {
+                      "parameterName": "audio",
+                      "parameterTypeTokenRange": {
+                        "startIndex": 1,
+                        "endIndex": 2
+                      }
+                    }
+                  ],
+                  "name": "analyze"
+                },
+                {
+                  "kind": "Variable",
+                  "canonicalReference": "@fndj/core!services.superpowered.glue:var",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "glue: "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "SuperpoweredGlue",
+                      "canonicalReference": "@fndj/superpowered!SuperpoweredGlue:class"
+                    }
+                  ],
+                  "releaseTag": "Public",
+                  "name": "glue",
+                  "variableTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "Variable",
+                  "canonicalReference": "@fndj/core!services.superpowered.Superpowered:var",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "glue: "
+                    },
+                    {
+                      "kind": "Reference",
+                      "text": "SuperpoweredGlue",
+                      "canonicalReference": "@fndj/superpowered!SuperpoweredGlue:class"
+                    }
+                  ],
+                  "releaseTag": "Public",
+                  "name": "Superpowered",
+                  "variableTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "Namespace",
+          "canonicalReference": "@fndj/core!superpowered:namespace",
+          "docComment": "",
+          "excerptTokens": [],
+          "releaseTag": "None",
+          "name": "superpowered",
+          "members": [
+            {
+              "kind": "Interface",
+              "canonicalReference": "@fndj/core!superpowered.AnalysisResults:interface",
+              "docComment": "/**\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "export interface AnalysisResults "
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "AnalysisResults",
+              "members": [
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#averageDb:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "averageDb: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "averageDb",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#beatgridStartMs:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "beatgridStartMs: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "beatgridStartMs",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#bpm:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "bpm: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "bpm",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#keyIndex:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "keyIndex: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "keyIndex",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#loudpartsAverageDb:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "loudpartsAverageDb: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "loudpartsAverageDb",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "kind": "PropertySignature",
+                  "canonicalReference": "@fndj/core!superpowered.AnalysisResults#peakDb:member",
+                  "docComment": "",
+                  "excerptTokens": [
+                    {
+                      "kind": "Content",
+                      "text": "peakDb: "
+                    },
+                    {
+                      "kind": "Content",
+                      "text": "number"
+                    },
+                    {
+                      "kind": "Content",
+                      "text": ";"
+                    }
+                  ],
+                  "isOptional": false,
+                  "releaseTag": "Public",
+                  "name": "peakDb",
+                  "propertyTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "extendsTokenRanges": []
+            },
+            {
+              "kind": "Function",
+              "canonicalReference": "@fndj/core!superpowered.analyze:function(1)",
+              "docComment": "/**\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "export declare function analyze(audio: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AudioBuffer",
+                  "canonicalReference": "!AudioBuffer:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AnalysisResults",
+                  "canonicalReference": "@fndj/core!AnalysisResults:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "audio",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "analyze"
+            },
+            {
+              "kind": "Variable",
+              "canonicalReference": "@fndj/core!superpowered.glue:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "glue: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SuperpoweredGlue",
+                  "canonicalReference": "@fndj/superpowered!SuperpoweredGlue:class"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "glue",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "Variable",
+              "canonicalReference": "@fndj/core!superpowered.Superpowered:var",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "glue: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SuperpoweredGlue",
+                  "canonicalReference": "@fndj/superpowered!SuperpoweredGlue:class"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Superpowered",
+              "variableTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

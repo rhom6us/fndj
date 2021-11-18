@@ -1,7 +1,7 @@
 import { assertNever, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isPromiseLike } from '@rhombus/type-guards';
-import { restify } from '@rhombus/type-helpers';
+import { flattenMap, restify } from '@rhombus/type-helpers';
 import { isStandardEvent } from './standard-event';
-import { flattenMap, isObservable, isThunk } from './utils';
+import { isObservable, isThunk } from './utils';
 const DEFAULT_SIGNAL = Object.freeze({
     aborted: false,
     onabort() { throw 'DEFAULT_SIGNAL cannot be aborted'; },

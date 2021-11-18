@@ -1,6 +1,5 @@
 import { Func } from '@rhombus/func';
-import { restify } from '@rhombus/type-helpers';
-import { DeepDictionaryItem, DeepRecord, DeepRecordItem } from './utils';
+import { DeepDictionaryItem, DeepRecord, DeepRecordItem, restify } from '@rhombus/type-helpers';
 export declare type ReducerFn<TState = any, TPayload = undefined> = (state: TState, ...payload: restify<TPayload>) => TState;
 export declare type ReducerFnAny = ReducerFn<any, any>;
 export declare type InferState<T extends DeepDictionaryItem<ReducerFn<any, any>>> = T extends DeepDictionaryItem<ReducerFn<infer TState, any>> ? TState : {

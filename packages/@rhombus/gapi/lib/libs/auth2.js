@@ -4,7 +4,6 @@
 /// <reference types="gapi.client.youtube" />
 import { defer } from '@rhombus/defer';
 import { loadLib } from '../gapi';
-;
 let cache;
 const def = defer();
 export async function getAuth2(client_id, ...scopes) {

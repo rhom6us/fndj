@@ -2,5 +2,11 @@
   "extends": "./node_modules/@fndj/heft-webpack-rig/profiles/library/tsconfig-base.json",
   "include": [
     "src/index.tsx",
-  ]
+    "src/**/*.worker.ts"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "target": "esnext",
+  "module": "esnext"
 }
