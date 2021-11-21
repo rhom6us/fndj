@@ -29,16 +29,12 @@ export declare class TimeStretching {
     /**
      * Amount of formant correction, between 0 (none) and 1 (full). Default: 0.
      *
-     * @type {number}
-     * @memberof TimeStretching
      */
     formantCorrection: number;
 
     /**
      * Maintain precise timing when the time-stretcher turns on. Useful for all use-cases except when the audio is heavily manipulated with some resampler (scratching). Default: true.
      *
-     * @type {boolean}
-     * @memberof TimeStretching
      */
     preciseTurningOn: boolean;
 
@@ -59,17 +55,16 @@ export declare class TimeStretching {
      * Processes audio. Has no return value.
      * It's never blocking for real-time usage. You can change all properties on any thread, concurrently with process(). Use it in the same thread with the other real-time methods of this class.
      * @param input Pointer to floating point numbers. 32-bit interleaved stereo output.
-     * @param frames Number of frames to process.
+     * @param frames - Number of frames to process.
      */
     addInput(input: Pointer, frames: number): void;
     /**
      * Gets the audio output into a buffer.
      * It's never blocking for real-time usage. You can change all properties on any thread, concurrently with process(). Use it in the same thread with the other real-time methods of this class.eturns true if it has enough output frames stored and output is successfully written, false otherwise.
      *
-     * @param output Pointer to floating point numbers. 32-bit interleaved stereo output.
-     * @param frames Number of frames to return with.
-     * @returns {boolean} Returns true if it has enough output frames stored and output is successfully written, false otherwise.
-     * @memberof TimeStretching
+     * @param output - Pointer to floating point numbers. 32-bit interleaved stereo output.
+     * @param frames - Number of frames to return with.
+     * @returns  Returns true if it has enough output frames stored and output is successfully written, false otherwise.
      */
     getOutput(output: Pointer, frames: number): boolean;
     /**

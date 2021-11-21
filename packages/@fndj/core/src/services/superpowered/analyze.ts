@@ -6,9 +6,10 @@ export interface AnalysisResults{
     loudpartsAverageDb: number;
     peakDb: number;
     bpm: number;
-    beatgridStartMs: number;
+    beatgridStartMs: number; 
     keyIndex: number;
 }
+
 
 /** @public */
 export function analyze(audio: AudioBuffer):AnalysisResults {

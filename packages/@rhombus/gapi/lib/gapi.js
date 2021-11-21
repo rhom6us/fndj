@@ -1,6 +1,6 @@
+const id = 'gapi-script';
 function loadScript(src = 'https://apis.google.com/js/api.js') {
     return new Promise((resolve, reject) => {
-        const id = 'gapi-script';
         let script = document.getElementById(id);
         if (script) {
             if (!window.gapi) {
@@ -18,11 +18,13 @@ function loadScript(src = 'https://apis.google.com/js/api.js') {
         document.head.appendChild(script);
     });
 }
-await loadScript();
+/** @internal */
+export const loaded = loadScript();
+/** @internal */
 export async function loadLib(lib) {
+    await loaded;
     return new Promise((resolve) => {
         gapi.load(lib, () => resolve(gapi[lib]));
     });
-    ;
 }
 //# sourceMappingURL=gapi.js.map

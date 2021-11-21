@@ -12,6 +12,20 @@
    */
   "commands": [
     {
+      "name": "start",
+      "commandKind": "bulk",
+      "summary": "Starts the webpack dev server",
+      "description": "For details, see the article \"Using watch mode\" on the Rush website: https://rushjs.io/",
+      "safeForSimultaneousRushProcesses": true,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": false,
+      "ignoreMissingScript": true,
+      "allowWarningsInSuccessfulBuild": false,
+      "incremental": true,
+      "watchForChanges": false,
+      "disableBuildCache": false
+    },
+    {
       "name": "build:watch",
       "commandKind": "bulk",
       "summary": "Build projects and watch for changes",

@@ -10,20 +10,24 @@ import { SuperpoweredBuffer, SuperpoweredBufferConstructor } from './Superpowere
 // export const SuperpoweredGlue: SuperpoweredGlueStatic;
 // export type SuperpoweredGlue = SuperpoweredGlueMain & SuperpoweredGlueModules;
 export class SuperpoweredGlue {
+    /* @internal */
     static fetch(url: any): Promise<SuperpoweredGlue>;
 
     // I think this is replaced by 'linearMemory'
     // buffer: ArrayBufferLike;
 
-
+    /* @internal */
+    loadFromArrayBuffer(wasmCode: ArrayBuffer, afterWASMLoaded?: { afterWASMLoaded: () => void; }): Promise<void>;
+    /* @private */
     wasmCode: unknown;
+    /* @private */
     __maxChannels__: unknown;
     bufferToWASM(buffer: SuperpoweredBuffer, input: AudioBuffer | [[Float32Array, Float32Array]]): void;
     bufferToWASM(buffer: SuperpoweredBuffer, output: AudioBuffer | [[Float32Array, Float32Array]]): void;
     arrayBufferToWASM(arrayBuffer: ArrayBuffer, offset?: number): Pointer;
     copyWASMToArrayBuffer(pointer: Pointer, lengthBytes: number): ArrayBuffer;
     moveWASMToArrayBuffer(pointer: Pointer, lengthBytes: number): ArrayBuffer;
-
+    /* @internal */
     Initialize(options: {
         licenseKey: string,
         enableAudioAnalysis: boolean,

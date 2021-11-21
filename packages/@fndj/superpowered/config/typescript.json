@@ -1,9 +1,6 @@
-/**
- * Configures the TypeScript plugin for Heft.  This plugin also manages linting.
- */
 {
   "$schema": "https://developer.microsoft.com/json-schemas/heft/typescript.schema.json",
-  "extends": "../node_modules/@fndj/heft-webpack-rig/profiles/library/config/typescript.json",
+  "extends": "@fndj/heft-webpack-rig/profiles/library/config/typescript.json",
   "staticAssetsToCopy": {
     "fileExtensions": [
       ".js",
@@ -14,10 +11,6 @@
     //   "*.d.ts",
     //   "*.wasm"
     // ],
-    // /**
-    //  * Glob patterns that should be explicitly excluded. This takes precedence over globs listed
-    //  * in "includeGlobs" and files that match the file extensions provided in "fileExtensions".
-    //  */
     // "excludeGlobs": [
     //   "wasm.d.ts"
     // ]

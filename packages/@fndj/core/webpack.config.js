@@ -1,7 +1,11 @@
 /* eslint-disable */
+// const config = require('@fndj/heft-webpack-rig/webpack/src/webpack.config.weblib');
 const config = require('@fndj/heft-webpack-rig/webpack/src/webpack.config.weblib');
 
 module.exports = config;
+
+
+// module.exports = config;
 
 
 

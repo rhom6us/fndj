@@ -1,21 +1,22 @@
 
 import path from 'path';
-import { isDev, projectDir } from './settings';
+import { workletPlugin } from './plugins';
+import { projectDir } from './settings';
 export default {
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
   context: projectDir,//'C:\\dev\\@fndj',//path.join(projectDir, '../../'),
   entry: path.join(projectDir, 'lib', 'index.js'),
   output: {
     path: path.join(path.resolve('.'), 'dist'),
-    filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
-    clean: true,
+    // filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
+    clean: false,
     //   // chunkFilename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
     //   //  devtoolModuleFilenameTemplate: 'ala:///[resource-path]?[loaders]',
     // devtoolModuleFilenameTemplate: (info: Record<'absoluteResourcePath' | 'allLoaders' | 'hash' | 'id' | 'loaders' | 'resource' | 'resourcePath' | 'namespace', string>) => {
     //   const result = `alla://@fndj/${path.relative(rootDir, path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))}`;
     // }
 
-    devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
+    // devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
 
   },
   // entry: {
@@ -78,6 +79,7 @@ export default {
   //   // },
   // },
   plugins: [
+    workletPlugin
     // plugins.nodePolyfill,
     // isDev && plugins.webpackBar,
     // plugins.tsChecker,

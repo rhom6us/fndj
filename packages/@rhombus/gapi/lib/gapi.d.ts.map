@@ -1,1 +1,1 @@
-{"version":3,"file":"gapi.d.ts","sourceRoot":"","sources":["../src/gapi.ts"],"names":[],"mappings":";;;;AAuBA,oBAAY,IAAI,GAAG,OAAO,IAAI,CAAC;AAG/B,wBAAsB,OAAO,CAAC,CAAC,SAAS,MAAM,IAAI,EAAE,GAAG,EAAE,CAAC,GAAG,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAK5E"}
+{"version":3,"file":"gapi.d.ts","sourceRoot":"","sources":["../src/gapi.ts"],"names":[],"mappings":";;;;AAqBA,gBAAgB;AAChB,eAAO,MAAM,MAAM,eAAe,CAAC;AAGnC,gBAAgB;AAChB,oBAAY,IAAI,GAAG,OAAO,IAAI,CAAC;AAE/B,gBAAgB;AAChB,wBAAsB,OAAO,CAAC,CAAC,SAAS,MAAM,IAAI,EAAE,GAAG,EAAE,CAAC,GAAG,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC,CAAC,CAK5E"}

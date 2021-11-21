@@ -154,8 +154,5 @@ if (typeof AudioWorkletProcessor === 'function') {
     SuperpoweredWebAudio.AudioWorkletProcessor = SuperpoweredAudioWorkletProcessor;
 }
 
-if (typeof exports === 'object' && typeof module === 'object') module.exports = { SuperpoweredGlue, SuperpoweredWebAudio, SuperpoweredTrackLoader };
-else if (typeof define === 'function' && define['amd']) define([], function () { return { SuperpoweredGlue, SuperpoweredWebAudio, SuperpoweredTrackLoader }; });
-else if (typeof exports === 'object') exports["SuperpoweredModule"] = { SuperpoweredGlue, SuperpoweredWebAudio, SuperpoweredTrackLoader };
 
 export { SuperpoweredGlue, SuperpoweredWebAudio, SuperpoweredTrackLoader };

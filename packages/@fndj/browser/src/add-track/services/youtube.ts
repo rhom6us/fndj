@@ -2,8 +2,8 @@ import { defer } from '@rhombus/defer';
 import '@rhombus/fetch';
 import { wrapResponse } from '@rhombus/fetch';
 import { Func } from '@rhombus/func';
-import youtube = gapi.client.youtube;//{ youtube } from '@rhombus/gapi';
-export type Video = youtube.Video;
+import { youtube } from '@rhombus/gapi';
+
 export async function search(query: string) {
     const listResponse = await youtube.search.list({
         part: [

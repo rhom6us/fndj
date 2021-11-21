@@ -11,16 +11,19 @@
             "githubUsername": "rhom6us"
         }
     ],
-    "module": "dist/main.js",
+    "main": "dist/main.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "build": "",
-        "build-broken": "heft test --clean"
+        "test": "heft test --clean",
+        "build": "heft build --clean",
+        "build:watch": "heft build"
     },
     "devDependencies": {
         "@types/webaudio": "workspace:*",
         "@fndj/heft-webpack-rig": "workspace:*",
         "@rushstack/eslint-config": "*",
         "@rushstack/heft": "*"
+    },
+    "dependencies": {
     }
 }

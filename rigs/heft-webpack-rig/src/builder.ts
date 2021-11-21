@@ -45,7 +45,10 @@ export class RuleBuilder {
     };
     asAsset(inline: boolean | undefined = undefined) {
         return this.extend({
-            type: 'asset/resource'
+            type:
+                inline === undefined ? 'asset' :
+                    inline ? 'asset/inline' :
+                        'asset/resource'
             // type: iif(
             //     [inline === undefined, 'asset' as const],
             //     [inline, 'asset/inline' as const],

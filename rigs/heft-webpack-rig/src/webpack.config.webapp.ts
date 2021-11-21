@@ -18,11 +18,16 @@ interface Config extends Configuration {
 
 export const configuration: any = {
     ...config,
+    devtool: "source-map",
+    devServer: {
+        port: 9080
+    },
     // stats: 'verbose',
     // entry: [
     //     ...(Array.isArray(config.entry) ? config.entry : [config.entry]),
     //     `./node_modules/@fndj/core/src/web-audio/FnMeter/FnMeter.worklet.ts`
     // ],
+    // target: 'node14',
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -33,6 +38,7 @@ export const configuration: any = {
     // ],
     output: {
         ...config.output,
+        // chunkLoading: "import",
         publicPath: '/',
     },
     resolve: {
@@ -63,9 +69,10 @@ export const configuration: any = {
         ],
     },
     plugins: [
+        ...config.plugins,
         ...onlyif(isDev,
             // plugins.webpackBar,
-            plugins.reachRefresh,
+            // plugins.reachRefresh,
             // plugins.tsChecker,
             // plugins.tsCheckerNotifier
         ),
@@ -78,6 +85,7 @@ export const configuration: any = {
     ],
     experiments: {
         ...config.experiments,
+        outputModule: true
     }
 
 

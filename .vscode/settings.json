@@ -43,7 +43,7 @@
     "**/config": false,
     "**/lib": true,
     "**/.heft": true,
-    "**/dist": true
+    "**/dist": false
   },
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",

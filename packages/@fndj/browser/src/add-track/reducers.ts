@@ -1,6 +1,6 @@
 import { AnalysisResults } from '@fndj/core/src/services/superpowered';
+import { Video } from '@rhombus/gapi/lib/youtube';
 import { parseReducers } from '@rhombus/redux-command-pattern';
-import { Video } from './services/youtube';
 
 interface DownloadState_Active {
     readonly ctrl: AbortController;

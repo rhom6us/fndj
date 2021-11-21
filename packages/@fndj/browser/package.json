@@ -7,7 +7,8 @@
   "scripts": {
     "test": "heft test --clean",
     "build": "heft build --clean",
-    "build:watch": "heft build"
+    "build:watch": "heft build",
+    "start": "heft start"
   },
   "dependencies": {
     "@fluentui/react": "^8.37.3",
@@ -55,7 +56,6 @@
     "@fndj/heft-webpack-rig": "workspace:*",
     "@rushstack/eslint-config": "*",
     "@rushstack/heft": "*",
-    "@types/gapi.client.youtube": "^3.0.2",
     "html-loader": "^3.0.0",
     "postcss-loader": "^6.2.0",
     "css-hot-loader": "^1.4.4",

@@ -1,9 +1,6 @@
-import { SuperpoweredGlue, wasmUrl } from '@fndj/superpowered';
+import { initialize } from '@fndj/superpowered';
 
-export const
-/** @public */glue = await SuperpoweredGlue.fetch(wasmUrl);
-glue.BigInt64Buffer
-glue.Initialize({
+export const glue = await initialize({
     licenseKey: 'ExampleLicenseKey-WillExpire-OnNextUpdate',
     enableAudioAnalysis: true,
     enableFFTAndFrequencyDomain: true,
@@ -12,8 +9,5 @@ glue.Initialize({
     enableAudioPlayerAndDecoder: true,
     enableCryptographics: true,
     enableNetworking: true,
-});
-
-
-export { glue as Superpowered };
+})
 

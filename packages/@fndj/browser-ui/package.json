@@ -2,8 +2,8 @@
   "name": "@fndj/browser-ui",
   "version": "1.0.0",
   "license": "MIT",
-  "module": "dist/main.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "scripts": {
     "test": "heft test --clean",
     "build": "heft build --clean",

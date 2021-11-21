@@ -1,6 +1,6 @@
+const id = 'gapi-script';
 function loadScript(src = 'https://apis.google.com/js/api.js') {
     return new Promise<void>((resolve, reject) => {
-        const id = 'gapi-script';
         let script = document.getElementById(id) as HTMLScriptElement | null;
         if (script) {
             if (!window.gapi) {
@@ -19,14 +19,17 @@ function loadScript(src = 'https://apis.google.com/js/api.js') {
         document.head.appendChild(script);
     });
 }
-await loadScript();
+/** @internal */
+export const loaded = loadScript();
 
-export type Gapi = typeof gapi;
 
+/** @internal */
+export type gapi = typeof gapi;
 
-export async function loadLib<K extends keyof Gapi>(lib: K): Promise<Gapi[K]>{
-    return new Promise<Gapi[K]>((resolve) => {
-
+/** @internal */
+export async function loadLib<K extends keyof gapi>(lib: K): Promise<gapi[K]> {
+    await loaded;
+    return new Promise<gapi[K]>((resolve) => {
         gapi.load(lib, () => resolve(gapi[lib]));
-    });;
+    });
 }

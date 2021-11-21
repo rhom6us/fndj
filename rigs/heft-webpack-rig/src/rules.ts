@@ -9,7 +9,7 @@ const builder = new RuleBuilder(isDev);
 
 
 
-export const wasmRule = builder.when(/\.wasm$/i).asAsset(false).result();
+export const wasmRule = builder.when(/\.wasm$/i).asAsset(true).result();
 export const wavRule = builder.when(/\.wav$/i).asAsset(false).result();
 // export const typescriptRule = builder
 //   .when(/\.[tj]sx?$/i)

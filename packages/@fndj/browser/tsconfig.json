@@ -5,7 +5,10 @@
     "src/**/*.worker.ts"
   ],
   "compilerOptions": {
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": [
+      "css-dom"
+    ],
   },
   "target": "esnext",
   "module": "esnext"

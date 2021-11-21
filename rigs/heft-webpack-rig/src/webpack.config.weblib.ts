@@ -1,6 +1,5 @@
 import { Configuration } from 'webpack';
 import { onlyif } from './loaders';
-import { workletPlugin } from './plugins';
 import * as rules from './rules';
 import { isDev } from './settings';
 import config from './webpack.config.common';
@@ -20,11 +19,20 @@ export const configuration: any = {
     ...config,
     output: {
         ...config.output,
-        // library: {
-        //     name: '[name]',
-        //     type: 'umd'
-        // }
+        // module: true,
+        library: {
+            // name: '__[name]',
+            type: 'commonjs2'
+        }
     },
+    // optimization: {
+    //     concatenateModules: true
+    // },
+    // experiments: {
+    //     ...config.experiments,
+    //     outputModule: true
+    // },
+    // externalsType: 'module',
     /**
      * PEER DEPENDANCIES
      */
@@ -36,9 +44,8 @@ export const configuration: any = {
     /**
      * Webpack will generate code like import * as X from '...' for externals used in a module.
      */
-    externalsType: 'module',
-
-    devtool: "eval-cheap-module-source-map",
+    devtool: 'source-map',
+    // devtool: "eval-cheap-module-source-map",
     target: 'web',
     mode: isDev ? 'development' : 'production',
     // entry: entryPoint,//path.join(projectDir, 'src/index.ts'),
@@ -78,23 +85,19 @@ export const configuration: any = {
         ],
     },
     plugins: [
+        ...config.plugins,
         ...onlyif(isDev,
             // plugins.webpackBar,
             // plugins.reachRefresh,
             // plugins.tsChecker,
             // plugins.tsCheckerNotifier
         ),
-        workletPlugin
         // isDev && plugins.hotModuleReplacement,
         // plugins.createIndexHtml,
         // plugins.extractCssFiles,
         // plugins.cleanBuildDir,
         // hotModuleReplacement
-    ],
-    experiments: {
-        ...config.experiments,
-        outputModule: true
-    }
+    ]
 
 };
 

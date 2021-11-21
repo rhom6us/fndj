@@ -1,11 +1,11 @@
 
 
 import { ProgressIndicator } from '@fluentui/react';
+import { Video } from '@rhombus/gapi/lib/youtube';
 import React, { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { useCanvas } from '../hooks';
 import { AnalysisState, AnalysisStateData, DownloadState, DrawingState, StateType, WaveformState } from './reducers';
-import { Video } from './services/youtube';
 import { commands } from './store';
 
 interface Props {

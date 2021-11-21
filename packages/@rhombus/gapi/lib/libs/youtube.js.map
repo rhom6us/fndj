@@ -1,1 +1,0 @@
-{"version":3,"file":"youtube.js","sourceRoot":"","sources":["../../src/libs/youtube.ts"],"names":[],"mappings":"AAGA,MAAM,IAAI,CAAC,MAAM,CAAC,IAAI,CAAC,SAAS,EAAE,IAAI,CAAC,CAAC","sourcesContent":["\r\n\r\n\r\nawait gapi.client.load('youtube', 'v3');\r\nexport { };\r\n"]}

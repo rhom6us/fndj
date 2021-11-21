@@ -1,5 +1,9 @@
 
+import * as ffo from '@fndj/core';
 import { superpowered } from '@fndj/core';
-export const analyze = superpowered.analyze;
+const ss = await ffo;
+console.log({ ffo, superpowered });
+const analyze = ss.superpowered.analyze;
+export { analyze };
 
 

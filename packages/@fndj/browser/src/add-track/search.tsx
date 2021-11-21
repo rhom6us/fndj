@@ -1,9 +1,9 @@
 import { Stack } from '@fluentui/react';
+import { Video } from '@rhombus/gapi/lib/youtube';
 import React, { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useThrottledState } from '../hooks';
 import { SearchResultsState, SearchState } from './reducers';
-import { Video } from './services/youtube';
 import { commands } from './store';
 
 

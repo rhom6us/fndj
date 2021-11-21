@@ -17,5 +17,5 @@
    * This corresponds to API Extractor's "--typescript-compiler-folder" CLI option and
    * "IExtractorInvokeOptions.typescriptCompilerFolder" API option. This option defaults to false.
    */
-  "useProjectTypescriptVersion": true
+  "useProjectTypescriptVersion": false
 }
