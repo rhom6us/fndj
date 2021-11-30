@@ -14,6 +14,7 @@ yarn.lock                    merge=binary
 *.json                       linguist-language=JSON-with-Comments
 
 
-*.ts text eol=lf
-
+*.* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
 
