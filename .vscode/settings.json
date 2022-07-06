@@ -40,7 +40,7 @@
     "packages/@fndj/webpack/lib": false,
     "packages/@fndj/webpack": false,
     "**/node_modules": true,
-    "**/config": true,
+    "**/config": false,
     "**/lib": true,
     "**/.heft": true,
     "**/dist": true
