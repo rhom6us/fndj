@@ -10,7 +10,8 @@ namespace YouTubeProxy.Models {
     /// <c>[EnableQuery]</c>.
     /// </summary>
     /// <typeparam name="T">The type of the data in the data source.</typeparam>
-    public class SingleResult<T> : Microsoft.AspNet.OData.SingleResult {
+    public class SingleResult<T> : Microsoft.AspNetCore.OData.Results.SingleResult
+    {
 
         public SingleResult(IQueryable<T> queryable) : base(queryable) {
             _ = queryable ?? throw new ArgumentNullException(nameof(queryable));
