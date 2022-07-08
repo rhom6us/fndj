@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Text.Json;
-using Microsoft.AspNet.OData.Builder;
-using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.OData;
+using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -30,13 +30,16 @@ namespace YouTubeProxy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<YoutubeMediaContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //    services.AddDbContext<YoutubeMediaContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllers().AddJsonOptions(
-                p =>
-                {
+            services.AddControllers()
+                .AddOData(opts => 
+                    opts.Select().Filter().OrderBy().Count().SetMaxTop(10)
+                    //.AddRouteComponents(GetEdmModel())
+                )
+                .AddJsonOptions(p =>  {
                     p.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 
 
@@ -54,7 +57,8 @@ namespace YouTubeProxy
 
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             //services.AddApiVersioning();
-            services.AddOData();//.EnableApiVersioning();
+            
+            
             services.Configure<RouteOptions>(options =>
             {
                 options.ConstraintMap.Add("streamType", typeof(StreamTypeConstraint));
@@ -116,18 +120,19 @@ namespace YouTubeProxy
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllers();
-                endpoints.EnableDependencyInjection();
-                endpoints.Select().Filter().OrderBy().Count().MaxTop(10);
-                //endpoints.MapODataRoute("odata", "odata", GetEdmModel());
+                //endpoints.EnableDependencyInjection();
+                //endpoints.Select().Filter().OrderBy().Count().MaxTop(10);
+                ////endpoints.MapODataRoute("odata", "odata", GetEdmModel());
             });
         }
-        private static IEdmModel GetEdmModel()
-        {
-            var odataBuilder = new ODataConventionModelBuilder();
-            odataBuilder.EntitySet<Track>("Tracks");
+        //private static IEdmModel GetEdmModel()
+        //{
+        //    var odataBuilder = new Microsoft.OData.ModelBuilder.ODataConventionModelBuilder();
+        //    odataBuilder.EntitySet<Track>("Tracks");
 
-            return odataBuilder.GetEdmModel();
-        }
+        //    return odataBuilder.GetEdmModel();
+        //}
     }
 }
