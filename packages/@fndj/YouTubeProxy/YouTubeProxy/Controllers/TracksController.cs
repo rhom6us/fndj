@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using YoutubeExplode.Videos;
@@ -20,18 +20,18 @@ namespace YouTubeProxy.Controllers {
     [ApiController]
     [Route("")]
     public class TracksController : ControllerBase {
-        public TracksController(ILogger<TracksController> logger, YoutubeMediaContext db, YoutubeService youtube /*, IMemoryCache cache*/) {
+        public TracksController(ILogger<TracksController> logger, /*YoutubeMediaContext db,*/ YoutubeService youtube /*, IMemoryCache cache*/) {
             _logger = logger;
-            _db = db;
+            //_db = db;
             _youtube = youtube;
             //_cache = cache;
         }
 
-        //[HttpGet("")]
-        [EnableQuery(MaxTop = 20)]
-        public IQueryable<YoutubeMedia> GetAll() {
-            return _db.YoutubeMedia;
-        }
+        ////[HttpGet("")]
+        //[EnableQuery(MaxTop = 20)]
+        //public IQueryable<YoutubeMedia> GetAll() {
+        //    return _db.YoutubeMedia;
+        //}
 
 
         [HttpGet("{id}/raw")]
@@ -124,6 +124,6 @@ namespace YouTubeProxy.Controllers {
         //private readonly IMemoryCache _cache;
         private readonly ILogger<TracksController> _logger;
         private readonly YoutubeService _youtube;
-        private readonly YoutubeMediaContext _db;
+        //private readonly YoutubeMediaContext _db;
     }
 }
