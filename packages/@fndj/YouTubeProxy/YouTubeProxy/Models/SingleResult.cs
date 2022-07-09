@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace YouTubeProxy.Models {
+namespace YouTubeProxy.Models
+{
     /// <summary>
     /// Represents an <see cref="IQueryable{T}"/> containing zero or one entities. Use together with an
     /// <c>[EnableQuery]</c>.
     /// </summary>
     /// <typeparam name="T">The type of the data in the data source.</typeparam>
-    public class SingleResult<T> : Microsoft.AspNet.OData.SingleResult {
+    public class SingleResult<T> : Microsoft.AspNetCore.OData.Results.SingleResult {
 
         public SingleResult(IQueryable<T> queryable) : base(queryable) {
             _ = queryable ?? throw new ArgumentNullException(nameof(queryable));
