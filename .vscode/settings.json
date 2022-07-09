@@ -36,14 +36,15 @@
     "**/*.build.error.log": true,
     "**/.rush/": true,
     "**/temp/": true,
-    "**/.*": true,
+    "**/.*": false,
     "packages/@fndj/webpack/lib": false,
     "packages/@fndj/webpack": false,
     "**/node_modules": true,
     "**/config": false,
     "**/lib": true,
     "**/.heft": true,
-    "**/dist": true
+    "**/dist": false,
+    ".git": true
   },
   // The package manager you use to install node modules.
   "eslint.packageManager": "pnpm",
