@@ -91,6 +91,83 @@
                 "clear": false,
                 "group": "serve"
             }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build",
+            "platform": "node",
+            "dockerBuild": {
+                "dockerfile": "${workspaceFolder}/packages/@fndj/browser/Dockerfile",
+                "context": "${workspaceFolder}/packages/@fndj/browser",
+                "pull": true
+            },
+            "node": {
+                "package": "${workspaceFolder}/packages/@fndj/browser/package.json"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build"
+            ],
+            "platform": "node",
+            "node": {
+                "package": "${workspaceFolder}/packages/@fndj/browser/package.json"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build"
+            ],
+            "dockerRun": {
+                "env": {
+                    "DEBUG": "*",
+                    "NODE_ENV": "development"
+                }
+            },
+            "node": {
+                "package": "${workspaceFolder}/packages/@fndj/browser/package.json",
+                "enableDebugging": true
+            }
+        },
+        {
+            "label": "build-youtubeproxy",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/packages/@fndj/YoutubeProxy/YoutubeProxy.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/packages/@fndj/YoutubeProxy/YoutubeProxy.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/packages/@fndj/YoutubeProxy/YoutubeProxy.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }

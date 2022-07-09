@@ -3,9 +3,9 @@
     "compounds": [
         {
             "name": "Compound",
-            "preLaunchTask": "browser:start",
+            // "preLaunchTask": "browser:start",
             "configurations": [
-                ".NET Core Launch (local web)",
+                "Launch YoutubeProxy",
                 "Attach to Edge"
             ],
             "stopAll": true,
@@ -17,6 +17,26 @@
         }
     ],
     "configurations": [
+        // {
+        //     "name": ".NET Core Launch (web)",
+        //     "type": "coreclr",
+        //     "request": "launch",
+        //     "preLaunchTask": "build",
+        //     "program": "${workspaceFolder}/bin/Debug/net6.0/youtubeproxy.dll",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}",
+        //     "stopAtEntry": false,
+        //     "serverReadyAction": {
+        //         "action": "openExternally",
+        //         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        //     },
+        //     "env": {
+        //         "ASPNETCORE_ENVIRONMENT": "Development"
+        //     },
+        //     "sourceFileMap": {
+        //         "/Views": "${workspaceFolder}/Views"
+        //     }
+        // },
         {
             "name": "Attach to Edge",
             "port": 9222,
@@ -52,36 +72,7 @@
             "url": "http://localhost:9080",
             "webRoot": "${workspaceFolder}"
         },
-        {
-            "name": ".NET Core Launch (local web)",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/YouTubeProxy.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/packages/@fndj/YouTubeProxy/YouTubeProxy/bin/Debug/net5.0/",
-            "stopAtEntry": false,
-            "launchBrowser": {
-                "enabled": false
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            },
-            "console": "integratedTerminal",
-            "presentation": {
-                "hidden": false,
-                "group": ".net",
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true,
-                "order": 1
-            }
-        },
+        
         {
             "type": "pwa-msedge",
             "version": "dev",
@@ -93,12 +84,36 @@
             "port": 9222,
             "sourceMaps": true
         },
+       
         {
-            "name": "Attach to Python Functions",
-            "type": "python",
-            "request": "attach",
-            "port": 9091,
-            "preLaunchTask": "func: host start"
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": "Launch YoutubeProxy",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-youtubeproxy",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/packages/@fndj/YoutubeProxy/bin/Debug/net6.0/YoutubeProxy.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/packages/@fndj/YoutubeProxy",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
         }
     ]
 }

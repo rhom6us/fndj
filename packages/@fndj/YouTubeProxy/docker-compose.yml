@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  youtubeproxy:
-    image: ${DOCKER_REGISTRY-}youtubeproxy
-    build:
-      context: .
-      dockerfile: YouTubeProxy/Dockerfile
