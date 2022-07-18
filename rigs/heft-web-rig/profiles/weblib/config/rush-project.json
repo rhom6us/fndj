@@ -1,3 +1,19 @@
 {
-  "projectOutputFolderNames": ["dist", "lib", "lib-commonjs", "temp"]
+  "operationSettings": [  // formerly phaseOptions
+  {
+    "operationName": "build",
+
+    // The "build" operation's output folder names were previously defined
+    // in the top-level `projectOutputFolderNames` property.
+    "outputFolderNames": ["dist", "lib", "lib-commonjs", "temp"]
+  },
+  // {
+  //   "operationName": "_phase:build",  // formerly phaseName
+  //   "outputFolderNames": ["output-folder-a", "output-folder-b"]
+  // },
+  {
+    "operationName": "test",
+    "disableBuildCacheForOperation": true
+  }
+]
 }
