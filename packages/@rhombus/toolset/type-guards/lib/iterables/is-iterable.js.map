@@ -1,1 +1,0 @@
-{"version":3,"file":"is-iterable.js","sourceRoot":"","sources":["../../src/iterables/is-iterable.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,UAAU,CAAC,KAAU;IACnC,OAAO,MAAM,CAAC,QAAQ,IAAI,KAAK,CAAC;AAClC,CAAC","sourcesContent":["export function isIterable(value: any): value is Iterable<any> {\n  return Symbol.iterator in value;\n}\n"]}

@@ -1,1 +1,0 @@
-{"version":3,"file":"cast.js","sourceRoot":"","sources":["../src/cast.ts"],"names":[],"mappings":"","sourcesContent":["export type Cast<V, T> = V extends T ? V : T;\n"]}
