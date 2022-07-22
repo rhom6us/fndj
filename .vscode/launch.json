@@ -3,10 +3,9 @@
     "compounds": [
         {
             "name": "Compound",
-            // "preLaunchTask": "browser:start",
             "configurations": [
                 "Launch YoutubeProxy",
-                "Attach to Edge"
+                "Launch Edge"
             ],
             "stopAll": true,
             "presentation": {
@@ -14,91 +13,63 @@
                 "group": "",
                 "order": 1
             }
+        },
+        {
+            "name": "Launch Edge Headless and attach DevTools",
+            "configurations": [
+                "Launch Microsoft Edge in headless mode",
+                "Open Edge DevTools"
+            ]
+        },
+        {
+            "name": "Launch Edge and attach DevTools",
+            "configurations": [
+                "Launch Microsoft Edge",
+                "Open Edge DevTools"
+            ]
         }
     ],
     "configurations": [
-        // {
-        //     "name": ".NET Core Launch (web)",
-        //     "type": "coreclr",
-        //     "request": "launch",
-        //     "preLaunchTask": "build",
-        //     "program": "${workspaceFolder}/bin/Debug/net6.0/youtubeproxy.dll",
-        //     "args": [],
-        //     "cwd": "${workspaceFolder}",
-        //     "stopAtEntry": false,
-        //     "serverReadyAction": {
-        //         "action": "openExternally",
-        //         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-        //     },
-        //     "env": {
-        //         "ASPNETCORE_ENVIRONMENT": "Development"
-        //     },
-        //     "sourceFileMap": {
-        //         "/Views": "${workspaceFolder}/Views"
-        //     }
-        // },
+        {
+            "type": "vscode-edge-devtools.debug",
+            "request": "attach",
+            "name": "Attach to Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "vscode-edge-devtools.debug",
+            "request": "launch",
+            "name": "Launch Microsoft Edge and open the Edge DevTools",
+            "url": "http://localhost:9080",
+            "webRoot": "${workspaceFolder}"
+        },
         {
             "name": "Attach to Edge",
             "port": 9222,
             "request": "attach",
-            "type": "pwa-msedge",
-            "urlFilter": "*localhost*",
-            "webRoot": "${workspaceFolder}/packages/@fndj",
-            "smartStep": true
+            "type": "msedge",
+            "webRoot": "${workspaceFolder}/packages/@fndj"
         },
         {
-            "type": "vscode-edge-devtools.debug",
+            "name": "Launch Edge",
             "request": "launch",
-            "name": "Launch",
-            "vscode-edge-devtools.browserFlavor": "Canary",
-            "port": 9222,
+            "type": "msedge",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ],
             "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}/packages/@fndj",
-            "sourceMaps": true,
-            "userDataDir": false,
-            "useHttps": true
+            "webRoot": "${workspaceFolder}/packages/@fndj"
         },
         {
-            "type": "vscode-edge-devtools.debug",
-            "request": "launch",
-            "name": "xxLaunch Microsoft Edge and open the Edge DevTools",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "vscode-edge-devtools.debug",
-            "request": "attach",
-            "name": "11Attach to Microsoft Edge and open the Edge DevTools",
-            "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}"
-        },
-        
-        {
-            "type": "pwa-msedge",
-            "version": "dev",
-            "request": "attach",
-            "name": "qq",
-            "preLaunchTask": "browser:start",
-            "url": "http://localhost:9080",
-            "webRoot": "${workspaceFolder}",
-            "port": 9222,
-            "sourceMaps": true
-        },
-       
-        {
-            // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
-            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
             "name": "Launch YoutubeProxy",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-youtubeproxy",
-            // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/packages/@fndj/YoutubeProxy/bin/Debug/net6.0/YoutubeProxy.dll",
             "args": [],
             "cwd": "${workspaceFolder}/packages/@fndj/YoutubeProxy",
             "stopAtEntry": false,
-            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
                 "action": "openExternally",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
@@ -111,9 +82,38 @@
             }
         },
         {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
+            "type": "pwa-msedge",
+            "name": "Launch Microsoft Edge",
+            "request": "launch",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ],
+            "url": "http://localhost:9080/",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "pwa-msedge",
+            "name": "Launch Microsoft Edge in headless mode",
+            "request": "launch",
+            "runtimeArgs": [
+                "--headless",
+                "--remote-debugging-port=9222"
+            ],
+            "url": "http://localhost:9080/",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "vscode-edge-devtools.debug",
+            "name": "Open Edge DevTools",
+            "request": "attach",
+            "url": "http://localhost:9222/",
+            "presentation": {
+                "hidden": true
+            }
         }
     ]
 }

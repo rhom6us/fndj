@@ -60,6 +60,6 @@ export class KindaWeakMap<K, V extends object> implements Map<K, V> {
         return this.entries();
     }
 
-    readonly [Symbol.toStringTag]: 'KindaWeakMap';
+    readonly [Symbol.toStringTag] = 'KindaWeakMap' as const;
 
 }

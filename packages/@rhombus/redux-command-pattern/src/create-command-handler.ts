@@ -50,6 +50,8 @@ export type InferStore<T extends DeepDictionaryItem<CommandFnAny>> = Store<Infer
 
 const DEFAULT_SIGNAL: AbortSignal = Object.freeze({
   aborted: false,
+  reason: 'default signal',
+  throwIfAborted() { },
   onabort() { throw 'DEFAULT_SIGNAL cannot be aborted'; },
   addEventListener() { },
   dispatchEvent(): boolean {

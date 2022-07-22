@@ -1,6 +1,6 @@
 {
     "youtube-proxy": {
-        "host": "https://localhost:5001"
+        "host": "https://localhost:7271"
     },
     "youtube-data": {
         "oauth": {

@@ -24,7 +24,7 @@ export async function search(query: string) {
 }
 
 export async function download(id: string) {
-    const url = `https://localhost:5001/${id}/audio`;
+    const url = `https://localhost:7271/${id}/audio/best`;
     const request = new Request(url);
     const cache = await caches.open('youtube');
     const cacheResponse = await cache.match(request);

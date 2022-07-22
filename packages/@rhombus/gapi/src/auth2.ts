@@ -23,7 +23,7 @@ export type GoogleUser = gapi.auth2.GoogleUser;
 
 let cache: GoogleAuth | undefined;
 const def = defer<GoogleAuth>();
-export async function getAuth2(client_id?: string, ...scopes: string[]): Promise<GoogleAuth> {
+export async function getAuth2(client_id?: string): Promise<GoogleAuth> {
     if (!client_id) {
         if (!cache) {
             return await def.promise;
@@ -33,15 +33,25 @@ export async function getAuth2(client_id?: string, ...scopes: string[]): Promise
     // eslint-disable-next-line no-async-promise-executor
     const result = cache ??= await new Promise<GoogleAuth>(async resolve => {
 
-
-        const auth2Promise = auth2.getAuthInstance() ?? auth2.init({
+        auth2.init({
             client_id,//: "725047741145-anp1d89o2hf63g72h8hpjo3tte9so6f5.apps.googleusercontent.com",
             // scope: scopes.join(' '),
-        });
-        auth2Promise.then(p => resolve(omit(p, 'then')));
+        }).then((p) => {
+            resolve(p);
+            // const auth2Promise = auth2.getAuthInstance();    
+            // resolve(auth2Promise);
+        })
+        
+        
+        // auth2Promise.then(p => {
+        //     console.log({ p });
+        //     const omitted = omit(p, 'then');
+        //     resolve(omitted);
+        // });
     });
+    
 
-    return await def.resolve(cache = { ...result });
+    return await def.resolve(cache = result);
 }
 
 function omit<T, K extends keyof T>(source: T, ...keys: K[]): Omit<T, K> {

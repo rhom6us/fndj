@@ -103,5 +103,7 @@ packages/**/*.rar
 
 **/dist/
 **/lib/
+**/lib-commonjs/
+**/temp/
 
 rigs/heft-webpack-rig/webpack/src/

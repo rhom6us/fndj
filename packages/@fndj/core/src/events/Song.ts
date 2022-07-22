@@ -1,7 +1,7 @@
 import { Measure, minutes, seconds as Seconds, Time } from 'safe-units';
 
 
-const Beats = Measure.dimension("beats");
+const Beats = Measure.dimension("MusicTime", 'b');
 type Beats = typeof Beats;
 
 function beats(value: number): Beats{

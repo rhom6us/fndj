@@ -45,8 +45,8 @@ export const Search: FC<Props> = (state) => {
 };
 const Search_Results: FC<{ videos: Video[]; }> = ({ videos }) => {
     const navigate = useNavigate();
-    const onClick = useCallback((video: Video) => () => navigate(`/tracks/${video.id}`), []);
-    // const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video.id!), []);
+    // const onClick = useCallback((video: Video) => () => navigate(`/tracks/${video.id}`), []);
+    const onClick = useCallback((video: Video) => () => commands.addTrack.selectResult(video.id!), []);
     return (
         <ResultRoot>
             <ul>
