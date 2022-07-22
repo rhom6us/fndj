@@ -1,1 +1,0 @@
-{"version":3,"file":"standard-command.js","sourceRoot":"","sources":["../src/standard-command.ts"],"names":[],"mappings":"","sourcesContent":["import { Action as ReduxCommand } from './external/redux';\n\nexport interface StandardCommand<TPayload = undefined> extends ReduxCommand<string> {\n  type: string;\n  payload: TPayload;\n}\n"]}

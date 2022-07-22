@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":"AAAA,cAAc,SAAS,CAAC;AACxB,cAAc,UAAU,CAAC;AACzB,OAAO,KAAK,OAAO,MAAM,WAAW,CAAC","sourcesContent":["export * from './auth2';\nexport * from './client';\nexport * as youtube from './youtube';\n\n"]}
