@@ -1,4 +1,4 @@
-import { Func } from '@rhombus/func';
+import { Func } from "@rhombus-toolkit/func";
 import { Cast } from './cast';
 import { Inc } from './counter';
 import { DeepDictionary, DeepDictionaryItem } from './deep-record';

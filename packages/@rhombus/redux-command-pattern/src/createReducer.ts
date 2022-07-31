@@ -1,4 +1,4 @@
-import { DeepDictionary, flattenMap, restify } from '@rhombus/type-helpers';
+import { DeepDictionary, flattenMap, restify } from "@rhombus-toolkit/type-helpers";
 import { EventTypes } from './event-creator';
 import { Reducer as ReduxReducer } from './external/redux';
 import { ReducerFnAny } from './reducer-fn';

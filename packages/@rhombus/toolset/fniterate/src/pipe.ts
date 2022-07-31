@@ -1,4 +1,4 @@
-import { Func } from '@rhombus/func';
+import { Func } from "@rhombus-toolkit/func";
 
 
 type SelectorChain<T1, T2, T3, T4> = [Func<[T1], T2>, Func<[T2], T3>, Func<[T3], T4>];

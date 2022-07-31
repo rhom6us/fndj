@@ -12,19 +12,19 @@ importers:
       '@fndj/browser-ui': workspace:*
       '@fndj/core': workspace:*
       '@fndj/heft-webpack-rig': workspace:*
-      '@rhombus/async-timers': workspace:*
-      '@rhombus/audio-context': workspace:*
-      '@rhombus/defer': workspace:*
-      '@rhombus/fetch': workspace:*
-      '@rhombus/func': workspace:*
+      '@rhombus-toolkit/async-timers': ~1.1.0
+      '@rhombus-toolkit/audio-context': ~2.0.0
+      '@rhombus-toolkit/defer': ~1.1.0
+      '@rhombus-toolkit/fetch': ~1.1.0
+      '@rhombus-toolkit/func': ~1.1.0
+      '@rhombus-toolkit/logger': ~1.1.0
+      '@rhombus-toolkit/singleton': ~1.1.0
+      '@rhombus-toolkit/type-guards': ~1.1.0
+      '@rhombus-toolkit/type-helpers': ~1.1.0
       '@rhombus/gapi': workspace:*
       '@rhombus/gapi-react': workspace:*
-      '@rhombus/logger': workspace:*
       '@rhombus/react': workspace:*
       '@rhombus/redux-command-pattern': workspace:*
-      '@rhombus/singleton': workspace:*
-      '@rhombus/type-guards': workspace:*
-      '@rhombus/type-helpers': workspace:*
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/css-dom': workspace:*
@@ -60,19 +60,19 @@ importers:
       '@fluentui/style-utilities': 8.4.2_812c4b915b618d5091ca1e8ce4566766
       '@fndj/browser-ui': link:../browser-ui
       '@fndj/core': link:../core
-      '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
-      '@rhombus/audio-context': link:../../@rhombus/toolset/audio-context
-      '@rhombus/defer': link:../../@rhombus/toolset/defer
-      '@rhombus/fetch': link:../../@rhombus/toolset/fetch
-      '@rhombus/func': link:../../@rhombus/toolset/func
+      '@rhombus-toolkit/async-timers': 1.1.0
+      '@rhombus-toolkit/audio-context': 2.0.0
+      '@rhombus-toolkit/defer': 1.1.0
+      '@rhombus-toolkit/fetch': 1.1.0
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/logger': 1.1.0
+      '@rhombus-toolkit/singleton': 1.1.0
+      '@rhombus-toolkit/type-guards': 1.1.0
+      '@rhombus-toolkit/type-helpers': 1.1.0
       '@rhombus/gapi': link:../../@rhombus/gapi
       '@rhombus/gapi-react': link:../../@rhombus/gapi-react
-      '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/react': link:../../@rhombus/react
       '@rhombus/redux-command-pattern': link:../../@rhombus/redux-command-pattern
-      '@rhombus/singleton': link:../../@rhombus/toolset/singleton
-      '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
-      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       classnames: 2.3.1
       comlink: 4.3.1
       history: 5.1.0
@@ -119,8 +119,8 @@ importers:
       '@redux-devtools/instrument': ^1.11.0
       '@redux-devtools/log-monitor': ^2.3.0
       '@redux-devtools/slider-monitor': ^2.0.0-8
-      '@rhombus/async-timers': workspace:*
-      '@rhombus/type-helpers': workspace:*
+      '@rhombus-toolkit/async-timers': ~1.1.0
+      '@rhombus-toolkit/type-helpers': ~1.1.0
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/css-dom': workspace:*
@@ -142,8 +142,8 @@ importers:
       '@redux-devtools/instrument': 1.11.1
       '@redux-devtools/log-monitor': 2.3.1_1176b52fec9a3ddd589b56daaff6cfa8
       '@redux-devtools/slider-monitor': 2.0.0-9_1176b52fec9a3ddd589b56daaff6cfa8
-      '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
-      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
+      '@rhombus-toolkit/async-timers': 1.1.0
+      '@rhombus-toolkit/type-helpers': 1.1.0
       classnames: 2.3.1
       redux-devtools-dispatch: 2.2.1_react@17.0.2
       redux-devtools-multiple-monitors: 1.0.1_react@17.0.2
@@ -161,14 +161,14 @@ importers:
     specifiers:
       '@fndj/heft-webpack-rig': workspace:*
       '@fndj/superpowered': workspace:*
-      '@rhombus/async-timers': workspace:*
-      '@rhombus/audio-context': workspace:*
-      '@rhombus/func': workspace:*
+      '@rhombus-toolkit/async-timers': ~1.1.0
+      '@rhombus-toolkit/audio-context': ~2.0.0
+      '@rhombus-toolkit/func': ~1.1.0
+      '@rhombus-toolkit/logger': ~1.1.0
+      '@rhombus-toolkit/type-guards': ~1.1.0
+      '@rhombus-toolkit/type-helpers': ~1.1.0
       '@rhombus/gapi': workspace:*
-      '@rhombus/logger': workspace:*
       '@rhombus/redux-command-pattern': workspace:*
-      '@rhombus/type-guards': workspace:*
-      '@rhombus/type-helpers': workspace:*
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/phaze-vocoder': workspace:*
@@ -181,13 +181,13 @@ importers:
       worker-url: ~1.1.0
     dependencies:
       '@fndj/superpowered': link:../superpowered
-      '@rhombus/async-timers': link:../../@rhombus/toolset/async-timers
-      '@rhombus/func': link:../../@rhombus/toolset/func
+      '@rhombus-toolkit/async-timers': 1.1.0
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/logger': 1.1.0
+      '@rhombus-toolkit/type-guards': 1.1.0
+      '@rhombus-toolkit/type-helpers': 1.1.0
       '@rhombus/gapi': link:../../@rhombus/gapi
-      '@rhombus/logger': link:../../@rhombus/toolset/logger
       '@rhombus/redux-command-pattern': link:../../@rhombus/redux-command-pattern
-      '@rhombus/type-guards': link:../../@rhombus/toolset/type-guards
-      '@rhombus/type-helpers': link:../../@rhombus/toolset/type-helpers
       fastpriorityqueue: 0.7.1
       fft.js: 4.0.4
       google-auth-library: 7.10.2
@@ -196,7 +196,7 @@ importers:
       worker-url: 1.1.0
     devDependencies:
       '@fndj/heft-webpack-rig': link:../../../rigs/heft-webpack-rig
-      '@rhombus/audio-context': link:../../@rhombus/toolset/audio-context
+      '@rhombus-toolkit/audio-context': 2.0.0
       '@rushstack/eslint-config': 2.4.5
       '@rushstack/heft': 0.42.2
       '@types/phaze-vocoder': link:../../@types/phaze-vocoder
@@ -218,9 +218,9 @@ importers:
     specifiers:
       '@fndj/heft-web-rig': workspace:*
       '@maxim_mazurok/gapi.client.youtube': ^3.0.20211026
-      '@rhombus/async-timers': workspace:*
-      '@rhombus/defer': workspace:*
-      '@rhombus/func': workspace:*
+      '@rhombus-toolkit/async-timers': ~1.1.0
+      '@rhombus-toolkit/defer': ~1.1.0
+      '@rhombus-toolkit/func': ~1.1.0
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/gapi': ^0.0.41
@@ -228,9 +228,9 @@ importers:
       '@types/gapi.client': ^1.0.5
       '@types/gapi.client.youtube': ^3.0.2
     dependencies:
-      '@rhombus/async-timers': link:../toolset/async-timers
-      '@rhombus/defer': link:../toolset/defer
-      '@rhombus/func': link:../toolset/func
+      '@rhombus-toolkit/async-timers': 1.1.0
+      '@rhombus-toolkit/defer': 1.1.0
+      '@rhombus-toolkit/func': 1.1.0
     devDependencies:
       '@fndj/heft-web-rig': link:../../../rigs/heft-web-rig
       '@maxim_mazurok/gapi.client.youtube': 3.0.20211116
@@ -244,7 +244,7 @@ importers:
   ../../packages/@rhombus/gapi-react:
     specifiers:
       '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
+      '@rhombus-toolkit/func': ~1.1.0
       '@rhombus/gapi': workspace:*
       '@rhombus/react': workspace:*
       '@rushstack/eslint-config': '*'
@@ -254,7 +254,7 @@ importers:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
-      '@rhombus/func': link:../toolset/func
+      '@rhombus-toolkit/func': 1.1.0
       '@rhombus/gapi': link:../gapi
       '@rhombus/react': link:../react
     devDependencies:
@@ -269,9 +269,9 @@ importers:
   ../../packages/@rhombus/react:
     specifiers:
       '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rhombus/logger': workspace:*
-      '@rhombus/type-guards': workspace:*
+      '@rhombus-toolkit/func': ~1.1.0
+      '@rhombus-toolkit/logger': ~1.1.0
+      '@rhombus-toolkit/type-guards': ~1.1.0
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/react': ^17.0.33
@@ -279,9 +279,9 @@ importers:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
-      '@rhombus/func': link:../toolset/func
-      '@rhombus/logger': link:../toolset/logger
-      '@rhombus/type-guards': link:../toolset/type-guards
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/logger': 1.1.0
+      '@rhombus-toolkit/type-guards': 1.1.0
     devDependencies:
       '@fndj/heft-web-rig': link:../../../rigs/heft-web-rig
       '@rushstack/eslint-config': 2.4.5
@@ -294,172 +294,29 @@ importers:
   ../../packages/@rhombus/redux-command-pattern:
     specifiers:
       '@fndj/heft-web-rig': workspace:*
-      '@rhombus/async-timers': workspace:*
-      '@rhombus/defer': workspace:*
-      '@rhombus/func': workspace:*
-      '@rhombus/type-guards': workspace:*
-      '@rhombus/type-helpers': workspace:*
+      '@rhombus-toolkit/async-timers': ~1.1.0
+      '@rhombus-toolkit/defer': ~1.1.0
+      '@rhombus-toolkit/func': ~1.1.0
+      '@rhombus-toolkit/logger': ~1.1.0
+      '@rhombus-toolkit/type-guards': ~1.1.0
+      '@rhombus-toolkit/type-helpers': ~1.1.0
       '@rushstack/eslint-config': '*'
       '@rushstack/heft': '*'
       '@types/lodash': ^4.14.176
       lodash: ^4.17.15
     dependencies:
-      '@rhombus/async-timers': link:../toolset/async-timers
-      '@rhombus/defer': link:../toolset/defer
-      '@rhombus/func': link:../toolset/func
-      '@rhombus/type-guards': link:../toolset/type-guards
-      '@rhombus/type-helpers': link:../toolset/type-helpers
+      '@rhombus-toolkit/async-timers': 1.1.0
+      '@rhombus-toolkit/defer': 1.1.0
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/logger': 1.1.0
+      '@rhombus-toolkit/type-guards': 1.1.0
+      '@rhombus-toolkit/type-helpers': 1.1.0
       lodash: 4.17.21
     devDependencies:
       '@fndj/heft-web-rig': link:../../../rigs/heft-web-rig
       '@rushstack/eslint-config': 2.4.5
       '@rushstack/heft': 0.42.2
       '@types/lodash': 4.14.177
-
-  ../../packages/@rhombus/toolset/async-timers:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rhombus/set-immediate': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-      '@rhombus/set-immediate': link:../set-immediate
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/audio-context:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/case-converter:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/defer:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/fetch:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rhombus/type-helpers': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-      '@rhombus/type-helpers': link:../type-helpers
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/func:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/kinda-weak-map:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/logger:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/set-immediate:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-      setimmediate: ^1.0.5
-    dependencies:
-      setimmediate: 1.0.5
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/singleton:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/type-guards:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
-
-  ../../packages/@rhombus/toolset/type-helpers:
-    specifiers:
-      '@fndj/heft-web-rig': workspace:*
-      '@rhombus/func': workspace:*
-      '@rushstack/eslint-config': '*'
-      '@rushstack/heft': '*'
-    dependencies:
-      '@rhombus/func': link:../func
-    devDependencies:
-      '@fndj/heft-web-rig': link:../../../../rigs/heft-web-rig
-      '@rushstack/eslint-config': 2.4.5
-      '@rushstack/heft': 0.42.2
 
   ../../packages/@types/css-dom:
     specifiers: {}
@@ -1582,8 +1439,8 @@ packages:
       '@types/gapi.client': 1.0.5
     dev: true
 
-  /@maxim_mazurok/gapi.client.youtube/3.0.20211118:
-    resolution: {integrity: sha512-pmOT4OBRLd4pYnIo4kv1jdY+90FboSWaX88Mw88r0EKTA7dr6ql6R4o/QpbZ6pfycIS3sYzyYe5Vqz/MAFokmQ==}
+  /@maxim_mazurok/gapi.client.youtube/3.0.20220727:
+    resolution: {integrity: sha512-giErR8twV6gJoza/ozhyqtov3hhz7QOta7niXZSGINyJRKyFE1p9p4T40RYbjY9cVMTFSL7lKhonvclo3BAnrQ==}
     dependencies:
       '@types/gapi.client': 1.0.5
     dev: true
@@ -1862,6 +1719,61 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - react-dom
+    dev: false
+
+  /@rhombus-toolkit/async-timers/1.1.0:
+    resolution: {integrity: sha512-myWeqR8P5Lwb5+4Vfbdnh10/gGiu+hlSP/85OKLHSXudzzlj6/rQJRuNGK+qvJSoF/vbyHusAepmJe8UlUTMRw==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/set-immediate': 1.1.0
+    dev: false
+
+  /@rhombus-toolkit/audio-context/2.0.0:
+    resolution: {integrity: sha512-n19kioK8IvfbmAz+JaJ9962MznQWHRec+8UcUOvnF5Dn0nMS0+jOQEXcojGN0quh3v3GddT7ytRNSdBm17K+Uw==}
+
+  /@rhombus-toolkit/defer/1.1.0:
+    resolution: {integrity: sha512-4QH+wzhhk069gv1BvPC4qNx+pL1mVTt5yZk1VBTjFgrlk1C2r63ga+tqcJnOFQu70Wpyly8By2wJpp/yh4W50A==}
+    dev: false
+
+  /@rhombus-toolkit/fetch/1.1.0:
+    resolution: {integrity: sha512-z6ucOJb4mVrkQGaVtnbpTlhys5t0Pjeuu6JVAUGN54Fkzs6H26YtYl+hufs5ehlz0wCAVduoB2CebhPsm/aZqw==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
+      '@rhombus-toolkit/type-helpers': 1.1.0
+    dev: false
+
+  /@rhombus-toolkit/func/1.1.0:
+    resolution: {integrity: sha512-0kvSXeilGuIHEHujnjcJBhkPVSV7yGQSGeWesqK7/XokHAlihwHKgPphf1ymVi0Og22B4JUEb6NVQPqYgoT2lw==}
+    dev: false
+
+  /@rhombus-toolkit/logger/1.1.0:
+    resolution: {integrity: sha512-l7Ig5jsXpQ4GvSfIeqltXcUwQH/mRzBECV18YzER9bl7XQbaCAYKpsdkP8jKtuN9mhDQIFv5tXyyc4g5j1jbHw==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
+    dev: false
+
+  /@rhombus-toolkit/set-immediate/1.1.0:
+    resolution: {integrity: sha512-CtymzrVU1vsn+VyVy3BYlfhi1NvmQXDYRDKiEGp2DFtuPidHobl1HfqBkYCw2EAOA0KTIdFC2k2CrwCKxibw+A==}
+    dependencies:
+      setimmediate: 1.0.5
+    dev: false
+
+  /@rhombus-toolkit/singleton/1.1.0:
+    resolution: {integrity: sha512-yQN5UQVMERZ9ynr8NcrVNt/GQq5/d0lX+d9SmVEDydRjAvs/RmR5rqRlRpniaHDuq2NlKhjcoo61Td+QU2x+wg==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
+    dev: false
+
+  /@rhombus-toolkit/type-guards/1.1.0:
+    resolution: {integrity: sha512-nHHbB+9/A8tQa5I04p2Srpx1cRx4V5rQ9GScDF/je3/dZDgE1T0t2Hr8Xd6YmkwyAd/0U7JhKysxIXbRtTheZA==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
+    dev: false
+
+  /@rhombus-toolkit/type-helpers/1.1.0:
+    resolution: {integrity: sha512-xJXfqhA1udEPWgGbAkxUqokas49qH0gqHE7JTvbhocl21r22VluglyME5qmMRoUsKaRVJ3PWwMqe7nc1GZYBfA==}
+    dependencies:
+      '@rhombus-toolkit/func': 1.1.0
     dev: false
 
   /@rjsf/core/3.2.0_react@17.0.2:
@@ -2258,7 +2170,7 @@ packages:
   /@types/gapi.client.youtube/3.0.2:
     resolution: {integrity: sha512-SmWCofuA5DtzU/m87I2+TMgeir7b9eHO81SDkqlEIs0OQj8MjiJk8xnjLIf2UfmYuViW31qAjjBcUFINImNaTw==}
     dependencies:
-      '@maxim_mazurok/gapi.client.youtube': 3.0.20211118
+      '@maxim_mazurok/gapi.client.youtube': 3.0.20220727
     dev: true
 
   /@types/gapi.client/1.0.5:
@@ -10217,7 +10129,7 @@ packages:
     dev: false
 
   /setimmediate/1.0.5:
-    resolution: {integrity: sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=}
+    resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
     dev: false
 
   /setprototypeof/1.1.0:

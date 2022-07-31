@@ -1,4 +1,4 @@
-import { Action, Func } from '@rhombus/func';
+import { Action, Func } from "@rhombus-toolkit/func";
 import { useEffect, useMemo } from 'react';
 
 export function useDoOnce(fn: Action<[]>) {

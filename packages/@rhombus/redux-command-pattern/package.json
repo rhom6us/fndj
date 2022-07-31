@@ -14,11 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rhombus/async-timers": "workspace:*",
-    "@rhombus/defer": "workspace:*",
-    "@rhombus/func": "workspace:*",
-    "@rhombus/type-guards": "workspace:*",
-    "@rhombus/type-helpers": "workspace:*",
+    "@rhombus-toolkit/async-timers": "~1.1.0",
+    "@rhombus-toolkit/defer": "~1.1.0",
+    "@rhombus-toolkit/func": "~1.1.0",
+    "@rhombus-toolkit/logger": "~1.1.0",
+    "@rhombus-toolkit/type-guards": "~1.1.0",
+    "@rhombus-toolkit/type-helpers": "~1.1.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

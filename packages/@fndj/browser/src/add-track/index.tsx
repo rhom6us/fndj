@@ -1,6 +1,6 @@
 import { Spinner, SpinnerSize } from '@fluentui/react';
+import { assertNever } from '@rhombus-toolkit/type-guards';
 import { Authenticate } from '@rhombus/gapi-react';
-import { assertNever } from '@rhombus/type-guards';
 import React, { FC, memo, useMemo } from 'react';
 import { useStore } from '../hooks';
 import { Detail } from './Detail';

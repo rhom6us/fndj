@@ -1,4 +1,4 @@
-// import { Ctor, Func } from '@rhombus/func';
+// import { Ctor, Func } from "@rhombus-toolkit/func";
 // import * as obj from './obj';
 
 // export function Lazy<T extends Ctor>(ctor: T): T {

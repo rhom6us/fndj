@@ -1,5 +1,5 @@
-import { Func } from '@rhombus/func';
-import { DeepDictionaryItem, restify, unrestify } from '@rhombus/type-helpers';
+import { Func } from "@rhombus-toolkit/func";
+import { DeepDictionaryItem, restify, unrestify } from "@rhombus-toolkit/type-helpers";
 import { CommandFnAny, CommandHandler, CommandMap, InferPayload as CommandPayload } from './create-command-handler';
 import { StandardCommand } from './standard-command';
 

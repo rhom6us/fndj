@@ -1,5 +1,5 @@
-import { audioContext } from '@rhombus/audio-context';
-import { logger } from '@rhombus/logger';
+import { audioContext } from "@rhombus-toolkit/audio-context";
+import { logger } from "@rhombus-toolkit/logger";
 import * as waves from 'waves-audio';
 
 // const transport = new Transport();

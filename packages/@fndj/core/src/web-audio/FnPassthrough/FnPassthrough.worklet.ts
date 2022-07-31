@@ -1,4 +1,4 @@
-import { Func, Sub } from "@rhombus/func";
+import { Func, Sub } from "@rhombus-toolkit/func";
 import { PROCESSOR_NAME } from "./constants";
 
 registerProcessor(

@@ -1,4 +1,4 @@
-import { Cast, DeepDictionary, DeepDictionaryItem, Inc, restify, unrestify } from '@rhombus/type-helpers';
+import { Cast, DeepDictionary, DeepDictionaryItem, Inc, restify, unrestify } from "@rhombus-toolkit/type-helpers";
 import { InferPayload, ReducerFnAny } from './reducer-fn';
 import { StandardEvent } from './standard-event';
 

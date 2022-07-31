@@ -1,4 +1,4 @@
-import { DeepDictionary, DeepDictionaryItem } from '@rhombus/type-helpers';
+import { DeepDictionary, DeepDictionaryItem } from "@rhombus-toolkit/type-helpers";
 import { CommandFn, createCommandHandler } from './create-command-handler';
 import { createReducer } from './createReducer';
 import { EventTypes, getEventCreator } from './event-creator';

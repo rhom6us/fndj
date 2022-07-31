@@ -1,4 +1,4 @@
-import { Action } from '@rhombus/func';
+import { Action } from "@rhombus-toolkit/func";
 
 
 type InferArgs<F extends NodeStyleFn> = F extends NodeStyleFn<infer args, any> ? args : never;

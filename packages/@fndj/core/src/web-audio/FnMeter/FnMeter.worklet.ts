@@ -1,4 +1,4 @@
-import { logger } from '@rhombus/logger';
+import { logger } from "@rhombus-toolkit/logger";
 import { AudioWorkletProcessorBase, ParameterData } from './AudioWorkletProcessorBase';
 // //declare global {
 // declare class AudioWorkletProcessor {

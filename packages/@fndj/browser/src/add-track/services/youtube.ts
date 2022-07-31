@@ -1,7 +1,7 @@
-import { defer } from '@rhombus/defer';
-import '@rhombus/fetch';
-import { wrapResponse } from '@rhombus/fetch';
-import { Func } from '@rhombus/func';
+import { defer } from "@rhombus-toolkit/defer";
+import '@rhombus-toolkit/fetch';
+import { wrapResponse } from "@rhombus-toolkit/fetch";
+import { Func } from "@rhombus-toolkit/func";
 import { youtube } from '@rhombus/gapi';
 
 export async function search(query: string) {

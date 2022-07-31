@@ -1,4 +1,4 @@
-import { Ctor, Func } from '@rhombus/func';
+import { Ctor, Func } from "@rhombus-toolkit/func";
 type InstanceFactory<T extends Ctor> = Func<[], InstanceType<T>>;
 
 const map = new WeakMap<Ctor, any>();

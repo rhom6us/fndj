@@ -1,4 +1,4 @@
-import { range } from "@rhombus/type-helpers";
+import { range } from "@rhombus-toolkit/type-helpers";
 
 const ctx: Worker = self as any;
 const color = (function () {

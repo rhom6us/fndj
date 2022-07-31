@@ -1,4 +1,4 @@
-import { AsyncFunc, Func } from '@rhombus/func';
+import { AsyncFunc, Func } from "@rhombus-toolkit/func";
 import { Credentials } from 'google-auth-library';
 
 

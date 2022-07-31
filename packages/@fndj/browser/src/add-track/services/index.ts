@@ -1,4 +1,4 @@
-// import { obj } from '@rhombus/type-helpers';
+// import { obj } from "@rhombus-toolkit/type-helpers";
 // import * as yt from './youtube';
 // export type Youtube = {
 //     [K in keyof typeof yt]: (args: Parameters<typeof yt[K]>) => () => ReturnType<typeof yt[K]>;

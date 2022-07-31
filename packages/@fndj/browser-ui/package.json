@@ -20,8 +20,8 @@
     "@redux-devtools/instrument": "^1.11.0",
     "@redux-devtools/log-monitor": "^2.3.0",
     "@redux-devtools/slider-monitor": "^2.0.0-8",
-    "@rhombus/async-timers": "workspace:*",
-    "@rhombus/type-helpers": "workspace:*",
+    "@rhombus-toolkit/async-timers": "~1.1.0",
+    "@rhombus-toolkit/type-helpers": "~1.1.0",
     "classnames": "^2.3.1",
     "redux-devtools-dispatch": "^2.2.1",
     "redux-devtools-multiple-monitors": "^1.0.1"

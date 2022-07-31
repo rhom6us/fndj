@@ -1,4 +1,4 @@
-import { Action } from '@rhombus/func';
+import { Action } from "@rhombus-toolkit/func";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 

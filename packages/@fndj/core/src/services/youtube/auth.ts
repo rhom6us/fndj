@@ -2,10 +2,10 @@
 // import settings from '../../../settings.json';
 // // import { Credentials, OAuth2Client } from 'google-auth-library';
 // import { store } from '../store';
-// import { isDefined, logger } from '@rhombus/type-helpers';
+// import { isDefined, logger } from "@rhombus-toolkit/type-helpers";
 // import { getVideo } from './video';
 // import {  GoogleAuth } from '@rhombus/gapi';
-// import { AsyncFunc, Func } from '@rhombus/func';
+// import { AsyncFunc, Func } from "@rhombus-toolkit/func";
 // // const OAuth2 = google.auth.OAuth2;
 // export function newWindowRedirect(code: string) {
 //     (window.opener as Window).postMessage({ google_oauth: { code } }, window.location.origin);

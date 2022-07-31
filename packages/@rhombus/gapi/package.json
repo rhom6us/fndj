@@ -18,9 +18,9 @@
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
-    "@rhombus/async-timers": "workspace:*",
-    "@rhombus/defer": "workspace:*",
-    "@rhombus/func": "workspace:*"
+    "@rhombus-toolkit/async-timers": "~1.1.0",
+    "@rhombus-toolkit/defer": "~1.1.0",
+    "@rhombus-toolkit/func": "~1.1.0"
   },
   "devDependencies": {
     "@maxim_mazurok/gapi.client.youtube": "^3.0.20211026",
