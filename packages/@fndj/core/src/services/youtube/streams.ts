@@ -1,4 +1,4 @@
-import audioContext from '@rhombus/audio-context';
+import audioContext from "@rhombus-toolkit/audio-context";
 import settings from '../../../settings.json';
 
 export async function getAudio(id: string, urlBuilder?: (id: string) => string) {

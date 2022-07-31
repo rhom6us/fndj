@@ -13,9 +13,9 @@
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
-    "@rhombus/func": "workspace:*",
-    "@rhombus/logger": "workspace:*",
-    "@rhombus/type-guards": "workspace:*"
+    "@rhombus-toolkit/func": "~1.1.0",
+    "@rhombus-toolkit/logger": "~1.1.0",
+    "@rhombus-toolkit/type-guards": "~1.1.0"
   },
   "peerDependencies": {
     "react": "^17.0.1",

@@ -1,6 +1,6 @@
 import { audioContext, FnMeterNode, PhaseVocoderNode } from '@fndj/core/';
-import { logger } from '@rhombus/logger';
-import { isUrl } from '@rhombus/type-guards';
+import { logger } from "@rhombus-toolkit/logger";
+import { isUrl } from "@rhombus-toolkit/type-guards";
 
 const log = logger.log;
 

@@ -5,9 +5,9 @@
  * @param implementation {[command-name]: (state, payload)=>events}
  * @returns This is like a reducer for command objects
  */
-import { AsyncAction, Func } from '@rhombus/func';
-import { assertNever, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isPromiseLike } from '@rhombus/type-guards';
-import { Await, DeepDictionary, DeepDictionaryItem, flattenMap, restify } from '@rhombus/type-helpers';
+import { AsyncAction, Func } from "@rhombus-toolkit/func";
+import { assertNever, isAsyncGenerator, isAsyncIterable, isGenerator, isIterable, isPromiseLike } from "@rhombus-toolkit/type-guards";
+import { Await, DeepDictionary, DeepDictionaryItem, flattenMap, restify } from "@rhombus-toolkit/type-helpers";
 import { StandardCommand } from './standard-command';
 import { isStandardEvent, StandardEventAny } from './standard-event';
 import { Store } from './store';

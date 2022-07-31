@@ -1,4 +1,4 @@
-import { Sub } from '@rhombus/func';
+import { Sub } from "@rhombus-toolkit/func";
 import { useEffect, useRef, useState } from 'react';
 export function useCanvas() {
     const ref = useRef<HTMLCanvasElement>(null);

@@ -1,6 +1,6 @@
 // import url from 'worklet-loader!./phase-vocoder-processor.worklet';
-import { audioContext } from '@rhombus/audio-context';
-import { enableLogging, logger } from '@rhombus/logger';
+import { audioContext } from "@rhombus-toolkit/audio-context";
+import { enableLogging, logger } from "@rhombus-toolkit/logger";
 import { WorkerUrl } from 'worker-url';
 import { FFT_SIZE, PITCH_FACTOR, PROCESSOR_NAME } from './constants';
 // import processorUrl from './phase-vocoder-processor.worklet.ts';

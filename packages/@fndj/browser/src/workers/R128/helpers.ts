@@ -1,4 +1,4 @@
-﻿import { logger } from '@rhombus/logger';
+﻿import { logger } from "@rhombus-toolkit/logger";
 
 type Func<Args extends any[] = any[], Return = any> = (...args: Args) => Return;
 

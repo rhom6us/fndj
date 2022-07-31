@@ -1,4 +1,4 @@
-import { AsyncFunc } from '@rhombus/func';
+import { AsyncFunc } from "@rhombus-toolkit/func";
 import { DependencyList, useDebugValue, useEffect, useMemo, useState } from 'react';
 
 

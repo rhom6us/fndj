@@ -1,4 +1,4 @@
-import { Action } from '@rhombus/func';
+import { Action } from '@rhombus-toolkit/func';
 import { getAuth2, GoogleAuth, GoogleUser } from '@rhombus/gapi';
 import { usePromise } from '@rhombus/react';
 import React, { Children, createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';

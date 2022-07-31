@@ -1,4 +1,4 @@
-import { Sub } from '@rhombus/func';
+import { Sub } from "@rhombus-toolkit/func";
 import { DependencyList, MutableRefObject, RefObject, useCallback, useEffect, useRef } from 'react';
 export function useCanvas(ref:undefined | RefObject<HTMLCanvasElement> | MutableRefObject<HTMLCanvasElement | null>, tracer:Sub<[context: CanvasRenderingContext2D]>, deps:DependencyList) {
      ref ??= useRef<HTMLCanvasElement>(null);

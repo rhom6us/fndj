@@ -1,4 +1,4 @@
-import { defer } from '@rhombus/defer';
+import { defer } from "@rhombus-toolkit/defer";
 import { loadLib } from './gapi';
 
 const auth2 = await loadLib('auth2');

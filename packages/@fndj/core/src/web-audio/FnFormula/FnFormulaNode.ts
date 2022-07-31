@@ -1,5 +1,5 @@
 ///<reference types="webaudio"/>
-import audioContext from '@rhombus/audio-context';
+import audioContext from "@rhombus-toolkit/audio-context";
 // import url from './FnFormulaProcessor.worklet.js';
 import { WorkerUrl } from 'worker-url';
 import { ARG1, ARG2, ARG3, PROCESSOR_NAME } from './constants';

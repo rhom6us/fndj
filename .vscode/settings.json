@@ -1,74 +1,7 @@
 {
-  "search.exclude": {
-    "**/.yarn": false,
-    "**/.pnp.*": false
-  },
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "source.fixAll.eslint": true,
-  "files.exclude": {
-    "**/.git": false,
-    "**/.svn": false,
-    "**/.hg": false,
-    "**/CVS": false,
-    "**/.DS_Store": false,
-    "**/Thumbs.db": false,
-    "**/node_modules": false,
-    "**/.tsbuildinfo": false,
-    "**/*.csproj.user": false,
-    "**/bin/": false,
-    "**/obj/": false,
-    "**/Properties/Resources.resx": false,
-    "yarn.lock": false,
-    "**/*.d.ts.map": false,
-    "**/desktop.ini": false,
-    "pnpm-lock.yaml": false,
-    "**/.pnpm-debug.log": false,
-    "**/.tmp.driveupload": false,
-    ".gitattributes": false,
-    ".ionide": false,
-    "assets": false,
-    "pnpm-workspace.yaml": false,
-    "packages/@fndj/main": false,
-    "packages/@fndj/superpowered": false,
-    "packages/@fndj/ui": false,
-    "packages/@fndj/YouTubeProxy": false,
-    "packages/@types": false,
-    "**/*.build.log": false,
-    "**/*.build.error.log": false,
-    "**/.rush/": false,
-    "**/temp/": false,
-    "**/.*": false,
-    "packages/@fndj/webpack/lib": false,
-    "packages/@fndj/webpack": false,
-    "**/config": false,
-    "**/lib": false,
-    "**/.heft": false,
-    "**/dist": false,
-    ".git": false
-  },
-  // The package manager you use to install node modules.
-  "eslint.packageManager": "pnpm",
-  "editor.formatOnType": true,
-  "typescript.format.semicolons": "insert",
-  "eslint.format.enable": true,
-  "npm.packageManager": "pnpm",
-  "files.autoSaveDelay": 5000,
-  "files.autoSave": "afterDelay",
+
   "vscode-edge-devtools.defaultUrl": "http://localhost:9080/",
-  "explorerExclude.backup": null,
-  "scm.alwaysShowActions": true,
-  "notebook.consolidatedRunButton": true,
-  "eslint.codeAction.disableRuleComment": {
-    "location": "separateLine"
-  },
-  "githubIssues.createIssueTriggers": ["TODO", "todo", "BUG", "FIXME", "ISSUE", "HACK", "DRAGON", "DRAGONS"],
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": true
-  },
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
-  },
+  "explorerExclude.backup": {},
   "vscode-edge-devtools.pathMapping": {
   
     // "webpack:///./*": "${webRoot}/*",
@@ -78,10 +11,7 @@
     "webpack://*": "${webRoot}/packages/*"
   },
   "editor.formatOnSaveMode": "modificationsIfAvailable",
-  "azureFunctions.deploySubpath": ".",
-  "azureFunctions.scmDoBuildDuringDeployment": true,
-  "azureFunctions.pythonVenv": ".venv",
-  "azureFunctions.projectLanguage": "Python",
-  "azureFunctions.projectRuntime": "~4",
-  "debug.internalConsoleOptions": "neverOpen"
+  "files.eol": "\n",
+  "files.exclude": {},
+  "explorer.excludeGitIgnore": true,
 }

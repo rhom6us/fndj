@@ -1,4 +1,4 @@
-import { AsyncAction } from '@rhombus/func';
+import { AsyncAction } from "@rhombus-toolkit/func";
 import { isFunction } from 'lodash';
 import { CommandResult } from '../create-command-handler';
 import { StandardEventAny } from '../standard-event';

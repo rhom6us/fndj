@@ -1,4 +1,4 @@
-import { createLogger, createNoopLogger } from '@rhombus/logger';
+import { createLogger, createNoopLogger } from '@rhombus-toolkit/logger';
 import React, { FC, useCallback, useContext, useMemo, useState } from 'react';
 
 const LoggerContext = React.createContext<ReturnType<typeof createLogger>>(createNoopLogger());

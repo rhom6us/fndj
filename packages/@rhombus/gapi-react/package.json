@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "Thomas Butler",
   "dependencies": {
-    "@rhombus/func": "workspace:*",
+    "@rhombus-toolkit/func": "~1.1.0",
     "@rhombus/gapi": "workspace:*",
     "@rhombus/react": "workspace:*"
   },

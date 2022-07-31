@@ -1,7 +1,7 @@
 import { createDevTools } from '@redux-devtools/core';
 import { EnhancedStore } from '@redux-devtools/instrument';
 import LogMonitor from '@redux-devtools/log-monitor';
-import { listenEventAsync } from '@rhombus/async-timers';
+import { listenEventAsync } from '@rhombus-toolkit/async-timers';
 import React from 'react';
 import { render } from 'react-dom';
 import { Action } from 'redux';

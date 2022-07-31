@@ -1,5 +1,5 @@
-import { audioContext as ctx } from '@rhombus/audio-context';
-import { Sub } from "@rhombus/func";
+import { audioContext as ctx } from "@rhombus-toolkit/audio-context";
+import { Sub } from "@rhombus-toolkit/func";
 import { CommandResult, ThunkDispatch } from "@rhombus/redux-command-pattern";
 import { AnalysisState, DrawingState, events, State } from "./reducers";
 import { analyze } from "./services/analyze";

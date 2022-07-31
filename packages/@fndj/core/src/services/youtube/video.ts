@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { isDefined } from '@rhombus/type-guards';
+import { isDefined } from "@rhombus-toolkit/type-guards";
 // import type { youtube_v3 } from 'googleapis';
 // import * as youtube from './api';
 import { youtube } from '@rhombus/gapi';

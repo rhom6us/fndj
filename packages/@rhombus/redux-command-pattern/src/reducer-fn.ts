@@ -1,6 +1,6 @@
 
-import { Func } from '@rhombus/func';
-import { DeepDictionaryItem, DeepRecord, DeepRecordItem, restify } from '@rhombus/type-helpers';
+import { Func } from "@rhombus-toolkit/func";
+import { DeepDictionaryItem, DeepRecord, DeepRecordItem, restify } from "@rhombus-toolkit/type-helpers";
 
 export type ReducerFn<TState = any, TPayload = undefined> = (
   state: TState,

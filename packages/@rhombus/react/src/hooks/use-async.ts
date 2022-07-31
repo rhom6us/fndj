@@ -1,4 +1,4 @@
-import { AsyncFunc } from '@rhombus/func';
+import { AsyncFunc } from "@rhombus-toolkit/func";
 import { useCallback, useEffect, useState } from 'react';
 import { VALUE_NOT_SET } from './VALUE_NOT_SET';
 

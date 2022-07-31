@@ -1,4 +1,4 @@
-import { CheapRingBuffer } from '@rhombus/type-helpers';
+import { CheapRingBuffer } from "@rhombus-toolkit/type-helpers";
 import '../util';
 import { MeanGainNode, SquareRootNode, SquaringNode } from './audio-nodes';
 import { absoluteValueToDBFS, getFloatTimeDomainData, maxAbs } from './audio-nodes/helpers';

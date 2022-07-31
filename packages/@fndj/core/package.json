@@ -11,29 +11,30 @@
   },
   "dependencies": {
     "@fndj/superpowered": "workspace:*",
-    "@rhombus/async-timers": "workspace:*",
-    "@rhombus/func": "workspace:*",
     "@rhombus/gapi": "workspace:*",
-    "@rhombus/logger": "workspace:*",
     "@rhombus/redux-command-pattern": "workspace:*",
-    "@rhombus/type-guards": "workspace:*",
-    "@rhombus/type-helpers": "workspace:*",
     "fastpriorityqueue": "^0.7.1",
     "fft.js": "^4.0.4",
     "google-auth-library": "^7.10.1",
     "realm-web": "^1.4.0",
     "safe-units": "^1.1.0",
-    "worker-url": "~1.1.0"
+    "worker-url": "~1.1.0",
+    "@rhombus-toolkit/async-timers": "~1.1.0",
+    "@rhombus-toolkit/func": "~1.1.0",
+    "@rhombus-toolkit/logger": "~1.1.0",
+    "@rhombus-toolkit/type-guards": "~1.1.0",
+    "@rhombus-toolkit/type-helpers": "~1.1.0"
   },
   "peerDependencies": {
-    "@rhombus/audio-context": "workspace:*"
+    "@rhombus-toolkit/audio-context": "~2.0.0"
   },
   "devDependencies": {
-    "@rhombus/audio-context": "workspace:*",
+    "@rhombus-toolkit/audio-context": "~2.0.0",
     "@types/phaze-vocoder": "workspace:*",
     "@types/webaudio": "workspace:*",
     "@fndj/heft-webpack-rig": "workspace:*",
     "@rushstack/eslint-config": "*",
     "@rushstack/heft": "*"
+    
   }
 }
