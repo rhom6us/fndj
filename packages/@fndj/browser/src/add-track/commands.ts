@@ -63,8 +63,12 @@ export const commandImplementation = {
     startWaveform(state: AnalysisState): CommandResult<State> {
       return thunk(async (dispatch) => {
         dispatch(events.analyze.waveformsStarted());
-        worker.addEventListener("message", ({ data }) => {
-          dispatch(events.analyze.waveformComputed({ waveformImageData: data }));
+        worker.addEventListener("message", ({ data: { progress, data } }) => {
+          if (progress === 1) {
+            dispatch(events.analyze.waveformCompleted());
+          } else {
+            dispatch(events.analyze.waveformPartComputed({ waveformImageData: data, progress }));
+          }
         });
         const buffer = await new AudioContext({sampleRate: 12000}).decodeAudioData(state.download.buffer.slice(0));
         const message = { audioBuffer: buffer.getChannelData(0).slice(0).buffer};

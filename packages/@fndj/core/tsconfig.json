@@ -9,6 +9,7 @@
       "webaudio"
     ],
     "target": "esnext",
-    "module": "esnext"
+    "module": "esnext",
+    "exactOptionalPropertyTypes": false
   }
 }

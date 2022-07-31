@@ -6,4 +6,6 @@
 // export * from './SuperPitchShift';
 // export * from './SuperTimeStretching';
 
+export * from './createSpectrogram';
 export { };
+

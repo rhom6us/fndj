@@ -36,13 +36,14 @@ ctx.onmessage = (function () {
 
       let max = mapY(topic.reduce(_max));
       let min = mapY(topic.reduce(_min));
-      results.push([min,max]);
+      ctx.postMessage({ progress: x / windowCount, data: [min, max] });
+      // results.push([min,max]);
       // for (const y of range(1 + max - min, min)) {
       //   rows[y][x] = colors.black;
       // }
     }
-    
-    ctx.postMessage(results);
+    ctx.postMessage({ progress: 1 });
+    // ctx.postMessage(results);
 
     // for (let x = 0; x < bufferLength; x++) {
     //   try{
