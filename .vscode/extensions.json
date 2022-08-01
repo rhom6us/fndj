@@ -1,11 +1,18 @@
 {
   "recommendations": [
-    "ms-azuretools.vscode-azurefunctions",
-    "esbenp.prettier-vscode",
-    "ms-dotnettools.csharp",
-    "dennismaxjung.vscode-dotnet-auto-attach",
     "dbaeumer.vscode-eslint",
-    "rvest.vs-code-prettier-eslint",
-    "amodio.tsl-problem-matcher"
+    "ms-dotnettools.csharp",
+    "ms-azuretools.vscode-docker",
+    // "redvanworkshop.explorer-exclude-vscode-extension",
+    "peterschmalfeldt.explorer-exclude",
+    "vsls-contrib.gistfs",
+    "github.copilot",
+    "styled-components.vscode-styled-components",
+    "mrmlnc.vscode-json5",
+    // "visualstudioexptteam.vscodeintellicode",
+    // "ms-vscode.vscode-typescript-next",
+    // "ms-edgedevtools.vscode-edge-devtools",
+    "spmeesseman.vscode-taskexplorer",
+    "trunk.io"
   ]
 }
