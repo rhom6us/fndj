@@ -34,7 +34,7 @@ export const Import: FC<Props> = ({ video, state }) => {
 
             {/* {state.download.state === 'complete' && <Analyzing data={analysis}  />} */}
             {state.type >= StateType.analysis && <Analyzing analysis={(state as AnalysisState).analysis} />}
-            {state.type >= StateType.waveform && <GeneratingWaveform waveformImageData={(state as DrawingState).waveformImageData} />}
+            {state.type >= StateType.waveform && <GeneratingWaveform waveformImageData={(state as DrawingState).waveformImageData} progress={(state as DrawingState).waveformProgress} />}
 
             {/* </Stack> */}
         </section>
