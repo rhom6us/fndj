@@ -29,7 +29,7 @@
 				// "visualstudioexptteam.vscodeintellicode",
 				// "ms-vscode.vscode-typescript-next",
 				// "ms-edgedevtools.vscode-edge-devtools",
-				// "spmeesseman.vscode-taskexplorer",
+				"spmeesseman.vscode-taskexplorer",
 			]
 		}
 	},
@@ -41,6 +41,8 @@
 	"remoteUser": "node",
 	"features": {
 		"git": "latest",
-		"dotnet": "latest"
+		"dotnet": "latest",
+		"github-cli": "latest",
+		"sshd": "latest"
 	}
 }
