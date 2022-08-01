@@ -12,6 +12,18 @@
   },
   "editor.formatOnSaveMode": "modificationsIfAvailable",
   "files.eol": "\n",
-  "files.exclude": {},
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/lib": true,
+    "**/.rush": true,
+    "packages/@fndj/browser/public": true,
+    "**/temp": true,
+    "**/dist": true
+  },
   "explorer.excludeGitIgnore": true,
 }

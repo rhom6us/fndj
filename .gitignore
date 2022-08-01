@@ -101,9 +101,9 @@ packages/**/*.rar
 **/obj/
 .tsbuildinfo
 
-**/dist/
-**/lib/
-**/lib-commonjs/
-**/temp/
+**/dist
+**/lib
+**/lib-commonjs
+**/temp
 
 rigs/heft-webpack-rig/webpack/src/
