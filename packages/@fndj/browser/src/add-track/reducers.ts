@@ -65,7 +65,8 @@ export interface AnalysisStateData extends DownloadStateData {
 
 export interface DrawingState extends StateBase<StateType.draw>, DrawingStateData { }
 export interface DrawingStateData extends AnalysisStateData {
-    readonly waveformImageData: [min:number, max:number][];
+    readonly waveformImageData: [min: number, max: number][];
+    readonly waveformProgress: number;
 }
 
 export interface WaveformState extends StateBase<StateType.waveform>, WaveformStateData { }
@@ -228,15 +229,22 @@ export const reducers = {
             return {
                 ...state,
                 type: StateType.draw,
-                waveformImageData: []
+                waveformImageData: [],
+                waveformProgress: 0,
             }
         },
-        waveformComputed(state: WaveformState, data: { waveformImageData: [min: number, max: number][]; }) {
-            
+        waveformPartComputed(state: WaveformState, data: { waveformImageData: [min: number, max: number]; progress: number }) {
             return {
                 ...state,
                 type: StateType.waveform,
-                waveformImageData:data.waveformImageData,
+                waveformImageData: [...(state.waveformImageData ?? []), data.waveformImageData],
+                waveformProgress: data.progress,
+            }
+        },
+        waveformCompleted(state: WaveformState) {
+            return {
+                ...state,
+                waveformProgress: 1
             }
         }
     }

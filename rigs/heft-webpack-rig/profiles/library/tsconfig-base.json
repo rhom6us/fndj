@@ -38,7 +38,7 @@
         "noImplicitOverride": true,
         "noErrorTruncation": false,
         /***** Typescript 4.4 ***********/
-        "exactOptionalPropertyTypes": true,
+        "exactOptionalPropertyTypes": false,
         "useUnknownInCatchVariables": true
     },
     "include": [

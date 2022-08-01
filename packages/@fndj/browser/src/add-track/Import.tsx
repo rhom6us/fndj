@@ -34,7 +34,7 @@ export const Import: FC<Props> = ({ video, state }) => {
 
             {/* {state.download.state === 'complete' && <Analyzing data={analysis}  />} */}
             {state.type >= StateType.analysis && <Analyzing analysis={(state as AnalysisState).analysis} />}
-            {state.type >= StateType.waveform && <GeneratingWaveform waveformImageData={(state as DrawingState).waveformImageData} />}
+            {state.type >= StateType.waveform && <GeneratingWaveform waveformImageData={(state as DrawingState).waveformImageData} progress={(state as DrawingState).waveformProgress} />}
 
             {/* </Stack> */}
         </section>
@@ -74,9 +74,10 @@ export const Analyzing: FC<AnalyzingProps> = memo(function Analyzing({ analysis 
 
 interface GeneratingWaveformProps {
     waveformImageData: DrawingState['waveformImageData'];
+    progress: number;
 }
 let wait = false;
-export const GeneratingWaveform: FC<GeneratingWaveformProps> = memo(function GeneratingWaveform({ waveformImageData }: GeneratingWaveformProps) {
+export const GeneratingWaveform: FC<GeneratingWaveformProps> = memo(function GeneratingWaveform({ waveformImageData, progress }: GeneratingWaveformProps) {
 
     const { width, height, ref, } = useResizeDetector<HTMLCanvasElement>({ handleHeight: false })!;
     // const w = useMemo(() => waveformImageData.length, [waveformImageData]);
@@ -126,13 +127,16 @@ export const GeneratingWaveform: FC<GeneratingWaveformProps> = memo(function Gen
     }, [waveformImageData]);
 
 
-    return <canvas
-        ref={ref}
-        height={201}
-        width={window.document.body.getBoundingClientRect().width}
-        style={{
-            width: CSS.px(window.document.body.getBoundingClientRect().width).toString(),
-            height: CSS.px(201).toString()
-        }}>
-    </canvas>;
+    return <div>
+        <ProgressIndicator percentComplete={progress} />
+        <canvas
+            ref={ref}
+            height={201}
+            width={window.document.body.getBoundingClientRect().width}
+            style={{
+                width: CSS.px(window.document.body.getBoundingClientRect().width).toString(),
+                height: CSS.px(201).toString()
+            }}>
+        </canvas>;
+    </div>;
 });
