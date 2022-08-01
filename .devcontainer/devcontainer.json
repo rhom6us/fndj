@@ -30,7 +30,12 @@
 				// "ms-vscode.vscode-typescript-next",
 				// "ms-edgedevtools.vscode-edge-devtools",
 				"spmeesseman.vscode-taskexplorer",
-				"trunk.io"
+				"trunk.io",
+				"github.vscode-pull-request-github",
+				"eamodio.gitlens",
+				"bierner.markdown-preview-github-styles"
+
+
 			]
 		}
 	},
