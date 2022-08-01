@@ -143,7 +143,10 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         },
         {
             "label": "publish",
