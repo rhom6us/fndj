@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "heft test --clean",
-    "build": "heft build --clean",
+    "build": "heft build --clean --verbose",
     "build:watch": "heft build",
     "start": "heft start",
     "storybook": "heft start --storybook"
@@ -58,10 +58,11 @@
     "@rushstack/eslint-config": "*",
     "@rushstack/heft": "*",
     "html-loader": "^3.0.0",
+    "@rhom6us/heft-storybook-storykit": "~1.2.0",
+    "typescript": "~4.7.4",
     "postcss-loader": "^6.2.0",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^6.5.0",
-    "sass-loader": "^12.2.0",
-    "@rhom6us/heft-storybook-storykit": "~1.2.0"
+    "sass-loader": "^12.2.0"
   }
 }

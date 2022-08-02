@@ -1,4 +1,4 @@
-import { parseCommands } from '@rhombus/redux-command-pattern';
+import { createCommandHandler, getCommands } from '@rhombus/redux-command-pattern';
 import { createStore } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 import { commandImplementation } from './commands';
@@ -22,4 +22,10 @@ export const store = createStore(
     // DevTools.instrument({trace: true})
 );
 // export const store = createStore(fnReducer, initialState, __REDUX_DEVTOOLS_EXTENSION__?.());
-export const commands = parseCommands(commandImplementation, store, reducers);
+// const args = [commandImplementation, store, reducers] as const;
+
+const handler = createCommandHandler(store, commandImplementation);
+export const commands = getCommands(handler);
+
+
+// export const commands = {} as any;//parseCommands(commandImplementation, store, reducers);
