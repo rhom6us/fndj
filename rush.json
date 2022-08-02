@@ -516,14 +516,6 @@
       "reviewCategory": "weblib"
     },
     {
-      "packageName": "@fndj/heft-web-rig",
-      "projectFolder": "rigs/heft-web-rig"
-    },
-    {
-      "packageName": "@fndj/heft-webpack-rig",
-      "projectFolder": "rigs/heft-webpack-rig"
-    },
-    {
       "packageName": "@fndj/browser",
       "projectFolder": "packages/@fndj/browser"
     },
@@ -538,6 +530,14 @@
     {
       "packageName": "@fndj/superpowered",
       "projectFolder": "packages/@fndj/superpowered"
+    },
+    {
+      "packageName": "@fndj/heft-web-rig",
+      "projectFolder": "rigs/heft-web-rig"
+    },
+    {
+      "packageName": "@fndj/heft-webpack-rig",
+      "projectFolder": "rigs/heft-webpack-rig"
     }
   ]
 }

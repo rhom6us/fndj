@@ -49,10 +49,14 @@
     "url-loader": "^4.1.1",
     "worker-url": "~1.1.0",
     "webpack": "~5.64.1",
-    "webpack-dev-server": "~4.5.0"
+    "webpack-dev-server": "~4.5.0",
+    "@rushstack/heft-storybook-plugin": "~0.1.68"
   },
   "peerDependencies": {
-    "@rushstack/heft": "*"
+    "@rushstack/heft": "*",
+    "@rushstack/eslint-config": "^2.4.0",
+    "@rushstack/heft-node-rig": "^1.0.31",
+    "@types/heft-jest": "1.0.2"
   },
   "devDependencies": {
     "@rushstack/heft": "*",

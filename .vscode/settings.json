@@ -23,7 +23,6 @@
     "**/.rush": true,
     "packages/@fndj/browser/public": true,
     "**/temp": true,
-    "**/dist": true
+    "**/dist": false
   },
-  "explorer.excludeGitIgnore": true,
 }
