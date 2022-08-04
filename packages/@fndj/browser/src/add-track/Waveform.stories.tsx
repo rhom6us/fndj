@@ -10,7 +10,14 @@ export default {
     argTypes: {
       leftColor: { control: 'color' },
       rightColor: { control: 'color' }
-    }
+    },
+    decorators: [
+      (Story) => (
+        <div style={{ margin: '3em', background:'yellow' }}>
+          <Story />
+        </div>
+      ),
+    ],
   } as ComponentMeta<typeof Waveform>;
   
   const Template: ComponentStory<typeof Waveform> = (args) => <Waveform {...args} />;
