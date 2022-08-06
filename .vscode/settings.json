@@ -25,4 +25,8 @@
     "**/temp": false,
     "**/dist": false
   },
+  "explorer.fileNesting.patterns": {
+    "*.cs": "${capture}.*.cs",
+    "*.tsx": "${capture}.stories.tsx",
+  },
 }
