@@ -7,7 +7,7 @@ export interface WaveformProps {
 
 
 export const Waveform = memo<WaveformProps>(({ data, width }) => {
-    return <section><h4>hi</h4></section>
+    return <section><h4>hiiii</h4></section>
 })
 // type CanvasProps = Omit<React.CanvasHTMLAttributes<HTMLCanvasElement>, keyof WaveformProps>;
 // export const Waveform: React.FC<WaveformProps & CanvasProps> = ({ data, width, ...canvasProps }) => {

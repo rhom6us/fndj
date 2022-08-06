@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@fndj/heft-web-rig/profiles/types/tsconfig-base.json",
+  "extends": "@fndj/heft-web-rig/profiles/types/tsconfig-base.json",
   "include": [
     "./**/*.d.ts"
   ]
