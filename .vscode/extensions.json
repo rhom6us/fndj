@@ -5,12 +5,15 @@
     "peterschmalfeldt.explorer-exclude",
     "vsls-contrib.gistfs",
     "github.copilot",
-    "styled-components.vscode-styled-components",
     "mrmlnc.vscode-json5",
     "spmeesseman.vscode-taskexplorer",
     "trunk.io",
     "github.vscode-pull-request-github",
     "eamodio.gitlens",
-    "bierner.markdown-preview-github-styles"
+    "bierner.markdown-preview-github-styles",
+    "mikestead.dotenv",
+    "mrkou47.npmignore",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "ms-vscode.remote-repositories",
   ]
 }
