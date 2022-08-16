@@ -5,7 +5,6 @@
 // export * from './SuperFnPlayer';
 // export * from './SuperPitchShift';
 // export * from './SuperTimeStretching';
-
-export * from './createSpectrogram';
-export { };
+// export * from './createSpectrogram';
+export * from './FnPassthrough';
 
