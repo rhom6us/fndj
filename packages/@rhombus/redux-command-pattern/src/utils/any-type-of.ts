@@ -1,11 +1,10 @@
 import { Observable } from './observable';
 import { Thunk } from './thunk';
 
-interface Thunk_Copy<T> extends Thunk<T> { }
 export type AnyTypeOf<T, TYield> =
   | void
   | T
-  | Thunk_Copy<AnyTypeOf<T, TYield>>
+  | Thunk<AnyTypeOf<T, TYield>>
   | Observable<AnyTypeOf<T, TYield>>
   | PromiseLike<AnyTypeOf<T, TYield>>
   | Generator<AnyTypeOf<T, TYield>, AnyTypeOf<T, TYield>, TYield>

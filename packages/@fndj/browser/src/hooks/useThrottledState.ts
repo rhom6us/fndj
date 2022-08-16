@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import {} from '@rhombus-toolkit/async-timers';
 console.log('defining');
 export function useThrottledState<T>(initialValue: T, ms: number) {
     const [value, setValue] = useState(initialValue);
@@ -10,7 +11,7 @@ export function useThrottledState<T>(initialValue: T, ms: number) {
         setToken(cancelUpdate);
     }, [cancelUpdate, value]);
     useEffect(() => {
-        setToken(setTimeout(updateValue, ms));
+        setToken(window.setTimeout(updateValue, ms));
         return () => setToken(cancelUpdate);
 
     }, [cancelUpdate, updateValue, ms]);

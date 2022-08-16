@@ -4,6 +4,9 @@
     "src/index.ts",
     "src/**/*.worklet.ts"
   ],
+  "exclude": [
+    "src/**/*.trash.ts"
+  ],
   "compilerOptions": {
     "types": [
       "webaudio"

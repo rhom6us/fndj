@@ -23,7 +23,13 @@
     "**/.rush": true,
     "packages/@fndj/browser/public": true,
     "**/temp": true,
-    "**/dist": true
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/*.log": true,
+    "**/config": true
   },
-  "explorer.excludeGitIgnore": true,
+  "explorer.fileNesting.patterns": {
+    "*.cs": "${capture}.*.cs",
+    "*.tsx": "${capture}.stories.tsx",
+  },
 }

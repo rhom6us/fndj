@@ -25,6 +25,7 @@
     "@rushstack/heft-sass-plugin": "^0.2.2",
     "@rushstack/heft-webpack4-plugin": "^0.3.18",
     "@rushstack/heft-webpack5-plugin": "~0.4.18",
+    "caniuse-lite": "~1.0.30001373",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^6.5.0",
     "eslint": "^8.2.0",
@@ -49,10 +50,14 @@
     "url-loader": "^4.1.1",
     "worker-url": "~1.1.0",
     "webpack": "~5.64.1",
-    "webpack-dev-server": "~4.5.0"
+    "webpack-dev-server": "~4.5.0",
+    "@rushstack/heft-storybook-plugin": "~0.1.68"
   },
   "peerDependencies": {
-    "@rushstack/heft": "*"
+    "@rushstack/heft": "*",
+    "@rushstack/eslint-config": "^2.4.0",
+    "@rushstack/heft-node-rig": "^1.0.31",
+    "@types/heft-jest": "1.0.2"
   },
   "devDependencies": {
     "@rushstack/heft": "*",

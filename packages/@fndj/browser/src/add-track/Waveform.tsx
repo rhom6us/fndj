@@ -1,10 +1,14 @@
-// import React, { useEffect } from "react";
+ import React, { memo } from "react";
 // import { useCanvas } from '../hooks';
-// export interface WaveformProps {
-//     data: Uint8ClampedArray;
-//     width: number;
-// }
+export interface WaveformProps {
+    data: Uint8ClampedArray;
+    width: number;
+}
 
+
+export const Waveform = memo<WaveformProps>(({ data, width }) => {
+    return <section><h4>hiiii</h4></section>
+})
 // type CanvasProps = Omit<React.CanvasHTMLAttributes<HTMLCanvasElement>, keyof WaveformProps>;
 // export const Waveform: React.FC<WaveformProps & CanvasProps> = ({ data, width, ...canvasProps }) => {
 //     const ref = useCanvas();

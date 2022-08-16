@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "ms-dotnettools.csharp",
     "ms-azuretools.vscode-docker",
     "peterschmalfeldt.explorer-exclude",
     "vsls-contrib.gistfs",

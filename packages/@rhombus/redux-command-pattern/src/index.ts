@@ -10,7 +10,7 @@ export type { AsyncCommandGenerator, CommandGenerator, CommandResult } from './c
 export type { StandardEvent, StandardEventAny } from './standard-event';
 export type { ThunkDispatch } from './utils';
 export type { ReducerFn, CommandFn };
-export { createCommandHandler };
+export { createCommandHandler, getCommands };
 
 export function parseReducers<TReducers extends DeepDictionary<ReducerFnAny>>(reducers: TReducers) {
     const reducer = createReducer(reducers);

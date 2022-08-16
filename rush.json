@@ -46,7 +46,7 @@
      *
      * The default value is "local".
      */
-    // "pnpmStore": "local",
+    "pnpmStore": "global",
     /**
      * If true, then Rush will add the "--strict-peer-dependencies" option when invoking PNPM.
      * This causes "rush install" to fail if there are unsatisfied peer dependencies, which is
@@ -516,14 +516,6 @@
       "reviewCategory": "weblib"
     },
     {
-      "packageName": "@fndj/heft-web-rig",
-      "projectFolder": "rigs/heft-web-rig"
-    },
-    {
-      "packageName": "@fndj/heft-webpack-rig",
-      "projectFolder": "rigs/heft-webpack-rig"
-    },
-    {
       "packageName": "@fndj/browser",
       "projectFolder": "packages/@fndj/browser"
     },
@@ -538,6 +530,14 @@
     {
       "packageName": "@fndj/superpowered",
       "projectFolder": "packages/@fndj/superpowered"
+    },
+    {
+      "packageName": "@fndj/heft-web-rig",
+      "projectFolder": "rigs/heft-web-rig"
+    },
+    {
+      "packageName": "@fndj/heft-webpack-rig",
+      "projectFolder": "rigs/heft-webpack-rig"
     }
   ]
 }
