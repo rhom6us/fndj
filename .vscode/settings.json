@@ -28,4 +28,8 @@
     "**/*.log": true,
     "**/config": true
   },
+  "explorer.fileNesting.patterns": {
+    "*.cs": "${capture}.*.cs",
+    "*.tsx": "${capture}.stories.tsx",
+  },
 }
